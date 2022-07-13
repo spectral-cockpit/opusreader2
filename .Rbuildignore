@@ -4,3 +4,4 @@
 ^\.ccache$
 ^\.github$
 ^tic\.R$
+^doc-local
