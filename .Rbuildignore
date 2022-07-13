@@ -1,3 +1,6 @@
 ^opusreader2\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^\.ccache$
+^\.github$
+^tic\.R$
