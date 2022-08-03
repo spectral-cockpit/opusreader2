@@ -7,5 +7,5 @@
 #' fn <- opus_file()
 #' fn
 opus_file <- function() {
-  system.file("extdata", "test_spectra.0", package = "opusreader")
+  system.file("extdata/test_data", "test_spectra.0", package = "opusreader2")
 }
