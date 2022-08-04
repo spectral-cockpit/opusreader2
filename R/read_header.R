@@ -14,7 +14,7 @@ read_header <- function(raw) {
   # file size; n data
   nd <- length(raw)
 
-  result_df <- data.frame()
+  result_list <- list()
 
   repeat {
     if (cursor + meta_block_size >= nh) {
@@ -41,8 +41,7 @@ read_header <- function(raw) {
     }
 
 
-
-    repeat_df <- data.frame(
+    repeat_list <- list(
       block_type = block_type,
       channel_type = channel_type,
       text_type = text_type,
@@ -50,7 +49,7 @@ read_header <- function(raw) {
       chunk_size = chunk_size
     )
 
-    result_df <- do.call(rbind, list(result_df, repeat_df))
+    result_list <- c(result_list, list(repeat_list))
 
     next_offset <- offset + 4L * chunk_size
 
@@ -61,7 +60,10 @@ read_header <- function(raw) {
     cursor <- cursor + 12L
   }
 
-  return(result_df)
+  # exclude the header chunk, since it is read in this function
+  result_list <- result_list[2:length(result_list)]
+
+  return(result_list)
 }
 
 # helpers for reading header parameters and codes ------------------------------
