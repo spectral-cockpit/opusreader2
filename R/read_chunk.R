@@ -1,6 +1,6 @@
 #' read chunk method
 #' @export
-read_chunk <- function(ds, ...) UseMethod("read_chunk")
+read_chunk <- function(ds, con) UseMethod("read_chunk")
 
 #' read chunk method for text
 #' @export
