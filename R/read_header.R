@@ -40,11 +40,7 @@ read_header <- function(raw) {
       break
     }
 
-    next_offset <- offset + 4L * chunk_size
 
-    if (next_offset >= nd) {
-      break
-    }
 
     repeat_df <- data.frame(
       block_type = block_type,
@@ -55,6 +51,12 @@ read_header <- function(raw) {
     )
 
     result_df <- do.call(rbind, list(result_df, repeat_df))
+
+    next_offset <- offset + 4L * chunk_size
+
+    if (next_offset >= nd) {
+      break
+    }
 
     cursor <- cursor + 12L
   }
