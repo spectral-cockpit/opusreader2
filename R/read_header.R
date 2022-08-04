@@ -2,106 +2,111 @@ read_header <- function(raw, nh = 504L) {
   # read raw connection
   con <- rawConnection(raw)
 
-  # set start cursor in bytes
-  # cursor <- 32L; in ONO, the start cursor is set to this
-  cursor <- 32L
+  # set first start cursor in bytes
+  # use positive integer logic, following
+  # https://github.com/qedsoftware/brukeropusreader/blob/master/brukeropusreader/constants.py
+  cursor <- 24L
+  # number of bytes of block metainfo
+  meta_block_size <- 12L
 
   # file size; n data
   nd <- length(raw)
 
-  offset_list <- list()
-  chuck_size_list <- list()
-  data_type_list <- list()
-  data_text_list <- list()
-  channel_type_list <- list()
+  result_df <- data.frame()
 
-
-  while (cursor > 0L) {
-    i1 <- cursor
-    i2 <- i1 + 4L
-
-    if (i2 <= nh) {
-
-      # position the connection and read from current offset
-      seek(con, where = i1, origin = "start", rw = "read")
-      # read the offset
-      offset <- readBin(con, what = "integer", n = 1L, size = 4L, endian = "little")
-
-      if (offset > 0) {
-        offset_list <- c(offset_list, offset)
-
-        # read chunk size (4 bytes)
-        seek(con, where = i1 - 4L, origin = "start", rw = "read")
-        chunk_size <- readBin(con, what = "integer", n = 1L, size = 4L)
-        chuck_size_list <- c(chuck_size_list, chunk_size)
-
-        # read the data type # => does not work yet
-        i1 <- cursor - 8L
-        i2 <- cursor + 1L
-        seek(con, where = i1, origin = "start", rw = "read")
-        # read as character
-        type <- readBin(
-          con,
-          what = "integer",
-          n = 1L,
-          size = 1,
-          endian = "little",
-          signed = F
-        )
-        data_type_list <- c(data_type_list, type)
-
-        # read the channel type
-        i1 <- cursor - 7L
-        i2 <- i1 + 1L
-        seek(con, where = i1, origin = "start", rw = "read")
-        channel <- readBin(
-          con,
-          what = "integer",
-          n = 1L,
-          size = 1,
-          endian = "little",
-          signed = F
-        )
-        channel_type_list <- c(channel_type_list, channel)
-
-        # read the text type
-        i1 <- cursor - 6L
-        i2 <- cursor + 1L
-        seek(con, where = i1, origin = "start", rw = "read")
-        text <- readBin(
-          con,
-          what = "integer",
-          n = 1L,
-          size = 1,
-          endian = "little",
-          signed = F
-        )
-        data_text_list <- c(data_text_list, text)
-
-        next_offset <- offset + 4 * chunk_size
-
-        if (next_offset >= nd) {
-          cursor <- -1L
-        } else {
-          cursor <- cursor + 12L
-        }
-      } else {
-        cursor <- -1L
-      }
-    } else {
-      cursor <- -1L
+  repeat {
+    if (cursor + meta_block_size >= nh) {
+      break
     }
+
+    # read the block type
+    block_type <- read_block_type(con, cursor)
+
+    # read the channel type
+    channel_type <- read_channel_type(con, cursor)
+
+    # read the text type
+    text_type <- read_text_type(con, cursor)
+
+    # read chunk size (4 bytes)
+    chunk_size <- read_chunk_size(con, cursor)
+
+    # read the offset in bytes
+    offset <- read_offset(con, cursor)
+
+    if (offset <= 0L) {
+      break
+    }
+
+    next_offset <- offset + 4L * chunk_size
+
+    if (next_offset >= nd) {
+      break
+    }
+
+    repeat_df <- data.frame(
+      block_type = block_type,
+      channel_type = channel_type,
+      text_type = text_type,
+      offset = offset,
+      chunk_size = chunk_size
+    )
+
+    result_df <- do.call(rbind, list(result_df, repeat_df))
+
+    cursor <- cursor + 12L
   }
 
-  result <- list(offset_list = offset_list,
-                 chuck_size_list = chuck_size_list,
-                 data_type_list = data_type_list,
-                 data_text_list = data_text_list,
-                 channel_type_list = channel_type_list)
-
-  return(result)
+  return(result_df)
 }
 
+# helpers for reading header parameters and codes ------------------------------
 
+read_block_type <- function(con, cursor) {
+  seek(con, where = cursor, origin = "start", rw = "read")
+  block_type <- readBin(
+    con,
+    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
+  )
+  return(block_type)
+}
 
+read_channel_type <- function(con, cursor) {
+  seek(con, where = cursor + 1L, origin = "start", rw = "read")
+  channel_type <- readBin(
+    con,
+    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
+  )
+  return(channel_type)
+}
 
+read_text_type <- function(con, cursor) {
+  seek(con, where = cursor + 2L, origin = "start", rw = "read")
+  channel_type <- readBin(
+    con,
+    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
+  )
+  return(channel_type)
+}
+
+read_chunk_size <- function(con, cursor) {
+  seek(con, where = cursor + 4L, origin = "start", rw = "read")
+  chunk_size <- readBin(con,
+    what = "integer", n = 1L, size = 4L
+  )
+  return(chunk_size)
+}
+
+read_offset <- function(con, cursor) {
+  seek(con, where = cursor + 8L, origin = "start", rw = "read")
+  offset <- readBin(con,
+    what = "integer", n = 1L, size = 4L, endian = "little"
+  )
+  return(offset)
+}
+
+# ASCII lookup: take hexadecimal number and output character from extended
+# ASCII set
+dec_to_ascii <- function(n) {
+  rawToChar(as.raw(n))
+}
