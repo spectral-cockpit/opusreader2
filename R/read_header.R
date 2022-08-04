@@ -1,10 +1,12 @@
-read_header <- function(raw, nh = 504L) {
+read_header <- function(raw) {
   # read raw connection
   con <- rawConnection(raw)
 
-  # set first start cursor in bytes
-  # use positive integer logic, following
-  # https://github.com/qedsoftware/brukeropusreader/blob/master/brukeropusreader/constants.py
+  # header length in bytes
+  nh <- 504L
+
+  # set first start cursor in bytes;
+  # following github.com/qedsoftware/brukeropusreader
   cursor <- 24L
   # number of bytes of block metainfo
   meta_block_size <- 12L
