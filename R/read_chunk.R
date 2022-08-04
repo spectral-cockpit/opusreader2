@@ -1,17 +1,30 @@
-read_chunk <- function(con, ds) UseMethod("read_chunk", con, ds)
+#' read chunk method
+#' @export
+read_chunk <- function(ds, ...) UseMethod("read_chunk")
 
-read_chunk.text <- function(con, ds){
+#' read chunk method for text
+#' @export
+read_chunk.text <- function(ds, con){
 
 
+  # ds$value <- value
+  # return(ds)
 }
 
-read_chunk.parameter <- function(con, ds){
+#' read chunk method for parameter
+#' @export
+read_chunk.parameter <- function(ds, con){
+  browser()
 
-
+  # ds$value <- value
+  # return(ds)
 }
 
-read_chunk.data <- function(con, ds){
+#' read chunk method for data
+#' @export
+read_chunk.data <- function(ds, con){
 
 
-
+  # ds$value <- value
+  # return(ds)
 }
