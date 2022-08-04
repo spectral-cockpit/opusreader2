@@ -4,7 +4,7 @@
 \alias{read_chunk}
 \title{read chunk method}
 \usage{
-read_chunk(ds, ...)
+read_chunk(ds, con)
 }
 \description{
 read chunk method
