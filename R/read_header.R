@@ -26,7 +26,6 @@ read_header <- function(raw) {
     text_type <- read_text_type(con, cursor)
     # chunk size in bytes
     chunk_size <- read_chunk_size(con, cursor)
-
     # offset in bytes
     offset <- read_offset(con, cursor)
 
