@@ -21,19 +21,13 @@ read_header <- function(raw) {
       break
     }
 
-    # read the block type
     block_type <- read_block_type(con, cursor)
-
-    # read the channel type
     channel_type <- read_channel_type(con, cursor)
-
-    # read the text type
     text_type <- read_text_type(con, cursor)
-
-    # read chunk size (4 bytes)
+    # chunk size in bytes
     chunk_size <- read_chunk_size(con, cursor)
 
-    # read the offset in bytes
+    # offset in bytes
     offset <- read_offset(con, cursor)
 
     if (offset <= 0L) {
