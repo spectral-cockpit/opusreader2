@@ -1,5 +1,4 @@
-create_dataset <- function(data_list){
-
+create_dataset <- function(data_list) {
   block_type <- data_list$block_type
   text_type <- data_list$text_type
   channel_type <- data_list$channel_type
@@ -23,7 +22,7 @@ create_dataset <- function(data_list){
     } else {
       block_type_name <- "Text Information"
     }
-  } else if (block_type == 7){
+  } else if (block_type == 7) {
     read_class <- "data"
 
     if (channel_type == 4) {
@@ -33,7 +32,7 @@ create_dataset <- function(data_list){
     } else if (channel_type == 12) {
       block_type_name <- "PhSm"
     }
-  } else if (block_type == 11){
+  } else if (block_type == 11) {
     read_class <- "data"
 
     if (channel_type == 4) {
@@ -41,7 +40,7 @@ create_dataset <- function(data_list){
     } else if (channel_type == 8) {
       block_type_name <- "IgRf"
     }
-  } else if (block_type == 15){
+  } else if (block_type == 15) {
     read_class <- "data"
     block_type_name <- "AB"
   } else if (block_type == 23) {
@@ -87,7 +86,7 @@ create_dataset <- function(data_list){
       block_type_name <- "Sample"
     } else if (block_type == 176) {
       block_type_name <- "new block"
-    }else {
+    } else {
       stop("block not known")
     }
   }
@@ -95,10 +94,8 @@ create_dataset <- function(data_list){
   # create a dataset
   ds <- structure(
     c(data_list, list(block_type_name = block_type_name)),
-    class = c("ds",read_class)
+    class = c("ds", read_class)
   )
 
   return(ds)
 }
-
-
