@@ -3,7 +3,7 @@ read_header <- function(raw) {
   con <- rawConnection(raw)
 
   # header length in bytes
-  nh <- 504L
+  header_length <- 504L
 
   # set first start cursor in bytes;
   # following github.com/qedsoftware/brukeropusreader
@@ -17,7 +17,7 @@ read_header <- function(raw) {
   result_list <- list()
 
   repeat {
-    if (cursor + meta_block_size >= nh) {
+    if (cursor + meta_block_size >= header_length) {
       break
     }
 
