@@ -11,8 +11,8 @@ read_header <- function(raw) {
   # number of bytes of block metainfo
   meta_block_size <- 12L
 
-  # file size; n data
-  nd <- length(raw)
+  # file size in bytes
+  file_size <- length(raw)
 
   result_list <- list()
 
@@ -53,7 +53,7 @@ read_header <- function(raw) {
 
     next_offset <- offset + 4L * chunk_size
 
-    if (next_offset >= nd) {
+    if (next_offset >= file_size) {
       break
     }
 
