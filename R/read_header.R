@@ -33,7 +33,6 @@ read_header <- function(raw) {
       break
     }
 
-
     repeat_list <- list(
       block_type = block_type,
       channel_type = channel_type,
