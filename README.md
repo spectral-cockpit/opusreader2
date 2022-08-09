@@ -13,10 +13,12 @@ cases.
 
 ## Credits
 
-- Andrew Sila and Tomislav Hengl: wrote a first OPUS reader in R.
-  https://github.com/cran/soil.spec/blob/master/R/read.opus.R
+- Pierre Roudier and Philipp Baumann made an improved R reader.
+  https://github.com/pierreroudier/opusreader
 - QED.ai: implemented a python parser which takes the main the logic of
   ono.
   https://github.com/qedsoftware/brukeropusreader
 - twagner: wrote a OPUS FTIR clone called ono. Original decrypter of the header.
   https://pypi.org/project/ono/
+- Andrew Sila and Tomislav Hengl: wrote a first OPUS reader in R.
+  https://github.com/cran/soil.spec/blob/master/R/read.opus.R
