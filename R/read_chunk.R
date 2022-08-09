@@ -14,7 +14,7 @@ read_chunk.text <- function(ds, con){
 #' read chunk method for parameter
 #' @export
 read_chunk.parameter <- function(ds, con){
-  browser()
+  # browser()
 
   # ds$value <- value
   # return(ds)
