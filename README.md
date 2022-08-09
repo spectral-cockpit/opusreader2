@@ -13,7 +13,8 @@ cases.
 
 ## Credits
 
-- Pierre Roudier and Philipp Baumann made an improved R reader.
+- Pierre Roudier and Philipp Baumann made an improved R reader, further
+  developing the version in simplerspec.
   https://github.com/pierreroudier/opusreader
 - QED.ai: implemented a python parser which takes the main the logic of
   ono.
