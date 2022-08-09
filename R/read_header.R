@@ -21,13 +21,11 @@ read_header <- function(raw) {
       break
     }
 
-    block_type <- read_block_type(con, cursor)
-    channel_type <- read_channel_type(con, cursor)
-    text_type <- read_text_type(con, cursor)
-    # chunk size in bytes
-    chunk_size <- read_chunk_size(con, cursor)
-    # offset in bytes
-    offset <- read_offset(con, cursor)
+    block_type   <- read_unsigned_int(con, cursor)
+    channel_type <- read_unsigned_int(con, cursor + 1L)
+    text_type    <- read_unsigned_int(con, cursor + 2L)
+    chunk_size   <- read_signed_int(con, cursor + 4L)
+    offset       <- read_signed_int(con, cursor + 8L)
 
     if (offset <= 0L) {
       break
@@ -55,53 +53,12 @@ read_header <- function(raw) {
   # exclude the header chunk, since it is read in this function
   result_list <- result_list[-1L]
 
+  #close(con)
   return(result_list)
 }
 
-# helpers for reading header parameters and codes ------------------------------
 
-read_block_type <- function(con, cursor) {
-  seek(con, where = cursor, origin = "start", rw = "read")
-  block_type <- readBin(
-    con,
-    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
-  )
-  return(block_type)
-}
 
-read_channel_type <- function(con, cursor) {
-  seek(con, where = cursor + 1L, origin = "start", rw = "read")
-  channel_type <- readBin(
-    con,
-    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
-  )
-  return(channel_type)
-}
-
-read_text_type <- function(con, cursor) {
-  seek(con, where = cursor + 2L, origin = "start", rw = "read")
-  channel_type <- readBin(
-    con,
-    what = "integer", n = 1L, size = 1L, endian = "little", signed = FALSE
-  )
-  return(channel_type)
-}
-
-read_chunk_size <- function(con, cursor) {
-  seek(con, where = cursor + 4L, origin = "start", rw = "read")
-  chunk_size <- readBin(con,
-    what = "integer", n = 1L, size = 4L
-  )
-  return(chunk_size)
-}
-
-read_offset <- function(con, cursor) {
-  seek(con, where = cursor + 8L, origin = "start", rw = "read")
-  offset <- readBin(con,
-    what = "integer", n = 1L, size = 4L, endian = "little"
-  )
-  return(offset)
-}
 
 # ASCII lookup: take hexadecimal number and output character from extended
 # ASCII set
