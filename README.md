@@ -1,5 +1,10 @@
 # opusreader2
 
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/spectral-cockpit/opusreader2/workflows/R-CMD-check/badge.svg)](https://github.com/spectral-cockpit/opusreader2/actions)
+<!-- badges: end -->
+
+
 ## Scope
 
 This is a universal OPUS binary reader for R. It parses the header for assigning
