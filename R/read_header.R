@@ -53,7 +53,7 @@ read_header <- function(raw) {
   }
 
   # exclude the header chunk, since it is read in this function
-  result_list <- result_list[2:length(result_list)]
+  result_list <- result_list[-1L]
 
   return(result_list)
 }
