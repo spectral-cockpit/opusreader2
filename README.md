@@ -1,7 +1,7 @@
 # opusreader2
 
 <!-- badges: start -->
-  [![R-CMD-check](https://github.com/spectral-cockpit/opusreader2/workflows/R-CMD-check/badge.svg)](https://github.com/spectral-cockpit/opusreader2/actions)
+[![tic](https://github.com/spectral-cockpit/opusreader2/workflows/tic/badge.svg?branch=main)](https://github.com/spectral-cockpit/opusreader2/actions)
 <!-- badges: end -->
 
 
