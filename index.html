@@ -67,8 +67,27 @@
 <div class="section level1">
 <div class="page-header"><h1 id="opusreader2">opusreader2<a class="anchor" aria-label="anchor" href="#opusreader2"></a>
 </h1></div>
-<p>An improved OPUS binary reader for R that uses the hidden header info for assigning spectral blocks.</p>
-<p>This package has grown out of {opusreader} made by Pierre Roudier and Philipp Baumann. {opusreder} brought some major improvements, but has one main issue. It implements quite some reverse engineered logic, that assigns byte offsets to read different data blocks in the OPUS binary file. As an unintended side-effect, for some files not 100% of the spectral information is correctly read.</p>
+<!-- badges: start -->
+<div class="section level2">
+<h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
+</h2>
+<p>This is a universal OPUS binary reader for R. It parses the header for assigning spectral blocks.</p>
+<p>This package has grown out of {opusreader} made by Pierre Roudier and Philipp Baumann. {opusreader} works, but not for all OPUS files. It implements a reverse engineered logic, that assigns byte offsets to read different data blocks in the OPUS binary file. This is not 100% robust and causes some read failures in edge cases.</p>
+</div>
+<div class="section level2">
+<h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>
+</h2>
+<ul>
+<li>Pierre Roudier and Philipp Baumann made an improved R reader, further developing the version in simplerspec. <a href="https://github.com/pierreroudier/opusreader" class="external-link uri">https://github.com/pierreroudier/opusreader</a>
+</li>
+<li>QED.ai: implemented a python parser which takes the main the logic of ono. <a href="https://github.com/qedsoftware/brukeropusreader" class="external-link uri">https://github.com/qedsoftware/brukeropusreader</a>
+</li>
+<li>twagner: wrote a OPUS FTIR clone called ono. Original decrypter of the header. <a href="https://pypi.org/project/ono/" class="external-link uri">https://pypi.org/project/ono/</a>
+</li>
+<li>Andrew Sila and Tomislav Hengl: wrote a first OPUS reader in R. <a href="https://github.com/cran/soil.spec/blob/master/R/read.opus.R" class="external-link uri">https://github.com/cran/soil.spec/blob/master/R/read.opus.R</a>
+</li>
+</ul>
+</div>
 </div>
   </div>
 
@@ -106,7 +125,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/spectral-cockpit/opusreader2/actions" class="external-link"><img src="https://github.com/spectral-cockpit/opusreader2/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </div>
 </div>

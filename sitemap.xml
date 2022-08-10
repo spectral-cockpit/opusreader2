@@ -18,4 +18,40 @@
   <url>
     <loc>/reference/index.html</loc>
   </url>
+  <url>
+    <loc>/reference/opus_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/opus_read_raw.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parse_chunk.data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parse_chunk.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parse_chunk.parameter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parse_chunk.text.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parse_header.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_character.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_double.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_opus_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_signed_int.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_unsigned_int.html</loc>
+  </url>
 </urlset>
