@@ -16,7 +16,7 @@ Authors@R:
              role = c("aut"),
              email = "roudierp@landcareresearch.co.nz",
              comment = c(ORCID = "0000-0001-7431-2603"),
-      person("spectral-cockpit.com", role = c("cph", "fnd")))
+      person(given = "spectral-cockpit.com", role = c("cph", "fnd")))
     )
 Description: Parses all relevant data blocks from the OPUS binary files
     produced from Fourier-Transform infrared spectrometers of the company
