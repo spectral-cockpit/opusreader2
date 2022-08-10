@@ -1,4 +1,11 @@
-read_header <- function(raw, con) {
+#' parse the header of the opus file
+#'
+#' @param raw raw vector of the opus binary file
+#'
+#' @param con connection to the raw vector
+#'
+#' @export
+parse_header <- function(raw, con) {
 
   # header length in bytes
   header_length <- 504L

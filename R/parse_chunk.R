@@ -1,8 +1,16 @@
 #' read chunk method
+#'
+#' @param ds chunk dataset
+#'
+#' @param con connection to raw vector
+#'
 #' @export
 parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 
 #' read chunk method for text
+#'
+#' @inheritParams parse_chunk
+#'
 #' @export
 parse_chunk.text <- function(ds, con) {
 
@@ -13,6 +21,9 @@ parse_chunk.text <- function(ds, con) {
 }
 
 #' read chunk method for parameter
+#'
+#' @inheritParams parse_chunk
+#'
 #' @export
 parse_chunk.parameter <- function(ds, con) {
   cursor <- ds$offset
@@ -29,6 +40,7 @@ parse_chunk.parameter <- function(ds, con) {
       break
     }
 
+    # need to add since index that is returned starts with 0. R index starts at 1
     type_index <- read_unsigned_int(con, cursor + 4, n = 1L) + 1
 
     parameter_type <- parameter_types[type_index]
@@ -67,6 +79,9 @@ parse_chunk.parameter <- function(ds, con) {
 }
 
 #' read chunk method for data
+#'
+#' @inheritParams parse_chunk
+#'
 #' @export
 parse_chunk.data <- function(ds, con) {
   data <- read_double(con, ds$offset, n = ds$chunk_size)
