@@ -3,7 +3,9 @@ read_opus_file <- function(file) {
   # Get raw vector
   raw <- readBin(file, "raw", n = file_size)
 
-  header_data <- read_header(raw)
+  con <- rawConnection(raw)
+
+  header_data <- read_header(raw, con)
   dataset_list <- lapply(header_data, create_dataset)
-  dataset_list <- lapply(dataset_list, read_chunk)
+  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
 }
