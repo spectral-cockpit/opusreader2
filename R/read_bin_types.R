@@ -43,7 +43,7 @@ read_double <- function(con, cursor, n = 1L) {
     con,
     what = "double",
     n = n,
-    size = 4L,
+    size = 8L,
     endian = "little"
   )
   return(out)
