@@ -57,7 +57,7 @@ parse_chunk.parameter <- function(ds, con) {
 
     cursor <- cursor + 8 + 2 * parameter_size
 
-    if (cursor >= chunk_size) {
+    if (cursor >= ds$offset + chunk_size) {
       break
     }
   }
