@@ -41,8 +41,8 @@ parse_chunk.parameter <- function(ds, con){
       parameter_value <- read_signed_int(con, cursor_value, n =  n_value)
     } else if (type_index == 1) {
       parameter_value <- read_double(con, cursor_value, n = n_value)
-    } else if (tpye_index %in% c(2,3,4)) {
-      parameter_value <- read_character()
+    } else if (type_index %in% c(2,3,4)) {
+      parameter_value <- read_character(con, cursor_value, n = n_value)
     }
 
 
@@ -66,11 +66,7 @@ parse_chunk.parameter <- function(ds, con){
 #' @export
 parse_chunk.data <- function(ds, con){
 
-  seek(con, where = ds$offset, origin = "start", rw = "read")
-  channel_type <- readBin(
-    con,
-    what = "integer", n = ds$chunk_size, size = 4L, endian = "little"
-  )
+  channel_type <- read_double(con, ds$offset, n = ds$chunk_size)
 
   ds$value <- value
   return(ds)
