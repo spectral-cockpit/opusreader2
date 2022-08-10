@@ -6,6 +6,11 @@
 \usage{
 \method{parse_chunk}{data}(ds, con)
 }
+\arguments{
+\item{ds}{chunk dataset}
+
+\item{con}{connection to raw vector}
+}
 \description{
 read chunk method for data
 }
