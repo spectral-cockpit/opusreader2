@@ -8,7 +8,7 @@
 
 ## Scope
 
-This is a universal OPUS binary reader for R. It parses the header for assigning
+This is an universal OPUS binary reader for R. It parses the file header for assigning
 spectral blocks.
 
 This package has grown out of {opusreader} made by Pierre Roudier and Philipp
