@@ -1,6 +1,4 @@
-read_header <- function(raw) {
-  # read raw connection
-  con <- rawConnection(raw)
+read_header <- function(raw, con) {
 
   # header length in bytes
   header_length <- 504L
