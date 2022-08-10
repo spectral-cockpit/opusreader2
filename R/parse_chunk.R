@@ -6,7 +6,7 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #' @export
 parse_chunk.text <- function(ds, con) {
 
-  text <- read_character(con, ds$offset, n = ds$chunck_size)
+  text <- read_character(con, ds$offset, n = ds$chunk_size)
 
   ds$text <- text
   return(ds)
@@ -23,27 +23,27 @@ parse_chunk.parameter <- function(ds, con) {
   result_list <- list()
 
   repeat {
-    parameter_name <- read_character(con, cursor, n = 3L)
+    parameter_name <- read_character(con, cursor, n = 1L)
 
     if (parameter_name == "END") {
       break
     }
 
-    type_index <- read_unsigned_int(con, cursor + 4, n = 2L)
+    type_index <- read_unsigned_int(con, cursor + 4, n = 1L) + 1
 
     parameter_type <- parameter_types[type_index]
 
-    parameter_size <- read_unsigned_int(con, cursor + 6, n = 2L)
+    parameter_size <- read_unsigned_int(con, cursor + 6, n = 1L)
 
     cursor_value <- cursor + 8
-    n_value <- 2 * parameter_size
-browser()
-    if (type_index == 0) {
-      parameter_value <- read_signed_int(con, cursor_value, n = n_value)
-    } else if (type_index == 1) {
-      parameter_value <- read_double(con, cursor_value, n = n_value)
-    } else if (type_index %in% c(2, 3, 4)) {
-      parameter_value <- read_character(con, cursor_value, n = n_value)
+
+
+    if (type_index == 1) {
+      parameter_value <- read_signed_int(con, cursor_value, n = 1L)
+    } else if (type_index == 2) {
+      parameter_value <- read_double(con, cursor_value, n = 1L)
+    } else if (type_index %in% c(3, 4, 5)) {
+      parameter_value <- read_character(con, cursor_value, n = 1L)
     }
 
     repeat_list <- list(
