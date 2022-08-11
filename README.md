@@ -8,7 +8,7 @@
 
 ## Scope
 
-This is an universal binary reader that parses files produced with Bruker Fourier-Transform infrared (IR) spectrometers, for R.
+This is an universal binary reader that parses files produced with Bruker Fourier-Transform infrared (FT-IR) spectrometers, for R.
 
 ## Background
 
