@@ -10,82 +10,82 @@ create_dataset <- function(data_list) {
 
     if (text_type == 8) {
       read_class <- "parameter"
-      block_type_name <- "Info Block"
+      block_type_name <- "info_block"
     } else if (text_type == 104) {
-      block_type_name <- "History"
+      block_type_name <- "history"
     } else if (text_type == 152) {
-      block_type_name <- "Curve Fit"
+      block_type_name <- "curve_fit"
     } else if (text_type == 168) {
-      block_type_name <- "Signature"
+      block_type_name <- "signature"
     } else if (text_type == 240) {
-      block_type_name <- "Integration Method"
+      block_type_name <- "integration_method"
     } else {
-      block_type_name <- "Text Information"
+      block_type_name <- "text_information"
     }
   } else if (block_type == 7) {
     read_class <- "data"
 
     if (channel_type == 4) {
-      block_type_name <- "ScSm"
+      block_type_name <- "sc_sample"
     } else if (channel_type == 8) {
-      block_type_name <- "IgSm"
+      block_type_name <- "ig_sample"
     } else if (channel_type == 12) {
-      block_type_name <- "PhSm"
+      block_type_name <- "ph_sample"
     }
   } else if (block_type == 11) {
     read_class <- "data"
 
     if (channel_type == 4) {
-      block_type_name <- "ScRf"
+      block_type_name <- "sc_ref"
     } else if (channel_type == 8) {
-      block_type_name <- "IgRf"
+      block_type_name <- "ig_ref"
     }
   } else if (block_type == 15) {
     read_class <- "data"
-    block_type_name <- "AB"
+    block_type_name <- "spec"
   } else if (block_type == 23) {
     read_class <- "parameter"
 
     if (channel_type == 4) {
-      block_type_name <- "ScSm Data Parameter"
+      block_type_name <- "sc_sample_data_param"
     } else if (channel_type == 8) {
-      block_type_name <- "IgSm Data Parameter"
+      block_type_name <- "ig_sample_data_param"
     } else if (channel_type == 12) {
-      block_type_name <- "PhSm Data Parameter"
+      block_type_name <- "ph_sample_data_param"
     }
   } else if (block_type == 27) {
     read_class <- "parameter"
 
     if (channel_type == 4) {
-      block_type_name <- "ScRf Data Parameter"
+      block_type_name <- "sc_ref_data_param"
     } else if (channel_type == 8) {
-      block_type_name <- "IgRf Data Parameter"
+      block_type_name <- "ig_ref_data_param"
     }
   } else {
     read_class <- "parameter"
 
     if (block_type == 31) {
-      block_type_name <- "AB Data Parameter"
+      block_type_name <- "spec_data_param"
     } else if (block_type == 32) {
-      block_type_name <- "Instrument"
+      block_type_name <- "instrument"
     } else if (block_type == 40) {
-      block_type_name <- "Instrument (Rf)"
+      block_type_name <- "instrument_ref"
     } else if (block_type == 48) {
-      block_type_name <- "Acquisition"
+      block_type_name <- "acquisition"
     } else if (block_type == 56) {
-      block_type_name <- "Acquisition (Rf)"
+      block_type_name <- "acquisition_ref"
     } else if (block_type == 64) {
-      block_type_name <- "Fourier Transformation"
+      block_type_name <- "fourier_transformation"
     } else if (block_type == 72) {
-      block_type_name <- "Fourier Transformation (Rf)"
+      block_type_name <- "fourier_transformation_ref"
     } else if (block_type == 96) {
-      block_type_name <- "Optik"
+      block_type_name <- "optik"
     } else if (block_type == 104) {
-      block_type_name <- "Optik (Rf)"
+      block_type_name <- "optik_ref"
     } else if (block_type == 160) {
-      block_type_name <- "Sample"
+      block_type_name <- "sample"
     } else if (block_type == 176) {
-      block_type_name <- "new block"
+      block_type_name <- "new_block"
     } else {
       stop("block not known")
     }
@@ -94,7 +94,7 @@ create_dataset <- function(data_list) {
   # create a dataset
   ds <- structure(
     c(data_list, list(block_type_name = block_type_name)),
-    class = c("ds", read_class)
+    class = c(read_class)
   )
 
   return(ds)
