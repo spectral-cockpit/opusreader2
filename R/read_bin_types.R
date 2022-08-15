@@ -59,13 +59,13 @@ read_character <- function(con, cursor, n = 1L) {
 #' @inheritParams read_unsigned_int
 #'
 #' @export
-read_double <- function(con, cursor, n = 1L) {
+read_double <- function(con, cursor, n = 1L, size) {
   seek_opus(con, cursor)
   out <- readBin(
     con,
     what = "double",
     n = n,
-    size = 8L,
+    size = size,
     endian = "little"
   )
   return(out)
