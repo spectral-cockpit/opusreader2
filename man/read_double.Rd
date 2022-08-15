@@ -4,7 +4,7 @@
 \alias{read_double}
 \title{read double from binary}
 \usage{
-read_double(con, cursor, n = 1L)
+read_double(con, cursor, n = 1L, size)
 }
 \arguments{
 \item{con}{connection to raw vector}
