@@ -42,3 +42,6 @@ docs/
 
 # extra documentation and sources
 doc-local
+
+
+.DS_Store
