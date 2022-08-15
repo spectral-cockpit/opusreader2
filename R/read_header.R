@@ -36,17 +36,18 @@ parse_header <- function(raw, con) {
       break
     }
 
+    next_offset <- offset + 4L * chunk_size
+
     repeat_list <- list(
       block_type = block_type,
       channel_type = channel_type,
       text_type = text_type,
       offset = offset,
+      next_offset = next_offset,
       chunk_size = chunk_size
     )
 
     result_list <- c(result_list, list(repeat_list))
-
-    next_offset <- offset + 4L * chunk_size
 
     if (next_offset >= file_size) {
       break
