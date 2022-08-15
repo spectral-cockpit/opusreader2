@@ -11,8 +11,23 @@ read_opus_file <- function(file) {
   con <- rawConnection(raw)
 
   header_data <- parse_header(raw, con)
+
   dataset_list <- lapply(header_data, create_dataset)
+
+  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
+
   dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
 
+  dataset_list <- name_output_list(dataset_list)
+
+  data_types <- get_data_types(dataset_list)
+
+  dataset_list <- Reduce(function(x, y) calculate_wavenumber(x, y), x = data_types, init = dataset_list)
+
   on.exit(close(con))
+
+  return(dataset_list)
 }
+
+
+
