@@ -27,6 +27,8 @@ read_opus_file <- function(file) {
     x = data_types, init = dataset_list
   )
 
+  dataset_list <- sort_list_by(dataset_list)
+
   on.exit(close(con))
 
   return(dataset_list)
