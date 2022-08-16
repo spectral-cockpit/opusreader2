@@ -8,7 +8,7 @@
 
 ## Scope
 
-This is an universal binary reader that parses files produced with Bruker Fourier-Transform infrared (FT-IR) spectrometers, for R.
+Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers in R.
 
 ## Background
 
