@@ -8,7 +8,8 @@
 
 ## Scope
 
-Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers in R.
+Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of the company
+Bruker Optics GmbH & Co. in R.
 
 ## Background
 
