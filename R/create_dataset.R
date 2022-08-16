@@ -79,9 +79,9 @@ create_dataset <- function(data_list) {
     } else if (block_type == 72) {
       block_type_name <- "fourier_transformation_ref"
     } else if (block_type == 96) {
-      block_type_name <- "optik"
+      block_type_name <- "optics"
     } else if (block_type == 104) {
-      block_type_name <- "optik_ref"
+      block_type_name <- "optics_ref"
     } else if (block_type == 160) {
       block_type_name <- "sample"
     } else if (block_type == 176) {
