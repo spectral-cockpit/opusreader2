@@ -14,8 +14,8 @@ add_spec_no_atm_comp <- function(x) {
     return(x)
   }
 
-  x[head(i, 1)] <- "spec_no_atm_comp"
-  x[head(j, 1)] <- "spec_no_atm_comp_data_param"
+  x[i[1]] <- "spec_no_atm_comp"
+  x[j[1]] <- "spec_no_atm_comp_data_param"
 
   return(x)
 }
