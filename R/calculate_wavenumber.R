@@ -14,12 +14,18 @@ calculate_wavenumbers <- function(ds_list, data_type) {
 
   ds_data[[1]] <- c(ds_data[[1]], wavenumbers = list(wavenumbers))
 
+  data_matrix <- matrix(ds_data[[1]]$data, nrow = 1, ncol = NPT)
+  colnames(data_matrix) <- wavenumbers
+
+  ds_data[[1]]$data <- data_matrix
+
   class(ds_data[[1]]) <- "data"
 
   ds_list[[index]] <- ds_data[[1]]
 
   return(ds_list)
 }
+
 
 
 get_data_types <- function(ds_list) {
