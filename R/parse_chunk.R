@@ -40,6 +40,8 @@ parse_chunk.parameter <- function(ds, con) {
       break
     }
 
+    nice_parameter_name <- get_nice_parameter_name(parameter_name)
+
     # need to add since index that is returned starts with 0. R index starts at 1
     type_index <- read_unsigned_int(con, cursor + 4, n = 1L) + 1
 
@@ -60,6 +62,7 @@ parse_chunk.parameter <- function(ds, con) {
 
     repeat_list <- list(
       parameter_name = parameter_name,
+      parameter_name_long = nice_parameter_name,
       parameter_value = parameter_value,
       parameter_type = parameter_type
     )
