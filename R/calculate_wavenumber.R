@@ -1,4 +1,4 @@
-calculate_wavenumbers <- function(ds_list, data_type) {
+prepare_spectra <- function(ds_list, data_type) {
   data_pattern <- paste0(data_type, "$")
 
   ds_data <- ds_list[grepl(data_pattern, names(ds_list))]

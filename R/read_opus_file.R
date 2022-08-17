@@ -23,7 +23,7 @@ read_opus_file <- function(file) {
   data_types <- get_data_types(dataset_list)
 
   dataset_list <- Reduce(
-    function(x, y) calculate_wavenumbers(x, y),
+    function(x, y) prepare_spectra(x, y),
     x = data_types, init = dataset_list
   )
 
