@@ -1,5 +1,5 @@
 get_nice_parameter_name <- function(parameter_name) {
-  nice_name <- switch(parameter_name,
+  nice_name <- switch(EXPR = parameter_name,
     ACC = "Accessory",
     BMS = "Beamsplitter Setting",
     CHN = "Measurement Channel",
