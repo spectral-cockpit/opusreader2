@@ -14,6 +14,12 @@ prepare_spectra <- function(ds_list, data_type) {
 
   ds_data[[1]] <- c(ds_data[[1]], wavenumbers = list(wavenumbers))
 
+  # y-scaling factor
+  CSF <- ds_param[[1]]$parameters$CSF$parameter_value
+  if (CSF != 1) {
+    ds_data[[1]]$data <- CSF * ds_data[[1]]$data
+  }
+
   data_matrix <- matrix(ds_data[[1]]$data, nrow = 1, ncol = NPT)
   colnames(data_matrix) <- wavenumbers
 
