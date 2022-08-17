@@ -54,18 +54,33 @@ read_character <- function(con, cursor, n = 1L) {
   return(out)
 }
 
-#' read double from binary
+#' read float from binary (single-precision, 32 bits)
 #'
 #' @inheritParams read_unsigned_int
-#'
 #' @export
-read_double <- function(con, cursor, n = 1L, size) {
+read_float <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
     con,
     what = "double",
     n = n,
-    size = size,
+    size = 4L,
+    endian = "little"
+  )
+}
+
+#' read double from binary (double-precision, 64 bits)
+#'
+#' @inheritParams read_unsigned_int
+#' @param size size per double number in bytes
+#' @export
+read_double <- function(con, cursor, n = 1L) {
+  seek_opus(con, cursor)
+  out <- readBin(
+    con,
+    what = "double",
+    n = n,
+    size = 8L,
     endian = "little"
   )
   return(out)

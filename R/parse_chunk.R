@@ -55,7 +55,7 @@ parse_chunk.parameter <- function(ds, con) {
     if (type_index == 1) {
       parameter_value <- read_signed_int(con, cursor_value, n = 1L)
     } else if (type_index == 2) {
-      parameter_value <- read_double(con, cursor_value, n = 1L, size = 8L)
+      parameter_value <- read_double(con, cursor_value, n = 1L)
     } else if (type_index %in% c(3, 4, 5)) {
       parameter_value <- read_character(con, cursor_value, n = 1L)
     }
@@ -91,7 +91,7 @@ parse_chunk.parameter <- function(ds, con) {
 #'
 #' @export
 parse_chunk.data <- function(ds, con) {
-  data <- read_double(con, ds$offset, n = ds$chunk_size, size = 4L)
+  data <- read_float(con, ds$offset, n = ds$chunk_size)
 
   ds$data <- data
   return(ds)
