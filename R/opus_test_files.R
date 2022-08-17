@@ -1,6 +1,7 @@
 #' @name opus_file
 #' @title Get location of a sample OPUS file
-#' @description Utility function that retrieves the location of the sample OPUS binary file on disc.
+#' @description Utility function that retrieves the location of the sample OPUS
+#' binary file on disc.
 #' @return a character vector storing the location of the sample OPUS file
 #' @export
 #' @examples
