@@ -10,7 +10,8 @@ opus_file()
 a character vector storing the location of the sample OPUS file
 }
 \description{
-Utility function that retrieves the location of the sample OPUS binary file on disc.
+Utility function that retrieves the location of the sample OPUS
+binary file on disk.
 }
 \examples{
 fn <- opus_file()

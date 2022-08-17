@@ -2,9 +2,9 @@
 % Please edit documentation in R/read_bin_types.R
 \name{read_double}
 \alias{read_double}
-\title{read double from binary}
+\title{read double from binary (double-precision, 64 bits)}
 \usage{
-read_double(con, cursor, n = 1L, size)
+read_double(con, cursor, n = 1L)
 }
 \arguments{
 \item{con}{connection to raw vector}
@@ -12,7 +12,9 @@ read_double(con, cursor, n = 1L, size)
 \item{cursor}{offset}
 
 \item{n}{number of elements}
+
+\item{size}{size per double number in bytes}
 }
 \description{
-read double from binary
+read double from binary (double-precision, 64 bits)
 }
