@@ -13,7 +13,6 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #'
 #' @export
 parse_chunk.text <- function(ds, con) {
-
   text <- read_character(con, ds$offset, n = ds$chunk_size)
 
   ds$text <- text
@@ -42,7 +41,8 @@ parse_chunk.parameter <- function(ds, con) {
 
     nice_parameter_name <- get_nice_parameter_name(parameter_name)
 
-    # need to add since index that is returned starts with 0. R index starts at 1
+    # need to add since index that is returned starts with 0;
+    # R index starts at 1
     type_index <- read_unsigned_int(con, cursor + 4, n = 1L) + 1
 
     parameter_type <- parameter_types[type_index]
