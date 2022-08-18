@@ -103,7 +103,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "sample"
     } else if (block_type == 176) {
       block_type_name <- "lab_and_process_param"
-    } else {
+    } else{
+      browser()
       stop("block not known")
     }
   }
