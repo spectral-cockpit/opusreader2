@@ -16,6 +16,9 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/calc_parameter_chunk_size.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -41,6 +44,9 @@
   </url>
   <url>
     <loc>/reference/read_double.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_float.html</loc>
   </url>
   <url>
     <loc>/reference/read_opus_file.html</loc>
