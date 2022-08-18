@@ -22,10 +22,13 @@ remotes::install_github("spectral-cockpit/opusreader2")
 
 ## Background
 
-This package has grown out of {opusreader} made by Pierre Roudier and Philipp
-Baumann. {opusreader} works, but not for all OPUS files. It implements a reverse
-engineered logic, that assigns byte offsets to read different data blocks in the
-OPUS binary file. This is not 100% robust and causes some read failures in edge
+This package is a major rework of {opusreader} made by Pierre Roudier and Philipp
+Baumann. {opusreader} works, but not for all OPUS files. This precessor package
+relies on a particular reverse engineered logic. Particularly, the assignment of
+spectral data types (i.e., single channel reflectance vs. final result spectrum),
+was buggy because the CO2 peak ratio was used as a heuristic. Also, byte offsets
+from three letter strings were directly used to read specific data and assign
+block types. This is not 100% robust and causes some read failures in edge
 cases.
 
 The new package parses the file header for assigning spectral blocks.
