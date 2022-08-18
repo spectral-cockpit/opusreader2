@@ -81,6 +81,13 @@
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"spectral-cockpit/opusreader2"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<pre><code><span><span class="co"># read a single file (one measurement)</span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/opus_file.html">opus_file</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_opus_file.html">read_opus_file</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="section level2">
 <h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
 <p>This package is a major rework of {opusreader} made by Pierre Roudier and Philipp Baumann. {opusreader} works, but not for all OPUS files. This precessor package relies on an interesting but not optimal reverse engineered logic. Particularly, the assignment of spectral data types (i.e., single channel reflectance vs. final result spectrum), was buggy because the CO2 peak ratio was used as a heuristic. Also, byte offsets from three letter strings were directly used to read specific data and assign block types. This is not 100% robust and causes some read failures in edge cases.</p>
