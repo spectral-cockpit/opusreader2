@@ -14,13 +14,14 @@ prepare_spectra <- function(ds_list, data_type) {
 
   ds_data[[1]] <- c(ds_data[[1]], wavenumbers = list(wavenumbers))
 
+
   # y-scaling factor
   CSF <- ds_param[[1]]$parameters$CSF$parameter_value
   if (CSF != 1) {
     ds_data[[1]]$data <- CSF * ds_data[[1]]$data
   }
 
-  data_matrix <- matrix(ds_data[[1]]$data, nrow = 1, ncol = NPT)
+  data_matrix <- matrix(ds_data[[1]]$data[1:NPT], nrow = 1, ncol = NPT)
   colnames(data_matrix) <- wavenumbers
 
   ds_data[[1]]$data <- data_matrix
@@ -36,7 +37,7 @@ prepare_spectra <- function(ds_list, data_type) {
 
 get_data_types <- function(ds_list) {
   block_names <- names(ds_list)
-  data_types <- block_names[grepl("sc|ig|ph|spec", block_names)]
+  data_types <- block_names[grepl("sc|ig|ph|spec|$refl", block_names)]
   data_types <- unique(gsub("_data_param", "", data_types))
 
   return(data_types)
