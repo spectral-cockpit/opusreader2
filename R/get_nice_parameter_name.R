@@ -93,6 +93,9 @@ get_nice_parameter_name <- function(parameter_name) {
 
 sort_list_by <- function(dataset_list) {
   sort_by <- c(
+    "refl_data_param",
+    "refl",
+    "quant_report_refl",
     "spec_no_atm_comp_data_param",
     "spec_no_atm_comp",
     "spec_data_param",
@@ -110,10 +113,16 @@ sort_list_by <- function(dataset_list) {
     "acquisition",
     "instrument_ref",
     "instrument",
+    "lab_and_process_param",
+    "lab_and_process_param_1",
+    "lab_and_process_param_2",
+    "info_block",
     "history"
   )
 
-  dataset_list <- dataset_list[sort_by]
+  to_sort_by <- intersect(sort_by, names(dataset_list))
+
+  dataset_list <- dataset_list[to_sort_by]
 
   return(dataset_list)
 }
