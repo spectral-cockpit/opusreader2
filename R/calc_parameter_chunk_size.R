@@ -1,3 +1,6 @@
+#' Calculate the parameter chunk size in bytes
+#' @param ds data set with one of classes `"parameter"`, `"text"` or "`data`"
+#' @return Number of bytes as length 1 numeric vector
 #' @export
 calc_parameter_chunk_size <- function(ds) UseMethod("calc_parameter_chunk_size")
 

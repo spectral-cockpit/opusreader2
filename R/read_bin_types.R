@@ -72,7 +72,6 @@ read_float <- function(con, cursor, n = 1L) {
 #' read double from binary (double-precision, 64 bits)
 #'
 #' @inheritParams read_unsigned_int
-#' @param size size per double number in bytes
 #' @export
 read_double <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
