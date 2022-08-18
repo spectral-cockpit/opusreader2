@@ -8,8 +8,17 @@
 
 ## Scope
 
-Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of the company
-Bruker Optics GmbH & Co. in R.
+Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of
+the company Bruker Optics GmbH & Co. in R.
+
+## Installation
+
+The current version version can be installed with.
+
+```
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("spectral-cockpit/opusreader2")
+```
 
 ## Background
 
@@ -19,8 +28,7 @@ engineered logic, that assigns byte offsets to read different data blocks in the
 OPUS binary file. This is not 100% robust and causes some read failures in edge
 cases.
 
-The new package parses the file header for assigning
-spectral blocks.
+The new package parses the file header for assigning spectral blocks.
 
 ## Credits
 
