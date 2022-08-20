@@ -21,18 +21,15 @@ add_spec_no_atm_comp <- function(x) {
   return(x)
 }
 
-add_lab_process_name <- function(x){
-
+add_lab_process_name <- function(x) {
   i <- which(grepl("lab_and_", x))
 
   z <- 1
 
-  if(length(i) > 1){
+  if (length(i) > 1) {
     for (j in i) {
-
       x[j] <- paste0("lab_and_process_param_", z)
-      z <- z+1
-
+      z <- z + 1
     }
   }
 

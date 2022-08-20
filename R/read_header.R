@@ -25,39 +25,39 @@ parse_header <- function(raw, con) {
 
 
   repeat {
-     if (cursor + meta_block_size >= header_length) {
-       break
-     }
+    if (cursor + meta_block_size >= header_length) {
+      break
+    }
 
-     block_type   <- read_unsigned_int(con, cursor)
-     channel_type <- read_unsigned_int(con, cursor + 1L)
-     text_type    <- read_unsigned_int(con, cursor + 2L)
-     chunk_size   <- read_signed_int(con, cursor + 4L)
-     offset       <- read_signed_int(con, cursor + 8L)
+    block_type <- read_unsigned_int(con, cursor)
+    channel_type <- read_unsigned_int(con, cursor + 1L)
+    text_type <- read_unsigned_int(con, cursor + 2L)
+    chunk_size <- read_signed_int(con, cursor + 4L)
+    offset <- read_signed_int(con, cursor + 8L)
 
-     if (offset <= 0L) {
-       break
-     }
+    if (offset <= 0L) {
+      break
+    }
 
-     next_offset <- offset + 4L * chunk_size
+    next_offset <- offset + 4L * chunk_size
 
-     repeat_list <- list(
-       block_type = block_type,
-       channel_type = channel_type,
-       text_type = text_type,
-       offset = offset,
-       next_offset = next_offset,
-       chunk_size = chunk_size
-     )
+    repeat_list <- list(
+      block_type = block_type,
+      channel_type = channel_type,
+      text_type = text_type,
+      offset = offset,
+      next_offset = next_offset,
+      chunk_size = chunk_size
+    )
 
-     result_list <- c(result_list, list(repeat_list))
+    result_list <- c(result_list, list(repeat_list))
 
-     if (next_offset >= file_size) {
-       break
-     }
+    if (next_offset >= file_size) {
+      break
+    }
 
-     cursor <- cursor + 12L
-   }
+    cursor <- cursor + 12L
+  }
 
   # exclude the header chunk, since it is read in this function
   result_list <- result_list[-1L]

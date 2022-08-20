@@ -25,12 +25,10 @@ parse_chunk.text <- function(ds, con) {
 #'
 #' @export
 parse_chunk.parameter <- function(ds, con) {
-
-  if(ds$text_type == 112){
+  if (ds$text_type == 112) {
     cursor <- ds$offset + 12
-  }else{
+  } else {
     cursor <- ds$offset
-
   }
 
   chunk_size <- ds$chunk_size

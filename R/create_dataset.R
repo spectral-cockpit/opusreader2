@@ -41,21 +41,18 @@ create_dataset <- function(data_list) {
       block_type_name <- "ig_ref"
     }
   } else if (block_type == 15) {
-    if(channel_type == 16){
+    if (channel_type == 16) {
       read_class <- "data"
       block_type_name <- "spec"
-    }else if(channel_type == 48){
-      if(text_type == 112){
+    } else if (channel_type == 48) {
+      if (text_type == 112) {
         read_class <- "parameter"
         block_type_name <- "quant_report_refl"
-      }else{
+      } else {
         read_class <- "data"
         block_type_name <- "refl"
       }
     }
-
-
-
   } else if (block_type == 23) {
     read_class <- "parameter"
 
@@ -78,9 +75,9 @@ create_dataset <- function(data_list) {
     read_class <- "parameter"
 
     if (block_type == 31) {
-      if(channel_type == 16){
+      if (channel_type == 16) {
         block_type_name <- "spec_data_param"
-      }else if(channel_type == 48){
+      } else if (channel_type == 48) {
         block_type_name <- "refl_data_param"
       }
     } else if (block_type == 32) {
@@ -103,7 +100,7 @@ create_dataset <- function(data_list) {
       block_type_name <- "sample"
     } else if (block_type == 176) {
       block_type_name <- "lab_and_process_param"
-    } else{
+    } else {
       browser()
       stop("block not known")
     }
