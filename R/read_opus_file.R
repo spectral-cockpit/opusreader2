@@ -1,6 +1,18 @@
-#' read opus file
+#' read sptectrometer opus file
+#'
+#' This function can be used to read and parse an opus-file
+#' to make it usable for other processing steps.
 #'
 #' @param file file path to opus file
+#'
+#' @return list containing the different chunks of an opus-file
+#'
+#' @examples
+#' library(opusreader2)
+#'
+#' file_path <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
+#'
+#' opus_list <- read_opus_file(file_path)
 #'
 #' @export
 read_opus_file <- function(file) {

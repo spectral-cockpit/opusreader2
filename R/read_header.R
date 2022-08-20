@@ -26,7 +26,7 @@ parse_header <- function(raw, con) {
       break
     }
 
-    block_type   <- read_unsigned_int(con, cursor)
+    block_type <- read_unsigned_int(con, cursor)
     channel_type <- read_unsigned_int(con, cursor + 1L)
     text_type    <- read_unsigned_int(con, cursor + 2L)
     # we can discuss the name here
@@ -62,10 +62,8 @@ parse_header <- function(raw, con) {
   # exclude the header chunk, since it is read in this function
   result_list <- result_list[-1L]
 
-  #close(con)
   return(result_list)
 }
-
 
 
 

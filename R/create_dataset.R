@@ -1,3 +1,5 @@
+#' assign the classes to the dataset list
+#' @param data_list list of the header information for each block
 create_dataset <- function(data_list) {
   block_type <- data_list$block_type
   text_type <- data_list$text_type
@@ -42,7 +44,7 @@ create_dataset <- function(data_list) {
       block_type_name <- "ig_ref"
     }
   } else if (block_type == 15) {
-    if(channel_type == 16){
+    if (channel_type == 16) {
       read_class <- "data"
       if(additional_type == 64){
         block_type_name <- "spec_no_atm_comp"
@@ -53,7 +55,7 @@ create_dataset <- function(data_list) {
       if(text_type == 112){
         read_class <- "parameter"
         block_type_name <- "quant_report_refl"
-      }else{
+      } else {
         read_class <- "data"
         block_type_name <- "refl"
       }
@@ -114,6 +116,7 @@ create_dataset <- function(data_list) {
         block_type_name <- "lab_and_process_param_2"
       }
     } else {
+      browser()
       stop("block not known")
     }
   }

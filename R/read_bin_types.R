@@ -5,8 +5,6 @@
 #' @param cursor offset
 #'
 #' @param n number of elements
-#'
-#' @export
 read_unsigned_int <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
@@ -23,8 +21,6 @@ read_unsigned_int <- function(con, cursor, n = 1L) {
 #' read signed integer from binary
 #'
 #' @inheritParams read_unsigned_int
-#'
-#' @export
 read_signed_int <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
@@ -40,8 +36,6 @@ read_signed_int <- function(con, cursor, n = 1L) {
 #' read character from binary
 #'
 #' @inheritParams read_unsigned_int
-#'
-#' @export
 read_character <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
@@ -57,7 +51,6 @@ read_character <- function(con, cursor, n = 1L) {
 #' read float from binary (single-precision, 32 bits)
 #'
 #' @inheritParams read_unsigned_int
-#' @export
 read_float <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
@@ -72,7 +65,6 @@ read_float <- function(con, cursor, n = 1L) {
 #' read double from binary (double-precision, 64 bits)
 #'
 #' @inheritParams read_unsigned_int
-#' @export
 read_double <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(

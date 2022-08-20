@@ -20,6 +20,14 @@ if (!require("remotes")) install.packages("remotes")
 remotes::install_github("spectral-cockpit/opusreader2")
 ```
 
+## Example
+
+```
+# read a single file (one measurement)
+file <- opus_file()
+data_list <- read_opus_file(file)
+```
+
 ## Background
 
 This package is a major rework of {opusreader} made by Pierre Roudier and Philipp
