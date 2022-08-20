@@ -1,3 +1,5 @@
+#' assign the classes to the dataset list
+#' @param data_list list of the header information for each block
 create_dataset <- function(data_list) {
   block_type <- data_list$block_type
   text_type <- data_list$text_type
