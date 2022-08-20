@@ -29,6 +29,8 @@ parse_header <- function(raw, con) {
     block_type   <- read_unsigned_int(con, cursor)
     channel_type <- read_unsigned_int(con, cursor + 1L)
     text_type    <- read_unsigned_int(con, cursor + 2L)
+    # we can discuss the name here
+    additional_type <- read_unsigned_int(con, cursor + 3L)
     chunk_size   <- read_signed_int(con, cursor + 4L)
     offset       <- read_signed_int(con, cursor + 8L)
 
@@ -42,6 +44,7 @@ parse_header <- function(raw, con) {
       block_type = block_type,
       channel_type = channel_type,
       text_type = text_type,
+      additional_type = additional_type,
       offset = offset,
       next_offset = next_offset,
       chunk_size = chunk_size
