@@ -21,9 +21,6 @@ parse_header <- function(raw, con) {
 
   result_list <- list()
 
-
-
-
   repeat {
     if (cursor + meta_block_size >= header_length) {
       break
