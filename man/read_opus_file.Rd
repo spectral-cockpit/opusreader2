@@ -2,13 +2,25 @@
 % Please edit documentation in R/read_opus_file.R
 \name{read_opus_file}
 \alias{read_opus_file}
-\title{read opus file}
+\title{read sptectrometer opus file}
 \usage{
 read_opus_file(file)
 }
 \arguments{
 \item{file}{file path to opus file}
 }
+\value{
+list containing the different chunks of an opus-file
+}
 \description{
-read opus file
+This function can be used to read and parse an opus-file
+to make it usable for other processing steps.
+}
+\examples{
+library(opusreader2)
+
+file_path <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
+
+opus_list <- read_opus_file(file_path)
+
 }
