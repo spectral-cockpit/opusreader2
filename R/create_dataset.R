@@ -2,6 +2,7 @@ create_dataset <- function(data_list) {
   block_type <- data_list$block_type
   text_type <- data_list$text_type
   channel_type <- data_list$channel_type
+  additional_type <- data_list$additional_type
 
   # select read_class and block_type_name
   # TODO: if there is a simpler method, happy to change!
@@ -43,7 +44,11 @@ create_dataset <- function(data_list) {
   } else if (block_type == 15) {
     if(channel_type == 16){
       read_class <- "data"
-      block_type_name <- "spec"
+      if(additional_type == 64){
+        block_type_name <- "spec_no_atm_comp"
+      }else if(dadditional_type == 0){
+        block_type_name <- "spec"
+      }
     }else if(channel_type == 48){
       if(text_type == 112){
         read_class <- "parameter"
@@ -53,9 +58,6 @@ create_dataset <- function(data_list) {
         block_type_name <- "refl"
       }
     }
-
-
-
   } else if (block_type == 23) {
     read_class <- "parameter"
 
@@ -79,7 +81,11 @@ create_dataset <- function(data_list) {
 
     if (block_type == 31) {
       if(channel_type == 16){
-        block_type_name <- "spec_data_param"
+        if(additional_type == 64){
+          block_type_name <- "spec_no_atm_comp_data_param"
+        }else if(additional_type == 0){
+          block_type_name <- "spec_data_param"
+        }
       }else if(channel_type == 48){
         block_type_name <- "refl_data_param"
       }
@@ -102,7 +108,11 @@ create_dataset <- function(data_list) {
     } else if (block_type == 160) {
       block_type_name <- "sample"
     } else if (block_type == 176) {
-      block_type_name <- "lab_and_process_param"
+      if(additional_type == 64){
+        block_type_name <- "lab_and_process_param_1"
+      }else if(additional_type == 0){
+        block_type_name <- "lab_and_process_param_2"
+      }
     } else {
       stop("block not known")
     }
