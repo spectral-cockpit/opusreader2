@@ -16,7 +16,13 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/calc_chunk_size.html</loc>
+  </url>
+  <url>
     <loc>/reference/calc_parameter_chunk_size.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_dataset.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -56,5 +62,8 @@
   </url>
   <url>
     <loc>/reference/read_unsigned_int.html</loc>
+  </url>
+  <url>
+    <loc>/reference/seek_opus.html</loc>
   </url>
 </urlset>
