@@ -48,7 +48,7 @@ create_dataset <- function(data_list) {
       read_class <- "data"
       if(additional_type == 64){
         block_type_name <- "spec_no_atm_comp"
-      }else if(dadditional_type == 0){
+      }else if(additional_type == 0){
         block_type_name <- "spec"
       }
     }else if(channel_type == 48){
