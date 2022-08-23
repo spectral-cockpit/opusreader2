@@ -30,14 +30,14 @@ data_list <- read_opus_file(file)
 
 ## Background
 
-This package is a major rework of {opusreader} made by Pierre Roudier and Philipp
-Baumann. {opusreader} works, but not for all OPUS files. This precessor package
-relies on an interesting but not optimal reverse engineered logic. Particularly, the assignment of
-spectral data types (i.e., single channel reflectance vs. final result spectrum),
-was buggy because the CO2 peak ratio was used as a heuristic. Also, byte offsets
-from three letter strings were directly used to read specific data and assign
-block types. This is not 100% robust and causes some read failures in edge
-cases.
+This package is a major rework of {opusreader} made by Pierre Roudier and
+Philipp Baumann. {opusreader} works, but not for all OPUS files. This precessor
+package relies on an interesting but not optimal reverse engineered logic.
+Particularly, the assignment of spectral data types (i.e., single channel
+reflectance vs. final result spectrum), was buggy because the CO2 peak ratio was
+used as a heuristic. Also, byte offsets from three letter strings were directly
+used to read specific data and assign block types. This is not 100% robust and
+causes some read failures in edge cases.
 
 The new package parses the file header for assigning spectral blocks.
 
