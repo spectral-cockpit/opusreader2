@@ -20,3 +20,18 @@ knitr::opts_chunk$set(
 
 Bruker OPUS is a proprietary file format to store measurement parameters and
 spectra. The file format is produced by the Bruker OPUS software.
+
+## Basic usage
+
+```{r}
+library("opusreader2")
+file <- opus_file()
+data_list <- read_opus_file(file)
+```
+
+`read_opus_file` is a list-parser using S3 classes. The data is arranged
+as shown in the Bruker OPUS viewer:
+
+```{r}
+names(data_list)
+```
