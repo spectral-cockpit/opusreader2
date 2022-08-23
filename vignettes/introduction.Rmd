@@ -1,0 +1,22 @@
+---
+title: "Reading Bruker OPUS binary files in R"
+author: "Philipp Baumann"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Reading Bruker OPUS binary files in R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Bruker OPUS is a proprietary file format to store measurement parameters and
+spectra. The file format is produced by the Bruker OPUS software.
