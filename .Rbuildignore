@@ -5,3 +5,4 @@
 ^\.github$
 ^tic\.R$
 ^doc-local
+^\.pre-commit-config\.yaml$
