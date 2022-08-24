@@ -1,11 +1,11 @@
-#' read sptectrometer opus file
+#' Read OPUS binary file of a Bruker spectrometer
 #'
-#' This function can be used to read and parse an opus-file
+#' This function can be used to read and parse an OPUS file,
 #' to make it usable for other processing steps.
 #'
-#' @param file file path to opus file
+#' @param file character vector with the path to the OPUS file
 #'
-#' @return list containing the different chunks of an opus-file
+#' @return list containing the different chunks of an OPUS file
 #'
 #' @examples
 #' library(opusreader2)
@@ -15,6 +15,8 @@
 #' opus_list <- read_opus_file(file_path)
 #'
 #' @export
+#'
+#' @
 read_opus_file <- function(file) {
   file_size <- file.size(file)
   # Get raw vector

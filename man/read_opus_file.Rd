@@ -2,18 +2,18 @@
 % Please edit documentation in R/read_opus_file.R
 \name{read_opus_file}
 \alias{read_opus_file}
-\title{read sptectrometer opus file}
+\title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
 read_opus_file(file)
 }
 \arguments{
-\item{file}{file path to opus file}
+\item{file}{character vector with the path to the OPUS file}
 }
 \value{
-list containing the different chunks of an opus-file
+list containing the different chunks of an OPUS file
 }
 \description{
-This function can be used to read and parse an opus-file
+This function can be used to read and parse an OPUS file,
 to make it usable for other processing steps.
 }
 \examples{
