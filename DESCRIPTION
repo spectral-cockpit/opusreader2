@@ -28,5 +28,8 @@ RoxygenNote: 7.1.2
 URL: https://github.com/spectral-cockpit/opusreader2
 BugReports: https://github.com/spectral-cockpit/opusreader2/issues
 Suggests:
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
