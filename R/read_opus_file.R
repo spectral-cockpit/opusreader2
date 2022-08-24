@@ -20,11 +20,11 @@
 #' * `fourier_transformation`:
 #' * `sample`:
 #' * `acquisition`:
-#' * `ìnstrument_ref`:
+#' * `instrument_ref`:
 #' * `instrument`:
 #' * `lab_and_process_param_1`:
 #' * `lab_and_process_param_2`:
-#' * `ìnfo_block`:
+#' * `info_block`:
 #' * `history`:
 #'
 #' @examples
