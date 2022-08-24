@@ -5,7 +5,27 @@
 #'
 #' @param file character vector with the path to the OPUS file
 #'
-#' @return list containing the different chunks of an OPUS file
+#' @return list containing the different data chunks of an OPUS file, possibly:
+#'     - `refl_data_param`:
+#'     - `refl`:
+#'     - `quant_report_refl`:
+#'     - `sc_sample_data_param`:
+#'     - `sc_sample`:
+#'     - `sc_ref_data_param`:
+#'     - `sc_ref`:
+#'     - `optics`:
+#'     - `optics_ref`:
+#'     - `acquisition_ref`:
+#'     - `fourier_transformation_ref`:
+#'     - `fourier_transformation`:
+#'     - `sample`:
+#'     - `acquisition`:
+#'     - `ìnstrument_ref`:
+#'     - `instrument`:
+#'     - `lab_and_process_param_1`:
+#'     - `lab_and_process_param_2`:
+#'     - `ìnfo_block`:
+#'     - `history`:
 #'
 #' @examples
 #' library(opusreader2)

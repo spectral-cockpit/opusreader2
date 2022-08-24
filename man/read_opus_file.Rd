@@ -10,7 +10,27 @@ read_opus_file(file)
 \item{file}{character vector with the path to the OPUS file}
 }
 \value{
-list containing the different chunks of an OPUS file
+list containing the different data chunks of an OPUS file, possibly:
+- \code{refl_data_param}:
+- \code{refl}:
+- \code{quant_report_refl}:
+- \code{sc_sample_data_param}:
+- \code{sc_sample}:
+- \code{sc_ref_data_param}:
+- \code{sc_ref}:
+- \code{optics}:
+- \code{optics_ref}:
+- \code{acquisition_ref}:
+- \code{fourier_transformation_ref}:
+- \code{fourier_transformation}:
+- \code{sample}:
+- \code{acquisition}:
+- \code{ìnstrument_ref}:
+- \code{instrument}:
+- \code{lab_and_process_param_1}:
+- \code{lab_and_process_param_2}:
+- \code{ìnfo_block}:
+- \code{history}:
 }
 \description{
 This function can be used to read and parse an OPUS file,
