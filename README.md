@@ -33,7 +33,7 @@ data_list <- read_opus_file(file)
 
 We like the spirit of open source development, so any constructive suggestions
 or questions are always welcome. To trade off the consistency and quality of
-code with the the drive for innovation, we are following some best practices
+code with the drive for innovation, we are following some best practices
 (which can be indeed improved, as many other things in life). These are:
 
 ## Background
