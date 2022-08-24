@@ -29,6 +29,13 @@ file <- opus_file()
 data_list <- read_opus_file(file)
 ```
 
+## How to contribute
+
+We like the spirit of open source development, so any constructive suggestions
+or questions are always welcome. To trade off the consistency and quality of
+code, we are following some best practices (which can be indeed improved, as
+many other things in life). These are:
+
 ## Background
 
 This package is a major rework of {opusreader} made by Pierre Roudier and
