@@ -1,8 +1,8 @@
-^opusreader2\.Rproj$
-^\.Rproj\.user$
 ^LICENSE\.md$
+^\.Rproj\.user$
 ^\.ccache$
 ^\.github$
-^tic\.R$
-^doc-local
 ^\.pre-commit-config\.yaml$
+^doc-local
+^opusreader2\.Rproj$
+^tic\.R$
