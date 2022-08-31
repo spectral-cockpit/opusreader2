@@ -115,7 +115,8 @@ get_nice_parameter_name <- function(parameter_name) {
     FD3 = "Value Product Info 2",
     FE1 = "Device Typ",
     FE2 = "Device Description",
-    FE3 = "Measurement Position Microplate"
+    FE3 = "Measurement Position Microplate",
+    AG2 = "Actual Signal Gain 2nd Channel"
 
   )
 
