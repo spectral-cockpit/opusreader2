@@ -199,8 +199,8 @@ sort_list_by <- function(dataset_list) {
     "instrument_ref",
     "instrument",
     "lab_and_process_param",
-    "lab_and_process_param_1",
-    "lab_and_process_param_2",
+    "lab_and_process_param_raw",
+    "lab_and_process_param_processed",
     "info_block",
     "history"
   )

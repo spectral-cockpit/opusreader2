@@ -119,12 +119,11 @@ create_dataset <- function(data_list) {
       block_type_name <- "sample"
     } else if (block_type == 176) {
       if (additional_type == 64) {
-        block_type_name <- "lab_and_process_param_1"
+        block_type_name <- "lab_and_process_param_raw"
       } else if (additional_type == 0) {
-        block_type_name <- "lab_and_process_param_2"
+        block_type_name <- "lab_and_process_param_processed"
       }
     } else {
-      browser()
       stop("block not known")
     }
   }
