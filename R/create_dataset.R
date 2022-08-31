@@ -47,9 +47,9 @@ create_dataset <- function(data_list) {
     if (channel_type == 16) {
       read_class <- "data"
       if (additional_type == 64) {
-        block_type_name <- "spec_no_atm_comp"
+        block_type_name <- "ab_no_atm_comp"
       } else if (additional_type == 0) {
-        block_type_name <- "spec"
+        block_type_name <- "ab"
       }
     } else if (channel_type == 48) {
       if (text_type == 112) {
@@ -57,7 +57,11 @@ create_dataset <- function(data_list) {
         block_type_name <- "quant_report_refl"
       } else {
         read_class <- "data"
-        block_type_name <- "refl"
+        if (additional_type == 64) {
+          block_type_name <- "refl_no_atm_comp"
+        } else if (additional_type == 0) {
+          block_type_name <- "refl"
+        }
       }
     }
   } else if (block_type == 23) {
@@ -84,12 +88,16 @@ create_dataset <- function(data_list) {
     if (block_type == 31) {
       if (channel_type == 16) {
         if (additional_type == 64) {
-          block_type_name <- "spec_no_atm_comp_data_param"
+          block_type_name <- "ab_no_atm_comp_data_param"
         } else if (additional_type == 0) {
-          block_type_name <- "spec_data_param"
+          block_type_name <- "ab_data_param"
         }
       } else if (channel_type == 48) {
-        block_type_name <- "refl_data_param"
+        if (additional_type == 64) {
+          block_type_name <- "refl_no_atm_comp_data_param"
+        } else if (additional_type == 0) {
+          block_type_name <- "refl_data_param"
+        }
       }
     } else if (block_type == 32) {
       block_type_name <- "instrument"
