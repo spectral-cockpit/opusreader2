@@ -2,6 +2,7 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  file-specification-and-technical-details: file-specification-and-technical-details.html
   introduction: introduction.html
-last_built: 2022-09-05T15:52Z
+last_built: 2022-09-05T16:02Z
 
