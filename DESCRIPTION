@@ -33,3 +33,16 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Collate: 
+    'calc_parameter_chunk_size.R'
+    'create_dataset.R'
+    'get_nice_parameter_name.R'
+    'name_output_list.R'
+    'opus_test_files.R'
+    'parse_chunk.R'
+    'prepare_spectra.R'
+    'read_bin_types.R'
+    'read_header.R'
+    'read_opus_raw.R'
+    'read_opus_file.R'
+    'seek_opus.R'
