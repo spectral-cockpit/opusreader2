@@ -31,7 +31,7 @@ data_list <- read_opus_file(file)
 
 ## Advanced testing and Bruker OPUS file specification
 
-We strive to have a fully functional reader of OPUS files that is on par with
+We strive to have a full-fledged reader of OPUS files that is on par with
 the commercial reader in the Bruker OPUS software suite.
 
 To contribute to the development, we will provide an additional vignette in
