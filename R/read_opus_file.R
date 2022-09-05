@@ -27,6 +27,8 @@
 #' * `info_block`:
 #' * `history`:
 #'
+#' @include read_opus_raw.R
+#'
 #' @examples
 #' library(opusreader2)
 #'
@@ -35,34 +37,13 @@
 #' opus_list <- read_opus_file(file)
 #' @export
 #'
-#' @
 read_opus_file <- function(file) {
-  file_size <- file.size(file)
+
   # Get raw vector
+  file_size <- file.size(file)
   raw <- readBin(file, "raw", n = file_size)
 
-  con <- rawConnection(raw)
-
-  header_data <- parse_header(raw, con)
-
-  dataset_list <- lapply(header_data, create_dataset)
-
-  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
-
-  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
-
-  dataset_list <- name_output_list(dataset_list)
-
-  data_types <- get_data_types(dataset_list)
-
-  dataset_list <- Reduce(
-    function(x, y) prepare_spectra(x, y),
-    x = data_types, init = dataset_list
-  )
-
-  dataset_list <- sort_list_by(dataset_list)
-
-  on.exit(close(con))
+  dataset_list<- read_opus_raw(raw)
 
   return(dataset_list)
 }
