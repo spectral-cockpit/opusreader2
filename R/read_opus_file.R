@@ -3,7 +3,8 @@
 #' This function can be used to read and parse an OPUS file,
 #' to make it usable for other processing steps.
 #'
-#' @param file character vector with the path to the OPUS file
+#' @param dsn data source name; can be a file path to an OPUS file or directly a
+#'  raw vector
 #'
 #' @return list containing the different data chunks of an OPUS file, possibly:
 #' * `refl_data_param`:
@@ -30,20 +31,22 @@
 #' @examples
 #' library(opusreader2)
 #'
-#' file <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
+#' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
-#' opus_list <- read_opus_file(file)
+#' opus_list <- read_opus(dsn)
 #' @export
-#'
-#' @
-read_opus_file <- function(file) {
-  file_size <- file.size(file)
-  # Get raw vector
-  raw <- readBin(file, "raw", n = file_size)
+read_opus <- function(dsn) {
+  if (missing(dsn)) {
+    stop("dsn should specify a data source or filename")
+  }
 
-  con <- rawConnection(raw)
+  dsn <- set_connection_class(dsn)
 
-  header_data <- parse_header(raw, con)
+  con <- open_connection(dsn)
+
+  raw_size <- get_raw_size(dsn)
+
+  header_data <- parse_header(raw_size, con)
 
   dataset_list <- lapply(header_data, create_dataset)
 
@@ -65,4 +68,75 @@ read_opus_file <- function(file) {
   on.exit(close(con))
 
   return(dataset_list)
+}
+
+#' define class of dsn
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+set_connection_class <- function(dsn) {
+  dsn_file <- file.exists(dsn)
+
+  if (dsn_file) {
+    class(dsn) <- c(class(dsn), "file")
+  } else {
+    class(dsn) <- c(class(dsn), "raw")
+  }
+
+  return(dsn)
+}
+
+#' Dispatch method for get_raw_size
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+get_raw_size <- function(dsn) UseMethod("get_raw_size", dsn)
+
+#' method to get the raw size of a file
+#'
+#' @inheritParams read_opus
+get_raw_size.file <- function(dsn) {
+  size <- file.size(dsn)
+  return(size)
+}
+
+#' method to get the raw size of a raw vector
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+get_raw_size.raw <- function(dsn) {
+  size <- length(dsn)
+  return(size)
+}
+
+#' Dispatch method for the open_connection
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+open_connection <- function(dsn) UseMethod("open_connection", dsn)
+
+#' method to open the connection for an opus file
+#'
+#' @inheritParams read_opus
+open_connection.file <- function(dsn) {
+  file_size <- get_raw_size(dsn)
+
+  raw <- readBin(dsn, "raw", n = file_size)
+
+  con <- rawConnection(raw)
+
+  return(con)
+}
+
+#' method to open the connection directly to a raw vector
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+open_connection.raw <- function(dsn) {
+  con <- rawConnection(raw)
 }
