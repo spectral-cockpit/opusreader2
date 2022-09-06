@@ -30,7 +30,8 @@ BugReports: https://github.com/spectral-cockpit/opusreader2/issues
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    pbapply
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Collate: 

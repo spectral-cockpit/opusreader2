@@ -4,10 +4,12 @@
 \alias{read_opus_file}
 \title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
-read_opus_file(file)
+read_opus_file(file, progress = !(length(file) == 1))
 }
 \arguments{
-\item{file}{character vector with the path to the OPUS file}
+\item{file}{character vector with the path to the OPUS file(s)}
+
+\item{progress}{Logical (defaults to \code{TRUE} if several files are passed to the \code{file} parameter, \code{FALSE} otherwise), whether a progress bar message is printed}
 }
 \value{
 list containing the different data chunks of an OPUS file, possibly:
