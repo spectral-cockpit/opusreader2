@@ -76,12 +76,10 @@ read_opus <- function(dsn) {
 #'
 #' @export
 set_connection_class <- function(dsn) {
-  dsn_file <- file.exists(dsn)
-
-  if (dsn_file) {
-    class(dsn) <- c(class(dsn), "file")
-  } else {
+  if (is.raw(dsn)) {
     class(dsn) <- c(class(dsn), "raw")
+  } else if(file.exists(dsn)){
+    class(dsn) <- c(class(dsn), "file")
   }
 
   return(dsn)
@@ -127,7 +125,7 @@ open_connection.file <- function(dsn) {
 
   raw <- readBin(dsn, "raw", n = file_size)
 
-  con <- rawConnection(raw)
+  con <- open_connection.raw(raw)
 
   return(con)
 }
