@@ -4,10 +4,10 @@
 \alias{parse_header}
 \title{parse the header of the opus file}
 \usage{
-parse_header(raw, con)
+parse_header(raw_size, con)
 }
 \arguments{
-\item{raw}{raw vector of the opus binary file}
+\item{raw_size}{raw vector of the opus binary file}
 
 \item{con}{connection to the raw vector}
 }
