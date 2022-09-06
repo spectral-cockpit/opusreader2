@@ -138,5 +138,5 @@ open_connection.file <- function(dsn) {
 #'
 #' @export
 open_connection.raw <- function(dsn) {
-  con <- rawConnection(raw)
+  con <- rawConnection(dsn)
 }
