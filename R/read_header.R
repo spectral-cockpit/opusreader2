@@ -1,11 +1,11 @@
 #' parse the header of the opus file
 #'
-#' @param raw raw vector of the opus binary file
+#' @param raw_size raw vector of the opus binary file
 #'
 #' @param con connection to the raw vector
 #'
 #' @export
-parse_header <- function(raw, con) {
+parse_header <- function(raw_size, con) {
 
   # header length in bytes
   header_length <- 504L
@@ -17,7 +17,7 @@ parse_header <- function(raw, con) {
   meta_block_size <- 12L
 
   # file size in bytes
-  file_size <- length(raw)
+  # file_size <- length(raw)
 
   result_list <- list()
 
@@ -28,11 +28,11 @@ parse_header <- function(raw, con) {
 
     block_type <- read_unsigned_int(con, cursor)
     channel_type <- read_unsigned_int(con, cursor + 1L)
-    text_type    <- read_unsigned_int(con, cursor + 2L)
+    text_type <- read_unsigned_int(con, cursor + 2L)
     # we can discuss the name here
     additional_type <- read_unsigned_int(con, cursor + 3L)
-    chunk_size   <- read_signed_int(con, cursor + 4L)
-    offset       <- read_signed_int(con, cursor + 8L)
+    chunk_size <- read_signed_int(con, cursor + 4L)
+    offset <- read_signed_int(con, cursor + 8L)
 
     if (offset <= 0L) {
       break
@@ -52,7 +52,7 @@ parse_header <- function(raw, con) {
 
     result_list <- c(result_list, list(repeat_list))
 
-    if (next_offset >= file_size) {
+    if (next_offset >= raw_size) {
       break
     }
 
