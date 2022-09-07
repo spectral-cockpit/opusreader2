@@ -45,5 +45,5 @@ Collate:
     'read_bin_types.R'
     'read_header.R'
     'read_opus_raw.R'
-    'read_opus_file.R'
     'seek_opus.R'
+    'read_opus.R'

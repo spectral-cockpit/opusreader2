@@ -5,6 +5,7 @@
 #'
 #' @param dsn data source name; can be a file path to an OPUS file or directly a
 #'  raw vector
+#' @param progress  Logical, whether a progress bar message is printed. Defaults to `TRUE` if several data sources are passed to the `dsn` parameter, `FALSE` otherwise.
 #'
 #' @return list containing the different data chunks of an OPUS file, possibly:
 #' * `refl_data_param`:
@@ -34,38 +35,36 @@
 #' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
 #' opus_list <- read_opus(dsn)
+#'
+#' # Multiple DSN can be passed to `read_opus`
+#'
+#' opus_list <- read_opus(rep(dsn, times = 10))
+#'
 #' @export
-read_opus <- function(dsn) {
+read_opus <- function(dsn, progress =  !(length(dsn) == 1)) {
+
   if (missing(dsn)) {
     stop("dsn should specify a data source or filename")
   }
 
-  dsn <- set_connection_class(dsn)
+  # If one DSN is passed
+  #
+  if (length(dsn) == 1) {
+    dataset_list <- read_opus_single(dsn)
+  }
 
-  con <- open_connection(dsn)
-
-  raw_size <- get_raw_size(dsn)
-
-  header_data <- parse_header(raw_size, con)
-
-  dataset_list <- lapply(header_data, create_dataset)
-
-  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
-
-  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
-
-  dataset_list <- name_output_list(dataset_list)
-
-  data_types <- get_data_types(dataset_list)
-
-  dataset_list <- Reduce(
-    function(x, y) prepare_spectra(x, y),
-    x = data_types, init = dataset_list
-  )
-
-  dataset_list <- sort_list_by(dataset_list)
-
-  on.exit(close(con))
+  # If more than one DSN is passed
+  #
+  if (length(dsn) > 1) {
+    # Implementation of the multi-file reader used in {opusreader}
+    #
+    dataset_list <- if (requireNamespace("pbapply", quietly = TRUE) & progress) {
+      pbapply::pblapply(dsn, read_opus_single)
+    }
+    else {
+      lapply(dsn, read_opus_single)
+    }
+  }
 
   return(dataset_list)
 }
@@ -137,4 +136,40 @@ open_connection.file <- function(dsn) {
 #' @export
 open_connection.raw <- function(dsn) {
   con <- rawConnection(dsn)
+}
+
+#' function to open an individual DSN
+#'
+#' @rdname read_opus
+#'
+read_opus_single <- function(dsn) {
+
+  dsn <- set_connection_class(dsn)
+
+  con <- open_connection(dsn)
+
+  raw_size <- get_raw_size(dsn)
+
+  header_data <- parse_header(raw_size, con)
+
+  dataset_list <- lapply(header_data, create_dataset)
+
+  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
+
+  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
+
+  dataset_list <- name_output_list(dataset_list)
+
+  data_types <- get_data_types(dataset_list)
+
+  dataset_list <- Reduce(
+    function(x, y) prepare_spectra(x, y),
+    x = data_types, init = dataset_list
+  )
+
+  dataset_list <- sort_list_by(dataset_list)
+
+  on.exit(close(con))
+
+  return(dataset_list)
 }

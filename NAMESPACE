@@ -14,10 +14,6 @@ export(open_connection)
 export(opus_file)
 export(parse_chunk)
 export(parse_header)
-<<<<<<< HEAD
-export(read_opus_file)
-export(read_opus_raw)
-=======
 export(read_opus)
+export(read_opus_raw)
 export(set_connection_class)
->>>>>>> 1e98c03eeaf693a13e31cab9a9c775f03c008731

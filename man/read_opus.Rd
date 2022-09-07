@@ -2,13 +2,18 @@
 % Please edit documentation in R/read_opus.R
 \name{read_opus}
 \alias{read_opus}
+\alias{read_opus_single}
 \title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
-read_opus(dsn)
+read_opus(dsn, progress = !(length(dsn) == 1))
+
+read_opus_single(dsn)
 }
 \arguments{
 \item{dsn}{data source name; can be a file path to an OPUS file or directly a
 raw vector}
+
+\item{progress}{Logical, whether a progress bar message is printed. Defaults to \code{TRUE} if several data sources are passed to the \code{dsn} parameter, \code{FALSE} otherwise.}
 }
 \value{
 list containing the different data chunks of an OPUS file, possibly:
@@ -45,4 +50,9 @@ library(opusreader2)
 dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 
 opus_list <- read_opus(dsn)
+
+# Multiple DSN can be passed to `read_opus`
+
+opus_list <- read_opus(rep(dsn, times = 10))
+
 }
