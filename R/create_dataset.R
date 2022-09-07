@@ -124,7 +124,10 @@ create_dataset <- function(data_list) {
         block_type_name <- "lab_and_process_param_processed"
       }
     } else {
-      stop("block not known")
+      stop(
+        print_error_unkown_blocktype(),
+        call. = FALSE
+      )
     }
   }
 
@@ -135,4 +138,16 @@ create_dataset <- function(data_list) {
   )
 
   return(ds)
+}
+
+print_error_unkown_blocktype <- function() {
+  msg <- paste0(
+    "At least one of the block types present in the file is not ",
+    "yet known. You can contribute to support this new data type by ",
+    "opening an issue on",
+    "https://github.com/spectral-cockpit/opusreader2/issues",
+    " . Let us hack this together to fully support reading all Bruker",
+    "FT-IR devices and settings."
+  )
+  return(msg)
 }
