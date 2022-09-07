@@ -26,7 +26,7 @@ remotes::install_github("spectral-cockpit/opusreader2")
 library("opusreader2")
 # read a single file (one measurement)
 file <- opus_file()
-data_list <- read_opus_file(file)
+data_list <- read_opus(file)
 ```
 
 ## Advanced testing and Bruker OPUS file specification
