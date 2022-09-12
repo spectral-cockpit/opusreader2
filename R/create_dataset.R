@@ -11,6 +11,7 @@ create_dataset <- function(data_list) {
   if (block_type == 0) {
     read_class <- "text"
 
+
     if (text_type == 8) {
       read_class <- "parameter"
       block_type_name <- "info_block"
