@@ -6,6 +6,8 @@
 #' @param dsn data source name; can be a file path to an OPUS file or directly a
 #'  raw vector
 #'
+#' @param data_only TRUE or FALSE if only the ab or refl data should be returned
+#'
 #' @return list containing the different data chunks of an OPUS file, possibly:
 #' * `refl_data_param`:
 #' * `refl`:
@@ -33,7 +35,7 @@
 #'
 #' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
-#' opus_list <- read_opus_impl(dsn)
+#' opus_list <- read_opus_impl(dsn, data_only = FALSE)
 #' @export
 read_opus_impl <- function(dsn, data_only) {
   if (missing(dsn)) {
