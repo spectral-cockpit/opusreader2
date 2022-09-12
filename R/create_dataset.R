@@ -11,6 +11,7 @@ create_dataset <- function(data_list) {
   if (block_type == 0) {
     read_class <- "text"
 
+
     if (text_type == 8) {
       read_class <- "parameter"
       block_type_name <- "info_block"
@@ -42,27 +43,52 @@ create_dataset <- function(data_list) {
       block_type_name <- "sc_ref"
     } else if (channel_type == 8) {
       block_type_name <- "ig_ref"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 15) {
     if (channel_type == 16) {
-      read_class <- "data"
-      if (additional_type == 64) {
-        block_type_name <- "ab_no_atm_comp"
-      } else if (additional_type == 0) {
-        block_type_name <- "ab"
+      if(text_type == 112){
+        read_class <- "parameter"
+        block_type_name <- "quant_report_ab"
+      } else if (text_type == 104) {
+        read_class <- "parameter"
+        block_type_name <- "me_test_report_ab"
+      }else {
+        read_class <- "data"
+        if (additional_type == 64) {
+          block_type_name <- "ab_no_atm_comp"
+        } else if (additional_type == 0) {
+          block_type_name <- "ab"
+        } else {
+          stop("There is a new block type, open an issue.")
+        }
       }
     } else if (channel_type == 48) {
       if (text_type == 112) {
         read_class <- "parameter"
         block_type_name <- "quant_report_refl"
+      } else if (text_type == 104) {
+        read_class <- "parameter"
+        block_type_name <- "me_test_report_refl"
       } else {
         read_class <- "data"
         if (additional_type == 64) {
           block_type_name <- "refl_no_atm_comp"
         } else if (additional_type == 0) {
           block_type_name <- "refl"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       }
+    } else if (channel_type == 88) {
+      read_class <- "data"
+      block_type_name <- "match"
+    } else if (channel_type == 216) {
+      read_class <- "data"
+      block_type_name <- "match_2_chn"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 23) {
     read_class <- "parameter"
@@ -73,6 +99,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "ig_sample_data_param"
     } else if (channel_type == 12) {
       block_type_name <- "ph_sample_data_param"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 27) {
     read_class <- "parameter"
@@ -81,6 +109,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "sc_ref_data_param"
     } else if (channel_type == 8) {
       block_type_name <- "ig_ref_data_param"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else {
     read_class <- "parameter"
@@ -91,13 +121,23 @@ create_dataset <- function(data_list) {
           block_type_name <- "ab_no_atm_comp_data_param"
         } else if (additional_type == 0) {
           block_type_name <- "ab_data_param"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       } else if (channel_type == 48) {
         if (additional_type == 64) {
           block_type_name <- "refl_no_atm_comp_data_param"
         } else if (additional_type == 0) {
           block_type_name <- "refl_data_param"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
+      } else if (channel_type == 88) {
+        block_type_name <- "match_data_param"
+      } else if (channel_type == 216) {
+        block_type_name <- "match_2_chn_data_param"
+      } else {
+        stop("There is a new block type, open an issue.")
       }
     } else if (block_type == 32) {
       block_type_name <- "instrument"
@@ -122,6 +162,8 @@ create_dataset <- function(data_list) {
         block_type_name <- "lab_and_process_param_raw"
       } else if (additional_type == 0) {
         block_type_name <- "lab_and_process_param_processed"
+      } else {
+        stop("There is a new block type, open an issue.")
       }
     } else {
       stop("block not known")
