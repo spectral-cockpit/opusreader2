@@ -16,6 +16,10 @@ read_opus <- function(dsn,
                       parallel = FALSE,
                       progress_bar = FALSE) {
 
+  if(dir.exists(dsn)){
+    dsn <- list.files(dsn, full.names = T)
+  }
+
   if(parallel){
     class(dsn) <- c(class(dsn), "future")
   }
