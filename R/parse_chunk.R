@@ -13,6 +13,7 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #'
 #' @export
 parse_chunk.text <- function(ds, con) {
+
   text <- read_character(con, ds$offset, n = ds$chunk_size)
 
   ds$text <- text
@@ -25,7 +26,7 @@ parse_chunk.text <- function(ds, con) {
 #'
 #' @export
 parse_chunk.parameter <- function(ds, con) {
-  if (ds$text_type == 112) {
+  if (ds$text_type %in% c(112, 104)) {
     cursor <- ds$offset + 12
   } else {
     cursor <- ds$offset
