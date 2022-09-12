@@ -15,18 +15,17 @@ read_opus <- function(dsn,
                       output_path = NULL,
                       parallel = FALSE,
                       progress_bar = FALSE) {
-
-  if(dir.exists(dsn)){
-    dsn <- list.files(dsn, full.names = T)
+  if (dir.exists(dsn)) {
+    dsn <- list.files(dsn, full.names = TRUE)
   }
 
-  if(parallel){
+  if (isTRUE(parallel)) {
     class(dsn) <- c(class(dsn), "future")
   }
 
   dataset_list <- opus_lapply(dsn, data_only)
 
-  if(length(dataset_list) == 1){
+  if (length(dataset_list) == 1) {
     dataset_list <- dataset_list[[1]]
   }
 
@@ -36,7 +35,7 @@ read_opus <- function(dsn,
 
 opus_lapply <- function(dsn, data_only) UseMethod("opus_lapply")
 
-opus_lapply.future <- function(dsn, data_only){
+opus_lapply.future <- function(dsn, data_only) {
   dataset_list <- future.apply::future_lapply(
     dsn,
     function(x) read_opus_impl(x, data_only)
@@ -45,9 +44,11 @@ opus_lapply.future <- function(dsn, data_only){
   return(dataset_list)
 }
 
-opus_lapply.default <- function(dsn, data_only){
+opus_lapply.default <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
     function(x) read_opus_impl(x, data_only)
   )
+
+  return(dataset_list)
 }
