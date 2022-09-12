@@ -42,6 +42,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "sc_ref"
     } else if (channel_type == 8) {
       block_type_name <- "ig_ref"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 15) {
     if (channel_type == 16) {
@@ -57,6 +59,8 @@ create_dataset <- function(data_list) {
           block_type_name <- "ab_no_atm_comp"
         } else if (additional_type == 0) {
           block_type_name <- "ab"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       }
     } else if (channel_type == 48) {
@@ -72,6 +76,8 @@ create_dataset <- function(data_list) {
           block_type_name <- "refl_no_atm_comp"
         } else if (additional_type == 0) {
           block_type_name <- "refl"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       }
     } else if (channel_type == 88) {
@@ -80,6 +86,8 @@ create_dataset <- function(data_list) {
     } else if (channel_type == 216) {
       read_class <- "data"
       block_type_name <- "match_2_chn"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 23) {
     read_class <- "parameter"
@@ -90,6 +98,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "ig_sample_data_param"
     } else if (channel_type == 12) {
       block_type_name <- "ph_sample_data_param"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else if (block_type == 27) {
     read_class <- "parameter"
@@ -98,6 +108,8 @@ create_dataset <- function(data_list) {
       block_type_name <- "sc_ref_data_param"
     } else if (channel_type == 8) {
       block_type_name <- "ig_ref_data_param"
+    } else {
+      stop("There is a new block type, open an issue.")
     }
   } else {
     read_class <- "parameter"
@@ -108,17 +120,23 @@ create_dataset <- function(data_list) {
           block_type_name <- "ab_no_atm_comp_data_param"
         } else if (additional_type == 0) {
           block_type_name <- "ab_data_param"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       } else if (channel_type == 48) {
         if (additional_type == 64) {
           block_type_name <- "refl_no_atm_comp_data_param"
         } else if (additional_type == 0) {
           block_type_name <- "refl_data_param"
+        } else {
+          stop("There is a new block type, open an issue.")
         }
       } else if (channel_type == 88) {
         block_type_name <- "match_data_param"
       } else if (channel_type == 216) {
         block_type_name <- "match_2_chn_data_param"
+      } else {
+        stop("There is a new block type, open an issue.")
       }
     } else if (block_type == 32) {
       block_type_name <- "instrument"
@@ -143,6 +161,8 @@ create_dataset <- function(data_list) {
         block_type_name <- "lab_and_process_param_raw"
       } else if (additional_type == 0) {
         block_type_name <- "lab_and_process_param_processed"
+      } else {
+        stop("There is a new block type, open an issue.")
       }
     } else {
       stop("block not known")
