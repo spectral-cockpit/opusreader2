@@ -4,11 +4,13 @@
 \alias{read_opus_impl}
 \title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
-read_opus_impl(dsn)
+read_opus_impl(dsn, data_only)
 }
 \arguments{
 \item{dsn}{data source name; can be a file path to an OPUS file or directly a
 raw vector}
+
+\item{data_only}{TRUE or FALSE if only the ab or refl data should be returned}
 }
 \value{
 list containing the different data chunks of an OPUS file, possibly:
@@ -44,5 +46,5 @@ library(opusreader2)
 
 dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 
-opus_list <- read_opus_impl(dsn)
+opus_list <- read_opus_impl(dsn, data_only = FALSE)
 }

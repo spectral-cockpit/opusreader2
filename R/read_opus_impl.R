@@ -6,6 +6,8 @@
 #' @param dsn data source name; can be a file path to an OPUS file or directly a
 #'  raw vector
 #'
+#' @param data_only TRUE or FALSE if only the ab or refl data should be returned
+#'
 #' @return list containing the different data chunks of an OPUS file, possibly:
 #' * `refl_data_param`:
 #' * `refl`:
@@ -33,9 +35,9 @@
 #'
 #' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
-#' opus_list <- read_opus_impl(dsn)
+#' opus_list <- read_opus_impl(dsn, data_only = FALSE)
 #' @export
-read_opus_impl <- function(dsn) {
+read_opus_impl <- function(dsn, data_only) {
   if (missing(dsn)) {
     stop("dsn should specify a data source or filename")
   }
@@ -50,11 +52,31 @@ read_opus_impl <- function(dsn) {
 
   dataset_list <- lapply(header_data, create_dataset)
 
-  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
+  dataset_list <- name_output_list(dataset_list)
+
+
+  if (data_only) {
+    if (any(grepl("^ab$|^refl$", names(dataset_list)))) {
+      dataset_list <- extract_data(
+        dataset_list,
+        c("ab", "refl", "ab_data_param", "refl_data_param")
+      )
+    } else {
+      dataset_list <- extract_data(
+        dataset_list,
+        c(
+          "ab_no_atm_comp",
+          "refl_no_atm_comp",
+          "ab_no_atm_comp_data_param",
+          "refl_no_atm_comp_data_param"
+        )
+      )
+    }
+  } else {
+    dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
+  }
 
   dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
-
-  dataset_list <- name_output_list(dataset_list)
 
   data_types <- get_data_types(dataset_list)
 
@@ -62,6 +84,10 @@ read_opus_impl <- function(dsn) {
     function(x, y) prepare_spectra(x, y),
     x = data_types, init = dataset_list
   )
+
+  if(data_only){
+    dataset_list <- dataset_list[lapply(dataset_list, class) == "data"]
+  }
 
   dataset_list <- sort_list_by(dataset_list)
 
