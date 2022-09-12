@@ -22,6 +22,10 @@ read_opus <- function(dsn,
 
   dataset_list <- opus_lapply(dsn, data_only)
 
+  if(length(dataset_list) == 1){
+    dataset_list <- dataset_list[[1]]
+  }
+
   return(dataset_list)
 }
 
