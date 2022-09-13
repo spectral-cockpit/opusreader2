@@ -2,7 +2,7 @@
 #'
 #' This function can be used to read and parse OPUS files,
 #' to make it usable for other processing steps.
-#' @inherit read_opus_impl return params
+#' @inherit parse_opus return params
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
 #' @param output_path optional storage path for the parsed output. Default is
@@ -38,7 +38,7 @@ opus_lapply <- function(dsn, data_only) UseMethod("opus_lapply")
 opus_lapply.future <- function(dsn, data_only) {
   dataset_list <- future.apply::future_lapply(
     dsn,
-    function(x) read_opus_impl(x, data_only)
+    function(x) parse_opus(x, data_only)
   )
 
   return(dataset_list)
@@ -47,7 +47,7 @@ opus_lapply.future <- function(dsn, data_only) {
 opus_lapply.default <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) read_opus_impl(x, data_only)
+    function(x) parse_opus(x, data_only)
   )
 
   return(dataset_list)
