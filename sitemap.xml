@@ -73,6 +73,9 @@
     <loc>/reference/parse_header.html</loc>
   </url>
   <url>
+    <loc>/reference/parse_opus.html</loc>
+  </url>
+  <url>
     <loc>/reference/read_character.html</loc>
   </url>
   <url>
@@ -83,9 +86,6 @@
   </url>
   <url>
     <loc>/reference/read_opus.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_opus_impl.html</loc>
   </url>
   <url>
     <loc>/reference/read_signed_int.html</loc>
