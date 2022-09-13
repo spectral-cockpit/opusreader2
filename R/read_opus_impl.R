@@ -1,4 +1,4 @@
-#' Read OPUS binary file of a Bruker spectrometer
+#' Parse data and parameters of OPUS binary file of a Bruker spectrometer
 #'
 #' This function can be used to read and parse OPUS files,
 #' to make it usable for other processing steps.
@@ -35,9 +35,9 @@
 #'
 #' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
-#' opus_list <- read_opus_impl(dsn, data_only = FALSE)
+#' opus_list <- parse_opus(dsn, data_only = FALSE)
 #' @export
-read_opus_impl <- function(dsn, data_only) {
+parse_opus <- function(dsn, data_only) {
   if (missing(dsn)) {
     stop("dsn should specify a data source or filename")
   }
@@ -85,7 +85,7 @@ read_opus_impl <- function(dsn, data_only) {
     x = data_types, init = dataset_list
   )
 
-  if(data_only){
+  if (data_only) {
     dataset_list <- dataset_list[lapply(dataset_list, class) == "data"]
   }
 
