@@ -16,3 +16,11 @@ read_float(con, cursor, n = 1L)
 \description{
 read float from binary (single-precision, 32 bits)
 }
+\seealso{
+Other read_bytes: 
+\code{\link{read_character}()},
+\code{\link{read_double}()},
+\code{\link{read_signed_int}()},
+\code{\link{read_unsigned_int}()}
+}
+\concept{read_bytes}

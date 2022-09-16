@@ -9,6 +9,7 @@
 #' `NULL`, which only returns the parsed data as an in-memory R object.
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
+#' @family core
 #' @export
 read_opus <- function(dsn,
                       data_only = FALSE,
