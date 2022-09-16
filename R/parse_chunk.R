@@ -5,6 +5,7 @@
 #' @param con connection to raw vector
 #'
 #' @export
+#' @family parsing
 parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 
 #' read chunk method for text

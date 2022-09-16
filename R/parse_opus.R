@@ -30,6 +30,7 @@
 #' * `info_block`:
 #' * `history`:
 #'
+#' @family core
 #' @examples
 #' library(opusreader2)
 #'
@@ -99,7 +100,7 @@ parse_opus <- function(dsn, data_only) {
 #' define class of dsn
 #'
 #' @inheritParams read_opus
-#'
+#' @family connection
 #' @export
 set_connection_class <- function(dsn) {
   if (is.raw(dsn)) {
@@ -114,7 +115,7 @@ set_connection_class <- function(dsn) {
 #' Dispatch method for get_raw_size
 #'
 #' @inheritParams read_opus
-#'
+#' @family connection
 #' @export
 get_raw_size <- function(dsn) UseMethod("get_raw_size", dsn)
 
@@ -139,7 +140,7 @@ get_raw_size.raw <- function(dsn) {
 #' Dispatch method for the open_connection
 #'
 #' @inheritParams read_opus
-#'
+#' @family connection
 #' @export
 open_connection <- function(dsn) UseMethod("open_connection", dsn)
 

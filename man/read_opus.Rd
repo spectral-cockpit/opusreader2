@@ -55,3 +55,8 @@ list containing the different data chunks of an OPUS file, possibly:
 This function can be used to read and parse OPUS files,
 to make it usable for other processing steps.
 }
+\seealso{
+Core functions
+\code{\link{parse_opus}()}
+}
+\concept{core}

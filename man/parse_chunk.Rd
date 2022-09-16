@@ -14,3 +14,8 @@ parse_chunk(ds, con)
 \description{
 read chunk method
 }
+\seealso{
+Parsing helpers
+\code{\link{parse_header}()}
+}
+\concept{parsing}

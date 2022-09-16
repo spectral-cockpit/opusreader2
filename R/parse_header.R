@@ -3,7 +3,7 @@
 #' @param raw_size raw vector of the opus binary file
 #'
 #' @param con connection to the raw vector
-#'
+#' @family parsing
 #' @export
 parse_header <- function(raw_size, con) {
 
