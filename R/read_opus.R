@@ -16,8 +16,10 @@ read_opus <- function(dsn,
                       output_path = NULL,
                       parallel = FALSE,
                       progress_bar = FALSE) {
-  if (dir.exists(dsn)) {
-    dsn <- list.files(dsn, full.names = TRUE)
+  if (length(dsn) == 1L) {
+    if (dir.exists(dsn)) {
+      dsn <- list.files(dsn, full.names = TRUE)
+    }
   }
 
   if (isTRUE(parallel)) {
