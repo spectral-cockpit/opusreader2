@@ -18,7 +18,7 @@ read_opus <- function(dsn,
                       progress_bar = FALSE) {
   if (length(dsn) == 1L) {
     if (dir.exists(dsn)) {
-      dsn <- list.files(dsn, full.names = TRUE)
+      dsn <- list.files(dsn, full.names = TRUE, recursive = TRUE)
     }
   }
 
