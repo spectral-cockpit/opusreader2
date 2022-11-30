@@ -16,21 +16,35 @@ read_opus <- function(dsn,
                       output_path = NULL,
                       parallel = FALSE,
                       progress_bar = FALSE) {
-  if (dir.exists(dsn)) {
-    dsn <- list.files(dsn, full.names = TRUE)
-  }
+
 
   if (isTRUE(parallel)) {
     class(dsn) <- c(class(dsn), "future")
   }
 
-  dataset_list <- opus_lapply(dsn, data_only)
+  if (dir.exists(dns)){
+    dsn <- list.files(dns, full.names = T)
+  }
+
+  raw_list <- read_opus_raw(dsn)
+
+  dataset_list <- opus_lapply(raw_list, data_only)
 
   if (length(dataset_list) == 1) {
     dataset_list <- dataset_list[[1]]
   }
 
   return(dataset_list)
+}
+
+read_opus_impl <- function(dsn, data_only, output_path){
+
+  raw <- read_opus_raw(dsn)
+
+  dataset_list <- parse_opus(raw)
+
+  write_opus(dataset_list)
+
 }
 
 
