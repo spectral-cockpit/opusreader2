@@ -15,6 +15,9 @@ read_opus <- function(dsn,
                       data_only = FALSE,
                       parallel = FALSE,
                       progress_bar = FALSE) {
+  check_logical(data_only)
+  check_logical(parallel)
+  check_logical(progress_bar)
 
   if (length(dsn) == 1L && dir.exists(dsn)) {
     dsn <- list.files(
@@ -22,19 +25,18 @@ read_opus <- function(dsn,
     )
   }
 
+  if (isTRUE(parallel)) {
+    check_future()
 
-  if (parallel) {
     free_workers <- future::nbrOfFreeWorkers()
 
     chunked_dsn <- split(dsn, sort(dsn %% free_workers))
-
 
     dataset_list <- future.apply::future_lapply(
       chunked_dsn,
       function(x) opus_lapply(x, data_only)
     )
-
-  }else{
+  } else {
     dataset_list <- opus_lapply(dsn, data_only)
   }
 
@@ -45,6 +47,7 @@ read_opus <- function(dsn,
   return(dataset_list)
 }
 
+
 #' Read a single opus file
 #'
 #' @param dsn source path of an opus file
@@ -53,8 +56,7 @@ read_opus <- function(dsn,
 #' read data
 #'
 #' @export
-read_opus_impl <- function(dsn, data_only){
-
+read_opus_impl <- function(dsn, data_only) {
   raw <- read_opus_raw(dsn)
 
   parsed_data <- parse_opus(raw, data_only)
