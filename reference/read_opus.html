@@ -65,29 +65,19 @@ to make it usable for other processing steps.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_opus</span><span class="op">(</span></span>
-<span>  <span class="va">dsn</span>,</span>
-<span>  data_only <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  output_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  parallel <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  progress_bar <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_opus</span><span class="op">(</span><span class="va">dsn</span>, data_only <span class="op">=</span> <span class="cn">FALSE</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span>, progress_bar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dsn</dt>
-<dd><p>data source name; can be a file path to an OPUS file or directly a
-raw vector</p></dd>
+<dd><p>data source name. Can be a path to a specific file or a path to a
+directory. The listing of the files in a directory is recursive.</p></dd>
 
 
 <dt>data_only</dt>
 <dd><p>read data and parameters with <code>FALSE</code> per default, or only
-read data</p></dd>
-
-
-<dt>output_path</dt>
-<dd><p>optional storage path for the parsed output. Default is
+read data
 <code>NULL</code>, which only returns the parsed data as an in-memory R object.</p></dd>
 
 
@@ -99,31 +89,6 @@ read data</p></dd>
 <dd><p>print a progress bar. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
-    <div id="value">
-    <h2>Value</h2>
-    
-
-<p>list containing the different data chunks of an OPUS file, possibly:</p><ul><li><p><code>refl_data_param</code>:</p></li>
-<li><p><code>refl</code>:</p></li>
-<li><p><code>quant_report_refl</code>:</p></li>
-<li><p><code>sc_sample_data_param</code>:</p></li>
-<li><p><code>sc_sample</code>:</p></li>
-<li><p><code>sc_ref_data_param</code>:</p></li>
-<li><p><code>sc_ref</code>:</p></li>
-<li><p><code>optics</code>:</p></li>
-<li><p><code>optics_ref</code>:</p></li>
-<li><p><code>acquisition_ref</code>:</p></li>
-<li><p><code>fourier_transformation_ref</code>:</p></li>
-<li><p><code>fourier_transformation</code>:</p></li>
-<li><p><code>sample</code>:</p></li>
-<li><p><code>acquisition</code>:</p></li>
-<li><p><code>instrument_ref</code>:</p></li>
-<li><p><code>instrument</code>:</p></li>
-<li><p><code>lab_and_process_param_1</code>:</p></li>
-<li><p><code>lab_and_process_param_2</code>:</p></li>
-<li><p><code>info_block</code>:</p></li>
-<li><p><code>history</code>:</p></li>
-</ul></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Core functions
