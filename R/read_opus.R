@@ -30,7 +30,7 @@ read_opus <- function(dsn,
 
     free_workers <- future::nbrOfFreeWorkers()
 
-    chunked_dsn <- split(dsn, sort(dsn %% free_workers))
+    chunked_dsn <- split(dsn, seq_along(dsn) %% free_workers)
 
     dataset_list <- future.apply::future_lapply(
       chunked_dsn,
