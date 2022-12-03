@@ -36,7 +36,9 @@
 #'
 #' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 #'
-#' opus_list <- parse_opus(dsn, data_only = FALSE)
+#' raw <- read_opus_raw(dsn)
+#'
+#' opus_list <- parse_opus(raw, data_only = FALSE)
 #' @export
 parse_opus <- function(raw, data_only) {
 
