@@ -5,13 +5,10 @@
 #' @return list of raw vectors
 #'
 #' @export
-read_opus_raw <- function(dsn){
-
-  if(is.raw(dsn)){
+read_opus_raw <- function(dsn) {
+  if (is.raw(dsn)) {
     return(raw)
-
-  }else {
-
+  } else {
     dsn <- set_connection_class(dsn)
 
     raw <- read_raw(dsn)
