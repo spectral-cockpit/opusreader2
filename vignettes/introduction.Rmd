@@ -26,7 +26,7 @@ spectra. The file format is produced by the Bruker OPUS software.
 ```{r}
 library("opusreader2")
 file <- opus_file()
-data_list <- read_opus(file)
+data_list <- read_opus(file, data_only = F)
 ```
 
 `read_opus` is a list-parser using S3 classes. The data is arranged
