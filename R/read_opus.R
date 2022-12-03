@@ -16,10 +16,12 @@ read_opus <- function(dsn,
                       parallel = FALSE,
                       progress_bar = FALSE) {
 
-
-  if (dir.exists(dsn)){
-    dsn <- list.files(dsn, full.names = T)
+  if (length(dsn) == 1L && dir.exists(dsn)) {
+    dsn <- list.files(
+      path = dsn, pattern = "\\.\\d+$", full.names = TRUE, recursive = TRUE
+    )
   }
+
 
   if (parallel) {
     free_workers <- future::nbrOfFreeWorkers()
