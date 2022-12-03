@@ -14,7 +14,6 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #'
 #' @export
 parse_chunk.text <- function(ds, con) {
-
   text <- read_character(con, ds$offset, n = ds$chunk_size)
 
   ds$text <- text

@@ -16,7 +16,7 @@ prepare_spectra <- function(ds_list, data_type) {
 
   # y-scaling factor
   CSF <- ds_param[[1]]$parameters$CSF$parameter_value
-  if(!is.null(CSF)){
+  if (!is.null(CSF)) {
     if (CSF != 1) {
       ds_data[[1]]$data <- CSF * ds_data[[1]]$data
     }
@@ -38,7 +38,6 @@ prepare_spectra <- function(ds_list, data_type) {
 
 
 get_data_types <- function(ds_list) {
-
   block_names <- names(ds_list)
   data_types <- block_names[grepl("sc|ig|ph|^ab|^refl", block_names)]
   data_types <- unique(gsub("_data_param", "", data_types))

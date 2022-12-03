@@ -31,6 +31,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    future.apply
+    future.apply,
+    future
 Config/testthat/edition: 3
 VignetteBuilder: knitr
