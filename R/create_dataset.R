@@ -48,13 +48,13 @@ create_dataset <- function(data_list) {
     }
   } else if (block_type == 15) {
     if (channel_type == 16) {
-      if(text_type == 112){
+      if (text_type == 112) {
         read_class <- "parameter"
         block_type_name <- "quant_report_ab"
       } else if (text_type == 104) {
         read_class <- "parameter"
         block_type_name <- "me_test_report_ab"
-      }else {
+      } else {
         read_class <- "data"
         if (additional_type == 64) {
           block_type_name <- "ab_no_atm_comp"

@@ -1,4 +1,4 @@
-extract_data <- function(dataset_list, filter_vector){
+extract_data <- function(dataset_list, filter_vector) {
   dataset_list <- dataset_list[
     lapply(
       dataset_list,

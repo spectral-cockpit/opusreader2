@@ -41,7 +41,6 @@
 #' opus_list <- parse_opus(raw, data_only = FALSE)
 #' @export
 parse_opus <- function(raw, data_only) {
-
   con <- rawConnection(raw)
 
   raw_size <- length(raw)
@@ -93,6 +92,3 @@ parse_opus <- function(raw, data_only) {
 
   return(dataset_list)
 }
-
-
-
