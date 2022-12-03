@@ -4,10 +4,10 @@
 \alias{parse_opus}
 \title{Parse data and parameters of OPUS binary file of a Bruker spectrometer}
 \usage{
-parse_opus(dsn, data_only)
+parse_opus(raw, data_only)
 }
 \arguments{
-\item{dsn}{data source name; can be a file path to an OPUS file or directly a
+\item{raw}{data source name; can be a file path to an OPUS file or directly a
 raw vector}
 
 \item{data_only}{TRUE or FALSE if only the ab or refl data should be returned}
@@ -46,7 +46,9 @@ library(opusreader2)
 
 dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
 
-opus_list <- parse_opus(dsn, data_only = FALSE)
+raw <- read_opus_raw(dsn)
+
+opus_list <- parse_opus(raw, data_only = FALSE)
 }
 \seealso{
 Core functions

@@ -4,52 +4,19 @@
 \alias{read_opus}
 \title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
-read_opus(
-  dsn,
-  data_only = FALSE,
-  output_path = NULL,
-  parallel = FALSE,
-  progress_bar = FALSE
-)
+read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
 }
 \arguments{
-\item{dsn}{data source name; can be a file path to an OPUS file or directly a
-raw vector}
+\item{dsn}{data source name. Can be a path to a specific file or a path to a
+directory. The listing of the files in a directory is recursive.}
 
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
-read data}
-
-\item{output_path}{optional storage path for the parsed output. Default is
+read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 
 \item{parallel}{read files in parallel via chunking. Default is \code{FALSE}.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
-}
-\value{
-list containing the different data chunks of an OPUS file, possibly:
-\itemize{
-\item \code{refl_data_param}:
-\item \code{refl}:
-\item \code{quant_report_refl}:
-\item \code{sc_sample_data_param}:
-\item \code{sc_sample}:
-\item \code{sc_ref_data_param}:
-\item \code{sc_ref}:
-\item \code{optics}:
-\item \code{optics_ref}:
-\item \code{acquisition_ref}:
-\item \code{fourier_transformation_ref}:
-\item \code{fourier_transformation}:
-\item \code{sample}:
-\item \code{acquisition}:
-\item \code{instrument_ref}:
-\item \code{instrument}:
-\item \code{lab_and_process_param_1}:
-\item \code{lab_and_process_param_2}:
-\item \code{info_block}:
-\item \code{history}:
-}
 }
 \description{
 This function can be used to read and parse OPUS files,
