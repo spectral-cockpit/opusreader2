@@ -2,10 +2,10 @@
 #'
 #' This function can be used to read and parse OPUS files,
 #' to make it usable for other processing steps.
-#' @inherit parse_opus return params
+#' @param dsn data source name. Can be a path to a specific file or a path to a
+#' directory. The listing of the files in a directory is recursive.
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
-#' @param output_path optional storage path for the parsed output. Default is
 #' `NULL`, which only returns the parsed data as an in-memory R object.
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
@@ -13,22 +13,28 @@
 #' @export
 read_opus <- function(dsn,
                       data_only = FALSE,
-                      output_path = NULL,
                       parallel = FALSE,
                       progress_bar = FALSE) {
 
 
-  if (isTRUE(parallel)) {
-    class(dsn) <- c(class(dsn), "future")
+  if (dir.exists(dsn)){
+    dsn <- list.files(dsn, full.names = T)
   }
 
-  if (dir.exists(dns)){
-    dsn <- list.files(dns, full.names = T)
+  if (parallel) {
+    free_workers <- future::nbrOfFreeWorkers()
+
+    chunked_dsn <- split(dsn, sort(dsn %% free_workers))
+
+
+    dataset_list <- future.apply::future_lapply(
+      chunked_dsn,
+      function(x) opus_lapply(x, data_only)
+    )
+
+  }else{
+    dataset_list <- opus_lapply(dsn, data_only)
   }
-
-  raw_list <- read_opus_raw(dsn)
-
-  dataset_list <- opus_lapply(raw_list, data_only)
 
   if (length(dataset_list) == 1) {
     dataset_list <- dataset_list[[1]]
@@ -37,32 +43,34 @@ read_opus <- function(dsn,
   return(dataset_list)
 }
 
-read_opus_impl <- function(dsn, data_only, output_path){
+#' Read a single opus file
+#'
+#' @param dsn source path of an opus file
+#'
+#' @param data_only read data and parameters with `FALSE` per default, or only
+#' read data
+#'
+#' @export
+read_opus_impl <- function(dsn, data_only){
 
   raw <- read_opus_raw(dsn)
 
-  dataset_list <- parse_opus(raw)
+  parsed_data <- parse_opus(raw, data_only)
 
-  write_opus(dataset_list)
-
+  return(parsed_data)
 }
 
 
-opus_lapply <- function(dsn, data_only) UseMethod("opus_lapply")
-
-opus_lapply.future <- function(dsn, data_only) {
-  dataset_list <- future.apply::future_lapply(
-    dsn,
-    function(x) parse_opus(x, data_only)
-  )
-
-  return(dataset_list)
-}
-
-opus_lapply.default <- function(dsn, data_only) {
+#' wrapper function to apply the read_opus_impl() functio to a list of
+#' data source paths
+#'
+#' @inheritParams read_opus
+#'
+#' @export
+opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) parse_opus(x, data_only)
+    function(x) read_opus_impl(x, data_only)
   )
 
   return(dataset_list)
