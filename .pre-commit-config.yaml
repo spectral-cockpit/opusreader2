@@ -8,7 +8,7 @@ repos:
         args: [--style_fun=tidyverse_style]
       - id: roxygenize
         additional_dependencies:
-          # - git2r
+          - git2r
           - r-lib/pkgapi
           - dplyr@1.0.9
           - roxygen2@7.2.2
