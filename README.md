@@ -22,7 +22,7 @@ remotes::install_github("spectral-cockpit/opusreader2")
 
 ## Example
 
-```
+```r
 library("opusreader2")
 # read a single file (one measurement)
 file <- opus_file()
