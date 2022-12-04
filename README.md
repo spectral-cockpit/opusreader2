@@ -57,13 +57,14 @@ code with the drive for innovation, we are following some best practices
 <summary>Install and enable pre-commit hooks locally (details)</summary>
 1. install pre-commit with python3. For more details and options, see
   [the official documentation](https://pre-commit.com/)
-```py
-# in terminal
-# 1.a
+
 ```sh
+# in terminal
 pip3 install pre-commit --user
 ```
+
 2. enable the pre-commit hooks in `.pre-commit-config.yaml`
+
 ```sh
 # change to cloned git directory of your fork of the package
 pre-commit install
@@ -75,10 +76,12 @@ hooks will automatically on new commits.
 <details>
 <summary>Check all files for which pre-commit hooks are configured (details)
 </summary>
+
 ```sh
 # in your terminal and package root directory
 pre-commit run --all-files
 ```
+
 </details>
 
 ## Background
