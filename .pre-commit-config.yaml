@@ -61,7 +61,18 @@ repos:
         # -   id: file-contents-sorter
         files: '^\.Rbuildignore$'
       - id: end-of-file-fixer
-        exclude: '\.Rd'
+        exclude: >
+          (?x)^(
+          (.*/|).Rd|
+          (.*/|).csv
+          )$
+      - id: mixed-line-ending
+        args: ["--fix=lf"] # use UNIX 'lf' character
+        exclude: >
+          (?x)^(
+          (.*/|).Rd|
+          (.*/|).csv
+          )$
   - repo: local
     hooks:
       - id: forbid-to-commit
