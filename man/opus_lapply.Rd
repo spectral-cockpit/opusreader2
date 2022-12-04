@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_opus.R
 \name{opus_lapply}
 \alias{opus_lapply}
-\title{wrapper function to apply the read_opus_impl() functio to a list of
+\title{wrapper function to apply the read_opus_impl() function to a list of
 data source paths}
 \usage{
 opus_lapply(dsn, data_only)
@@ -16,6 +16,6 @@ read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 }
 \description{
-wrapper function to apply the read_opus_impl() functio to a list of
+wrapper function to apply the read_opus_impl() function to a list of
 data source paths
 }

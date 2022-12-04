@@ -65,7 +65,7 @@ read_opus_impl <- function(dsn, data_only) {
 }
 
 
-#' wrapper function to apply the read_opus_impl() functio to a list of
+#' wrapper function to apply the read_opus_impl() function to a list of
 #' data source paths
 #'
 #' @inheritParams read_opus
