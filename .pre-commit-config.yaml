@@ -5,10 +5,16 @@ repos:
     rev: v0.3.2.9001
     hooks:
       - id: style-files
-        args: [--style_pkg=styler, --style_fun=tidyverse_style]
+        args: [
+            --style_pkg=styler,
+            --style_fun=tidyverse_style,
+            --cache-root=styler-perm,
+          ] # tidyverse_style
       - id: roxygenize
+        additional_dependencies:
+          - git2r
       # codemeta must be above use-tidy-description when both are used
-      # -   id: codemeta-description-updated
+      # - id: codemeta-description-updated
       - id: use-tidy-description
       - id: spell-check
         exclude: >
@@ -55,11 +61,6 @@ repos:
         files: '^\.Rbuildignore$'
       - id: end-of-file-fixer
         exclude: '\.Rd'
-  - repo: https://github.com/pre-commit-ci/pre-commit-ci-config
-    rev: v1.5.1
-    hooks:
-      # Only reuiqred when https://pre-commit.ci is used for config validation
-      - id: check-pre-commit-ci-config
   - repo: local
     hooks:
       - id: forbid-to-commit
