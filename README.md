@@ -55,6 +55,7 @@ code with the drive for innovation, we are following some best practices
 
 <details>
 <summary>Install and enable pre-commit hooks locally (details)</summary>
+
 1. install pre-commit with python3. For more details and options, see
   [the official documentation](https://pre-commit.com/)
 
