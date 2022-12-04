@@ -25,7 +25,9 @@ read_opus <- function(dsn,
     )
   }
 
-  if (isTRUE(parallel)) {
+  if (!isTRUE(parallel)) {
+    dataset_list <- opus_lapply(dsn, data_only)
+  } else {
     check_future()
 
     free_workers <- future::nbrOfFreeWorkers()
@@ -36,11 +38,9 @@ read_opus <- function(dsn,
       chunked_dsn,
       function(x) opus_lapply(x, data_only)
     )
-  } else {
-    dataset_list <- opus_lapply(dsn, data_only)
   }
 
-  if (length(dataset_list) == 1) {
+  if (length(dataset_list) == 1L) {
     dataset_list <- dataset_list[[1]]
   }
 
