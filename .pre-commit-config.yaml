@@ -30,7 +30,7 @@ repos:
           .*\.Rds|
           .*\.Rproj|
           .*\.sh|
-          \inst/extdata|
+          inst/extdata/.*|
           (.*/|)\.gitignore|
           (.*/|)\.gitlab-ci\.yml|
           (.*/|)\.lintr|
