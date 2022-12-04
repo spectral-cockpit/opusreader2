@@ -71,7 +71,7 @@ pip3 install pre-commit --user
 pre-commit install
 ```
 Once you do a `git commit -m "<your-commit-message>"`, the defined pre-commit
-hooks will automatically on new commits.
+hooks will automatically be applied on new commits.
 </details>
 
 <details>
