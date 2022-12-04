@@ -4,6 +4,7 @@ Baumann
 Bruker
 brukeropusreader
 BugReports
+ci
 Codelist
 Config
 cph
@@ -32,7 +33,9 @@ ORCID
 PARAM
 Philipp
 PhSm
+pre
 precessor
+PRs
 refl
 reflectance
 rmarkdown
@@ -49,6 +52,7 @@ STR
 sublicense
 testthat
 texttype
+tidyverse
 Tomislav
 twagner
 utf
