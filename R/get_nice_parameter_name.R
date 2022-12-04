@@ -167,6 +167,7 @@ get_nice_parameter_name <- function(parameter_name) {
     T08 = "Text:Quant21",
     MOP = "Data Layout"
   )
+  # nolint end
 
   return(nice_name)
 }
