@@ -114,7 +114,10 @@ raw vector</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spectral-cockpit/opusreader2" class="external-link">opusreader2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">dsn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/test_data/BF_lo_01_soil_cal.1"</span>, package <span class="op">=</span> <span class="st">"opusreader2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dsn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"extdata/test_data/BF_lo_01_soil_cal.1"</span>,</span></span>
+<span class="r-in"><span>  package <span class="op">=</span> <span class="st">"opusreader2"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_opus_raw.html">read_opus_raw</a></span><span class="op">(</span><span class="va">dsn</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
