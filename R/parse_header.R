@@ -6,7 +6,6 @@
 #' @family parsing
 #' @export
 parse_header <- function(raw_size, con) {
-
   # header length in bytes
   header_length <- 504L
 

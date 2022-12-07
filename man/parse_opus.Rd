@@ -44,7 +44,10 @@ to make it usable for other processing steps.
 \examples{
 library(opusreader2)
 
-dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
+dsn <- system.file(
+  "extdata/test_data/BF_lo_01_soil_cal.1",
+  package = "opusreader2"
+)
 
 raw <- read_opus_raw(dsn)
 

@@ -6,7 +6,7 @@
 # * https://r-pkgs.org/tests.html
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
-library(testthat)
-library(opusreader2)
+# library(testthat)
+# library(opusreader2)
 
-test_check("opusreader2")
+# test_check("opusreader2")

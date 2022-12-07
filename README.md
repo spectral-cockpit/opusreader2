@@ -22,7 +22,7 @@ remotes::install_github("spectral-cockpit/opusreader2")
 
 ## Example
 
-```
+```r
 library("opusreader2")
 # read a single file (one measurement)
 file <- opus_file()
@@ -44,6 +44,46 @@ We like the spirit of open source development, so any constructive suggestions
 or questions are always welcome. To trade off the consistency and quality of
 code with the drive for innovation, we are following some best practices
 (which can be indeed improved, as many other things in life). These are:
+
+- **Code checks (linting), styling, and spell checking**: We use
+  the [pre-commit](https://pre-commit.com/) framework with
+  both some generic coding and R specific hooks configured in
+  [`.pre-commit-config.yaml`](.pre-commit-config.yaml).
+  Generally, we follow the tidyverse style guide, with slight exceptions. To
+  provide auto-fixing in PRs where possible, we rely on
+  [pre-commit.ci lite](https://pre-commit.ci/lite.html).
+
+<details>
+<summary>Install and enable pre-commit hooks locally (details)</summary>
+
+1. install pre-commit with python3. For more details and options, see
+  [the official documentation](https://pre-commit.com/)
+
+```sh
+# in terminal
+pip3 install pre-commit --user
+```
+
+2. enable the pre-commit hooks in `.pre-commit-config.yaml`
+
+```sh
+# change to cloned git directory of your fork of the package
+pre-commit install
+```
+Once you do a `git commit -m "<your-commit-message>"`, the defined pre-commit
+hooks will automatically be applied on new commits.
+</details>
+
+<details>
+<summary>Check all files for which pre-commit hooks are configured (details)
+</summary>
+
+```sh
+# in your terminal and package root directory
+pre-commit run --all-files
+```
+
+</details>
 
 ## Background
 

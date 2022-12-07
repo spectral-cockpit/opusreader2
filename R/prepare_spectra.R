@@ -22,7 +22,6 @@ prepare_spectra <- function(ds_list, data_type) {
     }
   }
 
-
   data_matrix <- matrix(ds_data[[1]]$data[1:NPT], nrow = 1, ncol = NPT)
   colnames(data_matrix) <- wavenumbers
 

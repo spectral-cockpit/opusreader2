@@ -34,7 +34,10 @@
 #' @examples
 #' library(opusreader2)
 #'
-#' dsn <- system.file("extdata/test_data/BF_lo_01_soil_cal.1", package = "opusreader2")
+#' dsn <- system.file(
+#'   "extdata/test_data/BF_lo_01_soil_cal.1",
+#'   package = "opusreader2"
+#' )
 #'
 #' raw <- read_opus_raw(dsn)
 #'
@@ -59,7 +62,7 @@ parse_opus <- function(raw, data_only) {
         c("ab", "refl", "ab_data_param", "refl_data_param")
       )
     } else {
-      dataset_list <- extract_data(
+      dataset_list <- extract_data( # nolint
         dataset_list,
         c(
           "ab_no_atm_comp",
@@ -75,7 +78,7 @@ parse_opus <- function(raw, data_only) {
 
   dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
 
-  data_types <- get_data_types(dataset_list)
+  data_types <- get_data_types(dataset_list) # nolint
 
   dataset_list <- Reduce(
     function(x, y) prepare_spectra(x, y),
