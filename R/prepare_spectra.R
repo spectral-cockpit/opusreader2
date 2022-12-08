@@ -10,19 +10,21 @@ prepare_spectra <- function(ds_list, data_type) {
   FXV <- ds_param[[1]]$parameters$FXV$parameter_value
   LXV <- ds_param[[1]]$parameters$LXV$parameter_value
 
-  wavenumbers <- rev(seq(LXV, FXV, (FXV - LXV) / (NPT - 1)))
+  wavenumbers <- rev(seq(LXV, FXV, (FXV - LXV) / (NPT - 1L)))
 
-  ds_data[[1]] <- c(ds_data[[1]], wavenumbers = list(wavenumbers))
+  names_first <- names(refl_list[[1]])
+  ds_data[[1]] <- append(ds_data[[1]], values = wavenumbers)
+  names(refl_list[[1]]) <- c(names_first, "wavenumbers")
 
   # y-scaling factor
   CSF <- ds_param[[1]]$parameters$CSF$parameter_value
   if (!is.null(CSF)) {
-    if (CSF != 1) {
+    if (CSF != 1L) {
       ds_data[[1]]$data <- CSF * ds_data[[1]]$data
     }
   }
 
-  data_matrix <- matrix(ds_data[[1]]$data[1:NPT], nrow = 1, ncol = NPT)
+  data_matrix <- matrix(ds_data[[1]]$data[1:NPT], nrow = 1L, ncol = NPT)
   colnames(data_matrix) <- wavenumbers
 
   ds_data[[1]]$data <- data_matrix
