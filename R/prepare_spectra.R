@@ -14,7 +14,7 @@ prepare_spectra <- function(ds_list, data_type) {
 
   names_first <- names(refl_list[[1]])
   ds_data[[1]] <- append(ds_data[[1]], values = wavenumbers)
-  names(refl_list[[1]]) <- c(names_first, "wavenumbers")
+  names(ds_meta[[1]]) <- c(names_first, "wavenumbers")
 
   # y-scaling factor
   CSF <- ds_param[[1]]$parameters$CSF$parameter_value
