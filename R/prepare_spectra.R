@@ -12,7 +12,7 @@ prepare_spectra <- function(ds_list, data_type) {
 
   wavenumbers <- rev(seq(LXV, FXV, (FXV - LXV) / (NPT - 1L)))
 
-  names_first <- names(refl_list[[1]])
+  names_first <- names(ds_data[[1]])
   ds_data[[1]] <- append(ds_data[[1]], values = wavenumbers)
   names(ds_meta[[1]]) <- c(names_first, "wavenumbers")
 
