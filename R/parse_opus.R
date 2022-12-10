@@ -86,12 +86,10 @@ parse_opus <- function(raw, data_only) {
 
   data_params <- get_data_params(block_names, data_types)
 
-  for (nm in data_types) {
-    for (i in seq_along(data_types)) {
-      dataset_list[[nm]] <- prepare_spectra(
-        dataset_list, data_params[i], data_types[i]
-      )
-    }
+  for (i in seq_along(data_types)) {
+    dataset_list[[data_types[i]]] <- prepare_spectra(
+      dataset_list, data_params[i], data_types[i]
+    )
   }
 
   if (data_only) {
