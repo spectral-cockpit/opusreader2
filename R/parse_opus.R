@@ -78,20 +78,40 @@ parse_opus <- function(raw, data_only) {
 
   dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
 
-  data_types <- get_data_types(dataset_list) # nolint
+  dataset_list <- sort_list_by(dataset_list)
 
-  dataset_list <- Reduce(
-    function(x, y) prepare_spectra(x, y),
-    x = data_types, init = dataset_list
-  )
+  block_names <- names(dataset_list)
+
+  data_types <- get_data_types(block_names)
+
+  data_params <- get_data_params(block_names, data_types)
+
+  for (nm in data_types) {
+    for (i in seq_along(data_types)) {
+      dataset_list[[nm]] <- prepare_spectra(
+        dataset_list, data_params[i], data_types[i]
+      )
+    }
+  }
 
   if (data_only) {
     dataset_list <- dataset_list[lapply(dataset_list, class) == "data"]
   }
 
-  dataset_list <- sort_list_by(dataset_list)
-
   on.exit(close(con))
 
   return(dataset_list)
+}
+
+get_data_types <- function(block_names) {
+  data_types <- block_names[grepl("sc|ig|ph|^ab|^refl", block_names)]
+  data_types <- unique(gsub("_data_param", "", data_types))
+  return(data_types)
+}
+
+get_data_params <- function(block_names, data_types) {
+  ds_param <- block_names[grepl(paste0(data_types, "_data_param",
+    collapse = "|"
+  ), block_names)]
+  return(ds_param)
 }
