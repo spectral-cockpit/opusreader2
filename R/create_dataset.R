@@ -174,12 +174,12 @@ stop_proactively <- function(composite_key) {
       "  c) measurement mode and spectral blocks saved (OPUS settings)\n",
       "  d) OPUS software version\n",
       "  e) your general workflow for spectroscopic diagnostics\n",
-      "3. provide an example OPUS binary file uploaded for public access",
-      "on GitHub (best in issue)\n",
-      "4. to facilitate widespread support of Bruker devices in open source
-      based infrastructure, show the data blocks as print screens in the
-      Bruker OPUS software (right-click in Viewer). Please upload the contents
-      of all OPUS blocks in individual screenshots."
+      "3. provide an example OPUS binary file uploaded for public access\n",
+      "   on GitHub (best in issue)\n",
+      "4. to facilitate widespread support of Bruker devices in open source\n",
+      "   based infrastructure, show the data blocks as print screens in the\n",
+      "   Bruker OPUS software (right-click in Viewer). Please upload the\n",
+      "   contents of all OPUS blocks in individual screenshots."
     ),
     call. = FALSE
   )
