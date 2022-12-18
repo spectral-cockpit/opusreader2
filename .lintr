@@ -5,5 +5,7 @@ linters: linters_with_defaults(
     object_name_linter(c("snake_case", "SNAKE_CASE")),
     commented_code_linter = NULL
   )
-exclusions: list()
+exclusions: list(
+  "R/create_dataset.R"
+  )
 encoding: "UTF-8"
