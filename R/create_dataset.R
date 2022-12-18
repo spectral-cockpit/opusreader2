@@ -23,99 +23,99 @@ create_dataset <- function(header_data) {
   key_value_map <- list(
     # block code 0, channel code 0 ------------------------------------------------------------
     # additional information and/or OPUS processing macros
-    "b0-c0-t0-a(0|64)"    =  c(read_class = "text", block_type_name = "text_information"),
-    "b0-c0-t8-a0"         =  c(read_class = "parameter", block_type_name = "info_block"),
-    "b0-c0-t104-a64"      =  c(read_class = "text", block_type_name = "history"),
-    "b0-c0-t152-a(0|64)"  =  c(read_class = "text", block_type_name = "curve_fit"),
-    "b0-c0-t168-a(0|64)"  =  c(read_class = "text", block_type_name = "signature"),
-    "b0-c0-t240-a(0|64)"  =  c(read_class = "text", block_type_name = "integration_method"),
+    "b0-c0-t0-a(0|64)" = c(read_class = "text", block_type_name = "text_information"),
+    "b0-c0-t8-a0" = c(read_class = "parameter", block_type_name = "info_block"),
+    "b0-c0-t104-a64" = c(read_class = "text", block_type_name = "history"),
+    "b0-c0-t152-a(0|64)" = c(read_class = "text", block_type_name = "curve_fit"),
+    "b0-c0-t168-a(0|64)" = c(read_class = "text", block_type_name = "signature"),
+    "b0-c0-t240-a(0|64)" = c(read_class = "text", block_type_name = "integration_method"),
     # guess general text
-    "b0-c0-t\\d+-a(0|64)" =  c(read_class = "text", block_type_name = "text_information"),
+    "b0-c0-t\\d+-a(0|64)" = c(read_class = "text", block_type_name = "text_information"),
 
     # block code 7 -----------------------------------------------------------------------------
     # spectrum types of sample
-    "b7-c4-t0-a(0|64)"    =  c(read_class = "data", block_type_name = "sc_sample"),
-    "b7-c8-t0-a(0|64)"    =  c(read_class = "data", block_type_name = "ig_sample"),
-    "b7-c12-t0-a(0|64)"   =  c(read_class = "data", block_type_name = "ph_sample"),
+    "b7-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_sample"),
+    "b7-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_sample"),
+    "b7-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_sample"),
 
     # block code 11 ----------------------------------------------------------------------------
     # spectrum types of reference (background)
-    "b11-c4-t0-a(0|64)"   =  c(read_class = "data", block_type_name = "sc_ref"),
-    "b11-c8-t0-a(0|64)"   =  c(read_class = "data", block_type_name = "ig_ref"),
-    "b11-c12-t0-a(0|64)"  =  c(read_class = "data", block_type_name = "ph_ref"),
+    "b11-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_ref"),
+    "b11-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_ref"),
+    "b11-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_ref"),
     # block code 15 -----------------------------------------------------------------------------
     # spectrum report blocs
     # channel code 15: save (apparent) absorbance
-    "b15-c16-t112-a0"     =  c(read_class = "parameter", block_type_name = "quant_report_ab"),
-    "b15-c16-t104-a1"     =  c(read_class = "parameter", block_type_name = "me_test_report_ab"),
-    "b15-c16-t0-a64"      =  c(read_class = "data", block_type_name = "ab_no_atm_comp"),
-    "b15-c16-t0-a0"       =  c(read_class = "data", block_type_name = "ab"),
+    "b15-c16-t112-a0" = c(read_class = "parameter", block_type_name = "quant_report_ab"),
+    "b15-c16-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_ab"),
+    "b15-c16-t0-a64" = c(read_class = "data", block_type_name = "ab_no_atm_comp"),
+    "b15-c16-t0-a0" = c(read_class = "data", block_type_name = "ab"),
     # channel code 48: save reflectance (settings
-    "b15-c48-t112-a0"     =  c(read_class = "parameter", block_type_name = "quant_report_refl"),
-    "b15-c48-t104-a1"     =  c(read_class = "parameter", block_type_name = "me_test_report_refl"), # check "a1"
-    "b15-c48-t0-a64"      =  c(read_class = "data", block_type_name = "refl_no_atm_comp"),
-    "b15-c48-t0-a0"       =  c(read_class = "data", block_type_name = "refl"),
+    "b15-c48-t112-a0" = c(read_class = "parameter", block_type_name = "quant_report_refl"),
+    "b15-c48-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_refl"), # check "a1"
+    "b15-c48-t0-a64" = c(read_class = "data", block_type_name = "refl_no_atm_comp"),
+    "b15-c48-t0-a0" = c(read_class = "data", block_type_name = "refl"),
     # channel code 88 and 216: spectra matching
-    "b15-c88-t0-a(0|64)"  =  c(read_class = "data", block_type_name = "match"),
-    "b15-c216-t0-a(0|64)" =  c(read_class = "data", block_type_name = "match_2_chn"),
+    "b15-c88-t0-a(0|64)" = c(read_class = "data", block_type_name = "match"),
+    "b15-c216-t0-a(0|64)" = c(read_class = "data", block_type_name = "match_2_chn"),
 
     # block code 23 -----------------------------------------------------------------------------
     # data parameters (metadata) for spectrum types of sample
-    "b23-c4-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "sc_sample_data_param"),
-    "b23-c8-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "ig_sample_data_param"),
-    "b23-c12-t0-a(0|64)"  =  c(read_class = "parameter", block_type_name = "ph_sample_data_param"),
+    "b23-c4-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "sc_sample_data_param"),
+    "b23-c8-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ig_sample_data_param"),
+    "b23-c12-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ph_sample_data_param"),
 
     # block code 27 -----------------------------------------------------------------------------
     # data parameters (metadata) for spectrum types of reference (background)
-    "b27-c4-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "sc_ref_data_param"),
-    "b27-c8-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "ig_ref_data_param"),
-    "b27-c12-t0-a(0|64)"  =  c(read_class = "parameter", block_type_name = "ph_ref_data_param"),
+    "b27-c4-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "sc_ref_data_param"),
+    "b27-c8-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ig_ref_data_param"),
+    "b27-c12-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ph_ref_data_param"),
 
     # block code 31 -----------------------------------------------------------------------------
     # data parameters (metadata) when spectra (normalized single channels) saved in apparent absorbance
-    "b31-c16-t0-a64"      =  c(read_class = "parameter", block_type_name = "ab_no_atm_comp_data_param"),
-    "b31-c16-t0-a0"       =  c(read_class = "parameter", block_type_name = "ab_data_param"),
+    "b31-c16-t0-a64" = c(read_class = "parameter", block_type_name = "ab_no_atm_comp_data_param"),
+    "b31-c16-t0-a0" = c(read_class = "parameter", block_type_name = "ab_data_param"),
 
     # data parameters (metadata) when spectra (normalized single channels) saved in reflectance
-    "b31-c48-t0-a64"      =  c(read_class = "parameter", block_type_name = "refl_no_atm_comp_data_param"),
-    "b31-c48-t0-a0"       =  c(read_class = "parameter", block_type_name = "refl_data_param"),
+    "b31-c48-t0-a64" = c(read_class = "parameter", block_type_name = "refl_no_atm_comp_data_param"),
+    "b31-c48-t0-a0" = c(read_class = "parameter", block_type_name = "refl_data_param"),
 
     # data parameters (metadata) for spectra matching
-    "b31-c88-t0-a(0|64)"  =  c(read_class = "parameter", block_type_name = "match_data_param"),
-    "b31-c216-t0-a(0|64)" =  c(read_class = "parameter", block_type_name = "match_2_chn_data_param"),
+    "b31-c88-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "match_data_param"),
+    "b31-c216-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "match_2_chn_data_param"),
 
     ## General metadata blocks
 
     # block code 32 -----------------------------------------------------------------------------
-    "b32-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "instrument"),
+    "b32-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "instrument"),
 
     # block code 40 -----------------------------------------------------------------------------
-    "b40-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "instrument_ref"),
+    "b40-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "instrument_ref"),
 
     # block code 48 -----------------------------------------------------------------------------
-    "b48-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "acquisition"),
+    "b48-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "acquisition"),
 
     # block code 56 -----------------------------------------------------------------------------
-    "b56-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "acquisition_ref"),
+    "b56-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "acquisition_ref"),
 
     # block code 64 -----------------------------------------------------------------------------
-    "b64-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "fourier_transformation"),
+    "b64-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "fourier_transformation"),
 
     # block code 72 -----------------------------------------------------------------------------
-    "b72-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "fourier_transformation_ref"),
+    "b72-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "fourier_transformation_ref"),
 
     # block code 96 -----------------------------------------------------------------------------
-    "b96-c0-t0-a(0|64)"   =  c(read_class = "parameter", block_type_name = "optics"),
+    "b96-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "optics"),
 
     # block code 104 -----------------------------------------------------------------------------
-    "b104-c0-t0-a(0|64)"  = c(read_class = "parameter", block_type_name = "optics_ref"),
+    "b104-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "optics_ref"),
 
     # block code 160 -----------------------------------------------------------------------------
-    "b160-c0-t0-a(0|64)"  =  c(read_class = "parameter", block_type_name = "sample"),
+    "b160-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "sample"),
 
     # block code 176 -----------------------------------------------------------------------------
-    "b176-c0-t0-a64"      =  c(read_class = "parameter", block_type_name = "lab_and_process_param_raw"),
-    "b176-c0-t0-a0"       =  c(read_class = "parameter", block_type_name = "lab_and_process_param_processed")
+    "b176-c0-t0-a64" = c(read_class = "parameter", block_type_name = "lab_and_process_param_raw"),
+    "b176-c0-t0-a0" = c(read_class = "parameter", block_type_name = "lab_and_process_param_processed")
   )
 
   # nolint end
@@ -158,28 +158,29 @@ create_dataset <- function(header_data) {
 }
 
 stop_proactively <- function(composite_key) {
-  stop(paste(
-    "Unknown header entry.\n The following 'composite key' is not yet",
-    "mapped in the {opusreader2} key-value map of the header:\n",
-    "*", paste0('"', composite_key, '"'), "\nWe encourage your contribution",
-    "to feature this new OPUS block by opening a new issue on
+  stop(
+    paste(
+      "Unknown header entry.\n The following 'composite key' is not yet",
+      "mapped in the {opusreader2} key-value map of the header:\n",
+      "*", paste0('"', composite_key, '"'), "\nWe encourage your contribution",
+      "to feature this new OPUS block by opening a new issue on
      https://github.com/spectral-cockpit/opusreader2/issues",
-    "\nPlease\n",
-    "1. report reproducibly, using short code with {opusreader2} (recommended:",
-    "https://reprex.tidyverse.org)", "\n",
-    "2. describe briefly\n",
-    "  a) Bruker instrument used\n",
-    "  b) equipment\n",
-    "  c) measurement mode and spectral blocks saved (OPUS settings)\n",
-    "  d) OPUS software version\n",
-    "  e) your general workflow for spectroscopic diagnostics\n",
-    "3. provide an example OPUS binary file uploaded for public access",
-    "on GitHub (best in issue)\n",
-    "4. to facilitate widespread support of Bruker devices in open source
+      "\nPlease\n",
+      "1. report reproducibly, using short code with {opusreader2} (recommended:",
+      "https://reprex.tidyverse.org)", "\n",
+      "2. describe briefly\n",
+      "  a) Bruker instrument used\n",
+      "  b) equipment\n",
+      "  c) measurement mode and spectral blocks saved (OPUS settings)\n",
+      "  d) OPUS software version\n",
+      "  e) your general workflow for spectroscopic diagnostics\n",
+      "3. provide an example OPUS binary file uploaded for public access",
+      "on GitHub (best in issue)\n",
+      "4. to facilitate widespread support of Bruker devices in open source
       based infrastructure, show the data blocks as print screens in the
       Bruker OPUS software (right-click in Viewer). Please upload the contents
       of all OPUS blocks in individual screenshots."
-  ),
-  call. = FALSE
+    ),
+    call. = FALSE
   )
 }
