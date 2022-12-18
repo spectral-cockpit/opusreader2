@@ -166,8 +166,8 @@ stop_proactively <- function(composite_key) {
       "to feature this new OPUS block by opening a new issue on
      https://github.com/spectral-cockpit/opusreader2/issues",
       "\nPlease\n",
-      "1. report reproducibly, using short code with {opusreader2} (recommended:",
-      "https://reprex.tidyverse.org)", "\n",
+      "1. report reproducibly, using short code with {opusreader2}
+      (recommended: https://reprex.tidyverse.org)", "\n",
       "2. describe briefly\n",
       "  a) Bruker instrument used\n",
       "  b) equipment\n",
