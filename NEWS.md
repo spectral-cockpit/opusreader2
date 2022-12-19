@@ -12,20 +12,20 @@ for what they are good at: measurements. Meanwhile, you can rely on open source
 technology and trans-disciplinary knowledge to design data processes, and make
 best use of the spectroscopic source of information.
 
-{opusreader2} parses and decodes the relatively well obfuscacted file header
+{opusreader2} parses and decodes the relatively well obfuscated file header
 first. The implementation then uses this mapped information as a recipe to read
 particular data types from different blocks. Specific byte chunks to be
-interpreteted are defined by position (offset), read length, bytes per element,
+interpreted are defined by position (offset), read length, bytes per element,
 and type (e.g., string, float). With this, all the data can be read and parsed.
-We mitigate lock-in at file level. Hence we forster reprocucible and trustworthy 
+We mitigate lock-in at file level. Hence we foster reproducible and trustworthy 
 processes in spectral workflows. Nowadays, the new business logic is being more
-and more transparent in code, methods used and services offered. Tighly link and
+and more transparent in code, methods used and services offered. Tightly link and
 make input data, metadata and outcomes available for economical scaling-up of
 diagnostics.
 
 - Extract, transform and load data directly from OPUS binary files
 - Quality control of measurements; monitoring workflow and metadata
-- Continous spectroscopic diagnostics (data processing, model development,
+- Continuous spectroscopic diagnostics (data processing, model development,
   inspection, adaption, prediction, and validation
 
 With our package you can directly read and parse from binary files without
@@ -41,7 +41,9 @@ following `dsn` types:
 - character of length 1 with path to folder with OPUS files to be read
   recursively. Only reads OPUS files with `.<integer>` extension (Usually
   starting from `.0` for unique sample names per measurement. File names can
-  possibly plate positions postfixed in file names).
+  possibly include plate positions that are postfixed in file names. Note that
+  the associated metadata are also stored internally so that file name changes
+  after measurement could be tracked).
 
 `read_opus` offers four arguments:
 
