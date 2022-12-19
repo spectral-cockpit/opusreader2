@@ -70,9 +70,12 @@
 <li>Continuous spectroscopic diagnostics (data processing, model development, inspection, adaption, prediction, and validation</li>
 </ul><p>With our package you can directly read and parse from binary files without compromising a single bit of precious information saved in these cleverly filled OPUS binary files.</p>
 <p><code><a href="../reference/read_opus.html">read_opus()</a></code> is the main function exposed that reads and parses OPUS binary files from various data sources names (dsn). Currently, we support the following <code>dsn</code> types:</p>
-<ul><li>character vector with one path to OPUS file or multiple paths to individual OPUS files</li>
-<li>character of length 1 with path to folder with OPUS files to be read recursively. Only reads OPUS files with <code>.&lt;integer&gt;</code> extension (Usually starting from <code>.0</code> for unique sample names per measurement. File names can possibly include plate positions that are postfixed in file names. Note that the associated metadata are also stored internally so that file name changes after measurement could be tracked).</li>
-</ul><p><code>read_opus</code> offers four arguments:</p>
+<ul><li>
+<em>files(s)</em>: character vector with one path to OPUS file or multiple paths to individual OPUS files</li>
+<li>
+<em>folder</em>: character of length 1 with path to folder with OPUS files to be read recursively. Only reads OPUS files with <code>.&lt;integer&gt;</code> extension (Usually starting from <code>.0</code> for unique sample names per measurement.</li>
+</ul><p>File names of OPUS files can possibly include plate positions that are postfixed to the sample names. This is an option in OPUSLab. Kindly note that the associated metadata (sample name/ID) and plate position are also stored internally so that file name changes after measurement could be tracked.</p>
+<p><code>read_opus</code> offers four arguments:</p>
 <ul><li>
 <code>dsn</code>: data source name</li>
 <li>
