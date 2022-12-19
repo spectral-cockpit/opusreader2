@@ -36,14 +36,16 @@ OPUS binary files.
 files from various data sources names (dsn). Currently, we support the 
 following `dsn` types:
 
-- character vector with one path to OPUS file or multiple paths to individual
-  OPUS files
-- character of length 1 with path to folder with OPUS files to be read
+- *files(s)*: character vector with one path to OPUS file or multiple paths to 
+  individual OPUS files
+- *folder*: character of length 1 with path to folder with OPUS files to be read
   recursively. Only reads OPUS files with `.<integer>` extension (Usually
-  starting from `.0` for unique sample names per measurement. File names can
-  possibly include plate positions that are postfixed in file names. Note that
-  the associated metadata are also stored internally so that file name changes
-  after measurement could be tracked).
+  starting from `.0` for unique sample names per measurement.
+
+File names of OPUS files can possibly include plate positions that are postfixed
+to the sample names. This is an option in OPUSLab. Kindly note that the 
+associated metadata (sample name/ID) and plate position are also stored
+internally so that file name changes after measurement could be tracked.
 
 `read_opus` offers four arguments:
 
