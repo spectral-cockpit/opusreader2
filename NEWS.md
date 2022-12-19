@@ -5,7 +5,7 @@
 Start versioning with {fledge}.
 
 spectral-cockpit.com proudly introduces {opusreader2} to read binary files 
-of FT-IR devices from Bruker Optics GmbH & Co in R. It is a powerhouse that
+from FT-IR devices from Bruker Optics GmbH & Co in R. It is a powerhouse that 
 fuels speedy extract-transform-load (ETL) data pipelines in spectroscopy
 applications. You can continue using state-of-the-art commercial devices
 for what they are good at: measurements. Meanwhile, you can rely on open source
