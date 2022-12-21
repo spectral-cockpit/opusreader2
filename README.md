@@ -25,7 +25,7 @@ Currently, we focus on
 We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and the history of features.
 Our goal is to release a stable version 1.0.0 on CRAN that is production ready. 
 
-## Installation
+## 📦 Installation
 
 The latest version can be installed
 
