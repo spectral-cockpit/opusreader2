@@ -27,13 +27,14 @@ remotes::install_github("spectral-cockpit/opusreader2")
 
 <details>
 <summary>directly via [R-universe](https://spectral-cockpit.r-universe.dev/ui#package:opusreader2) \[expand\]
+</summary>
 ```r
 # Install the latest version
 install.packages("opusreader2", repos = c(
   spectralcockpit = 'https://spectral-cockpit.r-universe.dev',
   CRAN = 'https://cloud.r-project.org'))
 ```
-</summary>
+</details>
 
 ## Example
 
