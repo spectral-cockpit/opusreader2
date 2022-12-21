@@ -51,7 +51,7 @@ remotes::install_github("spectral-cockpit/opusreader2")
 ```
 </details>
 
-## Example
+## 🔦 Examples
 
 ```r
 library("opusreader2")
