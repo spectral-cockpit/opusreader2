@@ -16,7 +16,8 @@ the company Bruker Optics GmbH & Co. in R.
 
 We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
 not planning major user-facing design changes. We plan more features to exact specific parts of interests like measurement metadata. 
-We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and the history of features.
+Currently, we 1) focus on improving the ease of use (documentation, vignettes), 2) expanding support for Bruker data blocks and 3) provide useful downstream features for metadata management. We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and the history of features.
+Our goal is to release a stable version 1.0.0 on CRAN that is production ready. 
 
 ## Installation
 
