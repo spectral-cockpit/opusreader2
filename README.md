@@ -19,7 +19,7 @@ The latest version can be installed
 <details>
 <summary>from GitHub via {remotes} [expand]
 </summary>
-```r
+```
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("spectral-cockpit/opusreader2")
 ```
@@ -28,7 +28,7 @@ remotes::install_github("spectral-cockpit/opusreader2")
 <details>
 <summary>directly via R-universe [expand]
 </summary>
-```r
+```
 # Install the latest version
 install.packages("opusreader2", repos = c(
   spectralcockpit = 'https://spectral-cockpit.r-universe.dev',
