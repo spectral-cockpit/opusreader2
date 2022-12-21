@@ -20,7 +20,7 @@ Currently, we focus on
 
 1. improving the ease of use (documentation, vignettes)
 2. expanding support for Bruker data blocks even further 
-3. providing useful downstream features for metadata and spectra management. 
+3. providing useful downstream features for metadata and spectra management (additional helper and wrapper functions). 
 
 We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and history of features along semantic versioning.
 Our goal is to release a stable version 1.0.0 on CRAN that is production ready, planned until End of January 2023. 
