@@ -17,7 +17,7 @@ the company Bruker Optics GmbH & Co. in R.
 The latest version can be installed
 
 <details>
-<summary>directly via [R-universe](https://spectral-cockpit.r-universe.dev/ui#package:opusreader2) [expand]
+<summary>directly via <a href="https://spectral-cockpit.r-universe.dev/ui#package:opusreader2">R-universe</a> [expand]
 </summary>
 
 ```r
