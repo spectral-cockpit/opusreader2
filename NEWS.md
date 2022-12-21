@@ -12,7 +12,7 @@ for what they are good at: measurements. Meanwhile, you can rely on open source
 technology and trans-disciplinary knowledge to design data processes, and make
 best use of the spectroscopic source of information.
 
-{opusreader2} parses and decodes the relatively well obfuscated file header
+{opusreader2} parses and decodes the first puzzling file header
 first. The implementation then uses this mapped information as a recipe to read
 particular data types from different blocks. Specific byte chunks to be
 interpreted are defined by position (offset), read length, bytes per element,
@@ -24,12 +24,16 @@ make input data, metadata and outcomes available for economical scaling-up of
 diagnostics.
 
 - Extract, transform and load data directly from OPUS binary files
+
+Providing the data and metadata from measurements connects downstream tasks in
+order to make IR spectroscopy a ready-made, automatec for diagnostics and monitoring (platform):
+
 - Quality control of measurements; monitoring workflow and metadata
 - Continuous spectroscopic diagnostics (data processing, model development,
-  inspection, adaption, prediction, and validation
+  inspection, adaption, prediction, and validation). Use MLOps principles.
 
 With our package you can directly read and parse from binary files without
-compromising a single bit of precious information saved in these cleverly filled 
+compromising a single bit of precious information saved in these filled 
 OPUS binary files.
 
 `read_opus()` is the main function exposed that reads and parses OPUS binary
@@ -60,7 +64,7 @@ internally so that file name changes after measurement could be tracked.
 
 The interface is minimal and the job of the generic reader function is
 well defined by design. This is to make maintenance easy and to avoid breaking
-changes in future releases of the package. We importantly avoid feature creep
+changes in future releases of the package. We importantly avoid feature overload
 like this. We plan to release specific helper and wrapper functions that can
 come in handy for tailored uses and diagnostic environments. They may also
 extract or post-process spectroscopic data and metadata pipelines. Check out
