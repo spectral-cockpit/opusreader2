@@ -12,7 +12,7 @@ for what they are good at: measurements. Meanwhile, you can rely on open source
 technology and trans-disciplinary knowledge to design data processes, and make
 best use of the spectroscopic source of information.
 
-{opusreader2} parses and decodes the first puzzling file header
+{opusreader2} parses and decodes the at first glance puzzling file header
 first. The implementation then uses this mapped information as a recipe to read
 particular data types from different blocks. Specific byte chunks to be
 interpreted are defined by position (offset), read length, bytes per element,
