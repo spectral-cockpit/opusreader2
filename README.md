@@ -12,14 +12,14 @@
 Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of
 the company Bruker Optics GmbH & Co. in R.
 
-## Highlights and disclaimer
+## 🪩 Highlights and disclaimer
 
 We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
 not planning major user-facing design changes. We plan more features to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
 Currently, we focus on
 
 1. improving the ease of use (documentation, vignettes)
-2. expanding support for Bruker data blocks
+2. expanding support for Bruker data blocks even further 
 3. provide useful downstream features for metadata and spectra management. 
 
 We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and the history of features.
