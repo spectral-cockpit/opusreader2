@@ -132,7 +132,7 @@ The new package parses the file header for assigning spectral blocks.
 ## Credits
 
 - Pierre Roudier and Philipp Baumann made an improved R reader, further
-  developing the version in simplerspec.
+  developing the [version in simplerspec](https://github.com/philipp-baumann/simplerspec/blob/master/R/read-opus-universal.R) by Philipp.
   https://github.com/pierreroudier/opusreader
 - QED.ai: implemented a python parser which takes the main the logic of
   ono.
