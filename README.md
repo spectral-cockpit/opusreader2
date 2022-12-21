@@ -14,12 +14,26 @@ the company Bruker Optics GmbH & Co. in R.
 
 ## Installation
 
-The current version version can be installed with.
+The latest version can be installed
 
-```
+<details>
+<summary>from GitHub via {remotes} \[expand\]
+</summary>
+```r
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("spectral-cockpit/opusreader2")
 ```
+</details>
+
+<details>
+<summary>directly via [R-universe](https://spectral-cockpit.r-universe.dev/ui#package:opusreader2) \[expand\]
+```r
+# Install the latest version
+install.packages("opusreader2", repos = c(
+  spectralcockpit = 'https://spectral-cockpit.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
+```
+</summary>
 
 ## Example
 
