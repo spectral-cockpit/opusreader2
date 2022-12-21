@@ -23,7 +23,7 @@ Currently, we focus on
 3. providing useful downstream features for metadata and spectra management. 
 
 We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and the history of features along semantic versioning.
-Our goal is to release a stable version 1.0.0 on CRAN that is production ready. 
+Our goal is to release a stable version 1.0.0 on CRAN that is production ready, planned until End of January 2023. 
 
 ## 📦 Installation
 
