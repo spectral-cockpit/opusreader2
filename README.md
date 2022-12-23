@@ -14,7 +14,7 @@ the company Bruker Optics GmbH & Co. in R.
 
 ## 🪩 Highlights and disclaimer
 
-The Bruker corporation does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits). We from spectral-cockpit are happy to contribute a state-of-the-art binary reader for the R community and support more and more data types. We can recommend the package as a solid foundation to your spectroscopy workflow, thanks to:
+The Bruker corporation does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits). We from spectral-cockpit are happy to contribute a state-of-the-art binary reader for the R community and support more and more data types. We can recommend the package as a solid foundation to your spectroscopy workflow and also our additional custom tooling, thanks to:
 
 We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
 not planning major user-facing design changes. We plan more features in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
