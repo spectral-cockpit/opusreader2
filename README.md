@@ -14,7 +14,7 @@ the company Bruker Optics GmbH & Co. in R.
 
 ## 🪩 Highlights and disclaimer
 
-The [Bruker corporation](https://www.bruker.com/en.html) does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits). 
+The [Bruker corporation](https://www.bruker.com/en.html) manufactures reliable instruments but does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits).
 
 We from [spectral-cockpit team](https://github.com/spectral-cockpit) are happy to offer consulting service and share a state-of-the-art binary reader with the R community. You can help us further to support/map more and more instruments, measurement modes and block types. We can recommend the package as a solid foundation for your spectroscopy workflow, or you can soon rely on our ready-made solutions building upon it, thanks to:
 
