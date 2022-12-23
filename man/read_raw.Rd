@@ -13,7 +13,7 @@ read_raw(dsn)
 Dispatch method for the open_connection
 }
 \seealso{
-Connection helpers
+Connection helper
 \code{\link{set_connection_class}()}
 }
 \concept{connection}

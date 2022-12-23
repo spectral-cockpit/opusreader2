@@ -11,6 +11,7 @@ Continous
 cph
 cre
 decrypter
+DPF
 dsn
 ETL
 fledge
@@ -24,6 +25,7 @@ https
 IgRf
 IgSm
 impl
+Interferogram
 interpreteted
 Knecht
 knitr
@@ -33,6 +35,7 @@ NONINFRINGEMENT
 nz
 obfuscacted
 ono
+OPD
 Optik
 OPUSLab
 opusreader
@@ -44,6 +47,8 @@ postfixed
 pre
 precessor
 PRs
+Quant
+QUANT
 refl
 reflectance
 reprocucible
@@ -53,6 +58,7 @@ roudierp
 Roxygen
 RoxygenNote
 runiverse
+sc
 ScRf
 ScSm
 Sila
@@ -67,4 +73,5 @@ Tighly
 Tomislav
 twagner
 utf
+vapour
 VignetteBuilder
