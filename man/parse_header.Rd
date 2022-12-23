@@ -15,7 +15,7 @@ parse_header(raw_size, con)
 parse the header of the opus file
 }
 \seealso{
-Parsing helpers
+Parsing helper
 \code{\link{parse_chunk}()}
 }
 \concept{parsing}

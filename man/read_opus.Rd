@@ -23,7 +23,7 @@ This function can be used to read and parse OPUS files,
 to make it usable for other processing steps.
 }
 \seealso{
-Core functions
+Core function
 \code{\link{parse_opus}()}
 }
 \concept{core}

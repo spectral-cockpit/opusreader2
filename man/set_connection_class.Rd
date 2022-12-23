@@ -13,7 +13,7 @@ set_connection_class(dsn)
 define class of dsn
 }
 \seealso{
-Connection helpers
+Connection helper
 \code{\link{read_raw}()}
 }
 \concept{connection}

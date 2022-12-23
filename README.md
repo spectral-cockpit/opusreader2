@@ -3,24 +3,59 @@
 <!-- badges: start -->
 [![tic](https://github.com/spectral-cockpit/opusreader2/workflows/tic/badge.svg?branch=main)](https://github.com/spectral-cockpit/opusreader2/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![runiverse-package opusreader2](https://spectral-cockpit.r-universe.dev/badges/opusreader2?scale=1.25&color=pink&style=flat)
 <!-- badges: end -->
 
 
-## Scope
+## 🪄 Scope
 
-Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of
+*"grab 'em all"* --- Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of
 the company Bruker Optics GmbH & Co. in R.
 
-## Installation
+## 🪩 Highlights and disclaimer
 
-The current version version can be installed with.
+The [Bruker corporation](https://www.bruker.com/en.html) manufactures reliable instruments but does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits).
 
+We from [spectral-cockpit team](https://github.com/spectral-cockpit) are happy to offer consulting service and share a state-of-the-art binary reader with the R community. You can help us further to support/map more and more instruments, measurement modes and block types. We can recommend the package as a solid foundation for your spectroscopy workflow. Also you can soon rely on our ready-made solutions building upon it, thanks to:
+
+We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
+not planning any major user-facing design changes. We plan more features in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
+Currently, we focus on
+
+1. improving the ease of use (documentation, vignettes)
+2. expanding support for Bruker data blocks even further 
+3. providing useful downstream features for metadata and spectra management (additional helper and wrapper functions). 
+
+We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and history of features along semantic versioning.
+Our goal is to release a stable version 1.0.0 on CRAN that is production ready, planned until End of January 2023. 
+
+## 📦 Installation
+
+The latest version can be installed
+
+<details>
+<summary>directly via <a href="https://spectral-cockpit.r-universe.dev/ui#package:opusreader2">R-universe</a> [expand]
+</summary>
+
+```r
+# Install the latest version
+install.packages("opusreader2", repos = c(
+  spectralcockpit = 'https://spectral-cockpit.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
 ```
+</details>
+
+<details>
+<summary>from GitHub via {remotes} [expand]
+</summary>
+
+```r
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("spectral-cockpit/opusreader2")
 ```
+</details>
 
-## Example
+## 🔦 Examples
 
 ```r
 library("opusreader2")
@@ -101,7 +136,7 @@ The new package parses the file header for assigning spectral blocks.
 ## Credits
 
 - Pierre Roudier and Philipp Baumann made an improved R reader, further
-  developing the version in simplerspec.
+  developing the [version in simplerspec](https://github.com/philipp-baumann/simplerspec/blob/master/R/read-opus-universal.R) by Philipp.
   https://github.com/pierreroudier/opusreader
 - QED.ai: implemented a python parser which takes the main the logic of
   ono.

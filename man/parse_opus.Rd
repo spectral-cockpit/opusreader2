@@ -2,44 +2,131 @@
 % Please edit documentation in R/parse_opus.R
 \name{parse_opus}
 \alias{parse_opus}
-\title{Parse data and parameters of OPUS binary file of a Bruker spectrometer}
+\title{Parse data, parameters and text from raw vector of OPUS file saved
+after one spectral measurement of a Bruker FT-IR device.}
 \usage{
 parse_opus(raw, data_only)
 }
 \arguments{
-\item{raw}{data source name; can be a file path to an OPUS file or directly a
-raw vector}
+\item{raw}{a vector containing bytes (class "raw").}
 
-\item{data_only}{TRUE or FALSE if only the ab or refl data should be returned}
+\item{data_only}{logical (default \code{FALSE}). Parse and return only spectral
+data elements from the available blocks. See value returned.}
 }
 \value{
-list containing the different data chunks of an OPUS file, possibly:
+Nested list (S3 object) containing the parsed contents of the binary
+encoded blocks of an OPUS file. The first level names of the list correspond
+to the display names as shown in the Bruker OPUS viewer software. However, in
+snake_case and more standardized naming to allow for better output handling.
+Each parsed block element is a sublist containing \strong{a)} the binary read
+instructions decoded/derived from the header (\verb{$block_type}, \verb{$channel_type},
+\verb{$text_type} and \verb{$additional_type}, \verb{$offset} (bytes), \verb{$next_offset}
+(bytes), \verb{$chunk_size} (bytes)); \strong{b)} if parameter block, nested list of
+specific parameters under \verb{$parameters}, which has elements named according
+to capitalized Bruker-internal "three-letter-string" definitions (e.g.,
+"DPF := Data Point Format"). Possible first-level block names and
+information provided include:
 \itemize{
-\item \code{refl_data_param}:
-\item \code{refl}:
-\item \code{quant_report_refl}:
-\item \code{sc_sample_data_param}:
-\item \code{sc_sample}:
-\item \code{sc_ref_data_param}:
-\item \code{sc_ref}:
-\item \code{optics}:
-\item \code{optics_ref}:
-\item \code{acquisition_ref}:
-\item \code{fourier_transformation_ref}:
-\item \code{fourier_transformation}:
-\item \code{sample}:
-\item \code{acquisition}:
-\item \code{instrument_ref}:
-\item \code{instrument}:
-\item \code{lab_and_process_param_1}:
-\item \code{lab_and_process_param_2}:
-\item \code{info_block}:
-\item \code{history}:
+\item \strong{\code{refl_no_atm_comp_data_param}} : class "parameter"
+(viewer: "Data Parameters Refl". Parameter list with metadata for \code{refl}
+data block (\code{refl}).
+\item \strong{\code{refl_no_atm_comp}}: class "data" (spectrum; viewer: "Refl").
+Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
+(\verb{:= sc_sample_corr / sc_ref_corr}). Note that this element is the
+untreated spectra before an eventual "atmospheric compensation"
+routine is applied.
+\item \strong{\code{refl_data_param}} : class "parameter" (viewer: "Data Parameters Refl").
+Parameter list with metadata for \code{refl} data block (metadata of
+reflectance spectrum; see \code{refl} output).
+Note that this element only results if "atmospheric compensation" was
+activated in the OPUS measurement settings.
+\item \strong{\code{refl}}: class "data" (spectrum; viewer: "Refl"). Atmospherically
+compensated reflectance spectra (\verb{:= sc_sample_corr / sc_ref_corr}). This
+result spectrum only exists if either correction of CO2 and/or water vapour
+bands is set in OPUS setting (proprietary algorithm; could possibly be
+reverse engineered). If \code{refl} exists, it has always a corresponding
+untreated \code{refl_no_atm_comp} spectrum  (the latter present in file but not
+shown in the OPUS viewer, where only (final) \code{ab} is displayed)
+\item \strong{\code{quant_report_refl}}: class "parameter" (viewer: "Quant Report Refl").
+Quantification report for tools of multivariate calibration on \code{refl} data
+(i.e., PLS regression) offered in the QUANT2 OPUS package. Nested list with
+Bruker-internal "three-letter-string" definitions. "TIT" is the title of
+a nested quantification table, \code{"E<digit>[2]"} stands probably for entry,
+\code{"F<digit>[2]"} for field, and \code{"Z<digit>[2]"} we do not yet know what it
+maps to. There seems more information needed, which we can get by expanding
+the header parsing algorithm.
+\item \strong{\code{ab_no_atm_comp_data_param}} : class "parameter"
+(viewer: "Data Parameters AB"). Parameter list with metadata for \code{ab}
+data block (spectrum; see \code{ab} output).
+\item \strong{\code{ab_no_atm_comp}}: class "data" (spectrum; viewer: "Refl").
+Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
+(\verb{:= sc_sample_corr / sc_ref_corr}).
+\item \strong{\code{ab_data_param}} : class "parameter" (viewer: "Data Parameters Refl").
+Parameter list with metadata for \code{ab} data block (spectrum; see \code{ab}).
+Note that this element only results if "atmospheric compensation" was
+activated in the OPUS measurement settings.
+\item \strong{\code{ab}}: class "data" (spectrum; viewer: "AB"). Atmospherically
+compensated (apparent) absorbance spectra
+(\verb{:= log(1 / (sc_sample_corr / sc_ref_corr)}). Only
+exists if either correction of CO2 and/or water vapour bands is set in OPUS
+setting (proprietary algorithm; could possibly be reverse engineered).
+If \code{AB} exists, it has always a corresponding untreated
+\code{ab_no_atm_comp} spectrum (the latter present in file but not shown in
+the OPUS viewer, where only final \code{ab} is displayed).
+\item \strong{\code{quant_report_ab}}: class "parameter" (viewer: "Quant Report AB").
+Quantification report for tools of multivariate calibration on \code{ab} data
+(i.e., PLS regression) offered in the QUANT2 OPUS package. Nested list with
+Bruker-internal "three-letter-string" definitions. "TIT" is the title of
+a nested quantification table, \code{"E<digit>[2]"} stands probably for entry,
+\code{"F<digit>[2]"} for field, and \code{"Z<digit>[2]"} we do not yet know what it
+maps to. There seems more information needed, which we can get by expanding
+the header parsing algorithm.
+\item \strong{\code{sc_sample_data_param}}: class "parameter" (metadata; viewer:
+"Data Parameters ScSm").
+Describes the \code{sc_sample} data block (see \code{sc_sample}).
+\item \strong{\code{sc_sample}}: class "data" (spectrum). Single channel (sc) spectrum of
+the sample (y-axis: intensity).
+\item \strong{\code{ig_sample_data_param}}: class "parameter" (metadata; viewer:
+"Data Parameters IgSm").
+\item \strong{\code{ig_sample}}: class "data" (signal, viewer: "IgSm").
+Interferogram of the sample measurement. Oscillatory signal
+(x-axis: optical path difference (OPD); y-axis: amplitude of the signal).
+\item \strong{\code{sc_ref_data_param}}: class "parameter" (metadata; viewer:
+"Data Parameters ScRf").
+Describes the \code{sc_sample} data block (see \code{sc_ref}).
+\item \strong{\code{sc_ref}}: class "data" (spectrum; viewer: "Data Parameters IgSm").
+Single channel (sc) spectrum of the reference (background material: e.g.,
+gold; y-axis: intensity).
+\item \strong{\code{ig_ref_data_param}}: class "parameter" (metadata; viewer:
+"Data Parameters IgRf").
+\item \strong{\code{ig_ref}}: class "data" (spectrum; viewer: "IgRf").
+Interferogram of the reference measurement. (background material: e.g.,
+gold). Oscillatory signal (x-axis: optical path difference (OPD);
+y-axis: amplitude of the signal)
+\item \strong{\code{optics}}: class "parameter (metadata; viewer: "Optic Parameters").
+Optic setup and settings such as "Accessory", "Detector Setting" or
+"Source Setting".
+\item \strong{\code{optics_ref}}: class "parameter (metadata; viewer: "Optic Parameters
+Rf"). Optic setup and settings specific to reference measurement such as
+"Accessory", "Detector Setting" or "Source Setting".
+\item \strong{\code{acquisition_ref}}: class "parameter" (metadata; viewer: "Acquisition
+parameters Rf". Settings such as ""Additional Data Treatment", (number) of
+"Background Scans" or "Result Spectrum" (e.g. value "Absorbance").
+\item \strong{\code{fourier_transformation_ref}}:
+\item \strong{\code{fourier_transformation}}: class "parameter"
+\item \strong{\code{sample}}:
+\item \strong{\code{acquisition}}:
+\item \strong{\code{instrument_ref}}:
+\item \strong{\code{instrument}}:
+\item \strong{\code{lab_and_process_param_1}}:
+\item \strong{\code{lab_and_process_param_2}}:
+\item \strong{\code{info_block}}:
+\item \strong{\code{history}}:
 }
 }
 \description{
-This function can be used to read and parse OPUS files,
-to make it usable for other processing steps.
+This function is internally used to parse the raw vector of the OPUS file
+after reading it with \code{read_opus_raw()}.
 }
 \examples{
 library(opusreader2)
@@ -54,7 +141,9 @@ raw <- read_opus_raw(dsn)
 opus_list <- parse_opus(raw, data_only = FALSE)
 }
 \seealso{
-Core functions
+\code{\link[=read_opus_raw]{read_opus_raw()}}
+
+Core function
 \code{\link{read_opus}()}
 }
 \concept{core}
