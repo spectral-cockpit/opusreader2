@@ -32,7 +32,7 @@ information provided include:
 data block (\code{refl}).
 \item \strong{\code{refl_no_atm_comp}}: class "data" (spectrum; viewer: "Refl").
 Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-(\verb{:= sc_sample_corr / sc_ref_corr}). Note that this element is the
+(\verb{:= sc_sample / sc_ref}). Note that this element is the
 untreated spectra before an eventual "atmospheric compensation"
 routine is applied.
 \item \strong{\code{refl_data_param}} : class "parameter" (viewer: "Data Parameters Refl").
@@ -60,7 +60,7 @@ the header parsing algorithm.
 data block (spectrum; see \code{ab} output).
 \item \strong{\code{ab_no_atm_comp}}: class "data" (spectrum; viewer: "Refl").
 Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-(\verb{:= sc_sample_corr / sc_ref_corr}).
+(\verb{:= sc_sample/ sc_ref}).
 \item \strong{\code{ab_data_param}} : class "parameter" (viewer: "Data Parameters Refl").
 Parameter list with metadata for \code{ab} data block (spectrum; see \code{ab}).
 Note that this element only results if "atmospheric compensation" was
