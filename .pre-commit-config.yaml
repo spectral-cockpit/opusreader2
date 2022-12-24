@@ -83,4 +83,4 @@ repos:
 
 ci:
   autoupdate_schedule: monthly
-  skip: [roxygenize]
+  # skip: [roxygenize]
