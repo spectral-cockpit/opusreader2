@@ -20,3 +20,5 @@ jobs:
       - uses: pre-commit-ci/lite-action@v1.0.0
         name: pre-commit-ci-lite
         if: always()
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
