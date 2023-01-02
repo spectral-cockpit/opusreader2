@@ -1,10 +1,15 @@
 prepare_spectra <- function(ds_list, data_type) {
   data_pattern <- paste0(data_type, "$")
+  # block names containing "ab" can also be class "parameters", rather than
+  # "data" required (e.g., "quant_report_ab", "me_test_report_ab")
+  pat_match <- grepl(data_pattern, names(ds_list))
+  data_class <- vapply(ds_list, function(x) class(x) == "data", logical(1))
+  data_match <- pat_match & data_class
 
-  ds_data <- ds_list[grepl(data_pattern, names(ds_list))]
+  index <- which(data_match)
+
+  ds_data <- ds_list[data_match]
   ds_param <- ds_list[grepl(paste0(data_type, "_data_param"), names(ds_list))]
-
-  index <- which(grepl(data_pattern, names(ds_list)))
 
   NPT <- ds_param[[1]]$parameters$NPT$parameter_value
   FXV <- ds_param[[1]]$parameters$FXV$parameter_value
@@ -38,7 +43,7 @@ prepare_spectra <- function(ds_list, data_type) {
 
 get_data_types <- function(ds_list) {
   block_names <- names(ds_list)
-  data_types <- block_names[grepl("sc|ig|ph|^ab|^refl", block_names)]
+  data_types <- block_names[grepl("sc|ig|ph|^ab|^refl|^match", block_names)]
   data_types <- unique(gsub("_data_param", "", data_types))
 
   return(data_types)

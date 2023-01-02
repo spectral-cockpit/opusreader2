@@ -26,7 +26,7 @@
 #'    data block (`refl`).
 #' * **`refl_no_atm_comp`**: class "data" (spectrum; viewer: "Refl").
 #'   Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-#'   (`:= sc_sample_corr / sc_ref_corr`). Note that this element is the
+#'   (`:= sc_sample / sc_ref`). Note that this element is the
 #'  untreated spectra before an eventual "atmospheric compensation"
 #'  routine is applied.
 #' * **`refl_data_param`** : class "parameter" (viewer: "Data Parameters Refl").
@@ -54,7 +54,7 @@
 #'    data block (spectrum; see `ab` output).
 #' * **`ab_no_atm_comp`**: class "data" (spectrum; viewer: "Refl").
 #'   Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-#'   (`:= sc_sample_corr / sc_ref_corr`).
+#'   (`:= sc_sample/ sc_ref`).
 #' * **`ab_data_param`** : class "parameter" (viewer: "Data Parameters Refl").
 #'    Parameter list with metadata for `ab` data block (spectrum; see `ab`).
 #'    Note that this element only results if "atmospheric compensation" was

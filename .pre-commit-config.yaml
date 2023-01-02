@@ -6,6 +6,7 @@ repos:
     hooks:
       - id: style-files
         args: [--style_fun=tidyverse_style]
+        exclude: .R/create_dataset.R
       - id: roxygenize
         additional_dependencies:
           - git2r
@@ -47,6 +48,7 @@ repos:
           data/.*|
           )$
       - id: lintr
+        exclude: .R/create_dataset.R
       - id: readme-rmd-rendered
       - id: parsable-R
       - id: no-browser-statement

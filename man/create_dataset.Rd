@@ -4,10 +4,10 @@
 \alias{create_dataset}
 \title{assign the classes to the dataset list}
 \usage{
-create_dataset(data_list)
+create_dataset(header_data)
 }
 \arguments{
-\item{data_list}{list of the header information for each block}
+\item{header_data}{list of the header information for each block}
 }
 \description{
 assign the classes to the dataset list
