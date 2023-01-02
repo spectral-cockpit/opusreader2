@@ -107,7 +107,7 @@ information provided include:</p><ul><li><p><strong><code>refl_no_atm_comp_data_
 data block (<code>refl</code>).</p></li>
 <li><p><strong><code>refl_no_atm_comp</code></strong>: class "data" (spectrum; viewer: "Refl").
 Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-(<code>:= sc_sample_corr / sc_ref_corr</code>). Note that this element is the
+(<code>:= sc_sample / sc_ref</code>). Note that this element is the
 untreated spectra before an eventual "atmospheric compensation"
 routine is applied.</p></li>
 <li><p><strong><code>refl_data_param</code></strong> : class "parameter" (viewer: "Data Parameters Refl").
@@ -135,7 +135,7 @@ the header parsing algorithm.</p></li>
 data block (spectrum; see <code>ab</code> output).</p></li>
 <li><p><strong><code>ab_no_atm_comp</code></strong>: class "data" (spectrum; viewer: "Refl").
 Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
-(<code>:= sc_sample_corr / sc_ref_corr</code>).</p></li>
+(<code>:= sc_sample/ sc_ref</code>).</p></li>
 <li><p><strong><code>ab_data_param</code></strong> : class "parameter" (viewer: "Data Parameters Refl").
 Parameter list with metadata for <code>ab</code> data block (spectrum; see <code>ab</code>).
 Note that this element only results if "atmospheric compensation" was
