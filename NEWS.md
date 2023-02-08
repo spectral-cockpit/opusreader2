@@ -7,9 +7,9 @@
 - Internal refactoring (`R/create_dataset.R`). Implement a new key-value mapping
   logic for assigning the integer coded header information. The new order in the
   (composite) key strings follows the sequence of *block*, *channel*, *text* and 
-  *additional* type information. The better row-like lookthrough simplifies the 
-  detection of new types of spectral data types and parameters that are encoded
-  in header entries (#60).
+  *additional* type information. The better line-by-line layout of composite 
+  keys and mapped information types simplifies the detection of new kind of
+  spectral data and parameters that are encoded in header entries (#60).
 
 - Introduce consistent and proactive error reporting when a composite key in 
   are not yet mapped because they are not yet known (`R/create_dataset.R`). 
