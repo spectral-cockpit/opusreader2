@@ -6,3 +6,4 @@
 ^doc-local
 ^opusreader2\.Rproj$
 ^tic\.R$
+.lintr
