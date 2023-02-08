@@ -1,4 +1,22 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# opusreader2 0.1.0 (2023-02-08)
+
+## Refactoring
+
+- Internal refactoring (`R/create_dataset.R`). Implement a new key-value mapping
+  logic for assigning the integer coded header information. The new order in the
+  (composite) key strings follows the sequence of *block*, *channel*, *text* and 
+  *additional* type information. The better row-like lookthrough simplifies the 
+  detection of new types of spectral data types and parameters that are encoded
+  in header entries (#60).
+
+- Introduce consistent and proactive error reporting when a composite key in 
+  are not yet mapped because they are not yet known (`R/create_dataset.R`). 
+  This error message includes a recipe how to report new OPUS files with yet 
+  unsupported block types (i.e. new instrument features) for {opusreader2}. 
+  Together with the composite key generated from the respective the header
+  entry, a step-by-step reporting as GitHub issue is proposed. (#60)
 
 # opusreader2 0.0.0.9002 (2022-12-23)
 
