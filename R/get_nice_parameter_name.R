@@ -13,6 +13,7 @@ get_nice_parameter_name <- function(parameter_name) {
     DAT = "Date of Measurement",
     TIM = "Time of Measurement",
     DXU = "X Units",
+    TPX = "unknown",
     # quant_report_refl
     # BID = ,
     # NRP = ,
@@ -127,7 +128,7 @@ get_nice_parameter_name <- function(parameter_name) {
     VSN = "Firmware version",
     SRN = "Instrument Serial Number",
     NLA = "NL Alpha",
-    NLB = "NL Bete",
+    NLB = "NL Beta",
     INC = "FT Detector Cutoff Freq.",
     INE = "FT Modulation Efficiency",
     CAM = "Coaddition mode",
