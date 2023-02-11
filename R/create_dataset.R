@@ -75,6 +75,9 @@ create_dataset <- function(header_data) {
     "b15-c48-t0-a0" = c(read_class = "data", block_type_name = "refl"),
     # channel code 88 and 216: spectra matching
     "b15-c88-t0-a(0|64)" = c(read_class = "data", block_type_name = "match"),
+
+    # new key for time-resolved spectra
+    "b15-c144-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved15_c144"),
     "b15-c216-t0-a(0|64)" = c(read_class = "data", block_type_name = "match_2_chn"),
 
     # block code 16 -----------------------------------------------------------------------------
