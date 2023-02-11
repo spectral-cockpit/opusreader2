@@ -87,6 +87,8 @@ create_dataset <- function(header_data) {
 
     # new keys for time-resolved spectra
     "b23-c4-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c4"),
+    "b23-c8-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c8"),
+    "b23-c132-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c132"),
     "b23-c136-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c136"),
 
     # block code 27 -----------------------------------------------------------------------------
