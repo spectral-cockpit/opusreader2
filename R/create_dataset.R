@@ -37,14 +37,14 @@ create_dataset <- function(header_data) {
     "b7-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_sample"),
 
     # new keys for time-resolved spectra
-    "b7-c4-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved7_c4"),
-    "b7-c8-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved7_c8"),
+    "b7-c4-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved7_c4"),
+    "b7-c8-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved7_c8"),
     "b7-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_sample"),
     "b7-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_sample"),
 
     # new keys for time-resolved spectra
     "b7-c132-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved7_c132"),
-    "b7-c136-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved7_c136"),
+    "b7-c136-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved7_c136"),
 
     # block code 11 ----------------------------------------------------------------------------
     # spectrum types of reference (background)
@@ -76,6 +76,7 @@ create_dataset <- function(header_data) {
 
     # block code 16 -----------------------------------------------------------------------------
     # new key for time-resolved spectra
+    # tbd check `read_class`
     "b16-c28-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved16"),
 
     # block code 23 -----------------------------------------------------------------------------
@@ -102,6 +103,9 @@ create_dataset <- function(header_data) {
     # data parameters (metadata) when spectra (normalized single channels) saved in apparent absorbance
     "b31-c16-t0-a64" = c(read_class = "parameter", block_type_name = "ab_no_atm_comp_data_param"),
     "b31-c16-t0-a0" = c(read_class = "parameter", block_type_name = "ab_data_param"),
+
+    # new key for time-resolved spectra
+    "b31-c16-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved31_c16"),
 
     # data parameters (metadata) when spectra (normalized single channels) saved in reflectance
     "b31-c48-t0-a64" = c(read_class = "parameter", block_type_name = "refl_no_atm_comp_data_param"),
