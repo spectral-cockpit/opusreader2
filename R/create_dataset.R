@@ -79,8 +79,9 @@ create_dataset <- function(header_data) {
     "b27-c8-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ig_ref_data_param"),
     "b27-c12-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ph_ref_data_param"),
 
-    # new key for time-resolved spectra
-    "b27-c136-t0-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved27"),
+    # new keys for time-resolved spectra
+    "b27-c132-t0-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved27_c132"),
+    "b27-c136-t0-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved27_c136"),
 
     # block code 31 -----------------------------------------------------------------------------
     # data parameters (metadata) when spectra (normalized single channels) saved in apparent absorbance
