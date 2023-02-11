@@ -77,6 +77,9 @@ create_dataset <- function(header_data) {
     "b23-c8-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ig_sample_data_param"),
     "b23-c12-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ph_sample_data_param"),
 
+    # new key for time-resolved spectra
+    "b23-c136-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c136"),
+
     # block code 27 -----------------------------------------------------------------------------
     # data parameters (metadata) for spectrum types of reference (background)
     "b27-c4-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "sc_ref_data_param"),
