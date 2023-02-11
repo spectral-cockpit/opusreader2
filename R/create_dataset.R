@@ -58,6 +58,8 @@ create_dataset <- function(header_data) {
     "b15-c16-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_ab"),
     "b15-c16-t0-a64" = c(read_class = "data", block_type_name = "ab_no_atm_comp"),
     "b15-c16-t0-a0" = c(read_class = "data", block_type_name = "ab"),
+    # new key for time-resolved spectra
+    "b15-c16-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved15_c16"),
     # channel code 48: save reflectance (settings
     "b15-c48-t112-a0" = c(read_class = "parameter", block_type_name = "quant_report_refl"),
     "b15-c48-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_refl"), # check "a1"
@@ -77,7 +79,7 @@ create_dataset <- function(header_data) {
     "b23-c8-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ig_sample_data_param"),
     "b23-c12-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "ph_sample_data_param"),
 
-    # new key for time-resolved spectra
+    # new keys for time-resolved spectra
     "b23-c4-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c4"),
     "b23-c136-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved23_c136"),
 
