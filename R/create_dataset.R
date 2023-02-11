@@ -44,6 +44,9 @@ create_dataset <- function(header_data) {
     "b11-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_ref"),
     "b11-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_ref"),
 
+    # new key for time-resolved spectra
+    "b11-c136-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11"),
+
     # block code 15 -----------------------------------------------------------------------------
     # spectrum report blocs
     # channel code 15: save (apparent) absorbance
@@ -61,7 +64,8 @@ create_dataset <- function(header_data) {
     "b15-c216-t0-a(0|64)" = c(read_class = "data", block_type_name = "match_2_chn"),
 
     # block code 16 -----------------------------------------------------------------------------
-    # "b16-c28-t80-a0" = c(read_class, block_type_name)
+    # new key for time-resolved spectra
+    "b16-c28-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved16"),
 
     # block code 23 -----------------------------------------------------------------------------
     # data parameters (metadata) for spectrum types of sample
