@@ -44,8 +44,10 @@ create_dataset <- function(header_data) {
     "b11-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_ref"),
     "b11-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_ref"),
 
-    # new key for time-resolved spectra
-    "b11-c136-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11"),
+    # new keys for time-resolved spectra
+    # new keys for time-resolved spectra
+    "b11-c132-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11_c132"),
+    "b11-c136-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11_b136"),
 
     # block code 15 -----------------------------------------------------------------------------
     # spectrum report blocs
