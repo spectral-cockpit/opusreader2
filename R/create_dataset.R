@@ -38,13 +38,15 @@ create_dataset <- function(header_data) {
     "b7-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_sample"),
     "b7-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_sample"),
 
+    # new key for time-resolved spectra
+    "b7-c132-t80-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved7_c132"),
+
     # block code 11 ----------------------------------------------------------------------------
     # spectrum types of reference (background)
     "b11-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_ref"),
     "b11-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_ref"),
     "b11-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_ref"),
 
-    # new keys for time-resolved spectra
     # new keys for time-resolved spectra
     "b11-c132-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11_c132"),
     "b11-c136-t0-a0" = c(read_class = "data", block_type_name = "unknown_timeresolved11_b136"),
