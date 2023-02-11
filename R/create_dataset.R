@@ -43,6 +43,7 @@ create_dataset <- function(header_data) {
     "b11-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_ref"),
     "b11-c8-t0-a(0|64)" = c(read_class = "data", block_type_name = "ig_ref"),
     "b11-c12-t0-a(0|64)" = c(read_class = "data", block_type_name = "ph_ref"),
+
     # block code 15 -----------------------------------------------------------------------------
     # spectrum report blocs
     # channel code 15: save (apparent) absorbance
@@ -58,6 +59,9 @@ create_dataset <- function(header_data) {
     # channel code 88 and 216: spectra matching
     "b15-c88-t0-a(0|64)" = c(read_class = "data", block_type_name = "match"),
     "b15-c216-t0-a(0|64)" = c(read_class = "data", block_type_name = "match_2_chn"),
+
+    # block code 16 -----------------------------------------------------------------------------
+    # "b16-c28-t80-a0" = c(read_class, block_type_name)
 
     # block code 23 -----------------------------------------------------------------------------
     # data parameters (metadata) for spectrum types of sample
