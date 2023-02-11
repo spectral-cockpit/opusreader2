@@ -32,6 +32,9 @@ create_dataset <- function(header_data) {
     # guess general text
     "b0-c0-t\\d+-a(0|64)" = c(read_class = "text", block_type_name = "text_information"),
 
+    # new key for time-resolved spectra
+    "b0-c28-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved0_c28"),
+
     # block code 7 -----------------------------------------------------------------------------
     # spectrum types of sample
     "b7-c4-t0-a(0|64)" = c(read_class = "data", block_type_name = "sc_sample"),
