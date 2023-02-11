@@ -115,6 +115,9 @@ create_dataset <- function(header_data) {
 
     # data parameters (metadata) for spectra matching
     "b31-c88-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "match_data_param"),
+
+    # new key for time-resolved spectra
+    "b31-c144-t80-a0" = c(read_class = "parameter", block_type_name = "unknown_timeresolved31_c144"),
     "b31-c216-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "match_2_chn_data_param"),
 
     ## General metadata blocks
