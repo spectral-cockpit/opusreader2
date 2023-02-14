@@ -40,8 +40,11 @@ read_opus <- function(dsn,
     )
   }
 
+  class(dataset_list) <- "list_opusreader2"
+
   if (length(dataset_list) == 1L) {
     dataset_list <- dataset_list[[1]]
+    class(dataset_list) <- "list2_opusreader2"
   }
 
   return(dataset_list)
