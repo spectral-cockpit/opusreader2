@@ -180,7 +180,7 @@ parse_opus <- function(raw, data_only) {
 
   on.exit(close(con))
 
-  class(dataset_list) <- c("list2_opusreader2", class(dataset_list))
+  class(dataset_list) <- c("opusreader2", class(dataset_list))
 
   return(dataset_list)
 }
