@@ -40,7 +40,7 @@ read_opus <- function(dsn,
     )
   }
 
-  class(dataset_list) <- "list_opusreader2"
+  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
   return(dataset_list)
 }
