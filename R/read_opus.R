@@ -63,7 +63,7 @@ read_opus_single <- function(dsn, data_only) {
 }
 
 
-#' wrapper function to apply the read_opus_impl() function to a list of
+#' wrapper function to apply the read_opus_single() function to a list of
 #' data source paths
 #'
 #' @inheritParams read_opus
@@ -72,7 +72,7 @@ read_opus_single <- function(dsn, data_only) {
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) read_opus_impl(x, data_only)
+    function(x) read_opus_single(x, data_only)
   )
 
   return(dataset_list)
