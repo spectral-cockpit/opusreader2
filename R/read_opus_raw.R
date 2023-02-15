@@ -1,6 +1,6 @@
 #' Read the raw vector of an opus data source
 #'
-#' @inheritParams read_opus_impl
+#' @inheritParams read_opus_single
 #'
 #' @return list of raw vectors
 #'
@@ -18,19 +18,16 @@ read_opus_raw <- function(dsn) {
   return(raw)
 }
 
-
-
-
 #' Dispatch method for the open_connection
 #'
-#' @inheritParams read_opus_impl
+#' @inheritParams read_opus_single
 #' @family connection
 #' @export
 read_raw <- function(dsn) UseMethod("read_raw", dsn)
 
 #' method to open the connection for an opus file
 #'
-#' @inheritParams read_opus_impl
+#' @inheritParams read_opus_single
 read_raw.file <- function(dsn) {
   file_size <- file.size(dsn)
 
@@ -39,13 +36,9 @@ read_raw.file <- function(dsn) {
   return(raw)
 }
 
-
-
-
-
 #' define class of dsn
 #'
-#' @inheritParams read_opus_impl
+#' @inheritParams read_opus_single
 #' @family connection
 #' @export
 set_connection_class <- function(dsn) {

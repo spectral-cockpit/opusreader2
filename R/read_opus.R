@@ -40,9 +40,7 @@ read_opus <- function(dsn,
     )
   }
 
-  if (length(dataset_list) == 1L) {
-    dataset_list <- dataset_list[[1]]
-  }
+  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
   return(dataset_list)
 }
@@ -56,7 +54,7 @@ read_opus <- function(dsn,
 #' read data
 #'
 #' @export
-read_opus_impl <- function(dsn, data_only) {
+read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
 
   parsed_data <- parse_opus(raw, data_only)
@@ -65,7 +63,7 @@ read_opus_impl <- function(dsn, data_only) {
 }
 
 
-#' wrapper function to apply the read_opus_impl() function to a list of
+#' wrapper function to apply the read_opus_single() function to a list of
 #' data source paths
 #'
 #' @inheritParams read_opus
@@ -74,7 +72,7 @@ read_opus_impl <- function(dsn, data_only) {
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) read_opus_impl(x, data_only)
+    function(x) read_opus_single(x, data_only)
   )
 
   return(dataset_list)
