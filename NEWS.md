@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.2.0 (2023-02-15)
+
+  - Introduce new S3 classes for the main functions exported (#72):
+    - `read_opus()`: S3 class `c("list_opusreader2", "list")`
+    - `read_opus_single()`: S3 class `c("opusreader2", "list")
+
 # opusreader2 0.1.0 (2023-02-08)
 
 ## Refactoring
