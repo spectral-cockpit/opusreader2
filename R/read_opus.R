@@ -54,7 +54,7 @@ read_opus <- function(dsn,
 #' read data
 #'
 #' @export
-read_opus_single <- function(dsn, data_only) {
+read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
 
   parsed_data <- parse_opus(raw, data_only)
