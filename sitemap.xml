@@ -76,10 +76,10 @@
     <loc>/reference/read_opus.html</loc>
   </url>
   <url>
-    <loc>/reference/read_opus_impl.html</loc>
+    <loc>/reference/read_opus_raw.html</loc>
   </url>
   <url>
-    <loc>/reference/read_opus_raw.html</loc>
+    <loc>/reference/read_opus_single.html</loc>
   </url>
   <url>
     <loc>/reference/read_raw.file.html</loc>
