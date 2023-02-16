@@ -16,11 +16,3 @@ read_character(con, cursor, n = 1L)
 \description{
 read character from binary
 }
-\seealso{
-Other read_bytes: 
-\code{\link{read_double}()},
-\code{\link{read_float}()},
-\code{\link{read_signed_int}()},
-\code{\link{read_unsigned_int}()}
-}
-\concept{read_bytes}

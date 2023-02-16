@@ -19,3 +19,4 @@ Parsing helper
 \code{\link{parse_header}()}
 }
 \concept{parsing}
+\keyword{internal}
