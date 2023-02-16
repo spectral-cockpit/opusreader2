@@ -118,18 +118,7 @@
 #' * **`history`**:
 #'
 #' @family core
-#' @examples
-#' library(opusreader2)
-#'
-#' dsn <- system.file(
-#'   "extdata/test_data/BF_lo_01_soil_cal.1",
-#'   package = "opusreader2"
-#' )
-#'
-#' raw <- read_opus_raw(dsn)
-#'
-#' opus_list <- parse_opus(raw, data_only = FALSE)
-#' @keywords internal
+#' @export
 parse_opus <- function(raw, data_only) {
   con <- rawConnection(raw)
 

@@ -128,18 +128,6 @@ parameters Rf". Settings such as ""Additional Data Treatment", (number) of
 This function is internally used to parse the raw vector of the OPUS file
 after reading it with \code{read_opus_raw()}.
 }
-\examples{
-library(opusreader2)
-
-dsn <- system.file(
-  "extdata/test_data/BF_lo_01_soil_cal.1",
-  package = "opusreader2"
-)
-
-raw <- read_opus_raw(dsn)
-
-opus_list <- parse_opus(raw, data_only = FALSE)
-}
 \seealso{
 \code{\link[=read_opus_raw]{read_opus_raw()}}
 
@@ -147,4 +135,3 @@ Core function
 \code{\link{read_opus}()}
 }
 \concept{core}
-\keyword{internal}
