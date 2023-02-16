@@ -68,7 +68,7 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 #'
 #' @inheritParams read_opus
 #'
-#' @export
+#' @keywords internal
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,

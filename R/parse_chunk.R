@@ -4,7 +4,7 @@
 #'
 #' @param con connection to raw vector
 #'
-#' @export
+#' @keywords internal
 #' @family parsing
 parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 
@@ -12,7 +12,7 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #'
 #' @inheritParams parse_chunk
 #'
-#' @export
+#' @keywords internal
 parse_chunk.text <- function(ds, con) {
   text <- read_character(con, ds$offset, n = ds$chunk_size)
 
@@ -24,7 +24,7 @@ parse_chunk.text <- function(ds, con) {
 #'
 #' @inheritParams parse_chunk
 #'
-#' @export
+#' @keywords internal
 parse_chunk.parameter <- function(ds, con) {
   if (ds$text_type %in% c(112, 104)) {
     cursor <- ds$offset + 12
@@ -95,7 +95,7 @@ parse_chunk.parameter <- function(ds, con) {
 #'
 #' @inheritParams parse_chunk
 #'
-#' @export
+#' @keywords internal
 parse_chunk.data <- function(ds, con) {
   data <- read_float(con, ds$offset, n = ds$chunk_size)
 

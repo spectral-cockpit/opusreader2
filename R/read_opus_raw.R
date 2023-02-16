@@ -4,7 +4,7 @@
 #'
 #' @return list of raw vectors
 #'
-#' @export
+#' @keywords internal
 read_opus_raw <- function(dsn) {
   if (is.raw(dsn)) {
     return(raw)
@@ -22,7 +22,7 @@ read_opus_raw <- function(dsn) {
 #'
 #' @inheritParams read_opus_single
 #' @family connection
-#' @export
+#' @keywords internal
 read_raw <- function(dsn) UseMethod("read_raw", dsn)
 
 #' method to open the connection for an opus file
@@ -40,7 +40,7 @@ read_raw.file <- function(dsn) {
 #'
 #' @inheritParams read_opus_single
 #' @family connection
-#' @export
+#' @keywords internal
 set_connection_class <- function(dsn) {
   if (file.exists(dsn)) {
     class(dsn) <- c(class(dsn), "file")

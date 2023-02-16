@@ -17,3 +17,4 @@ Connection helper
 \code{\link{read_raw}()}
 }
 \concept{connection}
+\keyword{internal}

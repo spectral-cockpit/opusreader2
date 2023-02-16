@@ -4,7 +4,7 @@
 \alias{read_opus_single}
 \title{Read a single opus file}
 \usage{
-read_opus_single(dsn, data_only)
+read_opus_single(dsn, data_only = FALSE)
 }
 \arguments{
 \item{dsn}{source path of an opus file}
