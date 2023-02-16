@@ -62,6 +62,7 @@ read_float <- function(con, cursor, n = 1L) {
 
 #' read double from binary (double-precision, 64 bits)
 #'
+#' @inheritParams read_unsigned_int
 read_double <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
