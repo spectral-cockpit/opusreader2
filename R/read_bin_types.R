@@ -36,7 +36,6 @@ read_signed_int <- function(con, cursor, n = 1L) {
 #' read character from binary
 #'
 #' @inheritParams read_unsigned_int
-#' @family read_bytes
 read_character <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
   out <- readBin(
@@ -51,7 +50,6 @@ read_character <- function(con, cursor, n = 1L) {
 
 #' read float from binary (single-precision, 32 bits)
 #'
-#' @family read_bytes
 #' @inheritParams read_unsigned_int
 read_float <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)
@@ -66,7 +64,6 @@ read_float <- function(con, cursor, n = 1L) {
 
 #' read double from binary (double-precision, 64 bits)
 #'
-#' @family read_bytes
 #' @inheritParams read_unsigned_int
 read_double <- function(con, cursor, n = 1L) {
   seek_opus(con, cursor)

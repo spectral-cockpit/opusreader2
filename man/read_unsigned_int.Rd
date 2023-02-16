@@ -18,9 +18,6 @@ read unsigned integer from binary
 }
 \seealso{
 Other read_bytes: 
-\code{\link{read_character}()},
-\code{\link{read_double}()},
-\code{\link{read_float}()},
 \code{\link{read_signed_int}()}
 }
 \concept{read_bytes}
