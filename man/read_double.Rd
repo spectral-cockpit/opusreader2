@@ -6,13 +6,6 @@
 \usage{
 read_double(con, cursor, n = 1L)
 }
-\arguments{
-\item{con}{connection to raw vector}
-
-\item{cursor}{offset}
-
-\item{n}{number of elements}
-}
 \description{
 read double from binary (double-precision, 64 bits)
 }

@@ -6,13 +6,6 @@
 \usage{
 read_character(con, cursor, n = 1L)
 }
-\arguments{
-\item{con}{connection to raw vector}
-
-\item{cursor}{offset}
-
-\item{n}{number of elements}
-}
 \description{
 read character from binary
 }

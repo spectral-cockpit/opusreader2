@@ -16,8 +16,3 @@ read_unsigned_int(con, cursor, n = 1L)
 \description{
 read unsigned integer from binary
 }
-\seealso{
-Other read_bytes: 
-\code{\link{read_signed_int}()}
-}
-\concept{read_bytes}

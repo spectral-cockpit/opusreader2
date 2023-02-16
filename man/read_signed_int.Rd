@@ -6,18 +6,6 @@
 \usage{
 read_signed_int(con, cursor, n = 1L)
 }
-\arguments{
-\item{con}{connection to raw vector}
-
-\item{cursor}{offset}
-
-\item{n}{number of elements}
-}
 \description{
 read signed integer from binary
 }
-\seealso{
-Other read_bytes: 
-\code{\link{read_unsigned_int}()}
-}
-\concept{read_bytes}

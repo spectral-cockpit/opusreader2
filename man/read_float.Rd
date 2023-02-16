@@ -6,13 +6,6 @@
 \usage{
 read_float(con, cursor, n = 1L)
 }
-\arguments{
-\item{con}{connection to raw vector}
-
-\item{cursor}{offset}
-
-\item{n}{number of elements}
-}
 \description{
 read float from binary (single-precision, 32 bits)
 }
