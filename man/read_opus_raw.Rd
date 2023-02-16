@@ -15,3 +15,4 @@ list of raw vectors
 \description{
 Read the raw vector of an opus data source
 }
+\keyword{internal}

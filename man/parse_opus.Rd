@@ -147,3 +147,4 @@ Core function
 \code{\link{read_opus}()}
 }
 \concept{core}
+\keyword{internal}

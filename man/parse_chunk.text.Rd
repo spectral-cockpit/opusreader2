@@ -14,3 +14,4 @@
 \description{
 read chunk method for text
 }
+\keyword{internal}
