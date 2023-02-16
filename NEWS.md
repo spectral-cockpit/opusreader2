@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.3.0 (2023-02-16)
+
+  - The exported functions are now (#74):
+    - `read_opus()`: Read one or more OPUS files from data source name (`dsn`)
+    - `read_opus_single()`: Read a single OPUS file
+    - `calc_parameter_chunk_size()`: Calculate the parameter chunk size in bytes
+
+
 # opusreader2 0.2.0 (2023-02-15)
 
   - Introduce new S3 classes for the main functions exported (#72):
