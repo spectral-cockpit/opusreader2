@@ -129,7 +129,7 @@
 #' raw <- read_opus_raw(dsn)
 #'
 #' opus_list <- parse_opus(raw, data_only = FALSE)
-#' @export
+#' @keywords internal
 parse_opus <- function(raw, data_only) {
   con <- rawConnection(raw)
 
