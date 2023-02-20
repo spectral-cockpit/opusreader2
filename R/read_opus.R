@@ -142,9 +142,18 @@ read_opus <- function(dsn,
 
     chunked_dsn <- split(dsn, seq_along(dsn) %% free_workers)
 
+    if (isTRUE(progress_bar)) {
+      check_progressr()
+      # reduce signalling overhead
+      prog <- progressr::progressor(length(chunked_dsn))
+    }
+
     dataset_list <- future.apply::future_lapply(
       chunked_dsn,
-      function(x) opus_lapply(x, data_only)
+      function(x) {
+        opus_lapply(x, data_only)
+        prog()
+      }
     )
   }
 
