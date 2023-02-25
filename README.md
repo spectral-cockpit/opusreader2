@@ -6,8 +6,8 @@
 ![runiverse-package opusreader2](https://spectral-cockpit.r-universe.dev/badges/opusreader2?scale=1.25&color=pink&style=flat)
 <!-- badges: end -->
 
-<p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
 <img align="right" width="250" src="man/figures/logo.png">
+<p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
 
 ## 🪄 Scope
 
