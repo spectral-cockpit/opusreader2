@@ -9,6 +9,11 @@
 #' `NULL`, which only returns the parsed data as an in-memory R object.
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
+#' @param parallel_chunking option how to to chunk a number of files in
+#' parallel. Default "registered_workers", which will split the `dsn` into
+#' the number of workers (cores, machines, etc.) registered via
+#' `future::plan()`. Alternatively, an integer with the desired number of
+#' chunks can be given.
 #' @family core
 #' @return Nested list (S3 object) containing the parsed contents of the binary
 #' encoded blocks of an OPUS file. The first level names of the list correspond
@@ -122,6 +127,7 @@
 read_opus <- function(dsn,
                       data_only = FALSE,
                       parallel = FALSE,
+                      parallel_chunking = "registered_workers",
                       progress_bar = FALSE) {
   check_logical(data_only)
   check_logical(parallel)
@@ -138,9 +144,13 @@ read_opus <- function(dsn,
   } else {
     check_future()
 
-    free_workers <- future::nbrOfFreeWorkers()
+    if (parallel_chunking == "registered_workers") {
+      n_chunks <- future::nbrOfFreeWorkers()
+    } else {
+      n_chunks <- future::nbrOfFreeWorkers() * 10L
+    }
 
-    chunked_dsn <- split(dsn, seq_along(dsn) %% free_workers)
+    chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
 
     if (isTRUE(progress_bar)) {
       check_progressr()
@@ -152,7 +162,7 @@ read_opus <- function(dsn,
       chunked_dsn,
       function(x) {
         opus_lapply(x, data_only)
-        prog()
+        if (isTRUE(progress_bar)) prog()
       }
     )
   }
@@ -189,7 +199,9 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) read_opus_single(x, data_only)
+    function(x) {
+      read_opus_single(x, data_only)
+    }
   )
 
   return(dataset_list)

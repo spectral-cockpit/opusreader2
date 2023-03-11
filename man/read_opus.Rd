@@ -4,7 +4,13 @@
 \alias{read_opus}
 \title{Read OPUS binary file of a Bruker spectrometer}
 \usage{
-read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
+read_opus(
+  dsn,
+  data_only = FALSE,
+  parallel = FALSE,
+  parallel_chunking = "registered_workers",
+  progress_bar = FALSE
+)
 }
 \arguments{
 \item{dsn}{data source name. Can be a path to a specific file or a path to a
@@ -15,6 +21,12 @@ read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 
 \item{parallel}{read files in parallel via chunking. Default is \code{FALSE}.}
+
+\item{parallel_chunking}{option how to to chunk a number of files in
+parallel. Default "registered_workers", which will split the \code{dsn} into
+the number of workers (cores, machines, etc.) registered via
+\code{future::plan()}. Alternatively, an integer with the desired number of
+chunks can be given.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }
