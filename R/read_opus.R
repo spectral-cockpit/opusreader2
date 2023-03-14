@@ -175,8 +175,8 @@ read_opus <- function(dsn,
     dataset_list <- future.apply::future_lapply(
       chunked_dsn,
       function(x) {
-        opus_lapply(x, data_only)
         if (isTRUE(progress_bar)) prog()
+        opus_lapply(x, data_only)
       }
     )
   }
