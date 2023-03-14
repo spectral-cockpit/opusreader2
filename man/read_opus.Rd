@@ -17,12 +17,6 @@ read data
 \item{parallel}{read files in parallel via chunking. Default is \code{FALSE}.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
-
-\item{parallel_chunking}{option how to to chunk a number of files in
-parallel. Default "registered_workers", which will split the \code{dsn} into
-the number of workers (cores, machines, etc.) registered via
-\code{future::plan()}. Alternatively, an integer with the desired number of
-chunks can be given.}
 }
 \value{
 Nested list (S3 object) containing the parsed contents of the binary

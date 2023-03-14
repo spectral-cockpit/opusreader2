@@ -9,11 +9,6 @@
 #' `NULL`, which only returns the parsed data as an in-memory R object.
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
-#' @param parallel_chunking option how to to chunk a number of files in
-#' parallel. Default "registered_workers", which will split the `dsn` into
-#' the number of workers (cores, machines, etc.) registered via
-#' `future::plan()`. Alternatively, an integer with the desired number of
-#' chunks can be given.
 #' @family core
 #' @return Nested list (S3 object) containing the parsed contents of the binary
 #' encoded blocks of an OPUS file. The first level names of the list correspond
