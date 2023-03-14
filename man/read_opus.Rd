@@ -133,6 +133,19 @@ parameters Rf". Settings such as ""Additional Data Treatment", (number) of
 This function can be used to read and parse OPUS files,
 to make it usable for other processing steps.
 }
+\section{Details}{
+
+\code{read_opus()} is the high-level interface to read multiple OPUS files at
+once from a data source name (\code{dsn}). It optionally supports parallel reads
+via the {future} framework. When reading in parallel, a progress bar can
+be enabled, which uses {progressr} under the hood for progress updates.
+If \code{parallel = TRUE}, one can specify across how many chunks the OPUS files
+are distributed onto the registered parallel workers. This can be done via
+\verb{options(number_of_chunks = <integer>)}. The default value is
+\code{number_of_chunks = "registered workers"}, which will split the OPUS files
+across the \link{number of registered workers} chunks.
+}
+
 \seealso{
 Core function
 \code{\link{parse_opus}()}

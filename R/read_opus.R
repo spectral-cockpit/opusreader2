@@ -118,6 +118,17 @@
 #' * **`info_block`**:
 #' * **`history`**:
 #'
+#' @section Details:
+#' `read_opus()` is the high-level interface to read multiple OPUS files at
+#' once from a data source name (`dsn`). It optionally supports parallel reads
+#' via the {future} framework. When reading in parallel, a progress bar can
+#' be enabled, which uses {progressr} under the hood for progress updates.
+#' If `parallel = TRUE`, one can specify across how many chunks the OPUS files
+#' are distributed onto the registered parallel workers. This can be done via
+#' `options(number_of_chunks = <integer>)`. The default value is
+#' `number_of_chunks = "registered workers"`, which will split the OPUS files
+#' across the [number of registered workers] chunks.
+#'
 #' @export
 read_opus <- function(dsn,
                       data_only = FALSE,
