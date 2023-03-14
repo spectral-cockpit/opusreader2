@@ -92,6 +92,133 @@ read data
 <dd><p>print a progress bar. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>Nested list (S3 object) containing the parsed contents of the binary
+encoded blocks of an OPUS file. The first level names of the list correspond
+to the display names as shown in the Bruker OPUS viewer software. However, in
+snake_case and more standardized naming to allow for better output handling.
+Each parsed block element is a sublist containing <strong>a)</strong> the binary read
+instructions decoded/derived from the header (<code>$block_type</code>, <code>$channel_type</code>,
+<code>$text_type</code> and <code>$additional_type</code>, <code>$offset</code> (bytes), <code>$next_offset</code></p>
+
+
+<p>(bytes), <code>$chunk_size</code> (bytes)); <strong>b)</strong> if parameter block, nested list of
+specific parameters under <code>$parameters</code>, which has elements named according
+to capitalized Bruker-internal "three-letter-string" definitions (e.g.,
+"DPF := Data Point Format"). Possible first-level block names and
+information provided include:</p><ul><li><p><strong><code>refl_no_atm_comp_data_param</code></strong> : class "parameter"
+(viewer: "Data Parameters Refl". Parameter list with metadata for <code>refl</code>
+data block (<code>refl</code>).</p></li>
+<li><p><strong><code>refl_no_atm_comp</code></strong>: class "data" (spectrum; viewer: "Refl").
+Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
+(<code>:= sc_sample / sc_ref</code>). Note that this element is the
+untreated spectra before an eventual "atmospheric compensation"
+routine is applied.</p></li>
+<li><p><strong><code>refl_data_param</code></strong> : class "parameter" (viewer: "Data Parameters Refl").
+Parameter list with metadata for <code>refl</code> data block (metadata of
+reflectance spectrum; see <code>refl</code> output).
+Note that this element only results if "atmospheric compensation" was
+activated in the OPUS measurement settings.</p></li>
+<li><p><strong><code>refl</code></strong>: class "data" (spectrum; viewer: "Refl"). Atmospherically
+compensated reflectance spectra (<code>:= sc_sample_corr / sc_ref_corr</code>). This
+result spectrum only exists if either correction of CO2 and/or water vapour
+bands is set in OPUS setting (proprietary algorithm; could possibly be
+reverse engineered). If <code>refl</code> exists, it has always a corresponding
+untreated <code>refl_no_atm_comp</code> spectrum  (the latter present in file but not
+shown in the OPUS viewer, where only (final) <code>ab</code> is displayed)</p></li>
+<li><p><strong><code>quant_report_refl</code></strong>: class "parameter" (viewer: "Quant Report Refl").
+Quantification report for tools of multivariate calibration on <code>refl</code> data
+(i.e., PLS regression) offered in the QUANT2 OPUS package. Nested list with
+Bruker-internal "three-letter-string" definitions. "TIT" is the title of
+a nested quantification table, <code>"E&lt;digit&gt;[2]"</code> stands probably for entry,
+<code>"F&lt;digit&gt;[2]"</code> for field, and <code>"Z&lt;digit&gt;[2]"</code> we do not yet know what it
+maps to. There seems more information needed, which we can get by expanding
+the header parsing algorithm.</p></li>
+<li><p><strong><code>ab_no_atm_comp_data_param</code></strong> : class "parameter"
+(viewer: "Data Parameters AB"). Parameter list with metadata for <code>ab</code>
+data block (spectrum; see <code>ab</code> output).</p></li>
+<li><p><strong><code>ab_no_atm_comp</code></strong>: class "data" (spectrum; viewer: "Refl").
+Unprocessed (raw; i.e, not atmospherically compensated) reflectance spectra
+(<code>:= sc_sample/ sc_ref</code>).</p></li>
+<li><p><strong><code>ab_data_param</code></strong> : class "parameter" (viewer: "Data Parameters Refl").
+Parameter list with metadata for <code>ab</code> data block (spectrum; see <code>ab</code>).
+Note that this element only results if "atmospheric compensation" was
+activated in the OPUS measurement settings.</p></li>
+<li><p><strong><code>ab</code></strong>: class "data" (spectrum; viewer: "AB"). Atmospherically
+compensated (apparent) absorbance spectra
+(<code>:= log(1 / (sc_sample_corr / sc_ref_corr)</code>). Only
+exists if either correction of CO2 and/or water vapour bands is set in OPUS
+setting (proprietary algorithm; could possibly be reverse engineered).
+If <code>AB</code> exists, it has always a corresponding untreated
+<code>ab_no_atm_comp</code> spectrum (the latter present in file but not shown in
+the OPUS viewer, where only final <code>ab</code> is displayed).</p></li>
+<li><p><strong><code>quant_report_ab</code></strong>: class "parameter" (viewer: "Quant Report AB").
+Quantification report for tools of multivariate calibration on <code>ab</code> data
+(i.e., PLS regression) offered in the QUANT2 OPUS package. Nested list with
+Bruker-internal "three-letter-string" definitions. "TIT" is the title of
+a nested quantification table, <code>"E&lt;digit&gt;[2]"</code> stands probably for entry,
+<code>"F&lt;digit&gt;[2]"</code> for field, and <code>"Z&lt;digit&gt;[2]"</code> we do not yet know what it
+maps to. There seems more information needed, which we can get by expanding
+the header parsing algorithm.</p></li>
+<li><p><strong><code>sc_sample_data_param</code></strong>: class "parameter" (metadata; viewer:
+"Data Parameters ScSm").
+Describes the <code>sc_sample</code> data block (see <code>sc_sample</code>).</p></li>
+<li><p><strong><code>sc_sample</code></strong>: class "data" (spectrum). Single channel (sc) spectrum of
+the sample (y-axis: intensity).</p></li>
+<li><p><strong><code>ig_sample_data_param</code></strong>: class "parameter" (metadata; viewer:
+"Data Parameters IgSm").</p></li>
+<li><p><strong><code>ig_sample</code></strong>: class "data" (signal, viewer: "IgSm").
+Interferogram of the sample measurement. Oscillatory signal
+(x-axis: optical path difference (OPD); y-axis: amplitude of the signal).</p></li>
+<li><p><strong><code>sc_ref_data_param</code></strong>: class "parameter" (metadata; viewer:
+"Data Parameters ScRf").
+Describes the <code>sc_sample</code> data block (see <code>sc_ref</code>).</p></li>
+<li><p><strong><code>sc_ref</code></strong>: class "data" (spectrum; viewer: "Data Parameters IgSm").
+Single channel (sc) spectrum of the reference (background material: e.g.,
+gold; y-axis: intensity).</p></li>
+<li><p><strong><code>ig_ref_data_param</code></strong>: class "parameter" (metadata; viewer:
+"Data Parameters IgRf").</p></li>
+<li><p><strong><code>ig_ref</code></strong>: class "data" (spectrum; viewer: "IgRf").
+Interferogram of the reference measurement. (background material: e.g.,
+gold). Oscillatory signal (x-axis: optical path difference (OPD);
+y-axis: amplitude of the signal)</p></li>
+<li><p><strong><code>optics</code></strong>: class "parameter (metadata; viewer: "Optic Parameters").
+Optic setup and settings such as "Accessory", "Detector Setting" or
+"Source Setting".</p></li>
+<li><p><strong><code>optics_ref</code></strong>: class "parameter (metadata; viewer: "Optic Parameters
+Rf"). Optic setup and settings specific to reference measurement such as
+"Accessory", "Detector Setting" or "Source Setting".</p></li>
+<li><p><strong><code>acquisition_ref</code></strong>: class "parameter" (metadata; viewer: "Acquisition
+parameters Rf". Settings such as ""Additional Data Treatment", (number) of
+"Background Scans" or "Result Spectrum" (e.g. value "Absorbance").</p></li>
+<li><p><strong><code>fourier_transformation_ref</code></strong>:</p></li>
+<li><p><strong><code>fourier_transformation</code></strong>: class "parameter"</p></li>
+<li><p><strong><code>sample</code></strong>:</p></li>
+<li><p><strong><code>acquisition</code></strong>:</p></li>
+<li><p><strong><code>instrument_ref</code></strong>:</p></li>
+<li><p><strong><code>instrument</code></strong>:</p></li>
+<li><p><strong><code>lab_and_process_param_1</code></strong>:</p></li>
+<li><p><strong><code>lab_and_process_param_2</code></strong>:</p></li>
+<li><p><strong><code>info_block</code></strong>:</p></li>
+<li><p><strong><code>history</code></strong>:</p></li>
+</ul></div>
+    <div id="details">
+    <h2>Details</h2>
+    
+
+<p><code>read_opus()</code> is the high-level interface to read multiple OPUS files at
+once from a data source name (<code>dsn</code>). It optionally supports parallel reads
+via the future framework. When reading in parallel, a progress bar can
+be enabled, which uses progressr under the hood for progress updates.
+If <code>parallel = TRUE</code>, one can specify across how many chunks the OPUS files
+are distributed onto the registered parallel workers. This can be done via
+<code>options(number_of_chunks = &lt;integer&gt;)</code>. The default value is
+<code>number_of_chunks = "registered workers"</code>, which will split the OPUS files
+across number of chunks corresponding to the number of registered workers.</p>
+    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Core function
