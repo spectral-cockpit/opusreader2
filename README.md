@@ -64,6 +64,27 @@ file <- opus_file()
 data_list <- read_opus(dsn = file)
 ```
 
+<details>
+<summary>Reading files in parallel [expand]
+</summary>
+
+Multiple OPUS files can optionally be read in parallel using the {future}
+framework. For this, parallel workers need to be registered.
+
+```r
+file <- opus_file()
+files_1000 <- rep(file, 1000L)
+
+if (!require("future")) install.packages("future")
+if (!require("future.apply")) install.packages("future.apply")
+
+# register parallel backend (multisession; using sockets)
+future::plan(future::multisession)
+
+data <- read_opus(dsn = files_1000, parallel = TRUE)
+```
+</details>
+
 ## Advanced testing and Bruker OPUS file specification
 
 We strive to have a full-fledged reader of OPUS files that is on par with
