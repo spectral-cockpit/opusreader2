@@ -127,7 +127,6 @@
 read_opus <- function(dsn,
                       data_only = FALSE,
                       parallel = FALSE,
-                      parallel_chunking = "registered_workers",
                       progress_bar = FALSE) {
   check_logical(data_only)
   check_logical(parallel)
@@ -143,11 +142,14 @@ read_opus <- function(dsn,
     dataset_list <- opus_lapply(dsn, data_only)
   } else {
     check_future()
+    number_of_chunks <- getOption("number_of_chunks",
+      default = "registered_workers"
+    )
 
-    if (parallel_chunking == "registered_workers") {
+    if (number_of_chunks == "registered_workers") {
       n_chunks <- future::nbrOfFreeWorkers()
     } else {
-      n_chunks <- future::nbrOfFreeWorkers() * 10L
+      n_chunks <- number_of_chunks
     }
 
     chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
