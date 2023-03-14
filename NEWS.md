@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.4.0 (2023-03-14)
+
+  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://github.com/spectral-cockpit/opusreader2/pull/75).
+
+
 # opusreader2 0.3.0 (2023-02-16)
 
   - The exported functions are now (#74):
