@@ -118,6 +118,17 @@
 #' * **`info_block`**:
 #' * **`history`**:
 #'
+#' @section Details:
+#' `read_opus()` is the high-level interface to read multiple OPUS files at
+#' once from a data source name (`dsn`). It optionally supports parallel reads
+#' via the {future} framework. When reading in parallel, a progress bar can
+#' be enabled, which uses {progressr} under the hood for progress updates.
+#' If `parallel = TRUE`, one can specify across how many chunks the OPUS files
+#' are distributed onto the registered parallel workers. This can be done via
+#' `options(number_of_chunks = <integer>)`. The default value is
+#' `number_of_chunks = "registered workers"`, which will split the OPUS files
+#' across number of chunks corresponding to the number of registered workers.
+#'
 #' @export
 read_opus <- function(dsn,
                       data_only = FALSE,
@@ -137,14 +148,36 @@ read_opus <- function(dsn,
     dataset_list <- opus_lapply(dsn, data_only)
   } else {
     check_future()
+    number_of_chunks <- getOption("number_of_chunks",
+      default = "registered_workers"
+    )
 
-    free_workers <- future::nbrOfFreeWorkers()
+    if (number_of_chunks == "registered_workers") {
+      n_chunks <- future::nbrOfFreeWorkers()
+    } else {
+      if (!is_integerish(number_of_chunks)) {
+        stop("`number_of_chucks` is not integerish.",
+          "`Set `options(number_of_chunks = <integer>)`",
+          call. = FALSE
+        )
+      }
+      n_chunks <- number_of_chunks
+    }
 
-    chunked_dsn <- split(dsn, seq_along(dsn) %% free_workers)
+    chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
+
+    if (isTRUE(progress_bar)) {
+      check_progressr()
+      # reduce signalling overhead
+      prog <- progressr::progressor(length(chunked_dsn))
+    }
 
     dataset_list <- future.apply::future_lapply(
       chunked_dsn,
-      function(x) opus_lapply(x, data_only)
+      function(x) {
+        if (isTRUE(progress_bar)) prog()
+        opus_lapply(x, data_only)
+      }
     )
   }
 
@@ -180,8 +213,15 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
-    function(x) read_opus_single(x, data_only)
+    function(x) {
+      read_opus_single(x, data_only)
+    }
   )
 
   return(dataset_list)
+}
+
+# helper for checking if integerish
+is_integerish <- function(x, tol = .Machine$double.eps^0.5) {
+  return(abs(x - round(x)) < tol)
 }

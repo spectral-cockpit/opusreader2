@@ -66,6 +66,60 @@ file <- opus_file()
 data_list <- read_opus(dsn = file)
 ```
 
+<details>
+<summary>Reading files in parallel [expand]
+</summary>
+
+Multiple OPUS files can optionally be read in parallel using the {future}
+framework. For this, parallel workers need to be registered.
+
+```r
+file <- opus_file()
+files_1000 <- rep(file, 1000L)
+
+if (!require("future")) install.packages("future")
+if (!require("future.apply")) install.packages("future.apply")
+
+# register parallel backend (multisession; using sockets)
+future::plan(future::multisession)
+
+data <- read_opus(dsn = files_1000, parallel = TRUE)
+```
+</details>
+
+
+<details>
+<summary>Reading files in parallel with progress updates [expand]
+</summary>
+
+If `parallel = TRUE`, progress updates via {progressr} are optionally available
+
+```r
+if (!require("progressr")) install.packages("progressr")
+library("progressr")
+
+future::plan(future::multisession)
+
+handlers(global = TRUE)
+handlers("progress") # base R progress animation
+
+file <- opus_file()
+files_1000 <- rep(file, 1000L)
+
+# read with progress bar
+data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
+```
+
+Optionally, the number of desired chunks can be specified via options.
+
+```r
+options(number_of_chunks = 20L)
+data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
+```
+</details>
+
+
+
 ## Advanced testing and Bruker OPUS file specification
 
 We strive to have a full-fledged reader of OPUS files that is on par with
