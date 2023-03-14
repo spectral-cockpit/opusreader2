@@ -112,7 +112,7 @@ Optionally, the number of desired chunks can be specified via options.
 
 ```r
 options(number_of_chunks = 20L)
-data <- read_opus(dsn = files_1000, parallel = TRUE)
+data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
 ```
 </details>
 
