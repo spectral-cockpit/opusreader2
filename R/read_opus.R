@@ -155,7 +155,7 @@ read_opus <- function(dsn,
     if (number_of_chunks == "registered_workers") {
       n_chunks <- future::nbrOfFreeWorkers()
     } else {
-      if (!is.integer(number_of_chunks)) {
+      if (!is_integerish(number_of_chunks)) {
         stop("`number_of_chucks` is not integerish.",
           "`Set `options(number_of_chunks = <integer>)`",
           call. = FALSE
@@ -219,4 +219,9 @@ opus_lapply <- function(dsn, data_only) {
   )
 
   return(dataset_list)
+}
+
+# helper for checking if integerish
+is_integerish <- function(x, tol = .Machine$double.eps^0.5) {
+  return(abs(x - round(x)) < tol)
 }
