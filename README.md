@@ -105,7 +105,7 @@ file <- opus_file()
 files_1000 <- rep(file, 1000L)
 
 # read with progress bar
-read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
+data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
 ```
 </details>
 
