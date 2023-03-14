@@ -127,7 +127,7 @@
 #' are distributed onto the registered parallel workers. This can be done via
 #' `options(number_of_chunks = <integer>)`. The default value is
 #' `number_of_chunks = "registered workers"`, which will split the OPUS files
-#' across the [number of registered workers] chunks.
+#' across number of chunks corresponding to the number of registered workers.
 #'
 #' @export
 read_opus <- function(dsn,

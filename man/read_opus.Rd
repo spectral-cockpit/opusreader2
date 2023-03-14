@@ -143,7 +143,7 @@ If \code{parallel = TRUE}, one can specify across how many chunks the OPUS files
 are distributed onto the registered parallel workers. This can be done via
 \verb{options(number_of_chunks = <integer>)}. The default value is
 \code{number_of_chunks = "registered workers"}, which will split the OPUS files
-across the \link{number of registered workers} chunks.
+across number of chunks corresponding to the number of registered workers.
 }
 
 \seealso{
