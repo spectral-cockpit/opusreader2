@@ -85,6 +85,32 @@ data <- read_opus(dsn = files_1000, parallel = TRUE)
 ```
 </details>
 
+
+<details>
+<summary>Reading files in parallel with progress updates [expand]
+</summary>
+
+If `parallel = TRUE`, progress updates via {progressr} are optionally available
+
+```r
+if (!require("progressr")) install.packages("progressr")
+library("progressr")
+
+future::plan(future::multisession)
+
+handlers(global = TRUE)
+handlers("progress") # base R progress animation
+
+file <- opus_file()
+files_1000 <- rep(file, 1000L)
+
+# read with progress bar
+read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
+```
+</details>
+
+
+
 ## Advanced testing and Bruker OPUS file specification
 
 We strive to have a full-fledged reader of OPUS files that is on par with
