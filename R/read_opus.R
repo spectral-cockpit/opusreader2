@@ -144,6 +144,12 @@ read_opus <- function(dsn,
     if (number_of_chunks == "registered_workers") {
       n_chunks <- future::nbrOfFreeWorkers()
     } else {
+      if (!is.integer(number_of_chunks)) {
+        stop("`number_of_chucks` is not integerish.",
+          "`Set `options(number_of_chunks = <integer>)`",
+          call. = FALSE
+        )
+      }
       n_chunks <- number_of_chunks
     }
 
