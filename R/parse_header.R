@@ -4,7 +4,7 @@
 #'
 #' @param con connection to the raw vector
 #' @family parsing
-#' @export
+#' @keywords internal
 parse_header <- function(raw_size, con) {
   # header length in bytes
   header_length <- 504L

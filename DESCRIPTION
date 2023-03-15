@@ -1,6 +1,6 @@
 Package: opusreader2
 Title: Read Spectroscopic Data from Bruker OPUS Binary Files
-Version: 0.1.0
+Version: 0.4.0
 Authors@R: 
     c(person(given = "Philipp",
              family = "Baumann",
@@ -18,16 +18,15 @@ Authors@R:
              comment = c(ORCID = "0000-0001-7431-2603")),
       person("spectral-cockpit.com", role = c("cph", "fnd"))
     )
-Description: Parses all relevant data blocks from the OPUS binary files
-    produced from Fourier-Transform infrared spectrometers of the company
-    Bruker Optics GmbH & Co.
+Description: Read data from OPUS binary files of Fourier-Transform infrared
+    spectrometers of the company Bruker Optics GmbH & Co.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://github.com/spectral-cockpit/opusreader2
 BugReports: https://github.com/spectral-cockpit/opusreader2/issues
-Suggests: knitr, rmarkdown, testthat (>= 3.0.0), future.apply, future
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0), future.apply, future, progressr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 NeedsCompilation: no

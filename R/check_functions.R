@@ -20,7 +20,15 @@ check_future <- function() {
   if (!requireNamespace("future.apply")) {
     stop(
       "To use the parallel option, install the package: future.apply,",
-      'first.\n Use `install.package("future.apply")`'
+      'first.\n Use `install.packages("future.apply")`',
+      call. = FALSE
     )
+  }
+}
+
+check_progressr <- function() {
+  if (!requireNamespace("progressr")) {
+    stop('To use the `progress_bar` option, install {progressr} first.\n
+          Use `install.packages("progressr")`', call. = FALSE)
   }
 }

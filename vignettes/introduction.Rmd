@@ -18,11 +18,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-Bruker OPUS is a proprietary file format to store all measurement parameters,
-configurations, environmental conditions, and spectral data types saved.
-The file format is produced by the Bruker OPUS software.
+Bruker instruments produce a proprietary file format to store all measurement
+parameters, configurations, environmental conditions, and spectral data types
+saved. The Bruker OPUS software does the measurements and produces thhe 
+OPUS binary files.
 
-## Basic usage
+Our package can read thosee binary files for most of the
+Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
+
+# Reading many OPUS files
 
 ```{r}
 library("opusreader2")

@@ -16,11 +16,3 @@ read_double(con, cursor, n = 1L)
 \description{
 read double from binary (double-precision, 64 bits)
 }
-\seealso{
-Other read_bytes: 
-\code{\link{read_character}()},
-\code{\link{read_float}()},
-\code{\link{read_signed_int}()},
-\code{\link{read_unsigned_int}()}
-}
-\concept{read_bytes}

@@ -19,3 +19,4 @@ Parsing helper
 \code{\link{parse_chunk}()}
 }
 \concept{parsing}
+\keyword{internal}

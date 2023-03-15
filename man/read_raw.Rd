@@ -17,3 +17,4 @@ Connection helper
 \code{\link{set_connection_class}()}
 }
 \concept{connection}
+\keyword{internal}
