@@ -28,8 +28,6 @@ Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
 
 # Reading many OPUS files
 
-## Basic usage
-
 ```{r}
 library("opusreader2")
 file <- opus_file()
