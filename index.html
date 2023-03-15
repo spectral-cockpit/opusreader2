@@ -174,6 +174,10 @@ Reading files in parallel with progress updates [expand]
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>number_of_chunks <span class="op">=</span> <span class="fl">20L</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">files_1000</span>, parallel <span class="op">=</span> <span class="cn">TRUE</span>, progress_bar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</details><details><summary>
+Read a single OPUS file [expand]
+</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_opus_single.html">read_opus_single</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
@@ -196,19 +200,19 @@ Install and enable pre-commit hooks locally (details)
 <li>install pre-commit with python3. For more details and options, see <a href="https://pre-commit.com/" class="external-link">the official documentation</a>
 </li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in terminal</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install pre-commit <span class="at">--user</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in terminal</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install pre-commit <span class="at">--user</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>enable the pre-commit hooks in <code>.pre-commit-config.yaml</code>
 </li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change to cloned git directory of your fork of the package</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> install</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change to cloned git directory of your fork of the package</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> install</span></code></pre></div>
 Once you do a <code>git commit -m "&lt;your-commit-message&gt;"</code>, the defined pre-commit hooks will automatically be applied on new commits.
 </details><details><summary>
 Check all files for which pre-commit hooks are configured (details)
-</summary><div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in your terminal and package root directory</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> run <span class="at">--all-files</span></span></code></pre></div>
+</summary><div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in your terminal and package root directory</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> run <span class="at">--all-files</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
