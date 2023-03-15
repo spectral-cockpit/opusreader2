@@ -119,6 +119,16 @@ data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
 </details>
 
 
+<details>
+<summary> Read a single OPUS file [expand]
+</summary>
+
+```r
+data <- read_opus_single(dsn = file)
+```
+</details>
+
+
 
 ## Advanced testing and Bruker OPUS file specification
 
