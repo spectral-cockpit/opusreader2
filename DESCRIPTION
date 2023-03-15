@@ -18,9 +18,8 @@ Authors@R:
              comment = c(ORCID = "0000-0001-7431-2603")),
       person("spectral-cockpit.com", role = c("cph", "fnd"))
     )
-Description: Parses all relevant data blocks from the OPUS binary files
-    produced from Fourier-Transform infrared spectrometers of the company
-    Bruker Optics GmbH & Co.
+Description: Read OPUS binary files produced by Fourier-Transform infrared
+    spectrometers of the company Bruker Optics GmbH & Co.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
