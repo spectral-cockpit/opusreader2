@@ -26,6 +26,8 @@ OPUS binary files.
 Our package can read thosee binary files for most of the
 Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
 
+# Reading many OPUS files
+
 ## Basic usage
 
 ```{r}
