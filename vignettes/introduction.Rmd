@@ -23,6 +23,9 @@ parameters, configurations, environmental conditions, and spectral data types
 saved. The Bruker OPUS software does the measurements and produces thhe 
 OPUS binary files.
 
+Our package can read thosee binary files for most of the
+Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
+
 ## Basic usage
 
 ```{r}
