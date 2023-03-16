@@ -24,10 +24,10 @@ plot <- function(data,
 
 
 plot.opusreader2 <- function(data, data_type, plot_type) {
-  validate_plot(data, data_type, plot_type)
-
   data_type <- match.arg(data_type)
   plot_type <- match.arg(plot_type)
+
+  validate_plot(data, data_type, plot_type)
 
   base::plot(
     x = x,
