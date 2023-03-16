@@ -29,13 +29,17 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
 
   validate_plot(data, data_type, plot_type)
 
+  # get the spectra (y) and x (x-axis; e.g. wavenumber)
   if (inherits(data, "list_opusreader2")) {
-
+    spectra <- do.call(
+      rbind,
+      Map(function(x) x[[y]], x = data, y = data_type)
+    )
   }
 
-  base::plot(
+  base::matplot(
     x = x,
-    y = y,
+    y = t(spectra),
     type = "l",
     lwd = 1.5,
     xlab = xlab,
