@@ -5,7 +5,7 @@
 #' Bruker OPUS binary files.
 #' @param data_type character vector of length one with desired spectral data
 #' type to plot.
-#' #' @family core
+#' @family core
 #' @return a base R plot with spectra
 #'
 #' @export
