@@ -9,13 +9,15 @@
 #' @return a base R plot with spectra
 #'
 #' @export
-plot <- function(data, data_type) {
+plot <- function(data, data_type, plot_type = c("base", "ggplot2")) {
   UseMethod("plot")
 }
 
 
 plot.opusreader2 <- function(data, data_type) {
   validate_plot(data, data_type)
+
+  plot_type <- match.arg(plot_type)
 
   base::plot(
     x = x,
