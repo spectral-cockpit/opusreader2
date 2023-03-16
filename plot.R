@@ -33,4 +33,19 @@ validate_plot <- function(data, data_type) {
   stopifnot(
     inherits(data, "opusreader2")
   )
+
+  if (inherits(data, "list_opusreader2")) {
+    all_data_types <- all(
+      unlist(lapply(data, function(x) data_type %in% names(x)))
+    )
+  } else {
+    all_data_types <- data_type %in% names(data)
+  }
+
+  if (!isTRUE(all_data_types)) {
+    stop("All `data` elements need to contain `data_type`",
+      paste0(data_type, "."),
+      call. = FALSE
+    )
+  }
 }
