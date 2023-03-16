@@ -1,7 +1,7 @@
 #' Plot spectra read from OPUS files
 #'
 #' @param data list of class "opusreader2" (single OPUS file) or both
-#' "opusreader2" and "list_opusreader2" containing spectral data parsed from
+#' "opusreader2" and "list_opusreader2", containing spectral data parsed from
 #' Bruker OPUS binary files.
 #' @param data_type character vector of length one with desired spectral data
 #' type to plot.
