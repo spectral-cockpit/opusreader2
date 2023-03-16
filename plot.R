@@ -51,7 +51,7 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
     "ig_ref" = "Interferogram sample"
   )
 
-  base::matplot(
+  matplot(
     x = x,
     y = t(spectra),
     type = "l",
