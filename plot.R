@@ -5,6 +5,8 @@
 #' Bruker OPUS binary files.
 #' @param data_type character vector of length one with desired spectral data
 #' type to plot.
+#' @param plot_type plot type, either `"base"``, printing a base plot, or
+#' `"ggplot2"``, which returns a ggplot2 object.
 #' @family core
 #' @return a base R plot with spectra
 #'
