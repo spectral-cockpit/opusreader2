@@ -33,10 +33,10 @@ validate_plot <- function(data, data_type) {
   stopifnot(
     inherits(data, "opusreader2")
   )
-  validate_plot_data_types(data, data_type)
+  validate_plot_data_type(data, data_type)
 }
 
-validate_plot_data_types <- function(data, data_type) {
+validate_plot_data_type <- function(data, data_type) {
   if (inherits(data, "list_opusreader2")) {
     all_data_types <- all(
       unlist(lapply(data, function(x) data_type %in% names(x)))
