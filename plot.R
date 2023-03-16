@@ -15,7 +15,7 @@ plot <- function(data, data_type, plot_type = c("base", "ggplot2")) {
 
 
 plot.opusreader2 <- function(data, data_type, plot_type) {
-  validate_plot(data, data_type)
+  validate_plot(data, data_type, plot_type)
 
   plot_type <- match.arg(plot_type)
 
@@ -29,7 +29,7 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
   )
 }
 
-validate_plot <- function(data, data_type) {
+validate_plot <- function(data, data_type, plot_type) {
   stopifnot(
     inherits(data, "opusreader2")
   )
