@@ -27,7 +27,11 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
   data_type <- match.arg(data_type)
   plot_type <- match.arg(plot_type)
 
-  all_data_types <- validate_plot(data, data_type, plot_type)
+  validate_plot(data, data_type, plot_type)
+
+  if (inherits(data, "list_opusreader2")) {
+
+  }
 
   base::plot(
     x = x,
