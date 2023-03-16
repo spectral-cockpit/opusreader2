@@ -35,6 +35,8 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
       rbind,
       Map(function(x) x[[y]], x = data, y = data_type)
     )
+  } else {
+    spectra <- data[[data_type]]
   }
 
   base::matplot(
