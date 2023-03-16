@@ -33,7 +33,7 @@ validate_plot <- function(data, data_type) {
   stopifnot(
     inherits(data, "opusreader2")
   )
-  validate_plot_data_types(data, data_Type)
+  validate_plot_data_types(data, data_type)
 }
 
 validate_plot_data_types <- function(data, data_type) {
