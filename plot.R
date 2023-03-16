@@ -39,6 +39,18 @@ plot.opusreader2 <- function(data, data_type, plot_type) {
     spectra <- data[[data_type]]
   }
 
+  ylab <- switch(
+    EXPR = data_type,
+    "ref_no_atm_comp" = "Reflectance (no atm. comp.)",
+    "refl" = "Reflectance",
+    "ab_no_atm_comp" = "Absorbance (no atm. comp.)",
+    "ab" = "Absorbance",
+    "sc_sample" = "Single channel sample",
+    "ig_sample" = "Interferogram sample",
+    "sc_ref" = "Single channel reference",
+    "ig_ref" = "Interferogram sample"
+  )
+
   base::matplot(
     x = x,
     y = t(spectra),
