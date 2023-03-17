@@ -179,11 +179,42 @@ read_opus <- function(dsn,
         opus_lapply(x, data_only)
       }
     )
+
+    dataset_list <- lapply(dataset_list, function(x) do.call(c, x))
   }
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
   return(dataset_list)
+}
+
+# taken from https://github.dev/bergsmat/yamlet
+unnest <- function(x, ...) UseMethod("unnest")
+
+unnest.list_opusreader2 <- function(x,
+                                    ...) {
+  # make names explicit
+  if (is.null(names(x))) names(x) <- rep("", length(x))
+  # unnest members
+  # if I reached here, I am a list and all my members are unnested.
+  # process each element:
+  for (i in seq_along(x)) {
+    this <- x[[i]] # element i
+    nm <- names(x)[[i]] # name of element i
+    len <- length(this) # length one?
+    is_list <- is.list(this) # list?
+    nms <- setdiff(names(this), "") # good names
+    if (
+      is_list && # each element that is a list
+        nm == "" && # and does not have a name
+        len == 1 && # but has exactly one element
+        length(nms) # that is named
+    ) {
+      #  # should be that element and have that name
+      x <- append(x, this, after = i)[-i]
+    }
+    return(x)
+  }
 }
 
 
