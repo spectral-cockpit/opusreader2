@@ -180,7 +180,7 @@ read_opus <- function(dsn,
       }
     )
 
-    dataset_list <- do.call(c, unlist(dataset_list, recursive = FALSE))
+    dataset_list <- unlist(dataset_list, recursive = FALSE)
   }
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
