@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.4.1 (2023-03-19)
+
+  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://github.com/spectral-cockpit/opusreader2/pull/80).
+
+
 # opusreader2 0.4.0 (2023-03-14)
 
   - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://github.com/spectral-cockpit/opusreader2/pull/75).
