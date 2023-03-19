@@ -179,13 +179,14 @@ read_opus <- function(dsn,
         opus_lapply(x, data_only)
       }
     )
+
+    dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
   }
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
   return(dataset_list)
 }
-
 
 #' Read a single opus file
 #'
