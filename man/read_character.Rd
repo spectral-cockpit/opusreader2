@@ -12,6 +12,10 @@ read_character(con, cursor, n = 1L, encoding = "latin1")
 \item{cursor}{offset}
 
 \item{n}{number of elements}
+
+\item{encoding}{encoding to assign character strings that are read. Default
+is \code{"latin1"}., which will use Windows Latin 1 (ANSI) encoding. This is
+how Bruker software OPUS is assumed to commonly store strings.}
 }
 \description{
 read character from binary
