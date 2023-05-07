@@ -185,6 +185,12 @@ read_opus <- function(dsn,
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
+  filenames_timestamps <- vapply(
+    dataset_list, function(x) attr(x, "filename_timestamp"),
+    FUN.VALUE = character(1))
+
+  names(dataset_list) <- filenames_timestamps
+
   return(dataset_list)
 }
 
@@ -200,6 +206,13 @@ read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
 
   parsed_data <- parse_opus(raw, data_only)
+
+  timestamp <- get_timestamp(parsed_data)
+  timestamp_string <- paste(timestamp$datetime, timestamp$timezone)
+  file_name <- basename(dsn)
+  filename_timestamp <- paste0(file_name, "_", timestamp_string)
+
+  attr(parsed_data, "filename_timestamp") <- filename_timestamp
 
   return(parsed_data)
 }
