@@ -189,6 +189,17 @@ read_opus <- function(dsn,
     dataset_list, function(x) attr(x, "filename_timestamp"),
     FUN.VALUE = character(1))
 
+  warning_duplicated_filename_timestamp <- getOption(
+    "warning_duplicated_filename_timestamp", default = TRUE)
+
+  if (warning_duplicated_filename_timestamp) {
+    files_duplicated <- unique(
+      filenames_timestamps[duplicated(filenames_timestamps)])
+    warning_msg <- paste0("Reading duplicated files:\n",
+      paste0(files_duplicated, collapse = "\n"))
+    warning(warning_msg, call. = FALSE)
+  }
+
   names(dataset_list) <- filenames_timestamps
 
   return(dataset_list)
