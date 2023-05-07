@@ -34,7 +34,7 @@ read_signed_int <- function(con, cursor, n = 1L) {
 #' read character from binary
 #'
 #' @inheritParams read_unsigned_int
-read_character <- function(con, cursor, n = 1L) {
+read_character <- function(con, cursor, n = 1L, encoding = "latin1") {
   seek_opus(con, cursor)
   out <- readBin(
     con,
@@ -43,6 +43,7 @@ read_character <- function(con, cursor, n = 1L) {
     size = 1,
     endian = "little"
   )
+  Encoding(out) <- encoding
   return(out)
 }
 
