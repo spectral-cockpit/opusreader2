@@ -20,9 +20,9 @@ The [Bruker corporation](https://www.bruker.com/en.html) manufactures reliable i
 
 With this package we share a state-of-the-art binary reader with the R community. The [spectral-cockpit team](https://github.com/spectral-cockpit) further offers consulting service along your entire spectroscopy workflow. You can help also help the spectroscopy communities to support/map more and more instruments, measurement modes and block types. We can recommend the package as a solid foundation for your spectroscopy workflow. Also you can soon rely on our ready-made solutions building upon it. It is modular and has no hard dependencies apart from base R.
 
-We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
-not planning any major user-facing design changes. We plan more features in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
-Currently, we are focusing on
+We have reached a stable phase now. The core API of `opusreader2::read_opus()` has been solid and we are not planning any major user-facing design changes. The will be extended functionalities in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
+
+Our current development efforts are
 
 1. improving the ease of use (documentation, vignettes)
 2. expanding support for Bruker data blocks even further 
