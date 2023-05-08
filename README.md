@@ -22,7 +22,7 @@ We from [spectral-cockpit team](https://github.com/spectral-cockpit) are happy t
 
 We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
 not planning any major user-facing design changes. We plan more features in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
-Currently, we focus on
+Currently, we are focusing on
 
 1. improving the ease of use (documentation, vignettes)
 2. expanding support for Bruker data blocks even further 
