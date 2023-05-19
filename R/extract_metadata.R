@@ -9,8 +9,10 @@ get_timestamp <- function(ds_list) {
   etc_tz <- paste0("Etc/", tz) # see ?strptime for details
 
   # note that negative offsets denote UTC+x time stamps
-  time <- as.POSIXct(strptime(time_hour, format = "%Y/%m/%d %H:%M:%S",
-                              tz = etc_tz))
+  time <- as.POSIXct(strptime(time_hour,
+    format = "%Y/%m/%d %H:%M:%S",
+    tz = etc_tz
+  ))
 
   list_datetime_tz <- list(
     datetime = as.character(time),
@@ -22,7 +24,8 @@ get_timestamp <- function(ds_list) {
 
 get_sample_name <- function(ds_list) {
   ds_parameter <- ds_list[vapply(ds_list, class,
-    FUN.VALUE = character(1)) == "parameter"]
+    FUN.VALUE = character(1)
+  ) == "parameter"]
 
   sample <- ds_parameter$sample
   sample_name_long <- sample$parameters$SNM$parameter_value
