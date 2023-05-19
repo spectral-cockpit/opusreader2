@@ -18,18 +18,18 @@ the company Bruker Optics GmbH & Co. in R.
 
 The [Bruker corporation](https://www.bruker.com/en.html) manufactures reliable instruments but does not hand out any official documentation of the OPUS file format. Hence it is proprietary. Luckily we and our colleagues from the open source spectroscopy community have made our official ways around it. With some heavy lifting we have unscrambled the file logic (see credits).
 
-We from [spectral-cockpit team](https://github.com/spectral-cockpit) are happy to offer consulting service and share a state-of-the-art binary reader with the R community. You can help us further to support/map more and more instruments, measurement modes and block types. We can recommend the package as a solid foundation for your spectroscopy workflow. Also you can soon rely on our ready-made solutions building upon it, thanks to:
+With this package we share a state-of-the-art binary reader with the R community. We can recommend the package as a solid foundation for your spectroscopy workflow. It is modular and has no hard dependencies apart from base R. By providing feedback, opening and solving issues, or making pull requests, you can actively contribute to the spectroscopy communities. This is mainly to support more and more instruments, measurement modes, and block types. Also you can soon rely on our ready-made diagnostic solutions building upon it. If you wish, the [spectral-cockpit team](https://github.com/spectral-cockpit) further offers consulting service along your entire spectroscopy workflow. 
 
-We are currently at mid-development phase. The core API of `opusreader2::read_opus()` has been solidified and we are
-not planning any major user-facing design changes. We plan more features in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments. 
-Currently, we focus on
+We have reached stable package development now. The core API of `opusreader2::read_opus()` is solid and we are not planning any major user-facing design changes. There will be extended capabilities after basic reading in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments.
+
+Our current development efforts are
 
 1. improving the ease of use (documentation, vignettes)
 2. expanding support for Bruker data blocks even further 
 3. providing useful downstream features for metadata and spectra management (additional helper and wrapper functions). 
 
 We now track changes under semantic versioning using [{fledge}](https://github.com/cynkra/fledge). Please consult the [NEWS](NEWS.md) to follow progress and history of features along semantic versioning.
-Our goal is to release a stable version 1.0.0 on CRAN that is production ready, planned until End of January 2023. 
+Our goal is to release a stable version on CRAN that is production ready very soon. Expected time is around June 2023.
 
 ## 📦 Installation
 
