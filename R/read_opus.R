@@ -185,28 +185,12 @@ read_opus <- function(dsn,
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
-  filenames_timestamps <- vapply(
-    dataset_list, function(x) attr(x, "filename_timestamp"),
-    FUN.VALUE = character(1)
+  dsn_filenames <- vapply(
+    dataset_list, function(x) attr(x, "dsn_file_name"),
+    FUN.VALUE = character(1L)
   )
 
-  warning_duplicated_filename_timestamp <- getOption(
-    "warning_duplicated_filename_timestamp",
-    default = TRUE
-  )
-
-  if (warning_duplicated_filename_timestamp) {
-    files_duplicated <- unique(
-      filenames_timestamps[duplicated(filenames_timestamps)]
-    )
-    warning_msg <- paste0(
-      "Reading duplicated files:\n",
-      paste0(files_duplicated, collapse = "\n")
-    )
-    warning(warning_msg, call. = FALSE)
-  }
-
-  names(dataset_list) <- filenames_timestamps
+  names(dataset_list) <- dsn_filenames
 
   return(dataset_list)
 }
@@ -224,12 +208,9 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 
   parsed_data <- parse_opus(raw, data_only)
 
-  timestamp <- get_timestamp(parsed_data)
-  timestamp_string <- paste(timestamp$datetime, timestamp$timezone)
-  file_name <- basename(dsn)
-  filename_timestamp <- paste0(file_name, "_", timestamp_string)
+  dsn_file_name <- basename(dsn)
 
-  attr(parsed_data, "filename_timestamp") <- filename_timestamp
+  attr(parsed_data, "dsn_file_name") <- dsn_file_name
 
   return(parsed_data)
 }
