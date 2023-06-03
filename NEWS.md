@@ -1,5 +1,17 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.5.0 (2023-06-03)
+
+- Name first level of list (class `"list_opusreader2"`) with base file name of given data source name (DSN) (#83)
+
+- Fix `"list_opusreader2"` indenting when reading files in parallel (#80)
+
+- Add support for progress bars in `read_opus()` (#75)
+
+- Introduce type-stable classes for `read_opus()` and `read_opus_single()` output  (#72):
+  - classes "list_opusreader2" and "opusreader2"
+
+
 # opusreader2 0.4.1 (2023-03-19)
 
   - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://github.com/spectral-cockpit/opusreader2/pull/80).
