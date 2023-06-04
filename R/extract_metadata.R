@@ -7,8 +7,8 @@ get_basic_metadata <- function(ds_list) {
     opus_sample_name = get_meta_sample_name(ds_list),
     timestamp_string = paste(timestamp$datetime, timestamp$timezone),
     local_datetime = timestamp$datetime,
-    local_timezone = timestamp$timezone#,
-    # utc_datetime_posixct = get_meta_utc_datetime(timestamp)
+    local_timezone = timestamp$timezone,
+    utc_datetime_posixct = get_meta_utc_datetime(timestamp)
   )
 
   return(basic_metadata)
@@ -40,9 +40,13 @@ get_meta_timestamp <- function(ds_list) {
 
 get_meta_utc_datetime <- function(timestamp) {
   tz <- timestamp$timezone
-  # utc_diff <-
-  # utc_datetime <-
-  # return(utc_datetime)
+  utc_diff <- as.integer(gsub("\\D+(\\+\\d)", "\\1", tz))
+  utc_datetime <-  as.POSIXct(strptime(timestamp$datetime,
+    format = "%Y-%m-%d %H:%M:%S",
+    tz = "UTC"
+  )) - (utc_diff * 3600)
+
+  return(utc_datetime)
 }
 
 
