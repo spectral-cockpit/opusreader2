@@ -4,7 +4,7 @@ get_basic_metadata <- function(ds_list) {
   basic_metadata <- data.frame(
     # opus_filename,
     # opus_path,
-    opus_sample_name = get_meta_sample_name(ds_list)
+    opus_sample_name = get_meta_sample_name(ds_list),
     timestamp_string = paste(timestamp$datetime, timestamp$timezone),
     local_datetime = timestamp$datetime,
     local_timezone = timestamp$timezone#,
