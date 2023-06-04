@@ -217,9 +217,9 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 
   data <- c(list(basic_metadata = basic_metadata), parsed_data)
 
-  attr(parsed_data, "dsn_filename") <- dsn_filename
+  attr(data, "dsn_filename") <- dsn_filename
 
-  return(parsed_data)
+  return(data)
 }
 
 
