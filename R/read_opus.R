@@ -186,7 +186,7 @@ read_opus <- function(dsn,
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
   dsn_filenames <- vapply(
-    dataset_list, function(x) attr(x, "dsn_file_name"),
+    dataset_list, function(x) attr(x, "dsn_filename"),
     FUN.VALUE = character(1L)
   )
 
@@ -208,11 +208,18 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 
   parsed_data <- parse_opus(raw, data_only)
 
-  dsn_file_name <- basename(dsn)
+  dsn_filename <- basename(dsn)
 
-  attr(parsed_data, "dsn_file_name") <- dsn_file_name
+  basic_metadata <- cbind(
+    data.frame(dsn_filename = dsn_filename),
+    get_basic_metadata(parsed_data)
+  )
 
-  return(parsed_data)
+  data <- c(list(basic_metadata = basic_metadata), parsed_data)
+
+  attr(data, "dsn_filename") <- dsn_filename
+
+  return(data)
 }
 
 
