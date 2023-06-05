@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.5.0.9000 (2023-06-05)
+
+  - implement a `basic_metadata` list element for "opusreader2" class containing key metadata  (#85)
+
+
 # opusreader2 0.5.0 (2023-06-03)
 
 - Name first level of list (class `"list_opusreader2"`) with base file name of given data source name (DSN) (#83)
