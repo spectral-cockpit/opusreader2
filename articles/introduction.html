@@ -101,25 +101,37 @@ Baumann</h4>
 
     
     
-<p>Bruker instruments produce a proprietary file format to store all
-measurement parameters, configurations, environmental conditions, and
-spectral data types saved. The Bruker OPUS software does the
-measurements and produces thhe OPUS binary files.</p>
+<p>Bruker instruments produce a proprietary file format when measuring
+spectra. This way the Bruker OPUS software stores all measurement
+parameters, configurations, environmental conditions, for different
+spectral data types as OPUS binary files.</p>
 <p>Our package can read thosee binary files for most of the
 Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics
 GmBH.</p>
 <div class="section level2">
-<h2 id="reading-many-opus-files">Reading many OPUS files<a class="anchor" aria-label="anchor" href="#reading-many-opus-files"></a>
+<h2 id="reading-opus-files">Reading OPUS files<a class="anchor" aria-label="anchor" href="#reading-opus-files"></a>
 </h2>
+<p>One can read both single OPUS files or a batch of many OPUS files.
+The main way to read files is</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/spectral-cockpit/opusreader2" class="external-link">"opusreader2"</a></span><span class="op">)</span></span>
+<span><span class="co"># example file</span></span>
 <span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/opus_file.html">opus_file</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></code></pre></div>
-<p><code>read_opus</code> is a list-parser using S3 classes. The data is
-arranged as shown in the Bruker OPUS viewer:</p>
+<span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div>
+<p>Thereby, <code>dsn</code> is the data source name, that currently
+either be a character vector of the folder path to read files from, or
+characters of OPUS file paths.</p>
+<p><code><a href="../reference/read_opus.html">read_opus()</a></code> parses into an R list (S3) of class
+“list_opusreader2”. The data is arranged as shown in the Bruker OPUS
+viewer:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "test_spectra.0"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span>
+<span><span class="co"># show data and metadata types</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span></code></pre></div>
+<p>For single OPUS files, there is also a lower level
+implementation.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus_single.html">read_opus_single</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
