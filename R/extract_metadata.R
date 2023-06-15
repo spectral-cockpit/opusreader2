@@ -16,7 +16,7 @@ get_basic_metadata <- function(ds_list) {
 
 get_meta_timestamp <- function(ds_list) {
   text <- ds_list$history$text
-  history <- paste0(text, collapse = "") 
+  history <- paste0(text, collapse = "")
   save_file_time <- gsub(".*Save File\t\t(\\d.*)\t\t\t.*", "\\1", history)
 
   time_hour_tz <- strsplit(x = save_file_time, split = " ")[[1L]]
@@ -41,7 +41,7 @@ get_meta_timestamp <- function(ds_list) {
 get_meta_utc_datetime <- function(timestamp) {
   tz <- timestamp$timezone
   utc_diff <- as.integer(gsub("\\D+(\\+\\d)", "\\1", tz))
-  utc_datetime <-  as.POSIXct(strptime(timestamp$datetime,
+  utc_datetime <- as.POSIXct(strptime(timestamp$datetime,
     format = "%Y-%m-%d %H:%M:%S",
     tz = "UTC"
   )) - (utc_diff * 3600)
