@@ -24,11 +24,6 @@ plot <- function(data,
 
 
 plot.opusreader2 <- function(data, data_type, plot_type) {
-  stopifnot(
-    "`data` must be either class 'opusreader2_list' or 'opusreader2'" = 
-      class(data) %in% c("list_opusreader2", "opusreader2")
-  )
-
   data_type <- match.arg(data_type)
   plot_type <- match.arg(plot_type)
 
