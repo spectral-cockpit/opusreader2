@@ -4,7 +4,7 @@
 \alias{read_character}
 \title{read character from binary}
 \usage{
-read_character(con, cursor, n = 1L)
+read_character(con, cursor, n = 1L, encoding = "latin1")
 }
 \arguments{
 \item{con}{connection to raw vector}
@@ -12,6 +12,10 @@ read_character(con, cursor, n = 1L)
 \item{cursor}{offset}
 
 \item{n}{number of elements}
+
+\item{encoding}{encoding to assign character strings that are read. Default
+is \code{"latin1"}., which will use Windows Latin 1 (ANSI) encoding. This is
+how Bruker software OPUS is assumed to commonly store strings.}
 }
 \description{
 read character from binary

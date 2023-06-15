@@ -179,13 +179,21 @@ read_opus <- function(dsn,
         opus_lapply(x, data_only)
       }
     )
+
+    dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
   }
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
 
+  dsn_filenames <- vapply(
+    dataset_list, function(x) attr(x, "dsn_filename"),
+    FUN.VALUE = character(1L)
+  )
+
+  names(dataset_list) <- dsn_filenames
+
   return(dataset_list)
 }
-
 
 #' Read a single opus file
 #'
@@ -200,7 +208,18 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 
   parsed_data <- parse_opus(raw, data_only)
 
-  return(parsed_data)
+  dsn_filename <- basename(dsn)
+
+  basic_metadata <- cbind(
+    data.frame(dsn_filename = dsn_filename),
+    get_basic_metadata(parsed_data)
+  )
+
+  data <- c(list(basic_metadata = basic_metadata), parsed_data)
+
+  attr(data, "dsn_filename") <- dsn_filename
+
+  return(data)
 }
 
 

@@ -34,7 +34,10 @@ read_signed_int <- function(con, cursor, n = 1L) {
 #' read character from binary
 #'
 #' @inheritParams read_unsigned_int
-read_character <- function(con, cursor, n = 1L) {
+#' @param encoding encoding to assign character strings that are read. Default
+#' is `"latin1"`., which will use Windows Latin 1 (ANSI) encoding. This is
+#' how Bruker software OPUS is assumed to commonly store strings.
+read_character <- function(con, cursor, n = 1L, encoding = "latin1") {
   seek_opus(con, cursor)
   out <- readBin(
     con,
@@ -43,6 +46,7 @@ read_character <- function(con, cursor, n = 1L) {
     size = 1,
     endian = "little"
   )
+  Encoding(out) <- encoding
   return(out)
 }
 

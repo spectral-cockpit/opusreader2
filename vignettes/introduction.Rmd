@@ -18,25 +18,36 @@ knitr::opts_chunk$set(
 )
 ```
 
-Bruker instruments produce a proprietary file format to store all measurement
-parameters, configurations, environmental conditions, and spectral data types
-saved. The Bruker OPUS software does the measurements and produces thhe 
-OPUS binary files.
+Bruker instruments produce a proprietary file format when measuring spectra, called OPUS. This way the Bruker OPUS software stores all measurement
+parameters, configurations, environmental conditions, for different spectral data types within OPUS binary files.
 
-Our package can read thosee binary files for most of the
+Our package can read those binary files for most of the
 Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
 
-# Reading many OPUS files
+# Reading OPUS files
 
-```{r}
+One can read both single OPUS files or a batch of many OPUS files. The main way to read files is
+
+```r
 library("opusreader2")
+# example file
 file <- opus_file()
-data_list <- read_opus(file)
+data_list <- read_opus(dsn = file)
 ```
 
-`read_opus` is a list-parser using S3 classes. The data is arranged
+Thereby, `dsn` is the data source name, that currently either be a character vector of the folder path to read files from, or characters of OPUS file paths.
+
+
+`read_opus()` parses into an R list (S3) of class "list_opusreader2". The data is arranged
 as shown in the Bruker OPUS viewer:
 
-```{r}
+```r
+class(data_list)
+# show data and metadata types
 names(data_list)
+```
+For single OPUS files, there is also a lower level implementation.
+
+```r
+data_single <- read_opus_single(dsn = file)
 ```
