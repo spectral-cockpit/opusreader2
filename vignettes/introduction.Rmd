@@ -22,7 +22,7 @@ Bruker instruments produce a proprietary file format when measuring spectra, cal
 parameters, configurations, environmental conditions, for different spectral data types within OPUS binary files.
 
 Our package can read those binary files for most of the
-Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmbH.
+Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmbH. We further aim to extend support for devices.
 
 # Reading OPUS files
 
