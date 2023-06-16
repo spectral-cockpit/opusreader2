@@ -35,7 +35,7 @@ file <- opus_file()
 data_list <- read_opus(dsn = file)
 ```
 
-Thereby, `dsn` is the data source name, that currently either be a character vector of the folder path to read files from, or characters of OPUS file paths.
+The argument `dsn` stands for 'data source name', that currently either be a character vector of the folder path to read files from, or characters of OPUS file paths.
 
 
 `read_opus()` parses into an R list (S3) of class "list_opusreader2". The data is arranged
