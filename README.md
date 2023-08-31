@@ -12,7 +12,7 @@
 ## 🪄 Scope
 
 *"grab 'em all"* --- Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of
-the company Bruker Optics GmbH & Co. in R. This package is being developed in our free time we have at [spectral-cockpit.space](https://spectral-cockpit.space)
+the company Bruker Optics GmbH & Co. in R. This package is being developed in our free time we have at [spectral-cockpit.space](https://spectral-cockpit.space).
 
 [!["Buy spectral-cockpit.space some beers"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
 
