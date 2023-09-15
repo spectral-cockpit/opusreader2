@@ -16,6 +16,12 @@ the company Bruker Optics GmbH & Co. in R. This package is being developed in ou
 
 [!["Buy spectral-cockpit.space some beers"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
 
+## Organizations and projects using {opusreader2}
+
+- CSIRO
+- Open Soil Spectral Library
+- ETH Zürich: Sustainable Agroecosystems group and Soil Resources group
+
 ## 🪩 Highlights and disclaimer
 
 The [Bruker corporation](https://www.bruker.com/en.html) manufactures reliable instruments but there is no official documentation of the OPUS file format. Hence the format is proprietary. Luckily, we and our colleagues from the open source spectroscopy community have cracked it. With some heavy lifting we have unscrambled the file logic (see credits).
