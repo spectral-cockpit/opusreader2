@@ -188,6 +188,14 @@ pre-commit run --all-files
 
 </details>
 
+## Organizations and projects using {opusreader2}
+
+As far as we know, the following organizations and projects use our package. Please make a pull request if you want to be listed here.
+
+- CSIRO
+- Open Soil Spectral Library
+- ETH Zürich: Sustainable Agroecosystems group and Soil Resources group
+
 ## Background
 
 This package is a major rework of {opusreader} made by Pierre Roudier and
