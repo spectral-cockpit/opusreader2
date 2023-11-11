@@ -7,6 +7,8 @@
 read_signed_int(raw, cursor, n = 1L)
 }
 \arguments{
+\item{raw}{raw vector}
+
 \item{cursor}{offset}
 
 \item{n}{number of elements}

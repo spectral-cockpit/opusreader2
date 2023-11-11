@@ -7,6 +7,8 @@
 read_character(raw, cursor, n = 1L, n_char, encoding = "latin1")
 }
 \arguments{
+\item{raw}{raw vector}
+
 \item{cursor}{offset}
 
 \item{n}{number of elements}

@@ -1,6 +1,6 @@
 #' read unsigned integer from binary
 #'
-#' @param con connection to raw vector
+#' @param raw raw vector
 #' @param cursor offset
 #' @param n number of elements
 read_unsigned_int <- function(raw, cursor, n = 1L) {
