@@ -211,7 +211,8 @@ sort_list_by <- function(dataset_list) {
     "lab_and_process_param_raw",
     "lab_and_process_param_processed",
     "info_block",
-    "history"
+    "history",
+    "unknown"
   )
 
   to_sort_by <- intersect(sort_by, names(dataset_list))
