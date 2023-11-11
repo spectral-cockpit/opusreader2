@@ -120,11 +120,9 @@
 #' @family core
 #' @export
 parse_opus <- function(raw, data_only) {
-  con <- rawConnection(raw)
-
   raw_size <- length(raw)
 
-  header_data <- parse_header(raw_size, con)
+  header_data <- parse_header(raw)
 
   dataset_list <- lapply(header_data, create_dataset)
 
@@ -152,7 +150,7 @@ parse_opus <- function(raw, data_only) {
     dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
   }
 
-  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, con))
+  dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, raw))
 
   data_types <- get_data_types(dataset_list) # nolint
 
@@ -166,8 +164,6 @@ parse_opus <- function(raw, data_only) {
   }
 
   dataset_list <- sort_list_by(dataset_list)
-
-  on.exit(close(con))
 
   class(dataset_list) <- c("opusreader2", class(dataset_list))
 
