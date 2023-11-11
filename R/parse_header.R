@@ -1,8 +1,6 @@
 #' parse the header of the opus file
 #'
-#' @param raw_size raw vector of the opus binary file
-#'
-#' @param con connection to the raw vector
+#' @param raw raw vector of the opus binary file
 #' @family parsing
 #' @keywords internal
 parse_header <- function(raw) {
@@ -13,7 +11,7 @@ parse_header <- function(raw) {
   # following github.com/qedsoftware/brukeropusreader
   start_cursor <- 25L
 
-  all_cursors <- seq(start_cursor,header_length, 12L)
+  all_cursors <- seq(start_cursor, header_length, 12L)
 
   out <- lapply(all_cursors, function(x) test_header_parse(raw, x))
 
@@ -34,8 +32,7 @@ dec_to_ascii <- function(n) {
 
 
 
-test_header_parse <- function(raw, cursor){
-
+test_header_parse <- function(raw, cursor) {
   offset <- read_signed_int(raw, cursor + 8L)
 
   if (offset <= 0L) {
