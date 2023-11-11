@@ -62,5 +62,3 @@ test_header_parse <- function(raw, cursor){
 
   return(repeat_list)
 }
-
-
