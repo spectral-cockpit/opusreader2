@@ -5,6 +5,12 @@
 calc_parameter_chunk_size <- function(ds) UseMethod("calc_parameter_chunk_size")
 
 #' @export
+calc_parameter_chunk_size.default <- function(ds) {
+  return(ds)
+}
+
+
+#' @export
 calc_parameter_chunk_size.parameter <- function(ds) {
   ds$chunk_size <- calc_chunk_size(ds)
   return(ds)
