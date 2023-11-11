@@ -127,11 +127,9 @@ create_dataset <- function(header_data) {
   nm_matches <- names(key_value_match)
 
   if (length(key_value_match) != 0L) {
-
     key_value_match_vec <- key_value_match[[1]]
     read_class <- unname(key_value_match_vec["read_class"])
     block_type_name <- unname(key_value_match_vec["block_type_name"])
-
   } else if (length(key_value_match) == 0L) {
     # inform about details and what to do for improving {opusreader2}
     read_class <- NULL
