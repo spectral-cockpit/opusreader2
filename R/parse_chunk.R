@@ -15,7 +15,7 @@ parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 #' @inheritParams parse_chunk
 #'
 #' @keywords internal
-parse_chunk.default <- function(ds, con){
+parse_chunk.default <- function(ds, con) {
   return(ds)
 }
 
@@ -38,7 +38,6 @@ parse_chunk.text <- function(ds, con) {
 #'
 #' @keywords internal
 parse_chunk.parameter <- function(ds, con) {
-
   if (ds$text_type %in% c(112, 104, 144)) {
     cursor <- ds$offset + 12
   } else {
