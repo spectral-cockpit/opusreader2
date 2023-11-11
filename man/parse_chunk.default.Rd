@@ -4,12 +4,12 @@
 \alias{parse_chunk.default}
 \title{read chunk method for default}
 \usage{
-\method{parse_chunk}{default}(ds, con)
+\method{parse_chunk}{default}(ds, raw)
 }
 \arguments{
 \item{ds}{chunk dataset}
 
-\item{con}{connection to raw vector}
+\item{raw}{raw vector}
 }
 \description{
 read chunk method for default
