@@ -17,7 +17,11 @@ get_basic_metadata <- function(ds_list) {
 get_meta_timestamp <- function(ds_list) {
   text <- ds_list$history$text
   history <- paste0(text, collapse = "")
-  save_file_time <- gsub(".*Save File\t\t(\\d.*)\t\t\t.*", "\\1", history)
+  save_file_time <- gsub(
+    ".*\t\t(\\d.*)\t\t\t.*",
+    "\\1",
+    history
+  )
 
   time_hour_tz <- strsplit(x = save_file_time, split = " ")[[1L]]
   time_hour <- paste(time_hour_tz[1L], time_hour_tz[2L])
@@ -31,7 +35,7 @@ get_meta_timestamp <- function(ds_list) {
   ))
 
   list_datetime_tz <- list(
-    datetime = as.character(time),
+    datetime = as.character(sort(time)[1]),
     timezone = tz
   )
 

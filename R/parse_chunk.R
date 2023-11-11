@@ -8,6 +8,18 @@
 #' @family parsing
 parse_chunk <- function(ds, con) UseMethod("parse_chunk")
 
+
+
+#' read chunk method for default
+#'
+#' @inheritParams parse_chunk
+#'
+#' @keywords internal
+parse_chunk.default <- function(ds, con) {
+  return(ds)
+}
+
+
 #' read chunk method for text
 #'
 #' @inheritParams parse_chunk
@@ -26,7 +38,7 @@ parse_chunk.text <- function(ds, con) {
 #'
 #' @keywords internal
 parse_chunk.parameter <- function(ds, con) {
-  if (ds$text_type %in% c(112, 104)) {
+  if (ds$text_type %in% c(112, 104, 144)) {
     cursor <- ds$offset + 12
   } else {
     cursor <- ds$offset
