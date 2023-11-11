@@ -167,5 +167,7 @@ parse_opus <- function(raw, data_only) {
 
   class(dataset_list) <- c("opusreader2", class(dataset_list))
 
+  raw <- NULL
+
   return(dataset_list)
 }
