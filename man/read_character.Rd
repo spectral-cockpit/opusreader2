@@ -4,11 +4,9 @@
 \alias{read_character}
 \title{read character from binary}
 \usage{
-read_character(con, cursor, n = 1L, encoding = "latin1")
+read_character(raw, cursor, n = 1L, n_char, encoding = "latin1")
 }
 \arguments{
-\item{con}{connection to raw vector}
-
 \item{cursor}{offset}
 
 \item{n}{number of elements}
