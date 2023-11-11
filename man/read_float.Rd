@@ -4,10 +4,10 @@
 \alias{read_float}
 \title{read float from binary (single-precision, 32 bits)}
 \usage{
-read_float(con, cursor, n = 1L)
+read_float(raw, cursor, n = 1L)
 }
 \arguments{
-\item{con}{connection to raw vector}
+\item{raw}{raw vector}
 
 \item{cursor}{offset}
 

@@ -4,10 +4,10 @@
 \alias{read_signed_int}
 \title{read signed integer from binary}
 \usage{
-read_signed_int(con, cursor, n = 1L)
+read_signed_int(raw, cursor, n = 1L)
 }
 \arguments{
-\item{con}{connection to raw vector}
+\item{raw}{raw vector}
 
 \item{cursor}{offset}
 

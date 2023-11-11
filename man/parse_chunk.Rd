@@ -4,12 +4,12 @@
 \alias{parse_chunk}
 \title{read chunk method}
 \usage{
-parse_chunk(ds, con)
+parse_chunk(ds, raw)
 }
 \arguments{
 \item{ds}{chunk dataset}
 
-\item{con}{connection to raw vector}
+\item{raw}{raw vector}
 }
 \description{
 read chunk method

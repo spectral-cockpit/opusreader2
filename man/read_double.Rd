@@ -4,10 +4,10 @@
 \alias{read_double}
 \title{read double from binary (double-precision, 64 bits)}
 \usage{
-read_double(con, cursor, n = 1L)
+read_double(raw, cursor, n = 1L)
 }
 \arguments{
-\item{con}{connection to raw vector}
+\item{raw}{raw vector}
 
 \item{cursor}{offset}
 
