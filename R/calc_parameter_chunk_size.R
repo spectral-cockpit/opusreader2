@@ -30,6 +30,7 @@ calc_parameter_chunk_size.data <- function(ds) {
 #' calculate the full chunk size
 #' @param ds dataset
 calc_chunk_size <- function(ds) {
+
   chunk_size <- ds$next_offset - ds$offset
   return(chunk_size)
 }
