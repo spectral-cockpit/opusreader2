@@ -79,7 +79,7 @@ parse_chunk.parameter <- function(ds,raw) {
     } else if (type_index == 2) {
       parameter_value <- read_double(raw, cursor_value, n = 1L)
     } else if (type_index %in% c(3, 4, 5)) {
-      parameter_value <- read_character(raw, cursor_value, n = 1L, n_char = parameter_size)
+      parameter_value <- read_character(raw, cursor_value, n = 1L, n_char = 2*parameter_size)
     }
 
     repeat_list <- list(
