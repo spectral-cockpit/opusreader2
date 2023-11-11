@@ -26,11 +26,11 @@ create_dataset <- function(header_data) {
     "b0-c0-t0-a(0|64)" = c(read_class = "text", block_type_name = "text_information"),
     "b0-c0-t8-a0" = c(read_class = "parameter", block_type_name = "info_block"),
     "b0-c0-t104-a64" = c(read_class = "text", block_type_name = "history"),
+    "b0-c0-t144-a1" = c(read_class = "parameter", block_type_name = "report_unknown"),
     "b0-c0-t152-a(0|64)" = c(read_class = "text", block_type_name = "curve_fit"),
     "b0-c0-t168-a(0|64)" = c(read_class = "text", block_type_name = "signature"),
     "b0-c0-t240-a(0|64)" = c(read_class = "text", block_type_name = "integration_method"),
     # guess general text
-    "b0-c0-t\\d+-a(0|64)" = c(read_class = "text", block_type_name = "text_information"),
 
     # block code 7 -----------------------------------------------------------------------------
     # spectrum types of sample
@@ -125,28 +125,22 @@ create_dataset <- function(header_data) {
   is_match <- unlist(lapply(key_names, function(pat) grepl(pat, composite_key)))
   key_value_match <- key_value_map[is_match]
   nm_matches <- names(key_value_match)
-  # because of "b0-c0-t\\d+-a(0|64)" regex
-  is_match_guess <- grepl("\\\\d\\+", nm_matches)
 
-  if (length(key_value_match) == 1L) {
-    if (any(is_match_guess)) {
-      message(paste(
-        "Guessing header entry for block type 0 to be text information:\n",
-        "* Composite key :=", composite_key
-      ))
-    }
-  } else if (length(key_value_match) > 1L) {
-    # in block code 0, the less specific guess ("b0-c0-t\\d+-a(0|64)")
-    # has to be removed
-    key_value_match[is_match_guess] <- NULL
+  if (length(key_value_match) != 0L) {
+
+    key_value_match_vec <- key_value_match[[1]]
+    read_class <- unname(key_value_match_vec["read_class"])
+    block_type_name <- unname(key_value_match_vec["block_type_name"])
+
   } else if (length(key_value_match) == 0L) {
     # inform about details and what to do for improving {opusreader2}
-    stop_proactively(composite_key)
+    read_class <- NULL
+
+    block_type_name <- "unknown"
+
+    warn_proactively(composite_key)
   }
 
-  key_value_match_vec <- key_value_match[[1]]
-  read_class <- unname(key_value_match_vec["read_class"])
-  block_type_name <- unname(key_value_match_vec["block_type_name"])
 
   # create a dataset
   ds <- structure(
@@ -157,8 +151,8 @@ create_dataset <- function(header_data) {
   return(ds)
 }
 
-stop_proactively <- function(composite_key) {
-  stop(
+warn_proactively <- function(composite_key) {
+  warning(
     paste(
       "Unknown header entry.\n The following 'composite key' is not yet",
       "mapped in the {opusreader2} key-value map of the header:\n",
