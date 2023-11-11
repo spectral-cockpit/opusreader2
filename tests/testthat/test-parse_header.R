@@ -27,6 +27,3 @@ test_that("header is correctly parsed", {
   expect_true(all(block_type_names %in% expected_block_type_names))
 
 })
-
-
-
