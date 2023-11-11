@@ -127,6 +127,10 @@ parameters Rf". Settings such as ""Additional Data Treatment", (number) of
 \item \strong{\code{lab_and_process_param_2}}:
 \item \strong{\code{info_block}}:
 \item \strong{\code{history}}:
+\item \strong{\code{unknown}}: if a block-type can not be matched, no parsing is done and
+an empty list entry is returned. This gives you a hint that there is
+a block that can not yet be parsed. You can take further steps by
+opening an issue.
 }
 }
 \description{
