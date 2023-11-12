@@ -28,7 +28,9 @@ parse_chunk.default <- function(ds,raw) {
 #' @keywords internal
 parse_chunk.text <- function(ds,raw) {
 
-  text <- read_character(raw, ds$offset+1, n = ds$chunk_size, n_char = ds$chunk_size)
+  text <- read_character(
+    raw, ds$offset+1, n = ds$chunk_size, n_char = ds$chunk_size
+  )
 
   ds$text <- text
   return(ds)
@@ -79,7 +81,9 @@ parse_chunk.parameter <- function(ds,raw) {
     } else if (type_index == 2) {
       parameter_value <- read_double(raw, cursor_value, n = 1L)
     } else if (type_index %in% c(3, 4, 5)) {
-      parameter_value <- read_character(raw, cursor_value, n = 1L, n_char = 2*parameter_size)
+      parameter_value <- read_character(
+        raw, cursor_value, n = 1L, n_char = 2*parameter_size
+      )
     }
 
     repeat_list <- list(
