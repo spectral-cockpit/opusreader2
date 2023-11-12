@@ -11,10 +11,10 @@
 
 # opusreader2 0.6.0 (2023-11-12)
 
-- Add first unit tests using the {testhat} framework ().
-- Allow non-parsable blocks. Add new default All header entries that are not yet mapped are
-  showing up as warnings instead of an error. These blocks will be named
-  as `"unknown"` elements in the output of the `read_opus()` list.
+- Add first unit tests using the {testhat} framework.
+- Allow non-parsable blocks. Add new default so that all blocks that not yet
+  mapped are showing up as warnings instead of an error. These blocks will be
+  named as `"unknown"` elements in the output of the `read_opus()` list.
   
 ## OPUS data support
 
