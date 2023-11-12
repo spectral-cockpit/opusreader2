@@ -213,7 +213,7 @@ sort_list_by <- function(dataset_list) {
     "info_block",
     "history",
     "report_unknown",
-    "unknown",
+    "unknown"
   )
 
   to_sort_by <- intersect(sort_by, names(dataset_list))
