@@ -1,3 +1,38 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# opusreader2 0.6.0 (2023-11-12)
+
+- Add first unit tests using the {testhat} framework ().
+- Allow non-parsable blocks. Add new default All header entries that are not yet mapped are
+  showing up as warnings instead of an error. These blocks will be named
+  as `"unknown"` elements in the output of the `read_opus()` list.
+  
+## OPUS data support
+
+- Internal refactoring (see below) fixes two reading issues:
+  - `./inst/extdata/new_data/issue94_RT_01_1_23-02-21_13-23-54.0`: 
+    from Bruker 2023 Alpha II mid-IR spectrometer. Due to internal refactoring
+    of header parsing (see below) (#94)
+  - `./inst/extdata/new_data/issue82_Opus_test`: from Bruker MPA FT-IR 
+    spectrometer. Parse block `"b0-c0-t144-a1"`, text type 144 with special
+    offset in `parse_chunk.parameter()`. For now classify this block as block
+    type `"report_unknown"` (waiting finalize naming until confirmed with
+    screenshots from the Bruker OPUS sofware). Also fix `time_saved` by 
+    not relying on language settings (#82)
+  
+
+## Internal refactoring
+
+- Simplify header parsing in `parse_header()`.
+- Work with `raw` vectors instead of `connection` objects to read binary data.
+  Parse `raw` vectors directly for functions in `read_bin_types()` and use
+  subsetting to slice raw vectors in `base::readBin()` calls instead instead 
+  of `seek()`, which was used previously to reposition cursors in raw
+  `connection`s.
+- `get_meta_timestamp()`: omit language dependent logic using `"time saved"` 
+  regular expressions for matching time saved from history block. The first 
+  time of sorted `POSIXct` candidates will be returned as time saved.
+
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
 # opusreader2 0.5.0.9000 (2023-06-05)
