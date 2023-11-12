@@ -6,7 +6,7 @@
 #'
 #' @keywords internal
 #' @family parsing
-parse_chunk <- function(ds,raw) UseMethod("parse_chunk")
+parse_chunk <- function(ds, raw) UseMethod("parse_chunk")
 
 
 
@@ -15,8 +15,7 @@ parse_chunk <- function(ds,raw) UseMethod("parse_chunk")
 #' @inheritParams parse_chunk
 #'
 #' @keywords internal
-parse_chunk.default <- function(ds,raw) {
-
+parse_chunk.default <- function(ds, raw) {
   return(ds)
 }
 
@@ -26,10 +25,10 @@ parse_chunk.default <- function(ds,raw) {
 #' @inheritParams parse_chunk
 #'
 #' @keywords internal
-parse_chunk.text <- function(ds,raw) {
-
+parse_chunk.text <- function(ds, raw) {
   text <- read_character(
-    raw, ds$offset+1, n = ds$chunk_size, n_char = ds$chunk_size
+    raw, ds$offset + 1,
+    n = ds$chunk_size, n_char = ds$chunk_size
   )
 
   ds$text <- text
@@ -41,8 +40,7 @@ parse_chunk.text <- function(ds,raw) {
 #' @inheritParams parse_chunk
 #'
 #' @keywords internal
-parse_chunk.parameter <- function(ds,raw) {
-
+parse_chunk.parameter <- function(ds, raw) {
   if (ds$text_type %in% c(104, 112, 96, 144)) { # added text typ
     cursor <- ds$offset + 13
   } else {
@@ -56,7 +54,6 @@ parse_chunk.parameter <- function(ds,raw) {
   result_list <- list()
 
   repeat {
-
     parameter_name <- read_character(raw, cursor, n = 1, n_char = 3)
 
     if (parameter_name == "END") {
@@ -82,7 +79,8 @@ parse_chunk.parameter <- function(ds,raw) {
       parameter_value <- read_double(raw, cursor_value, n = 1L)
     } else if (type_index %in% c(3, 4, 5)) {
       parameter_value <- read_character(
-        raw, cursor_value, n = 1L, n_char = 2*parameter_size
+        raw, cursor_value,
+        n = 1L, n_char = 2 * parameter_size
       )
     }
 
@@ -118,8 +116,7 @@ parse_chunk.parameter <- function(ds,raw) {
 #'
 #' @keywords internal
 parse_chunk.data <- function(ds, raw) {
-
-  data <- read_float(raw, ds$offset+1, n = ds$chunk_size)
+  data <- read_float(raw, ds$offset + 1, n = ds$chunk_size)
 
   ds$data <- data
   return(ds)
