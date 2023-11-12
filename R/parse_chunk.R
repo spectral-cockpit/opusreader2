@@ -43,7 +43,7 @@ parse_chunk.text <- function(ds,raw) {
 #' @keywords internal
 parse_chunk.parameter <- function(ds,raw) {
 
-  if (ds$text_type %in% c(104, 112, 144)) {
+  if (ds$text_type %in% c(104, 112, 96, 144)) { # added text typ
     cursor <- ds$offset + 13
   } else {
     cursor <- ds$offset + 1
@@ -108,6 +108,7 @@ parse_chunk.parameter <- function(ds,raw) {
   names(result_list) <- parameter_names
 
   ds$parameters <- result_list
+
   return(ds)
 }
 
