@@ -50,6 +50,8 @@ create_dataset <- function(header_data) {
     "b15-c16-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_ab"),
     "b15-c16-t0-a64" = c(read_class = "data", block_type_name = "ab_no_atm_comp"),
     "b15-c16-t0-a0" = c(read_class = "data", block_type_name = "ab"),
+    # https://github.com/spectral-cockpit/opusreader2/issues/81
+    "b15-c16-t96-a0" = c(read_class = "parameter", block_type_name = "quality_test_report"),
     # channel code 48: save reflectance (settings
     "b15-c48-t112-a0" = c(read_class = "parameter", block_type_name = "quant_report_refl"),
     "b15-c48-t104-a1" = c(read_class = "parameter", block_type_name = "me_test_report_refl"), # check "a1"

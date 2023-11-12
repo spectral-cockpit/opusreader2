@@ -13,7 +13,7 @@ parse_header <- function(raw) {
 
   all_cursors <- seq(start_cursor, header_length, 12L)
 
-  out <- lapply(all_cursors, function(x) test_header_parse(raw, x))
+  out <- lapply(all_cursors, function(x) parse_header_impl(raw, x))
 
   out[sapply(out, is.null)] <- NULL
 
@@ -32,7 +32,7 @@ dec_to_ascii <- function(n) {
 
 
 
-test_header_parse <- function(raw, cursor) {
+parse_header_impl <- function(raw, cursor) {
   offset <- read_signed_int(raw, cursor + 8L)
 
   if (offset <= 0L) {
@@ -40,12 +40,6 @@ test_header_parse <- function(raw, cursor) {
   }
   chunk_size <- read_signed_int(raw, cursor + 4L)
   next_offset <- offset + 4L * chunk_size
-
-  # if(next_offset > length(raw)){
-  #   browser()
-  #   chunk_size <- length(raw) - offset
-  # }
-
 
   repeat_list <- list(
     block_type = read_unsigned_int(raw, cursor),
