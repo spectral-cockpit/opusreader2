@@ -1,5 +1,14 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# opusreader2 0.6.1 (2023-11-12)
+
+## OPUS data support
+
+- Support quality test report (#81). This block can be found in 
+  `./inst/extdata/new_data/issue81_A1.1.0`. `read_opus()` returns this 
+  block as `"quality_test_report"` in the list output.
+
+
 # opusreader2 0.6.0 (2023-11-12)
 
 - Add first unit tests using the {testhat} framework ().
