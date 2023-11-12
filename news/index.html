@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">opusreader2</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -60,6 +60,27 @@
       <small>Source: <a href="https://github.com/spectral-cockpit/opusreader2/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.6.0" id="opusreader2-060-2023-11-12">opusreader2 0.6.0 (2023-11-12)<a class="anchor" aria-label="anchor" href="#opusreader2-060-2023-11-12"></a></h2>
+<ul><li>Add first unit tests using the {testhat} framework ().</li>
+<li>Allow non-parsable blocks. Add new default All header entries that are not yet mapped are showing up as warnings instead of an error. These blocks will be named as <code>"unknown"</code> elements in the output of the <code><a href="../reference/read_opus.html">read_opus()</a></code> list.</li>
+</ul><div class="section level3">
+<h3 id="opus-data-support-0-6-0">OPUS data support<a class="anchor" aria-label="anchor" href="#opus-data-support-0-6-0"></a></h3>
+<ul><li>Internal refactoring (see below) fixes two reading issues:
+<ul><li>
+<code>./inst/extdata/new_data/issue94_RT_01_1_23-02-21_13-23-54.0</code>: from Bruker 2023 Alpha II mid-IR spectrometer. Due to internal refactoring of header parsing (see below) (<a href="https://github.com/spectral-cockpit/opusreader2/issues/94" class="external-link">#94</a>)</li>
+<li>
+<code>./inst/extdata/new_data/issue82_Opus_test</code>: from Bruker MPA FT-IR spectrometer. Parse block <code>"b0-c0-t144-a1"</code>, text type 144 with special offset in <code><a href="../reference/parse_chunk.parameter.html">parse_chunk.parameter()</a></code>. For now classify this block as block type <code>"report_unknown"</code> (waiting finalize naming until confirmed with screenshots from the Bruker OPUS sofware). Also fix <code>time_saved</code> by not relying on language settings (<a href="https://github.com/spectral-cockpit/opusreader2/issues/82" class="external-link">#82</a>)</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-refactoring-0-6-0">Internal refactoring<a class="anchor" aria-label="anchor" href="#internal-refactoring-0-6-0"></a></h3>
+<ul><li>Simplify header parsing in <code><a href="../reference/parse_header.html">parse_header()</a></code>.</li>
+<li>Work with <code>raw</code> vectors instead of <code>connection</code> objects to read binary data. Parse <code>raw</code> vectors directly for functions in <code>read_bin_types()</code> and use subsetting to slice raw vectors in <code><a href="https://rdrr.io/r/base/readBin.html" class="external-link">base::readBin()</a></code> calls instead instead of <code><a href="https://rdrr.io/r/base/seek.html" class="external-link">seek()</a></code>, which was used previously to reposition cursors in raw <code>connection</code>s.</li>
+<li>
+<code>get_meta_timestamp()</code>: omit language dependent logic using <code>"time saved"</code> regular expressions for matching time saved from history block. The first time of sorted <code>POSIXct</code> candidates will be returned as time saved.</li>
+</ul><!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file --></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0.9000" id="opusreader2-0509000-2023-06-05">opusreader2 0.5.0.9000 (2023-06-05)<a class="anchor" aria-label="anchor" href="#opusreader2-0509000-2023-06-05"></a></h2>
 <ul><li>implement a <code>basic_metadata</code> list element for “opusreader2” class containing key metadata (<a href="https://github.com/spectral-cockpit/opusreader2/issues/85" class="external-link">#85</a>)</li>
