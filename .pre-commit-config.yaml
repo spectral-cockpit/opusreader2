@@ -9,6 +9,7 @@ repos:
         exclude: .R/create_dataset.R
       - id: roxygenize
         additional_dependencies:
+          - vctrs@0.6.4
           - git2r
           - r-lib/pkgapi
           - dplyr@1.1.3
