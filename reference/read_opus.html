@@ -149,7 +149,7 @@ Note that this element only results if "atmospheric compensation" was
 activated in the OPUS measurement settings.</p></li>
 <li><p><strong><code>ab</code></strong>: class "data" (spectrum; viewer: "AB"). Atmospherically
 compensated (apparent) absorbance spectra
-(<code>:= log(1 / (sc_sample_corr / sc_ref_corr)</code>). Only
+(<code>:= log10(1 / (sc_sample_corr / sc_ref_corr)</code>). Only
 exists if either correction of CO2 and/or water vapour bands is set in OPUS
 setting (proprietary algorithm; could possibly be reverse engineered).
 If <code>AB</code> exists, it has always a corresponding untreated
