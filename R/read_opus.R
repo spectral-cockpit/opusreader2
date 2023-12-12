@@ -1,4 +1,4 @@
-#' Read OPUS binary file of a Bruker spectrometer
+#' Read OPUS binary files produced by a Bruker spectrometer
 #'
 #' This function can be used to read and parse OPUS files,
 #' to make it usable for other processing steps.
