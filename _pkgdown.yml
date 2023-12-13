@@ -5,3 +5,8 @@ reference:
   contents:
   - read_opus
   - read_opus_single
+- title: Helpers
+  desc: >
+    These are helper functions.
+  contents:
+  - opus_file
