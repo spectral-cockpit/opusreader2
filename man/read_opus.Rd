@@ -150,8 +150,4 @@ are distributed onto the registered parallel workers. This can be done via
 across number of chunks corresponding to the number of registered workers.
 }
 
-\seealso{
-Core function
-\code{\link{parse_opus}()}
-}
 \concept{core}

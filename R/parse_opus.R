@@ -117,8 +117,6 @@
 #' * **`info_block`**:
 #' * **`history`**:
 #'
-#' @family core
-#' @export
 parse_opus <- function(raw, data_only) {
   raw_size <- length(raw)
 
