@@ -1,0 +1,12 @@
+reference:
+- title: Read Bruker OPUS files
+  desc: >
+    These functions read and parse Bruker OPUS files into lists.
+  contents:
+  - read_opus
+  - read_opus_single
+- title: Helpers
+  desc: >
+    These are helper functions.
+  contents:
+  - opus_file
