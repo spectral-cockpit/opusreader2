@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_opus.R
 \name{read_opus}
 \alias{read_opus}
-\title{Read OPUS binary file of a Bruker spectrometer}
+\title{Read OPUS binary files produced by a Bruker spectrometer}
 \usage{
 read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
 }
@@ -150,8 +150,4 @@ are distributed onto the registered parallel workers. This can be done via
 across number of chunks corresponding to the number of registered workers.
 }
 
-\seealso{
-Core function
-\code{\link{parse_opus}()}
-}
 \concept{core}
