@@ -16,3 +16,4 @@ read_float(raw, cursor, n = 1L)
 \description{
 read float from binary (single-precision, 32 bits)
 }
+\keyword{internal}

@@ -116,7 +116,7 @@
 #' * **`lab_and_process_param_2`**:
 #' * **`info_block`**:
 #' * **`history`**:
-#'
+#' @keywords internal
 parse_opus <- function(raw, data_only) {
   raw_size <- length(raw)
 

@@ -12,3 +12,4 @@
 \description{
 method to open the connection for an opus file
 }
+\keyword{internal}

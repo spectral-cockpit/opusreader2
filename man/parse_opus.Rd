@@ -131,3 +131,4 @@ after reading it with \code{read_opus_raw()}.
 \seealso{
 \code{\link[=read_opus_raw]{read_opus_raw()}}
 }
+\keyword{internal}

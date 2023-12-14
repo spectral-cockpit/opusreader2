@@ -28,6 +28,7 @@ read_raw <- function(dsn) UseMethod("read_raw", dsn)
 #' method to open the connection for an opus file
 #'
 #' @inheritParams read_opus_single
+#' @keywords internal
 read_raw.file <- function(dsn) {
   file_size <- file.size(dsn)
 
@@ -39,7 +40,6 @@ read_raw.file <- function(dsn) {
 #' define class of dsn
 #'
 #' @inheritParams read_opus_single
-#' @family connection
 #' @keywords internal
 set_connection_class <- function(dsn) {
   if (file.exists(dsn)) {

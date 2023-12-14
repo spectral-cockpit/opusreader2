@@ -16,3 +16,4 @@ read_double(raw, cursor, n = 1L)
 \description{
 read double from binary (double-precision, 64 bits)
 }
+\keyword{internal}
