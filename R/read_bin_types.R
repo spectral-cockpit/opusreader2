@@ -3,6 +3,7 @@
 #' @param raw raw vector
 #' @param cursor offset
 #' @param n number of elements
+#' @keywords internal
 read_unsigned_int <- function(raw, cursor, n = 1L) {
   n_int <- n * 1
 
@@ -24,6 +25,7 @@ read_unsigned_int <- function(raw, cursor, n = 1L) {
 #' read signed integer from binary
 #'
 #' @inheritParams read_unsigned_int
+#' @keywords internal
 read_signed_int <- function(raw, cursor, n = 1L) {
   n_signed_int <- n * 4
 
@@ -47,6 +49,7 @@ read_signed_int <- function(raw, cursor, n = 1L) {
 #' @param encoding encoding to assign character strings that are read. Default
 #' is `"latin1"`., which will use Windows Latin 1 (ANSI) encoding. This is
 #' how Bruker software OPUS is assumed to commonly store strings.
+#' @keywords internal
 read_character <- function(raw, cursor, n = 1L, n_char, encoding = "latin1") {
   # seek_opus(con, cursor)
 
@@ -69,6 +72,7 @@ read_character <- function(raw, cursor, n = 1L, n_char, encoding = "latin1") {
 #' read float from binary (single-precision, 32 bits)
 #'
 #' @inheritParams read_unsigned_int
+#' @keywords internal
 read_float <- function(raw, cursor, n = 1L) {
   n_float <- n * 4
 
@@ -89,6 +93,7 @@ read_float <- function(raw, cursor, n = 1L) {
 #' read double from binary (double-precision, 64 bits)
 #'
 #' @inheritParams read_unsigned_int
+#' @keywords internal
 read_double <- function(raw, cursor, n = 1L) {
   n_double <- n * 8
 

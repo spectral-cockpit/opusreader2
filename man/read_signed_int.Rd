@@ -16,3 +16,4 @@ read_signed_int(raw, cursor, n = 1L)
 \description{
 read signed integer from binary
 }
+\keyword{internal}

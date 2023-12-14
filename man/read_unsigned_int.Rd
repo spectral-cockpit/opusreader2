@@ -16,3 +16,4 @@ read_unsigned_int(raw, cursor, n = 1L)
 \description{
 read unsigned integer from binary
 }
+\keyword{internal}

@@ -15,3 +15,4 @@ Number of bytes as length 1 numeric vector
 \description{
 Calculate the parameter chunk size in bytes
 }
+\keyword{internal}

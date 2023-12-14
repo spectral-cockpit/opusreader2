@@ -12,9 +12,4 @@ set_connection_class(dsn)
 \description{
 define class of dsn
 }
-\seealso{
-Connection helper
-\code{\link{read_raw}()}
-}
-\concept{connection}
 \keyword{internal}

@@ -12,3 +12,4 @@ calc_chunk_size(ds)
 \description{
 calculate the full chunk size
 }
+\keyword{internal}

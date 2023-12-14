@@ -1,5 +1,6 @@
 #' assign the classes to the dataset list
 #' @param header_data list of the header information for each block
+#' @keywords internal
 create_dataset <- function(header_data) {
   block_type <- as.character(header_data$block_type)
   text_type <- as.character(header_data$text_type)

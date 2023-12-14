@@ -12,9 +12,5 @@ read_raw(dsn)
 \description{
 Dispatch method for the open_connection
 }
-\seealso{
-Connection helper
-\code{\link{set_connection_class}()}
-}
 \concept{connection}
 \keyword{internal}

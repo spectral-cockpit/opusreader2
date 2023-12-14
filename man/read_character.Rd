@@ -22,3 +22,4 @@ how Bruker software OPUS is assumed to commonly store strings.}
 \description{
 read character from binary
 }
+\keyword{internal}
