@@ -5,5 +5,8 @@
 ^\.pre-commit-config\.yaml$
 ^doc-local
 ^opusreader2\.Rproj$
+^_pkgdown\.yml$
 ^tic\.R$
 .lintr
+^revdep$
+^cran-comments\.md$
