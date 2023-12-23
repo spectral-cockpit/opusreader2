@@ -15,15 +15,15 @@
   `calc_parameter_chunk_size()`, which made those functions unavailable even
   internally (`"Error in UseMethod("calc_parameter_chunk_size") : no applicable
   method for 'calc_parameter_chunk_size' applied to an object of class "parameter")"`
-- Only export functions relevant to users:
-  - core: `read_opus()`, `read_opus_single()`
-  - S3 methods for `calc_parameter_chunk_size()`
-  - helpers: `opus_file()`
 
 ## Documentation
 
 - `read_opus()`: in return element `ab`, state `Log10` explicitly for calculating
   apparent absorbance ([#94](https://github.com/spectral-cockpit/opusreader2/issues/94); @zecoljls).
+- Only export functions relevant to users:
+  - core: `read_opus()`, `read_opus_single()`
+  - S3 methods for `calc_parameter_chunk_size()`
+  - helpers: `opus_file()`
 
 
 # opusreader2 0.6.1 (2023-11-12)
