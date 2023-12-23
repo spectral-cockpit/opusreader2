@@ -1,4 +1,30 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# opusreader2 0.6.2 (2023-12-23)
+
+## Bug fixes
+
+- Hotfix for commit [c8ff2cd](https://github.com/spectral-cockpit/opusreader2/commit/c8ff2cd8e002ed7a992b21053c41877f4a12d533), which accidentally caused a regression, leading to 
+  issues [#101](https://github.com/spectral-cockpit/opusreader2/issues/101) and
+  [#102](https://github.com/spectral-cockpit/opusreader2/issues/102). 
+  It was unnoticed but could have been diagnosed with the {testthat} tests in 
+  place. There was also an update of the {tic} template, which did not invoke
+  tests yet in the continous integration (CI) run (passed because of unconfigured tests).
+  When restricting relevant export, roxygen2 `@export` tags were removed and
+  `@internal` added for
+  `calc_parameter_chunk_size()`, which made those functions unavailable even
+  internally (`"Error in UseMethod("calc_parameter_chunk_size") : no applicable
+  method for 'calc_parameter_chunk_size' applied to an object of class "parameter")"`
+- Only export functions relevant to users:
+  - core: `read_opus()`, `read_opus_single()`
+  - S3 methods for `calc_parameter_chunk_size()`
+  - helpers: `opus_file()`
+
+## Documentation
+
+- `read_opus()`: in return element `ab`, state `Log10` explicitly for calculating
+  apparent absorbance ([#94](https://github.com/spectral-cockpit/opusreader2/issues/94); @zecoljls).
+
 
 # opusreader2 0.6.1 (2023-11-12)
 
