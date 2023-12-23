@@ -66,6 +66,11 @@
 <h3 id="bug-fixes-0-6-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-6-2"></a></h3>
 <ul><li>Hotfix for commit <a href="https://github.com/spectral-cockpit/opusreader2/commit/c8ff2cd8e002ed7a992b21053c41877f4a12d533" class="external-link">c8ff2cd</a>, which accidentally caused a regression, leading to issues <a href="https://github.com/spectral-cockpit/opusreader2/issues/101" class="external-link">#101</a> and <a href="https://github.com/spectral-cockpit/opusreader2/issues/102" class="external-link">#102</a>. It was unnoticed but could have been diagnosed with the {testthat} tests in place. There was also an update of the {tic} template, which did not invoke tests yet in the continous integration (CI) run (passed because of unconfigured tests). When restricting relevant export, roxygen2 <code>@export</code> tags were removed and <code>@internal</code> added for <code><a href="../reference/calc_parameter_chunk_size.html">calc_parameter_chunk_size()</a></code>, which made those functions unavailable even internally (<code>"Error in UseMethod("calc_parameter_chunk_size") : no applicable   method for 'calc_parameter_chunk_size' applied to an object of class "parameter")"</code>
 </li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-0-6-2">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-6-2"></a></h3>
+<ul><li>
+<code><a href="../reference/read_opus.html">read_opus()</a></code>: in return element <code>ab</code>, state <code>Log10</code> explicitly for calculating apparent absorbance (<a href="https://github.com/spectral-cockpit/opusreader2/issues/94" class="external-link">#94</a>; <a href="https://github.com/zecoljls" class="external-link">@zecoljls</a>).</li>
 <li>Only export functions relevant to users:
 <ul><li>core: <code><a href="../reference/read_opus.html">read_opus()</a></code>, <code><a href="../reference/read_opus_single.html">read_opus_single()</a></code>
 </li>
@@ -74,11 +79,6 @@
 <li>helpers: <code><a href="../reference/opus_file.html">opus_file()</a></code>
 </li>
 </ul></li>
-</ul></div>
-<div class="section level3">
-<h3 id="documentation-0-6-2">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-6-2"></a></h3>
-<ul><li>
-<code><a href="../reference/read_opus.html">read_opus()</a></code>: in return element <code>ab</code>, state <code>Log10</code> explicitly for calculating apparent absorbance (<a href="https://github.com/spectral-cockpit/opusreader2/issues/94" class="external-link">#94</a>; <a href="https://github.com/zecoljls" class="external-link">@zecoljls</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">
