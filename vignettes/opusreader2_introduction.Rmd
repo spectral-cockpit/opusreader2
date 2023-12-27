@@ -153,8 +153,6 @@ We can get the instrument name of the test files like this.
 
 ```{r}
 get_instrument_name <- function(data) {
-  stopifnot("`data` needs to be output of `opusreader2::read_opus()`" =
-    inherits(data, "list_opusreader2"))
   return(data$instrument$parameters$INS$parameter_value)
 }
 
