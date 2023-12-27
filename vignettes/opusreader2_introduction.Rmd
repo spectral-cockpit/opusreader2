@@ -79,7 +79,7 @@ software from Bruker®.
 
 We can extract all those blocks from the corresponding OPUS file example. We can
 even read more blocks that are not displayed visually in the official software
-but are present in the file.
+but are present in the file (more about it below).
 
 ```{r}
 library("opusreader2")
@@ -135,6 +135,35 @@ str(data_1$ab_data_param)
 ```{r}
 str(data_1$instrument)
 ```
+
+## Reading OPUS files recursively from folder
+
+A data source name (`dsn`) can be a folder, too. This makes it convenient to
+read all OPUS files present in below a certain folder level. We illustrate it
+with all OPUS test files that come with {opusreader2}, which are are also used
+in unit tests.
+
+```{r}
+test_dsn <- system.file("extdata", "test_data", package = "opusreader2")
+data_test <- read_opus(dsn = test_dsn)
+names(data_test)
+```
+
+We can get the instrument name of the test files like this.
+
+```{r}
+get_instrument_name <- function(data) {
+  stopifnot("`data` needs to be output of `opusreader2::read_opus()`" =
+    inherits(data, "list_opusreader2"))
+  return(data$instrument$parameters$INS$parameter_value)
+}
+
+lapply(data_test, get_instrument_name)
+```
+
+## Reading OPUS files in parallel
+
+## Reading a single OPUS file
 
 For single OPUS files, there `read_opus_single()` implementation can also be
 used
