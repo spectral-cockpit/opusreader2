@@ -172,9 +172,9 @@ prior to further data processing, modeling, and estimating new samples.
 ## Reading OPUS files recursively from folder
 
 A data source name (`dsn`) can be a folder, too. This makes it convenient to
-read all OPUS files present in below a certain folder level. We illustrate it
-with all OPUS test files that come with {opusreader2}, which are are also used
-in unit tests.
+read all OPUS files located below a certain folder level. We illustrate it with
+all OPUS test files that come with {opusreader2}, which are are also used in
+unit tests.
 
 ```{r}
 test_dsn <- system.file("extdata", "test_data", package = "opusreader2")
