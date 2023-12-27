@@ -1,15 +1,13 @@
 # opusreader2
 
 <!-- badges: start -->
-
-[![tic](https://github.com/spectral-cockpit/opusreader2/workflows/tic/badge.svg?branch=main)](https://github.com/spectral-cockpit/opusreader2/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![runiverse-package opusreader2](https://spectral-cockpit.r-universe.dev/badges/opusreader2?scale=1&color=pink&style=round)](https://spectral-cockpit.r-universe.dev/opusreader2)
-
+[![tic](https://github.com/spectral-cockpit/opusreader2/workflows/tic/badge.svg?branch=main)](https://github.com/spectral-cockpit/opusreader2/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![runiverse-package opusreader2](https://spectral-cockpit.r-universe.dev/badges/opusreader2?scale=1&color=pink&style=round)](https://spectral-cockpit.r-universe.dev/opusreader2)
 <!-- badges: end -->
 
-```{=html}
 <p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
-<img src="man/figures/logo.png" align="right" width="250"/>
-```
+<img align="right" width="250" src="man/figures/logo.png">
 
 ## 🪄 Scope
 
