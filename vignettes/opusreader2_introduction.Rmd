@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   echo = TRUE,
-  results = 'markup',
+  results = "markup",
   include = TRUE
 )
 ```
@@ -84,7 +84,8 @@ but are present in the file.
 library("opusreader2")
 # example file
 file_1 <- system.file("extdata", "test_data", "BF_lo_01_soil_cal.1",
-  package = "opusreader2")
+  package = "opusreader2"
+)
 spectrum_1 <- read_opus(dsn = file_1)
 ```
 
