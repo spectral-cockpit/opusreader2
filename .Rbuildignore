@@ -4,9 +4,12 @@
 ^\.github$
 ^\.pre-commit-config\.yaml$
 ^doc-local
+^inst/extdata/new_data/
 ^opusreader2\.Rproj$
 ^_pkgdown\.yml$
 ^tic\.R$
 .lintr
 ^revdep$
 ^cran-comments\.md$
+^doc$
+^Meta$

@@ -1,53 +1,204 @@
 ---
-title: "Reading Bruker OPUS binary files in R"
-author: "Philipp Baumann"
+title: "Reading OPUS binary files from Bruker® spectrometers in R"
+author: "Philipp Baumann and Thomas Knecht"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     fig_caption: yes
 vignette: >
   %\VignetteIndexEntry{Reading Bruker OPUS binary files in R}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 80
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE, echo=TRUE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  echo = TRUE,
+  results = "markup",
+  include = TRUE
 )
 ```
 
-Bruker instruments produce a proprietary file format when measuring spectra, called OPUS. This way the Bruker OPUS software stores all measurement
-parameters, configurations, environmental conditions, for different spectral data types within OPUS binary files.
+# Motivation
 
-Our package can read those binary files for most of the
-Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics GmBH.
+Spectrometers from [Bruker® Optics GmbH & Co.
+KG](https://www.bruker.com/en.html) save spectra in a binary file format known
+as OPUS. Each OPUS file corresponds to one sample measurement, typically
+acquired through the OPUS spectroscopy software. These files feature numerical
+extensions, with extension numbers incrementing based on the naming scheme
+chosen in the OPUS software.
 
-# Reading OPUS files
+The OPUS suite and the file specification are proprietary, leading to the need
+for an implementation based on reverse engineering in this package. With
+{opusreader2}, you can access your spectroscopic data in the open computing
+language R, providing full control over your spectral data workflow. Our package
+specifically reads binary files for most Fourier-Transform Infrared (FT-IR)
+spectrometers from Bruker® Optics GmbH. While it may work for other products
+like Raman spectrometers, further adjustments are required to support new block
+types (data and parameters; see below).
 
-One can read both single OPUS files or a batch of many OPUS files. The main way to read files is
+# OPUS data extraction
 
-```r
+The processing of each OPUS file begins by extracting essential information from
+a designated byte range in the file header. This section contains crucial
+details about binary blocks (also called chunks), including byte offsets, sizes,
+and data types within the file. The parsing algorithm utilizes this information
+to extract modular blocks of data and parameters from byte sequences. As
+illustrated in the figure below, the content of the files varies based on the
+instrument type, user-selected data (spectrum) blocks to save, and specific
+settings.
+
+![OPUS measurement settings for Bruker INVENIO® fourier-transform (FT)
+mid-infrared
+spectrometer](images/opus-measurement-settings.png){#fig:opus_settings}
+
+In addition to result spectra, the binary files encompass:
+
+-   a comprehensive set of measurement parameters (configurations, conditions)
+
+-   single-channel data from background measurements done before the sample
+
+-   other types of intermediate spectra. Currently, we support *"data blocks to
+    be saved* *"* for fourier-transform infrared spectrometers.
+
+## Reading and parsing OPUS files in R
+
+With the main function `read_opus()` you can either read single or multiple OPUS
+files. Let's take an example file produced by a Bruker ALPHA® spectrometer that
+measures mid-infrared spectra with a diffuse-reflectance accessory. This
+spectral measurement of a soil sample comes with the package and is also part of
+the data set in Baumann et al. (2020). Here is how OPUS software represents
+parsed blocks in the OPUS viewer software from Bruker®.
+
+![Data parameters for absorbance (AB) spectrum](images/OPUS_block1.png)
+
+We can extract all those blocks from the corresponding OPUS file example. We can
+even explore additional blocks that are not visually displayed in the official
+software but are present in the file (more details below).
+
+```{r}
 library("opusreader2")
 # example file
-file <- opus_file()
-data_list <- read_opus(dsn = file)
+file_1 <- system.file("extdata", "test_data", "BF_lo_01_soil_cal.1",
+  package = "opusreader2"
+)
+spectrum_1 <- read_opus(dsn = file_1)
 ```
 
-Thereby, `dsn` is the data source name, that currently either be a character vector of the folder path to read files from, or characters of OPUS file paths.
+The `dsn` argument provides is the data source name. It is currently either a
+character vector of the folder path to read files from recursively, or character
+vector of specific OPUS file paths.
 
+**`read_opus()`** returns a nested list of class `"list_opusreader2"`.
 
-`read_opus()` parses into an R list (S3) of class "list_opusreader2". The data is arranged
-as shown in the Bruker OPUS viewer:
-
-```r
-class(data_list)
-# show data and metadata types
-names(data_list)
+```{r}
+class(spectrum_1)
+names(spectrum_1)
 ```
-For single OPUS files, there is also a lower level implementation.
 
-```r
-data_single <- read_opus_single(dsn = file)
+At the first level of the list output, data is arranged as shown in the Bruker
+OPUS viewer.
+
+```{r}
+meas_1 <- spectrum_1[["BF_lo_01_soil_cal.1"]]
+names(meas_1)
+```
+
+To gain insights into block names, associated data, and parameters, we suggest
+consulting the help documentation via `?read_opus`. We've formatted the block
+names in `camel_case` within the second level of the `"opusreader2_list"`
+output, facilitating improved programmatic access.
+
+Printing the complete `"opusreader2_list"` object in the R console keeps the
+console occupied for a significant amount of time. For more efficient
+examination in RStudio, we recommend using the *list preview* feature with
+`View(spectrum_1)`, accessible through the *Environment* tab. Here we employ
+base R subsetting, `names()`, and `str()` to explore examples of measured
+spectral data.
+
+This output reveals three list elements that may not be visible in the Bruker®
+viewer pane.
+
+1.  `basic_metadata`: This data frame serves as minimal metadata to identify
+    measurements. It contains the file name at time of parsing, the sample name
+    entered prior measurement, and different time stamps. This field is for
+    example useful to build data pipelines for spectral libraries and prediction
+    services.
+2.  `ab_no_atm_comp_data_param`: Parameters for the absorbance (AB) block prior
+    to atmospheric compensation.
+3.  `ab_no_atm_comp`:
+
+```{r}
+str(meas_1$basic_metadata)
+```
+
+We can for example verify the frequency of the first point (FXV). All types of
+data and parameters within OPUS files are encoded with three capital letters
+each.
+
+```{r}
+meas_1$ab_data_param$parameters$FXV$parameter_value
+```
+
+Besides the data or parameter values, the output of each parsed OPUS block
+contains the block type, channel type, text type, additional type, the offset in
+bytes, next offset in bytes, and the chunk size in bytes for particular data
+blocks. This is decoded from the file header and allows for traceability in the
+parsing process.
+
+```{r}
+class(meas_1$ab_data_param)
+str(meas_1$ab_data_param)
+```
+
+```{r}
+str(meas_1$instrument)
+```
+
+The first example mid-infrared spectrum was measured with atmospheric
+compensation (carbon dioxide and water bands), which is done on based on the
+background spectra. The measurement option is called "Atmospheric compensation"
+in the OPUS software. The goal of this routine is to remove artefacts from CO2
+and water bands in the measurement module. Generally, OPUS files have trace
+every step or macro applied in the file output. Reading both raw and transformed
+data gives us flexibility and the possibility to do extended quality control
+prior to further data processing, modeling, and estimating new samples.
+
+## Reading OPUS files recursively from folder
+
+A data source name (`dsn`) can be a folder, too. This makes it convenient to
+read all OPUS files present in below a certain folder level. We illustrate it
+with all OPUS test files that come with {opusreader2}, which are are also used
+in unit tests.
+
+```{r}
+test_dsn <- system.file("extdata", "test_data", package = "opusreader2")
+data_test <- read_opus(dsn = test_dsn)
+names(data_test)
+```
+
+We can get the instrument name of the test files like this.
+
+```{r}
+get_instrument_name <- function(data) {
+  return(data$instrument$parameters$INS$parameter_value)
+}
+
+lapply(data_test, get_instrument_name)
+```
+
+## Reading OPUS files in parallel
+
+## Reading a single OPUS file
+
+For single OPUS files, there `read_opus_single()` implementation can also be
+used
+
+```{r}
+data_single <- read_opus_single(dsn = file_1)
 ```
