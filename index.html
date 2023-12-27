@@ -90,8 +90,9 @@
 </h1></div>
 <!-- badges: start -->
 
+<!-- badges: end -->
 <p align="right" style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki" class="external-link">Artwork by Lilyan Blazoudaki</a></p>
-<p><img align="right" width="250" src="reference/figures/logo.png"></p>
+<p><img src="reference/figures/logo.png" align="right" width="250"></p>
 <div class="section level2">
 <h2 id="id_-scope">🪄 Scope<a class="anchor" aria-label="anchor" href="#id_-scope"></a>
 </h2>
@@ -101,16 +102,15 @@
 <div class="section level2">
 <h2 id="id_-highlights-and-disclaimer">🪩 Highlights and disclaimer<a class="anchor" aria-label="anchor" href="#id_-highlights-and-disclaimer"></a>
 </h2>
-<p>The <a href="https://www.bruker.com/en.html" class="external-link">Bruker corporation</a> manufactures reliable instruments but there is no official documentation of the OPUS file format. Hence the format is proprietary. Luckily, we and our colleagues from the open source spectroscopy community have cracked it. With some heavy lifting we have unscrambled the file logic (see credits).</p>
-<p>{opusreader2} is a state-of-the-art binary reader. We recommend the package as a solid foundation for your spectroscopy workflow. It is modular and has no hard dependencies apart from base R. By providing feedback, opening and solving issues, or making pull requests, you can actively contribute to the spectroscopy communities. These efforts are mainly to support more and more instruments, measurement modes, and block types. You can also soon rely on our ready-made diagnostic solutions building upon it. If you wish, the <a href="https://github.com/spectral-cockpit" class="external-link">spectral-cockpit.space team</a> further offers consulting service along your entire spectroscopy workflow.</p>
-<p>We have reached stable package development now. The core API of <code><a href="reference/read_opus.html">opusreader2::read_opus()</a></code> is solid and we are not planning any major user-facing design changes. There will be extended capabilities after basic reading in additional functions downstream. For example, to exact specific parts of interest like measurement metadata or to accomplish read workflows for custom environments.</p>
+<p>The <a href="https://www.bruker.com/en.html" class="external-link">Bruker corporation</a> produces reliable instruments; however, there is no official documentation for the OPUS file format, making it proprietary. Fortunately, our team and colleagues from the open-source spectroscopy community have successfully deciphered it. With considerable effort, we’ve unraveled the file logic (see credits).</p>
+<p>{opusreader2} stands as a state-of-the-art binary reader, serving as a robust foundation for your spectroscopy workflow. Notably modular, it imposes no hard dependencies beyond base R. Actively contributing to the spectroscopy communities is encouraged through feedback, issue reports, and pull requests. These collective efforts aim to enhance support for a growing array of instruments, measurement modes, and block types. Additionally, be on the lookout for our forthcoming diagnostic solutions built upon {opusreader2}. For those seeking personalized assistance, Spectral-Cockpit offers consulting services tailored to every stage of your spectroscopy workflow.</p>
+<p>We have now achieved stability in package development. The core API of <code><a href="reference/read_opus.html">opusreader2::read_opus()</a></code> is robust, and we do not anticipate any significant user-facing design changes. Moving forward, additional functions downstream will extend the capabilities, allowing users to extract specific areas of interest, such as measurement metadata, or to facilitate reading workflows for custom environments.</p>
 <p>Our current development efforts are</p>
 <ol style="list-style-type: decimal">
-<li>improving the ease of use (documentation, vignettes)</li>
 <li>expanding support for Bruker data blocks even further</li>
-<li>providing useful downstream features for metadata and spectra management (additional helper and wrapper functions).</li>
+<li>providing useful downstream features for metadata and spectra management through additional helper and wrapper functions.</li>
 </ol>
-<p>We now track changes under semantic versioning using <a href="https://github.com/cynkra/fledge" class="external-link">{fledge}</a>. Please consult the <a href="NEWS.html">NEWS</a> to follow progress and history of features along semantic versioning. Our goal is to release a stable version on CRAN that is production ready very soon. Expected time of arrival is July 2023.</p>
+<p>We have adopted semantic versioning with <a href="https://github.com/cynkra/fledge" class="external-link">{fledge}</a> to track changes. To stay updated on the progress and history of features aligned with semantic versioning, please refer to the <a href="NEWS.html">NEWS</a>. Our aim is to soon release a stable version on CRAN that is production-ready. The expected time of arrival is January 2024.</p>
 </div>
 <div class="section level2">
 <h2 id="id_-installation">📦 Installation<a class="anchor" aria-label="anchor" href="#id_-installation"></a>
@@ -133,6 +133,7 @@ from GitHub via {remotes} [expand]
 <div class="section level2">
 <h2 id="id_-examples">🔦 Examples<a class="anchor" aria-label="anchor" href="#id_-examples"></a>
 </h2>
+<p>We recommend to start with the vignette <a href="https://spectral-cockpit.github.io/opusreader2/articles/opusreader2_introduction.html" class="external-link"><em>“Reading OPUS binary files from Bruker® spectrometers in R”</em></a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/spectral-cockpit/opusreader2" class="external-link">"opusreader2"</a></span><span class="op">)</span></span>
 <span><span class="co"># read a single file (one measurement)</span></span>
@@ -207,7 +208,7 @@ Install and enable pre-commit hooks locally (details)
 </ol>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change to cloned git directory of your fork of the package</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> install</span></code></pre></div>
-Once you do a <code>git commit -m "&lt;your-commit-message&gt;"</code>, the defined pre-commit hooks will automatically be applied on new commits.
+<p>Once you do a <code>git commit -m "&lt;your-commit-message&gt;"</code>, the defined pre-commit hooks will automatically be applied on new commits.</p>
 </details><details><summary>
 Check all files for which pre-commit hooks are configured (details)
 </summary><div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in your terminal and package root directory</span></span>
