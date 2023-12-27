@@ -1,5 +1,5 @@
 ---
-title: "Reading Bruker OPUS binary files in R"
+title: "Reading OPUS binary files from Bruker® spectrometers in R"
 author: "Philipp Baumann and Thomas Knecht"
 date: "`r Sys.Date()`"
 output:
@@ -29,18 +29,18 @@ knitr::opts_chunk$set(
 Spectrometers from [Bruker® Optics GmbH & Co.
 KG](https://www.bruker.com/en.html) save spectra in a binary file format known
 as OPUS. Each OPUS file corresponds to one sample measurement, typically
-acquired through the OPUS spectroscopy software. These files have numerical
-extensions, with incrementing extension numbers based on the naming scheme
+acquired through the OPUS spectroscopy software. These files feature numerical
+extensions, with extension numbers incrementing based on the naming scheme
 chosen in the OPUS software.
 
 The OPUS suite and the file specification are proprietary, leading to the need
 for an implementation based on reverse engineering in this package. With
 {opusreader2}, you can access your spectroscopic data in the open computing
-language R, providing full control over your data analytics pipeline. Our
-package specifically reads binary files for most Fourier-Transform Infrared
-(FT-IR) spectrometers from Bruker Optics GmbH. While it may work for other
-products like Raman spectrometers, further adjustments are required to support
-new data types (see below).
+language R, providing full control over your spectral data workflow. Our package
+specifically reads binary files for most Fourier-Transform Infrared (FT-IR)
+spectrometers from Bruker® Optics GmbH. While it may work for other products
+like Raman spectrometers, further adjustments are required to support new block
+types (data and parameters; see below).
 
 # OPUS data extraction
 
@@ -63,23 +63,23 @@ In addition to result spectra, the binary files encompass:
 
 -   single-channel data from background measurements done before the sample
 
--   other types of intermediate spectra. Currently, we support *data blocks to
-    be saved* for fourier-transform infrared spectrometers.
+-   other types of intermediate spectra. Currently, we support *"data blocks to
+    be saved* *"* for fourier-transform infrared spectrometers.
 
 ## Reading and parsing OPUS files in R
 
-With `read_opus()` you can either read single or multiple OPUS files. Let's take
-an example file produced by a Bruker ALPHA® spectrometer that operates in
-diffuse-reflectance mid-infrared mode. The spectral measurement of a soil sample
-comes with the package and is also part of the data set in Baumann et al.
-(2020). Here is how OPUS software represents parsed blocks in the OPUS viewer
-software from Bruker®.
+With the main function `read_opus()` you can either read single or multiple OPUS
+files. Let's take an example file produced by a Bruker ALPHA® spectrometer that
+measures mid-infrared spectra with a diffuse-reflectance accessory. This
+spectral measurement of a soil sample comes with the package and is also part of
+the data set in Baumann et al. (2020). Here is how OPUS software represents
+parsed blocks in the OPUS viewer software from Bruker®.
 
 ![Data parameters for absorbance (AB) spectrum](images/OPUS_block1.png)
 
 We can extract all those blocks from the corresponding OPUS file example. We can
-even read more blocks that are not displayed visually in the official software
-but are present in the file (more about it below).
+even explore additional blocks that are not visually displayed in the official
+software but are present in the file (more details below).
 
 ```{r}
 library("opusreader2")
@@ -90,29 +90,51 @@ file_1 <- system.file("extdata", "test_data", "BF_lo_01_soil_cal.1",
 spectrum_1 <- read_opus(dsn = file_1)
 ```
 
-The `dsn` argument provides is the data source name, that currently either be a
-character vector of the folder path to read files from recursively, or
-characters of OPUS file paths.
+The `dsn` argument provides is the data source name. It is currently either a
+character vector of the folder path to read files from recursively, or character
+vector of specific OPUS file paths.
 
-**`read_opus()`** returns a nested list of class `"list_opusreader2"`. At the
-first level of the list output, data is arranged as shown in the Bruker OPUS
-viewer. To learn more about the respective block names and what data and
-parameters are associated with it, we recommend reading the help via
-`?read_opus`. Here we show basic examples.
+**`read_opus()`** returns a nested list of class `"list_opusreader2"`.
 
 ```{r}
 class(spectrum_1)
+names(spectrum_1)
 ```
 
-For examining parsed lists in RStudio, we also recommend to use the "list
-preview" via `View(spectrum_1)`, that you can also access in the "Environment"
-tab. Here we use base R subsetting, `names()` and `str()` to examine the
-contents of the example data.
+At the first level of the list output, data is arranged as shown in the Bruker
+OPUS viewer.
 
 ```{r}
-names(spectrum_1)
-data_1 <- spectrum_1[["BF_lo_01_soil_cal.1"]]
-names(data_1)
+meas_1 <- spectrum_1[["BF_lo_01_soil_cal.1"]]
+names(meas_1)
+```
+
+To gain insights into block names, associated data, and parameters, we suggest
+consulting the help documentation via `?read_opus`. We've formatted the block
+names in `camel_case` within the second level of the `"opusreader2_list"`
+output, facilitating improved programmatic access.
+
+Printing the complete `"opusreader2_list"` object in the R console keeps the
+console occupied for a significant amount of time. For more efficient
+examination in RStudio, we recommend using the *list preview* feature with
+`View(spectrum_1)`, accessible through the *Environment* tab. Here we employ
+base R subsetting, `names()`, and `str()` to explore examples of measured
+spectral data.
+
+This output reveals three list elements that may not be visible in the Bruker®
+viewer pane.
+
+1.  `basic_metadata`: This data frame serves as minimal metadata to identify
+    measurements. It contains the file name at time of parsing, the sample name
+    entered prior measurement, and different time stamps. This field is for
+    example useful to build data pipelines for spectral libraries and prediction
+    services.
+2.  `ab_no_atm_comp_data_param`: Parameters for the absorbance (AB) block prior
+    to atmospheric compensation.
+3.  `ab_no_atm_comp`:
+
+```{r}
+str(meas_1$basic_metadata)
 ```
 
 We can for example verify the frequency of the first point (FXV). All types of
@@ -120,7 +142,7 @@ data and parameters within OPUS files are encoded with three capital letters
 each.
 
 ```{r}
-data_1$ab_data_param$parameters$FXV$parameter_value
+meas_1$ab_data_param$parameters$FXV$parameter_value
 ```
 
 Besides the data or parameter values, the output of each parsed OPUS block
@@ -130,12 +152,12 @@ blocks. This is decoded from the file header and allows for traceability in the
 parsing process.
 
 ```{r}
-class(data_1$ab_data_param)
-str(data_1$ab_data_param)
+class(meas_1$ab_data_param)
+str(meas_1$ab_data_param)
 ```
 
 ```{r}
-str(data_1$instrument)
+str(meas_1$instrument)
 ```
 
 The first example mid-infrared spectrum was measured with atmospheric
