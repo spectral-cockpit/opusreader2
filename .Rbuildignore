@@ -10,3 +10,5 @@
 .lintr
 ^revdep$
 ^cran-comments\.md$
+^doc$
+^Meta$
