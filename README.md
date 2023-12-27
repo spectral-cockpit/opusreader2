@@ -8,8 +8,8 @@
 
 ```{=html}
 <p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
-```
 <img src="man/figures/logo.png" align="right" width="250"/>
+```
 
 ## 🪄 Scope
 
