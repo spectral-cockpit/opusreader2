@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reading Bruker OPUS binary files in R • opusreader2</title>
+<title>Reading OPUS binary files from Bruker® spectrometers in R • opusreader2</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Reading Bruker OPUS binary files in R">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Reading OPUS binary files from Bruker® spectrometers in R">
 <meta property="og:description" content="opusreader2">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -57,7 +57,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/opusreader2_introduction.html">Reading Bruker OPUS binary files in R</a>
+      <a href="../articles/opusreader2_introduction.html">Reading OPUS binary files from Bruker® spectrometers in R</a>
     </li>
   </ul>
 </li>
@@ -85,9 +85,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Reading Bruker OPUS binary files in R</h1>
-                        <h4 data-toc-skip class="author">Philipp
-Baumann</h4>
+      <h1 data-toc-skip>Reading OPUS binary files from Bruker®
+spectrometers in R</h1>
+                        <h4 data-toc-skip class="author">Philipp Baumann
+and Thomas Knecht</h4>
             
             <h4 data-toc-skip class="date">2023-12-27</h4>
       
@@ -98,37 +99,418 @@ Baumann</h4>
 
     
     
-<p>Bruker instruments produce a proprietary file format when measuring
-spectra, called OPUS. This way the Bruker OPUS software stores all
-measurement parameters, configurations, environmental conditions, for
-different spectral data types within OPUS binary files.</p>
-<p>Our package can read those binary files for most of the
-Fourier-Transform(FT)-Infrared(IR)-spectrometers from Bruker Optics
-GmBH.</p>
 <div class="section level2">
-<h2 id="reading-opus-files">Reading OPUS files<a class="anchor" aria-label="anchor" href="#reading-opus-files"></a>
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
 </h2>
-<p>One can read both single OPUS files or a batch of many OPUS files.
-The main way to read files is</p>
+<p>Spectrometers from <a href="https://www.bruker.com/en.html" class="external-link">Bruker®
+Optics GmbH &amp; Co. KG</a> save spectra in a binary file format known
+as OPUS. Each OPUS file corresponds to one sample measurement, typically
+acquired through the OPUS spectroscopy software. These files feature
+numerical extensions, with extension numbers incrementing based on the
+naming scheme chosen in the OPUS software.</p>
+<p>The OPUS suite and the file specification are proprietary, leading to
+the need for an implementation based on reverse engineering in this
+package. With {opusreader2}, you can access your spectroscopic data in
+the open computing language R, providing full control over your spectral
+data workflow. Our package specifically reads binary files for most
+Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics
+GmbH. While it may work for other products like Raman spectrometers,
+further adjustments are required to support new block types (data and
+parameters; see below).</p>
+</div>
+<div class="section level2">
+<h2 id="opus-data-extraction">OPUS data extraction<a class="anchor" aria-label="anchor" href="#opus-data-extraction"></a>
+</h2>
+<p>The processing of each OPUS file begins by extracting essential
+information from a designated byte range in the file header. This
+section contains crucial details about binary blocks (also called
+chunks), including byte offsets, sizes, and data types within the file.
+The parsing algorithm utilizes this information to extract modular
+blocks of data and parameters from byte sequences. As illustrated in the
+figure below, the content of the files varies based on the instrument
+type, user-selected data (spectrum) blocks to save, and specific
+settings.</p>
+<div class="figure">
+<img src="images/opus-measurement-settings.png" id="fig:opus_settings" alt=""><p class="caption">OPUS measurement settings for Bruker INVENIO®
+fourier-transform (FT) mid-infrared spectrometer</p>
+</div>
+<p>In addition to result spectra, the binary files encompass:</p>
+<ul>
+<li><p>a comprehensive set of measurement parameters (configurations,
+conditions)</p></li>
+<li><p>single-channel data from background measurements done before the
+sample</p></li>
+<li><p>other types of intermediate spectra. Currently, we support
+<em>“data blocks to be saved</em> <em>“</em> for fourier-transform
+infrared spectrometers.</p></li>
+</ul>
+<div class="section level3">
+<h3 id="reading-and-parsing-opus-files-in-r">Reading and parsing OPUS files in R<a class="anchor" aria-label="anchor" href="#reading-and-parsing-opus-files-in-r"></a>
+</h3>
+<p>With the main function <code><a href="../reference/read_opus.html">read_opus()</a></code> you can either read
+single or multiple OPUS files. Let’s take an example file produced by a
+Bruker ALPHA® spectrometer that measures mid-infrared spectra with a
+diffuse-reflectance accessory. This spectral measurement of a soil
+sample comes with the package and is also part of the data set in
+Baumann et al. (2020). Here is how OPUS software represents parsed
+blocks in the OPUS viewer software from Bruker®.</p>
+<div class="figure">
+<img src="images/OPUS_block1.png" alt=""><p class="caption">Data parameters for absorbance (AB) spectrum</p>
+</div>
+<p>We can extract all those blocks from the corresponding OPUS file
+example. We can even explore additional blocks that are not visually
+displayed in the official software but are present in the file (more
+details below).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/spectral-cockpit/opusreader2" class="external-link">"opusreader2"</a></span><span class="op">)</span></span>
 <span><span class="co"># example file</span></span>
-<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/opus_file.html">opus_file</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div>
-<p>Thereby, <code>dsn</code> is the data source name, that currently
-either be a character vector of the folder path to read files from, or
-characters of OPUS file paths.</p>
-<p><code><a href="../reference/read_opus.html">read_opus()</a></code> parses into an R list (S3) of class
-“list_opusreader2”. The data is arranged as shown in the Bruker OPUS
-viewer:</p>
+<span><span class="va">file_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_data"</span>, <span class="st">"BF_lo_01_soil_cal.1"</span>,</span>
+<span>  package <span class="op">=</span> <span class="st">"opusreader2"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">spectrum_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file_1</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>dsn</code> argument provides is the data source name. It is
+currently either a character vector of the folder path to read files
+from recursively, or character vector of specific OPUS file paths.</p>
+<p><strong><code><a href="../reference/read_opus.html">read_opus()</a></code></strong> returns a nested list of
+class <code>"list_opusreader2"</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span>
-<span><span class="co"># show data and metadata types</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span></code></pre></div>
-<p>For single OPUS files, there is also a lower level
-implementation.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "list_opusreader2" "list"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "BF_lo_01_soil_cal.1"</span></span></code></pre></div>
+<p>At the first level of the list output, data is arranged as shown in
+the Bruker OPUS viewer.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus_single.html">read_opus_single</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">meas_1</span> <span class="op">&lt;-</span> <span class="va">spectrum_1</span><span class="op">[[</span><span class="st">"BF_lo_01_soil_cal.1"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "basic_metadata"             "ab_no_atm_comp_data_param" </span></span>
+<span><span class="co">#&gt;  [3] "ab_no_atm_comp"             "ab_data_param"             </span></span>
+<span><span class="co">#&gt;  [5] "ab"                         "sc_sample_data_param"      </span></span>
+<span><span class="co">#&gt;  [7] "sc_sample"                  "sc_ref_data_param"         </span></span>
+<span><span class="co">#&gt;  [9] "sc_ref"                     "optics"                    </span></span>
+<span><span class="co">#&gt; [11] "optics_ref"                 "acquisition_ref"           </span></span>
+<span><span class="co">#&gt; [13] "fourier_transformation_ref" "fourier_transformation"    </span></span>
+<span><span class="co">#&gt; [15] "sample"                     "acquisition"               </span></span>
+<span><span class="co">#&gt; [17] "instrument_ref"             "instrument"                </span></span>
+<span><span class="co">#&gt; [19] "history"</span></span></code></pre></div>
+<p>To gain insights into block names, associated data, and parameters,
+we suggest consulting the help documentation via
+<code><a href="../reference/read_opus.html">?read_opus</a></code>. We’ve formatted the block names in
+<code>camel_case</code> within the second level of the
+<code>"opusreader2_list"</code> output, facilitating improved
+programmatic access.</p>
+<p>Printing the complete <code>"opusreader2_list"</code> object in the R
+console keeps the console occupied for a significant amount of time. For
+more efficient examination in RStudio, we recommend using the <em>list
+preview</em> feature with <code>View(spectrum_1)</code>, accessible
+through the <em>Environment</em> tab. Here we employ base R subsetting,
+<code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code>, and <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code> to explore examples of
+measured spectral data.</p>
+<p>This output reveals three list elements that may not be visible in
+the Bruker® viewer pane.</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>basic_metadata</code>: This data frame serves as minimal
+metadata to identify measurements. It contains the file name at time of
+parsing, the sample name entered prior measurement, and different time
+stamps. This field is for example useful to build data pipelines for
+spectral libraries and prediction services.</li>
+<li>
+<code>ab_no_atm_comp_data_param</code>: Parameters for the
+absorbance (AB) block prior to atmospheric compensation.</li>
+<li>
+<code>ab_no_atm_comp</code>:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">basic_metadata</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    1 obs. of  6 variables:</span></span>
+<span><span class="co">#&gt;  $ dsn_filename        : chr "BF_lo_01_soil_cal.1"</span></span>
+<span><span class="co">#&gt;  $ opus_sample_name    : chr "BF_lo_01_soil_cal"</span></span>
+<span><span class="co">#&gt;  $ timestamp_string    : chr "2015-11-06 14:39:33 GMT+1"</span></span>
+<span><span class="co">#&gt;  $ local_datetime      : chr "2015-11-06 14:39:33"</span></span>
+<span><span class="co">#&gt;  $ local_timezone      : chr "GMT+1"</span></span>
+<span><span class="co">#&gt;  $ utc_datetime_posixct: POSIXct, format: "2015-11-06 13:39:33"</span></span></code></pre></div>
+<p>We can for example verify the frequency of the first point (FXV). All
+types of data and parameters within OPUS files are encoded with three
+capital letters each.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">FXV</span><span class="op">$</span><span class="va">parameter_value</span></span>
+<span><span class="co">#&gt; [1] 3997.397</span></span></code></pre></div>
+<p>Besides the data or parameter values, the output of each parsed OPUS
+block contains the block type, channel type, text type, additional type,
+the offset in bytes, next offset in bytes, and the chunk size in bytes
+for particular data blocks. This is decoded from the file header and
+allows for traceability in the parsing process.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "parameter"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 9</span></span>
+<span><span class="co">#&gt;  $ block_type     : int 31</span></span>
+<span><span class="co">#&gt;  $ channel_type   : int 16</span></span>
+<span><span class="co">#&gt;  $ text_type      : int 0</span></span>
+<span><span class="co">#&gt;  $ additional_type: int 0</span></span>
+<span><span class="co">#&gt;  $ offset         : int 33424</span></span>
+<span><span class="co">#&gt;  $ next_offset    : int 33600</span></span>
+<span><span class="co">#&gt;  $ chunk_size     : int 176</span></span>
+<span><span class="co">#&gt;  $ block_type_name: chr "ab_data_param"</span></span>
+<span><span class="co">#&gt;  $ parameters     :List of 10</span></span>
+<span><span class="co">#&gt;   ..$ DPF:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DPF"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Data Point Format"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ NPT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "NPT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Data Points"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1716</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ FXV:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "FXV"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Frequency of First Point"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 3997</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LXV:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LXV"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Frequency of Last Point"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 500</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ CSF:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "CSF"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Scaling Factor"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MXY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MXY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Maximum"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.47</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MNY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MNY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Minimum"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 0.104</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ DAT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DAT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Date of Measurement"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "06/11/2015"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ TIM:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "TIM"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Time of Measurement"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "14:38:14.100 (GMT+1)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ DXU:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DXU"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "X Units"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "WN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr "parameter"</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">instrument</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 9</span></span>
+<span><span class="co">#&gt;  $ block_type     : int 32</span></span>
+<span><span class="co">#&gt;  $ channel_type   : int 0</span></span>
+<span><span class="co">#&gt;  $ text_type      : int 0</span></span>
+<span><span class="co">#&gt;  $ additional_type: int 64</span></span>
+<span><span class="co">#&gt;  $ offset         : int 26160</span></span>
+<span><span class="co">#&gt;  $ next_offset    : int 26560</span></span>
+<span><span class="co">#&gt;  $ chunk_size     : int 400</span></span>
+<span><span class="co">#&gt;  $ block_type_name: chr "instrument"</span></span>
+<span><span class="co">#&gt;  $ parameters     :List of 27</span></span>
+<span><span class="co">#&gt;   ..$ HFL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HFL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Hight Folding Limit"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 16707</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LFL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LFL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Low Folding Limit"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LWN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LWN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Laser Wavenumber"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 11602</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ ABP:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "ABP"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Absolute Peak Pos in Laser*2"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 999951</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ SSP:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SSP"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Sample Spacing Divisor"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ HUM:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HUM"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Relative Humidity Interferometer"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 25</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ RSN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "RSN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Running Sample Number"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1891</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ SRT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SRT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Start time (sec)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.45e+09</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ DUR:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DUR"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Scan time (sec)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 79.6</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ TSC:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "TSC"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Scanner Temperature"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 33.7</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MVD:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MVD"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Max. Velocity Deviation"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.56</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ APG:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "APG"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Actual preamplifier gain"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ HUA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HUA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Absolute Humidity Interferometer"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 9.52</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ VSN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "VSN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Firmware version"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "1.352 Dec 04 2012"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ SRN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SRN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Instrument Serial Number"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "2 00639"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ PKA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PKA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Peak Amplitude"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int -438</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PKL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PKL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Peak Location"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 7518</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ GFW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "GFW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Good FW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 32</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ BFW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "BFW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Bad FW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PRA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PRA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Backward Peack Amplitude"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int -437</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PRL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PRL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Backward Peak Location"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 7518</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ GBW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "GBW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Good BW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 32</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ BBW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "BBW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Bad BW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ INS:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "INS"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Instrument Type"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "Alpha"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ FOC:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "FOC"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Focal Length"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 33</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ RDY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "RDY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Ready Check"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "1"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ ASS:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "ASS"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Sample Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 64</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr "parameter"</span></span></code></pre></div>
+<p>The first example mid-infrared spectrum was measured with atmospheric
+compensation (carbon dioxide and water bands), which is done on based on
+the background spectra. The measurement option is called “Atmospheric
+compensation” in the OPUS software. The goal of this routine is to
+remove artefacts from CO2 and water bands in the measurement module.
+Generally, OPUS files have trace every step or macro applied in the file
+output. Reading both raw and transformed data gives us flexibility and
+the possibility to do extended quality control prior to further data
+processing, modeling, and estimating new samples.</p>
+</div>
+<div class="section level3">
+<h3 id="reading-opus-files-recursively-from-folder">Reading OPUS files recursively from folder<a class="anchor" aria-label="anchor" href="#reading-opus-files-recursively-from-folder"></a>
+</h3>
+<p>A data source name (<code>dsn</code>) can be a folder, too. This
+makes it convenient to read all OPUS files present in below a certain
+folder level. We illustrate it with all OPUS test files that come with
+{opusreader2}, which are are also used in unit tests.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">test_dsn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_data"</span>, package <span class="op">=</span> <span class="st">"opusreader2"</span><span class="op">)</span></span>
+<span><span class="va">data_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">test_dsn</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_test</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "617262_1TP_C-1_A5.0" "629266_1TP_A-1_C1.0" "BF_lo_01_soil_cal.1"</span></span>
+<span><span class="co">#&gt; [4] "MMP_2107_Test1.001"  "test_spectra.0"</span></span></code></pre></div>
+<p>We can get the instrument name of the test files like this.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">get_instrument_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">instrument</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">INS</span><span class="op">$</span><span class="va">parameter_value</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data_test</span>, <span class="va">get_instrument_name</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $`617262_1TP_C-1_A5.0`</span></span>
+<span><span class="co">#&gt; [1] "INVENIO-R"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`629266_1TP_A-1_C1.0`</span></span>
+<span><span class="co">#&gt; [1] "VERTEX 70"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $BF_lo_01_soil_cal.1</span></span>
+<span><span class="co">#&gt; [1] "Alpha"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $MMP_2107_Test1.001</span></span>
+<span><span class="co">#&gt; [1] "Tango"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $test_spectra.0</span></span>
+<span><span class="co">#&gt; [1] "TENSOR II"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="reading-opus-files-in-parallel">Reading OPUS files in parallel<a class="anchor" aria-label="anchor" href="#reading-opus-files-in-parallel"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="reading-a-single-opus-file">Reading a single OPUS file<a class="anchor" aria-label="anchor" href="#reading-a-single-opus-file"></a>
+</h3>
+<p>For single OPUS files, there <code><a href="../reference/read_opus_single.html">read_opus_single()</a></code>
+implementation can also be used</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus_single.html">read_opus_single</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file_1</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
   </div>
 
