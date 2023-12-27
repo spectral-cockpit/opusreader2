@@ -26,11 +26,12 @@ knitr::opts_chunk$set(
 
 # Motivation
 
-Spectrometers from Bruker® Optics GmbH & Co. KG save spectra in a binary file
-format known as OPUS. Each OPUS file corresponds to one sample measurement,
-typically acquired through the OPUS spectroscopy software. These files have
-numerical extensions, with incrementing extension numbers based on the naming
-scheme chosen in the OPUS software.
+Spectrometers from [Bruker® Optics GmbH & Co.
+KG](https://www.bruker.com/en.html) save spectra in a binary file format known
+as OPUS. Each OPUS file corresponds to one sample measurement, typically
+acquired through the OPUS spectroscopy software. These files have numerical
+extensions, with incrementing extension numbers based on the naming scheme
+chosen in the OPUS software.
 
 The OPUS suite and the file specification are proprietary, leading to the need
 for an implementation based on reverse engineering in this package. With
@@ -103,8 +104,8 @@ class(spectrum_1)
 
 For examining parsed lists in RStudio, we also recommend to use the "list
 preview" via `View(spectrum_1)`, that you can also access in the "Environment"
-tab. Here we use base R subsetting, `names()` and `str` to browse the example
-data.
+tab. Here we use base R subsetting, `names()` and `str()` to examine the
+contents of the example data.
 
 ```{r}
 names(spectrum_1)
