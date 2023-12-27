@@ -96,7 +96,9 @@ characters of OPUS file paths.
 
 **`read_opus()`** returns a nested list of class `"list_opusreader2"`. At the
 first level of the list output, data is arranged as shown in the Bruker OPUS
-viewer.
+viewer. To learn more about the respective block names and what data and
+parameters are associated with it, we recommend reading the help via
+`?read_opus`. Here we show basic examples.
 
 ```{r}
 class(spectrum_1)
@@ -135,6 +137,15 @@ str(data_1$ab_data_param)
 ```{r}
 str(data_1$instrument)
 ```
+
+The first example mid-infrared spectrum was measured with atmospheric
+compensation (carbon dioxide and water bands), which is done on based on the
+background spectra. The measurement option is called "Atmospheric compensation"
+in the OPUS software. The goal of this routine is to remove artefacts from CO2
+and water bands in the measurement module. Generally, OPUS files have trace
+every step or macro applied in the file output. Reading both raw and transformed
+data gives us flexibility and the possibility to do extended quality control
+prior to further data processing, modeling, and estimating new samples.
 
 ## Reading OPUS files recursively from folder
 
