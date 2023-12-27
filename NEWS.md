@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# opusreader2 0.6.2.9000 (2023-12-27)
+
+- Select 5 OPUS binary files from different instrument types for tests and 
+  vignette ((#103)
+- Update first part of vignette for CRAN (#103).
+
+
 # opusreader2 0.6.2 (2023-12-23)
 
 ## Bug fixes
