@@ -90,7 +90,7 @@ spectrometers in R</h1>
                         <h4 data-toc-skip class="author">Philipp Baumann
 and Thomas Knecht</h4>
             
-            <h4 data-toc-skip class="date">2024-02-27</h4>
+            <h4 data-toc-skip class="date">2024-02-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/spectral-cockpit/opusreader2/blob/HEAD/vignettes/opusreader2_introduction.Rmd" class="external-link"><code>vignettes/opusreader2_introduction.Rmd</code></a></small>
       <div class="hidden name"><code>opusreader2_introduction.Rmd</code></div>
@@ -130,9 +130,9 @@ blocks of data and parameters from byte sequences. As illustrated in the
 figure below, the content of the files varies based on the instrument
 type, user-selected data (spectrum) blocks to save, and specific
 settings.</p>
-<div class="figure">
-<img src="images/opus-measurement-settings.png" id="fig:opus_settings" alt=""><p class="caption">OPUS measurement settings for Bruker INVENIO®
-fourier-transform (FT) mid-infrared spectrometer</p>
+<div class="float" id="fig:opus_settings">
+<img src="images/opus-measurement-settings.png" alt="OPUS measurement settings for Bruker INVENIO® fourier-transform (FT) mid-infrared spectrometer"><div class="figcaption">OPUS measurement settings for Bruker INVENIO®
+fourier-transform (FT) mid-infrared spectrometer</div>
 </div>
 <p>In addition to result spectra, the binary files encompass:</p>
 <ul>
@@ -154,8 +154,9 @@ diffuse-reflectance accessory. This spectral measurement of a soil
 sample comes with the package and is also part of the data set in
 Baumann et al. (2020). Here is how OPUS software represents parsed
 blocks in the OPUS viewer software from Bruker®.</p>
-<div class="figure">
-<img src="images/OPUS_block1.png" alt=""><p class="caption">Data parameters for absorbance (AB) spectrum</p>
+<div class="float">
+<img src="images/OPUS_block1.png" alt="Data parameters for absorbance (AB) spectrum"><div class="figcaption">Data parameters for absorbance (AB)
+spectrum</div>
 </div>
 <p>We can extract all those blocks from the corresponding OPUS file
 example. We can even explore additional blocks that are not visually
