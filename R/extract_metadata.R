@@ -1,7 +1,6 @@
 get_basic_metadata <- function(ds_list) {
   timestamp <- get_meta_timestamp(ds_list)
 
-
   basic_metadata <- data.frame(
     # opus_filename,
     # opus_path,
@@ -26,7 +25,7 @@ get_meta_timestamp <- function(ds_list) {
 
   time_hour_tz <- strsplit(x = save_file_time, split = " ")[[1L]]
   time_hour <- paste(time_hour_tz[1L], time_hour_tz[2L])
-  tz <- gsub(pattern = "\\(|\\)", "", x = time_hour_tz[3L])
+  tz <- gsub(pattern = "\\(|\\)|\\s+", "", x = time_hour_tz[3L])
   etc_tz <- paste0("Etc/", tz) # see ?strptime for details
 
   # note that negative offsets denote UTC+x time stamps

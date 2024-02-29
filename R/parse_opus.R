@@ -126,12 +126,11 @@ parse_opus <- function(raw, data_only) {
 
   dataset_list <- name_output_list(dataset_list)
 
-
   if (data_only) {
     if (any(grepl("^ab$|^refl$", names(dataset_list)))) {
       dataset_list <- extract_data(
         dataset_list,
-        c("ab", "refl", "ab_data_param", "refl_data_param")
+        c("ab", "refl", "ab_data_param", "refl_data_param", "history", "sample")
       )
     } else {
       dataset_list <- extract_data( # nolint
@@ -140,13 +139,15 @@ parse_opus <- function(raw, data_only) {
           "ab_no_atm_comp",
           "refl_no_atm_comp",
           "ab_no_atm_comp_data_param",
-          "refl_no_atm_comp_data_param"
+          "refl_no_atm_comp_data_param",
+          "history",
+          "sample"
         )
       )
     }
-  } else {
-    dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
   }
+
+  dataset_list <- lapply(dataset_list, calc_parameter_chunk_size)
 
   dataset_list <- lapply(dataset_list, function(x) parse_chunk(x, raw))
 
@@ -158,7 +159,10 @@ parse_opus <- function(raw, data_only) {
   )
 
   if (data_only) {
-    dataset_list <- dataset_list[lapply(dataset_list, class) == "data"]
+    dataset_list <- dataset_list[
+      lapply(dataset_list, class) == "data" | names(dataset_list) == "history" |
+        names(dataset_list) == "sample"
+    ]
   }
 
   dataset_list <- sort_list_by(dataset_list)
