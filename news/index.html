@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">opusreader2</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.3</span>
       </span>
     </div>
 
@@ -57,6 +57,13 @@
       <small>Source: <a href="https://github.com/spectral-cockpit/opusreader2/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.6.3" id="opusreader2-063-2024-03-12">opusreader2 0.6.3 (2024-03-12)<a class="anchor" aria-label="anchor" href="#opusreader2-063-2024-03-12"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-6-3">Bug fixes.<a class="anchor" aria-label="anchor" href="#bug-fixes-0-6-3"></a></h3>
+<ul><li>fix sample and time metadata parsing for <code>read_opus(dsn, data_only = TRUE)</code>. Previously, extraction of the timestamp failed and data extracted errored in that case, because there was the required <code>"history"</code> and <code>"sample"</code> blocks weren’t extracted temporarily before, as required. Now, <code>read_opus(dsn, data_only = TRUE)</code> successfully extracts an extra element <code>basic_metadata</code>, as it does for <code>data_only = FALSE</code> (the default). This extra information does unlikely to break existing pipeline code that extracts spectra with {opusreader2}, because it is a nested list element. This patch release also resolves a warning when parsing time information, that was due to an extra tab (<code>"\t"</code>) that was present in the history text for specific files. Thanks <a href="https://github.com/mtalluto" class="external-link">@mtalluto</a> for the fix. Added extra tests to check for errors and warnings in the example files for both <code>data_only = FALSE</code> and <code>data_only = TRUE</code>). Thanks to <a href="https://github.com/dylanbeaudette" class="external-link">@dylanbeaudette</a> and <a href="https://github.com/esteveze" class="external-link">@esteveze</a> for reporting the failing extraction of metadata. Issue report: <a href="https://github.com/spectral-cockpit/opusreader2/issues/104" class="external-link">#104</a>. PR fixed: <a href="https://github.com/spectral-cockpit/opusreader2/pull/105" class="external-link">#105</a>.</li>
+</ul><!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file --></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.2.9000" id="opusreader2-0629000-2023-12-27">opusreader2 0.6.2.9000 (2023-12-27)<a class="anchor" aria-label="anchor" href="#opusreader2-0629000-2023-12-27"></a></h2>
 <ul><li>Select 5 OPUS binary files from different instrument types for tests and vignette ((<a href="https://github.com/spectral-cockpit/opusreader2/issues/103" class="external-link">#103</a>)</li>
