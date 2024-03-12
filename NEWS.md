@@ -1,3 +1,27 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# opusreader2 0.6.3 (2024-03-12)
+
+## Bug fixes.
+
+- fix sample and time metadata parsing for `read_opus(dsn, data_only = TRUE)`. 
+  Previously, extraction of the timestamp failed and data extracted errored
+  in that case, because there was the required `"history"` and `"sample"` blocks
+  weren't extracted temporarily before, as required. 
+  Now, `read_opus(dsn, data_only = TRUE)` successfully extracts an extra element
+  `basic_metadata`, as it does for `data_only = FALSE` (the default). This extra
+  information does unlikely to break existing pipeline code that extracts
+  spectra with {opusreader2}, because it is a nested list element. This patch
+  release also resolves a warning when parsing time information, that was due to
+  an extra tab (`"\t"`) that was present in the history text for specific files.
+  Thanks @mtalluto for the fix.
+  Added extra tests to check for errors and warnings in the example files for
+  both `data_only = FALSE` and `data_only = TRUE`).
+  Thanks to @dylanbeaudette and @esteveze for reporting the failing extraction of metadata.
+  Issue report: [#104](https://github.com/spectral-cockpit/opusreader2/issues/104).
+  PR fixed: [#105](https://github.com/spectral-cockpit/opusreader2/pull/105).
+
+
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
 # opusreader2 0.6.2.9000 (2023-12-27)
