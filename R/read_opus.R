@@ -221,6 +221,10 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 
   data <- c(list(basic_metadata = basic_metadata), parsed_data)
 
+  if (isTRUE(data_only)) {
+    data <- data[!names(data) %in% c("history", "sample")]
+  }
+
   attr(data, "dsn_filename") <- dsn_filename
 
   return(data)
