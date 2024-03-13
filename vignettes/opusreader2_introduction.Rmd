@@ -109,10 +109,10 @@ meas_1 <- spectrum_1[["BF_lo_01_soil_cal.1"]]
 names(meas_1)
 ```
 
-To gain insights into block names, associated data, and parameters, we suggest
-consulting the help documentation via `?read_opus`. We've formatted the block
-names in `camel_case` within the second level of the `"opusreader2_list"`
-output, facilitating improved programmatic access.
+To learn about block names, associated data, and parameters, we suggest
+consulting th documentation via `?read_opus`. We've formatted the block names in
+`camel_case` within the second level of the `"opusreader2_list"` output,
+facilitating improved programmatic access.
 
 Printing the complete `"opusreader2_list"` object in the R console keeps the
 console occupied for a significant amount of time. For more efficient
@@ -137,9 +137,9 @@ viewer pane.
 str(meas_1$basic_metadata)
 ```
 
-We can for example verify the frequency of the first point (FXV). All types of
-data and parameters within OPUS files are encoded with three capital letters
-each.
+All types of data and parameters within OPUS files are encoded with three
+capital letters each. We can for example verify the frequency of the first point
+(`FXV`).
 
 ```{r}
 meas_1$ab_data_param$parameters$FXV$parameter_value
@@ -148,8 +148,8 @@ meas_1$ab_data_param$parameters$FXV$parameter_value
 Besides the data or parameter values, the output of each parsed OPUS block
 contains the block type, channel type, text type, additional type, the offset in
 bytes, next offset in bytes, and the chunk size in bytes for particular data
-blocks. This is decoded from the file header and allows for traceability in the
-parsing process.
+blocks. This is decoded from the file header and allows to trace the parsing
+process.
 
 ```{r}
 class(meas_1$ab_data_param)
@@ -202,3 +202,4 @@ used
 ```{r}
 data_single <- read_opus_single(dsn = file_1)
 ```
+
