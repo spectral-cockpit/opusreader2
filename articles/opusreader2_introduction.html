@@ -82,7 +82,7 @@ spectrometers in R</h1>
                         <h4 data-toc-skip class="author">Philipp Baumann
 and Thomas Knecht</h4>
             
-            <h4 data-toc-skip class="date">2024-07-07</h4>
+            <h4 data-toc-skip class="date">2024-07-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/spectral-cockpit/opusreader2/blob/main/vignettes/opusreader2_introduction.Rmd" class="external-link"><code>vignettes/opusreader2_introduction.Rmd</code></a></small>
       <div class="hidden name"><code>opusreader2_introduction.Rmd</code></div>
@@ -168,13 +168,12 @@ from recursively, or character vector of specific OPUS file paths.</p>
 class <code>"list_opusreader2"</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "list_opusreader2" "list"</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "list_opusreader2" "list"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "BF_lo_01_soil_cal.1"</span></span></code></pre></div>
 <p>At the first level of the list output, data is arranged as shown in
 the Bruker OPUS viewer.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meas_1</span> <span class="op">&lt;-</span> <span class="va">spectrum_1</span><span class="op">[[</span><span class="st">"BF_lo_01_soil_cal.1"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "basic_metadata"             "ab_no_atm_comp_data_param" </span></span>
@@ -215,7 +214,7 @@ absorbance (AB) block prior to atmospheric compensation.</li>
 <li>
 <code>ab_no_atm_comp</code>:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">basic_metadata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1 obs. of  6 variables:</span></span>
 <span><span class="co">#&gt;  $ dsn_filename        : chr "BF_lo_01_soil_cal.1"</span></span>
@@ -227,7 +226,7 @@ absorbance (AB) block prior to atmospheric compensation.</li>
 <p>We can for example verify the frequency of the first point (FXV). All
 types of data and parameters within OPUS files are encoded with three
 capital letters each.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">FXV</span><span class="op">$</span><span class="va">parameter_value</span></span>
 <span><span class="co">#&gt; [1] 3997.397</span></span></code></pre></div>
 <p>Besides the data or parameter values, the output of each parsed OPUS
@@ -235,11 +234,10 @@ block contains the block type, channel type, text type, additional type,
 the offset in bytes, next offset in bytes, and the chunk size in bytes
 for particular data blocks. This is decoded from the file header and
 allows for traceability in the parsing process.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "parameter"</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "parameter"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 9</span></span>
 <span><span class="co">#&gt;  $ block_type     : int 31</span></span>
 <span><span class="co">#&gt;  $ channel_type   : int 16</span></span>
@@ -301,7 +299,7 @@ allows for traceability in the parsing process.</p>
 <span><span class="co">#&gt;   .. ..$ parameter_value    : chr "WN"</span></span>
 <span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
 <span><span class="co">#&gt;  - attr(*, "class")= chr "parameter"</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">instrument</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 9</span></span>
 <span><span class="co">#&gt;  $ block_type     : int 32</span></span>
@@ -466,14 +464,14 @@ processing, modeling, and estimating new samples.</p>
 makes it convenient to read all OPUS files located below a certain
 folder level. We illustrate it with all OPUS test files that come with
 {opusreader2}, which are are also used in unit tests.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_dsn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_data"</span>, package <span class="op">=</span> <span class="st">"opusreader2"</span><span class="op">)</span></span>
 <span><span class="va">data_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">test_dsn</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_test</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "617262_1TP_C-1_A5.0" "629266_1TP_A-1_C1.0" "BF_lo_01_soil_cal.1"</span></span>
 <span><span class="co">#&gt; [4] "MMP_2107_Test1.001"  "test_spectra.0"</span></span></code></pre></div>
 <p>We can get the instrument name of the test files like this.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_instrument_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">instrument</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">INS</span><span class="op">$</span><span class="va">parameter_value</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -503,7 +501,7 @@ folder level. We illustrate it with all OPUS test files that come with
 </h3>
 <p>For single OPUS files, there <code><a href="../reference/read_opus_single.html">read_opus_single()</a></code>
 implementation can also be used</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_single</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus_single.html">read_opus_single</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">file_1</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
