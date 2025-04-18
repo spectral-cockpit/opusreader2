@@ -4,7 +4,13 @@
 \alias{read_opus}
 \title{Read OPUS binary files produced by a Bruker spectrometer}
 \usage{
-read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
+read_opus(
+  dsn,
+  data_only = FALSE,
+  parallel = FALSE,
+  .parallel_backend = c("mirai", "future"),
+  progress_bar = FALSE
+)
 }
 \arguments{
 \item{dsn}{data source name. Can be a path to a specific file or a path to a
@@ -15,6 +21,10 @@ read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 
 \item{parallel}{read files in parallel via chunking. Default is \code{FALSE}.}
+
+\item{.parallel_backend}{string with backend that handles reading spectra
+in parallel. Currently, \code{"mirai"} (default, non-blocking parallel map) and
+\code{"future"} are supported.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }

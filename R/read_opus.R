@@ -8,6 +8,9 @@
 #' read data
 #' `NULL`, which only returns the parsed data as an in-memory R object.
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
+#' @param .parallel_backend string with backend that handles reading spectra
+#' in parallel. Currently, `"mirai"` (default, non-blocking parallel map) and
+#' `"future"` are supported.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
 #' @family core
 #' @return Nested list (S3 object) containing the parsed contents of the binary
@@ -137,6 +140,7 @@
 read_opus <- function(dsn,
                       data_only = FALSE,
                       parallel = FALSE,
+                      .parallel_backend = c("mirai", "future"),
                       progress_bar = FALSE) {
   check_logical(data_only)
   check_logical(parallel)
@@ -151,40 +155,13 @@ read_opus <- function(dsn,
   if (!isTRUE(parallel)) {
     dataset_list <- opus_lapply(dsn, data_only)
   } else {
-    check_future()
-    number_of_chunks <- getOption("number_of_chunks",
-      default = "registered_workers"
+    .parallel_backend <- match.arg(.parallel_backend)
+    
+    dataset_list <- switch(
+      .parallel_backend,
+      "mirai" = read_opus_parallel_mirai(dsn, data_only, progress_bar),
+      "future" = read_opus_parallel_future(dsn, data_only, progress_bar)
     )
-
-    if (number_of_chunks == "registered_workers") {
-      n_chunks <- future::nbrOfFreeWorkers()
-    } else {
-      if (!is_integerish(number_of_chunks)) {
-        stop("`number_of_chucks` is not integerish.",
-          "`Set `options(number_of_chunks = <integer>)`",
-          call. = FALSE
-        )
-      }
-      n_chunks <- number_of_chunks
-    }
-
-    chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
-
-    if (isTRUE(progress_bar)) {
-      check_progressr()
-      # reduce signalling overhead
-      prog <- progressr::progressor(length(chunked_dsn))
-    }
-
-    dataset_list <- future.apply::future_lapply(
-      chunked_dsn,
-      function(x) {
-        if (isTRUE(progress_bar)) prog()
-        opus_lapply(x, data_only)
-      }
-    )
-
-    dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
   }
 
   class(dataset_list) <- c("list_opusreader2", class(dataset_list))
@@ -199,7 +176,79 @@ read_opus <- function(dsn,
   return(dataset_list)
 }
 
-#' Read a single opus file
+
+
+#' Read chunks of OPUS files in parallel using `"future"` backend
+#' 
+#' @inheritParams read_opus
+#' @noRd
+read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
+  check_future()
+  number_of_chunks <- getOption("number_of_chunks",
+    default = "registered_workers")
+
+  if (number_of_chunks == "registered_workers") {
+    n_chunks <- future::nbrOfFreeWorkers()
+  } else {
+  if (!is_integerish(number_of_chunks)) {
+    stop("`number_of_chucks` is not integerish.",
+      "`Set `options(number_of_chunks = <integer>)`",
+      call. = FALSE
+    )
+  }
+    n_chunks <- number_of_chunks
+  }
+
+   chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
+
+  if (isTRUE(progress_bar)) {
+    check_progressr()
+    # reduce signalling overhead
+    prog <- progressr::progressor(length(chunked_dsn))
+  }
+
+  dataset_list <- future.apply::future_lapply(
+    chunked_dsn,
+    function(x) {
+      if (isTRUE(progress_bar)) prog()
+      opus_lapply(x, data_only)
+    }
+  )
+
+  dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
+
+  return(dataset_list)
+}
+
+
+#' Read chunks of OPUS files in parallel using `"mirai"` backend via 
+#' `mirai::mirai_map()`
+#' 
+#' Relies on background processes (daemons) set up via `mirai::daemon()`
+#' @inheritParams read_opus
+#' @noRd
+read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
+  check_mirai()
+
+  no_deamons <- identical(mirai::daemons()$connections, 0L)
+
+  if (isTRUE(no_deamons)) {
+    stop("No background daemon process available.\n",
+      "Call `mirai::daemon(n = <integer-number-of-daemons>)` first",
+      call. = FALSE)
+  }
+
+  dataset_list <- mirai::mirai_map(
+    .x = dsn,
+    .f = function(x) read_opusfile(dsn = x),
+    read_opusfile = read_opus_single,
+    .args = list(data_only = data_only)
+  )
+
+  return(dataset_list)
+}
+
+#' Read a single OPUS file
 #'
 #' @param dsn source path of an opus file
 #'
@@ -236,7 +285,7 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 #'
 #' @inheritParams read_opus
 #'
-#' @keywords internal
+#' @export
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
