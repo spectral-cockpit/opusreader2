@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_opus.R
 \name{read_opus_single}
 \alias{read_opus_single}
-\title{Read a single opus file}
+\title{Read a single OPUS file}
 \usage{
 read_opus_single(dsn, data_only = FALSE)
 }
@@ -13,5 +13,5 @@ read_opus_single(dsn, data_only = FALSE)
 read data}
 }
 \description{
-Read a single opus file
+Read a single OPUS file
 }
