@@ -19,4 +19,3 @@ read data
 wrapper function to apply the read_opus_single() function to a list of
 data source paths
 }
-\keyword{internal}
