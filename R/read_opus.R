@@ -164,15 +164,6 @@ read_opus <- function(dsn,
     )
   }
 
-  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
-
-  dsn_filenames <- vapply(
-    dataset_list, function(x) attr(x, "dsn_filename"),
-    FUN.VALUE = character(1L)
-  )
-
-  names(dataset_list) <- dsn_filenames
-
   return(dataset_list)
 }
 
@@ -217,6 +208,15 @@ read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
 
   dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
 
+  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
+
+  dsn_filenames <- vapply(
+    dataset_list, function(x) attr(x, "dsn_filename"),
+    FUN.VALUE = character(1L)
+  )
+
+  names(dataset_list) <- dsn_filenames
+
   return(dataset_list)
 }
 
@@ -233,17 +233,31 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
   no_deamons <- identical(mirai::daemons()$connections, 0L)
 
   if (isTRUE(no_deamons)) {
-    stop("No background daemon process available.\n",
+    stop("No background daemon processes available.\n",
       "Call `mirai::daemon(n = <integer-number-of-daemons>)` first",
       call. = FALSE)
   }
 
   dataset_list <- mirai::mirai_map(
     .x = dsn,
-    .f = function(x) read_opusfile(dsn = x),
-    read_opusfile = read_opus_single,
+    .f =  opus_lapply,
     .args = list(data_only = data_only)
   )
+
+  if (isTRUE(progress_bar)) {
+    dataset_list[mirai::.progress]
+  }
+
+  dataset_list <- unname(unlist(dataset_list[], recursive = FALSE))
+
+  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
+
+  dsn_filenames <- vapply(
+    dataset_list[], function(x) attr(x, "dsn_filename"),
+    FUN.VALUE = character(1L)
+  )
+
+  names(dataset_list) <- dsn_filenames
 
   return(dataset_list)
 }
