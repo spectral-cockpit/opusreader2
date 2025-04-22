@@ -23,6 +23,10 @@ on:
         description: 'Unique ID. You can leave this empty now.'
         type: string
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
 
   setup:
