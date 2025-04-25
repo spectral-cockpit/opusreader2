@@ -30,9 +30,9 @@ knitr::opts_chunk$set(
 Spectrometers from [Bruker® Optics GmbH & Co.](https://www.bruker.com/en.html)  
 save spectra in a special file format called OPUS. Each OPUS file is linked to  
 one aggregated sample measurement, which is usually obtained using the OPUS  
-spectroscopy software. These files have numbers as file extensions, and the  
-numbers typically increase sequentially based on the naming scheme chosen in  
-the OPUS software.
+spectroscopy software. These files have numbers as file extensions, and the
+numbers typically increase sequentially for each sample name, based on the
+settings chosen in the OPUS software.
 
 The OPUS suite and file specification are proprietary, so we had to implement  
 this package using reverse engineering. With opusreader2, you can extract your  
