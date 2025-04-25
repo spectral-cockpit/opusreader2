@@ -197,6 +197,7 @@ lapply(data_test, get_instrument_name)
 ## Reading OPUS files in parallel
 
 ```{r}
+library("mirai")
 daemons(n = 2L, dispatcher = TRUE)
 ```
 
