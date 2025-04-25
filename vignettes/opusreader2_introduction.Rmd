@@ -178,7 +178,6 @@ easy to read all OPUS files found within a folder and its subfolders. Here, we
 demonstrate this using the test files that come with the {opusreader2} package,
 which are also used for unit testing.
 
-
 ```{r}
 test_dsn <- system.file("extdata", "test_data", package = "opusreader2")
 data_test <- read_opus(dsn = test_dsn)
@@ -186,7 +185,6 @@ names(data_test)
 ```
 
 To get the instrument name from each test file, you can use:
-
 
 ```{r}
 get_instrument_name <- function(data) {
@@ -197,6 +195,10 @@ lapply(data_test, get_instrument_name)
 ```
 
 ## Reading OPUS files in parallel
+
+```{r}
+daemons(n = 2L, dispatcher = TRUE)
+```
 
 ## Reading a single OPUS file
 
