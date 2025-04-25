@@ -321,7 +321,8 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 #' identical to its user exposed reading interface, see `?read_opus`
 #' @return spectra list containing the elements described in `?read_opus`
 #' @seealso [read_opus()] [read_opus_single()]
-#' @export
+#' @keywords internal
+#' @noRd
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
