@@ -323,7 +323,6 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 #' @seealso [read_opus()] [read_opus_single()]
 #' @keywords internal
 #' @noRd
-#' @export
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
