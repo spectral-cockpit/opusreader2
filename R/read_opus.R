@@ -252,7 +252,7 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
 
   if (isTRUE(no_deamons)) {
     stop("No background daemon processes available.\n",
-      "Call `mirai::daemon(n = <integer-number-of-daemons>)` first",
+      "Call `mirai::daemons(n = <integer-number-of-daemons>)` first",
       call. = FALSE)
   }
 
