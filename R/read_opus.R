@@ -10,7 +10,7 @@
 #' @param parallel read files in parallel via chunking. Default is `FALSE`.
 #' @param .parallel_backend string with backend that handles reading spectra
 #' in parallel. Currently, `"mirai"` (default, non-blocking parallel map) and
-#' `"future"` are supported.
+#' `"future"` are supported. See section "Details" for more information.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
 #' @family core
 #' @return Nested list (S3 object) containing the parsed contents of the binary
@@ -127,14 +127,32 @@
 #'
 #' @section Details:
 #' `read_opus()` is the high-level interface to read multiple OPUS files at
-#' once from a data source name (`dsn`). It optionally supports parallel reads
-#' via the {future} framework. When reading in parallel, a progress bar can
-#' be enabled, which uses {progressr} under the hood for progress updates.
-#' If `parallel = TRUE`, one can specify across how many chunks the OPUS files
-#' are distributed onto the registered parallel workers. This can be done via
-#' `options(number_of_chunks = <integer>)`. The default value is
-#' `number_of_chunks = "registered workers"`, which will split the OPUS files
-#' across number of chunks corresponding to the number of registered workers.
+#' once from a data source name (`dsn`).
+#' 
+#' It optionally supports parallel reads via `{mirai}` (default) and `{future}`
+#' backend.
+#' 
+#' When reading in parallel, a progress bar can be enabled.
+#' For `.parallel_backend = "multisession"`, `{cli}` provides progress updates.
+#' For `.parallel_backend = "future"`, `{progressr}` is required for
+#' progress updates.
+#' 
+#' ## "mirai" backend
+#' 
+#' {mirai} provides a highly efficient asynchronous parallel evaluation
+#' framework via the Nanomsg Next Gen (NNG), high-perforamcne, lightweight
+#' messaging library for distributed and concurrent applications. 
+#' 
+#' The only thing
+#' 
+#' ## "future" backend
+#' 
+#' If `parallel = TRUE`, one can specify
+#' across how many chunks the OPUS files are distributed onto the registered
+#' parallel workers. This can be done via `options(number_of_chunks =
+#' <integer>)`. The default value is `number_of_chunks = "registered workers"`,
+#' which will split the OPUS files across number of chunks corresponding to the
+#' number of registered workers.
 #'
 #' @export
 read_opus <- function(dsn,
