@@ -2,8 +2,8 @@
 % Please edit documentation in R/read_opus.R
 \name{opus_lapply}
 \alias{opus_lapply}
-\title{wrapper function to apply the read_opus_single() function to a list of
-data source paths}
+\title{List wrapper that reads a list of files (\code{dsn}) via \code{read_opus_single()}
+and returns spectra in a list}
 \usage{
 opus_lapply(dsn, data_only)
 }
@@ -15,8 +15,17 @@ directory. The listing of the files in a directory is recursive.}
 read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 }
-\description{
-wrapper function to apply the read_opus_single() function to a list of
-data source paths
+\value{
+nested list where first-level elements are individual spectral
+measurements parsed from individual OPUS binary files; the output is
+identical to its user exposed reading interface, see \code{?read_opus}
+
+spectra list containing the elements described in \code{?read_opus}
 }
-\keyword{internal}
+\description{
+List wrapper that reads a list of files (\code{dsn}) via \code{read_opus_single()}
+and returns spectra in a list
+}
+\seealso{
+\code{\link[=read_opus]{read_opus()}} \code{\link[=read_opus_single]{read_opus_single()}}
+}
