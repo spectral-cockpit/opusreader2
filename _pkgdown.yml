@@ -1,3 +1,9 @@
+url: https://spectral-cockpit.github.io/opusreader2/
+
+template:
+  bootstrap: 5
+  bootswatch: pulse
+
 reference:
 - title: Read Bruker OPUS files
   desc: >
