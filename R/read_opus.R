@@ -294,11 +294,15 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 }
 
 
-#' wrapper function to apply the read_opus_single() function to a list of
-#' data source paths
+#' List wrapper that reads a list of files (`dsn`) via `read_opus_single()`
+#' and returns spectra in a list
 #'
 #' @inheritParams read_opus
-#'
+#' @return nested list where first-level elements are individual spectral
+#' measurements parsed from individual OPUS binary files; the output is
+#' identical to its user exposed reading interface, see `?read_opus`
+#' @return spectra list containing the elements described in `?read_opus`
+#' @seealso [read_opus()] [read_opus_single()]
 #' @export
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
