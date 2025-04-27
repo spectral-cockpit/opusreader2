@@ -11,8 +11,9 @@ reference:
   contents:
   - read_opus
   - read_opus_single
-- title: Helpers
+- title: Example data
   desc: >
-    These are helper functions.
+    These are helper functions for getting example OPUS files included.
   contents:
-  - opus_file
+  - opus_test_file
+  - opus_test_dsn
