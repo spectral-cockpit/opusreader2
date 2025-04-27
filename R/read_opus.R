@@ -283,10 +283,9 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
 #' Read a single OPUS file
 #'
 #' @param dsn source path of an opus file
-#'
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
-#'
+#' 
 #' @export
 read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
