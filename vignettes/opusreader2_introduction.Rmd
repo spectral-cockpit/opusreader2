@@ -167,8 +167,8 @@ str(meas_1$instrument)
 This example spectrum was measured with atmospheric compensation (removing
 masking information from carbon dioxide and water vapor bands), as set in the
 OPUS software. OPUS files track all processing steps and macros, so you can
-access both raw and processed data. This enables thorough quality control and
-flexible data analysis before modeling or making predictions on new samples.
+access both raw and processed data. This enables thorough quality control
+before modeling or making predictions on new samples.
 
 
 ## Reading OPUS files recursively from a folder
