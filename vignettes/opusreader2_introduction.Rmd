@@ -196,14 +196,31 @@ lapply(data_test, get_instrument_name)
 
 ## Reading OPUS files in parallel
 
+We implemented a parallel interface in `read_opus()` to efficiently read large
+collections of spectra from multiple OPUS files. The default and recommended
+backend, [mirai](https://mirai.r-lib.org/), orchestrates reading files
+concurrently using asynchronous parallel mapping over individual OPUS files.
+The main advantage is faster reads, better and also fault-tolerant error
+handling (i.e. custom) actions when a file cannot be read.
+
+Behind the scene, mirai use [nanonext](https://github.com/r-lib/nanonext/) and
+[NNG](https://nng.nanomsg.org/) (Nanomsg Next Gen) messaging which allows
+high throughput and low latency between individual R processes.
+
+All you have to do is launching daemons.
+
 ```{r}
 library("mirai")
 daemons(n = 2L, dispatcher = TRUE)
 ```
 
+The task of reading files can be done locally or through distributed systems
+over a network. For further details, check out the mirai and its vignettes.
+
 ## Reading a single OPUS file
 
-For individual OPUS files, you can use the `read_opus_single()` function:
+For individual OPUS files, you can use the `read_opus_single()` function. 
+We export it as a developer interface.
 
 
 ```{r}
