@@ -172,10 +172,10 @@ read_opus <- function(dsn,
 
   if (!isTRUE(parallel)) {
     dataset_list <- opus_lapply(dsn, data_only)
-    class(dataset_list) <- c("list_opusreader2", class(dataset_list))
+    dataset_list <- new_list_opusreader2(dataset_list)
   } else {
     .parallel_backend <- match.arg(.parallel_backend)
-    
+
     dataset_list <- switch(
       .parallel_backend,
       "mirai" = read_opus_parallel_mirai(dsn, data_only, progress_bar),
@@ -188,10 +188,29 @@ read_opus <- function(dsn,
 
 
 
+#' 
+#' @param dataset_list dataset list, where each list element is a measured
+#' spectrum
+new_list_opusreader2 <- function(dataset_list) {
+  dsn_filenames <- vapply(
+    dataset_list, function(x) attr(x, "dsn_filename"),
+    FUN.VALUE = character(1L)
+  )
+
+  names(dataset_list) <- dsn_filenames
+
+  structure(
+    dataset_list,
+    class = c("dataset_list", class(data))
+  )
+}
+
+
+
 #' Read chunks of OPUS files in parallel using `"future"` backend
 #' 
 #' @inheritParams read_opus
-#' @noRd
+#' @keywords internal
 read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
   check_future()
   number_of_chunks <- getOption("number_of_chunks",
@@ -227,17 +246,11 @@ read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
 
   dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
 
-  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
-
-  dsn_filenames <- vapply(
-    dataset_list, function(x) attr(x, "dsn_filename"),
-    FUN.VALUE = character(1L)
-  )
-
-  names(dataset_list) <- dsn_filenames
+  dataset_list <- new_list_opusreader2(dataset_list)
 
   return(dataset_list)
 }
+
 
 
 #' Read chunks of OPUS files in parallel using `"mirai"` backend via 
@@ -245,7 +258,7 @@ read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
 #' 
 #' Relies on background processes (daemons) set up via `mirai::daemon()`
 #' @inheritParams read_opus
-#' @noRd
+#' @keywords internal
 read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
   check_mirai()
 
@@ -269,14 +282,7 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
 
   dataset_list <- unname(unlist(dataset_list[], recursive = FALSE))
 
-  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
-
-  dsn_filenames <- vapply(
-    dataset_list[], function(x) attr(x, "dsn_filename"),
-    FUN.VALUE = character(1L)
-  )
-
-  names(dataset_list) <- dsn_filenames
+  dataset_list <- new_list_opusreader2(dataset_list)
 
   return(dataset_list)
 }
@@ -322,7 +328,6 @@ read_opus_single <- function(dsn, data_only = FALSE) {
 #' @return spectra list containing the elements described in `?read_opus`
 #' @seealso [read_opus()] [read_opus_single()]
 #' @keywords internal
-#' @noRd
 opus_lapply <- function(dsn, data_only) {
   dataset_list <- lapply(
     dsn,
