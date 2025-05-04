@@ -89,15 +89,14 @@ Our package is designed to handle binary files for most
 Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics
 GmbH. It might also work for other products, such as Raman
 spectrometers, but in these cases, additional adjustments may be needed
-to support new block types (for<br>
-both data and parameters; see below).</p>
+to support new block types (for both data and parameters; see
+below).</p>
 </div>
 <div class="section level2">
 <h2 id="opus-data-extraction">OPUS data extraction<a class="anchor" aria-label="anchor" href="#opus-data-extraction"></a>
 </h2>
 <p>Each OPUS file is processed by first extracting metadata information
-from a<br>
-dedicated part of the file header. This section contains all the
+from a dedicated part of the file header. This section contains all the
 important information about binary blocks (also called chunks), such as
 byte offsets, sizes, and data types at different byte locations in the
 file. The parsing algorithm uses this information to extract various
@@ -107,8 +106,7 @@ the data (spectrum) blocks that the user chooses to save, and the
 specific measurement settings.</p>
 <div class="float" id="fig:opus_settings">
 <img src="images/opus-measurement-settings.png" alt="OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT) mid-infrared spectrometer"><div class="figcaption">OPUS measurement settings for Bruker INVENIO®
-Fourier-transform (FT)<br>
-mid-infrared spectrometer</div>
+Fourier-transform (FT) mid-infrared spectrometer</div>
 </div>
 <p>In addition to result spectra, the binary files include:</p>
 <ul>
@@ -153,15 +151,24 @@ OPUS file paths.</p>
 class <code>"list_opusreader2"</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "list"</span></span>
+<span><span class="co">#&gt; [1] "list_opusreader2" "function"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "BF_lo_01_soil_cal.1"</span></span></code></pre></div>
 <p>At the top level, the list structure matches how data is organized in
 the Bruker OPUS viewer.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meas_1</span> <span class="op">&lt;-</span> <span class="va">spectrum_1</span><span class="op">[[</span><span class="st">"BF_lo_01_soil_cal.1"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "basic_metadata"             "ab_no_atm_comp_data_param" </span></span>
+<span><span class="co">#&gt;  [3] "ab_no_atm_comp"             "ab_data_param"             </span></span>
+<span><span class="co">#&gt;  [5] "ab"                         "sc_sample_data_param"      </span></span>
+<span><span class="co">#&gt;  [7] "sc_sample"                  "sc_ref_data_param"         </span></span>
+<span><span class="co">#&gt;  [9] "sc_ref"                     "optics"                    </span></span>
+<span><span class="co">#&gt; [11] "optics_ref"                 "acquisition_ref"           </span></span>
+<span><span class="co">#&gt; [13] "fourier_transformation_ref" "fourier_transformation"    </span></span>
+<span><span class="co">#&gt; [15] "sample"                     "acquisition"               </span></span>
+<span><span class="co">#&gt; [17] "instrument_ref"             "instrument"                </span></span>
+<span><span class="co">#&gt; [19] "history"</span></span></code></pre></div>
 <p>To understand block names and their contents, see the help page
 <code><a href="../reference/read_opus.html">?read_opus</a></code>. Block names use <code>camel_case</code> at the
 second level of the <code>"opusreader2_list"</code> output, making them
@@ -187,14 +194,20 @@ compensation.</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">basic_metadata</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; 'data.frame':    1 obs. of  6 variables:</span></span>
+<span><span class="co">#&gt;  $ dsn_filename        : chr "BF_lo_01_soil_cal.1"</span></span>
+<span><span class="co">#&gt;  $ opus_sample_name    : chr "BF_lo_01_soil_cal"</span></span>
+<span><span class="co">#&gt;  $ timestamp_string    : chr "2015-11-06 14:39:33 GMT+1"</span></span>
+<span><span class="co">#&gt;  $ local_datetime      : chr "2015-11-06 14:39:33"</span></span>
+<span><span class="co">#&gt;  $ local_timezone      : chr "GMT+1"</span></span>
+<span><span class="co">#&gt;  $ utc_datetime_posixct: POSIXct, format: "2015-11-06 13:39:33"</span></span></code></pre></div>
 <p>All types of data and parameters within OPUS files are encoded with
 three capital letters each.</p>
 <p>For example, to check the frequency of the first point (FXV),
 use:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">FXV</span><span class="op">$</span><span class="va">parameter_value</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 3997.397</span></span></code></pre></div>
 <p>Besides the data or parameter values, the output of each parsed OPUS
 block contains the block type, channel type, text type, additional type,
 the offset in bytes, next offset in bytes, and the chunk size in bytes
@@ -202,12 +215,217 @@ for particular data blocks. This is decoded from the file header and
 allows for traceability in the parsing process.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "NULL"</span></span>
+<span><span class="co">#&gt; [1] "parameter"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">ab_data_param</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; List of 9</span></span>
+<span><span class="co">#&gt;  $ block_type     : int 31</span></span>
+<span><span class="co">#&gt;  $ channel_type   : int 16</span></span>
+<span><span class="co">#&gt;  $ text_type      : int 0</span></span>
+<span><span class="co">#&gt;  $ additional_type: int 0</span></span>
+<span><span class="co">#&gt;  $ offset         : int 33424</span></span>
+<span><span class="co">#&gt;  $ next_offset    : int 33600</span></span>
+<span><span class="co">#&gt;  $ chunk_size     : int 176</span></span>
+<span><span class="co">#&gt;  $ block_type_name: chr "ab_data_param"</span></span>
+<span><span class="co">#&gt;  $ parameters     :List of 10</span></span>
+<span><span class="co">#&gt;   ..$ DPF:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DPF"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Data Point Format"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ NPT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "NPT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Data Points"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1716</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ FXV:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "FXV"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Frequency of First Point"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 3997</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LXV:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LXV"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Frequency of Last Point"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 500</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ CSF:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "CSF"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Scaling Factor"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MXY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MXY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Maximum"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.47</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MNY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MNY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Y - Minimum"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 0.104</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ DAT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DAT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Date of Measurement"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "06/11/2015"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ TIM:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "TIM"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Time of Measurement"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "14:38:14.100 (GMT+1)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ DXU:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DXU"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "X Units"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "WN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr "parameter"</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meas_1</span><span class="op">$</span><span class="va">instrument</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; List of 9</span></span>
+<span><span class="co">#&gt;  $ block_type     : int 32</span></span>
+<span><span class="co">#&gt;  $ channel_type   : int 0</span></span>
+<span><span class="co">#&gt;  $ text_type      : int 0</span></span>
+<span><span class="co">#&gt;  $ additional_type: int 64</span></span>
+<span><span class="co">#&gt;  $ offset         : int 26160</span></span>
+<span><span class="co">#&gt;  $ next_offset    : int 26560</span></span>
+<span><span class="co">#&gt;  $ chunk_size     : int 400</span></span>
+<span><span class="co">#&gt;  $ block_type_name: chr "instrument"</span></span>
+<span><span class="co">#&gt;  $ parameters     :List of 27</span></span>
+<span><span class="co">#&gt;   ..$ HFL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HFL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Hight Folding Limit"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 16707</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LFL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LFL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Low Folding Limit"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ LWN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "LWN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Laser Wavenumber"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 11602</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ ABP:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "ABP"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Absolute Peak Pos in Laser*2"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 999951</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ SSP:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SSP"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Sample Spacing Divisor"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ HUM:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HUM"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Relative Humidity Interferometer"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 25</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ RSN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "RSN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Running Sample Number"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 1891</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ SRT:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SRT"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Start time (sec)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.45e+09</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ DUR:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "DUR"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Scan time (sec)"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 79.6</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ TSC:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "TSC"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Scanner Temperature"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 33.7</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ MVD:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "MVD"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Max. Velocity Deviation"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1.56</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ APG:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "APG"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Actual preamplifier gain"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 1</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ HUA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "HUA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Absolute Humidity Interferometer"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 9.52</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ VSN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "VSN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Firmware version"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "1.352 Dec 04 2012"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ SRN:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "SRN"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Instrument Serial Number"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "2 00639"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ PKA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PKA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Peak Amplitude"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int -438</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PKL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PKL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Peak Location"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 7518</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ GFW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "GFW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Good FW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 32</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ BFW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "BFW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Bad FW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PRA:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PRA"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Backward Peack Amplitude"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int -437</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ PRL:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "PRL"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Backward Peak Location"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 7518</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ GBW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "GBW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Good BW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 32</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ BBW:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "BBW"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Bad BW Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 0</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;   ..$ INS:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "INS"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Instrument Type"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "Alpha"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ FOC:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "FOC"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Focal Length"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : num 33</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "float"</span></span>
+<span><span class="co">#&gt;   ..$ RDY:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "RDY"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Ready Check"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : chr "1"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "str"</span></span>
+<span><span class="co">#&gt;   ..$ ASS:List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name     : chr "ASS"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_name_long: chr "Number of Sample Scans"</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_value    : int 64</span></span>
+<span><span class="co">#&gt;   .. ..$ parameter_type     : chr "int"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr "parameter"</span></span></code></pre></div>
 <p>This example spectrum was measured with atmospheric compensation
 (removing masking information from carbon dioxide and water vapor
 bands), as set in the OPUS software. OPUS files track all processing
@@ -227,7 +445,8 @@ for unit testing.</p>
 <code class="sourceCode R"><span><span class="va">test_dsn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_data"</span>, package <span class="op">=</span> <span class="st">"opusreader2"</span><span class="op">)</span></span>
 <span><span class="va">data_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_opus.html">read_opus</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">test_dsn</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_test</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "617262_1TP_C-1_A5.0" "629266_1TP_A-1_C1.0" "BF_lo_01_soil_cal.1"</span></span>
+<span><span class="co">#&gt; [4] "MMP_2107_Test1.001"  "test_spectra.0"</span></span></code></pre></div>
 <p>To get the instrument name from each test file, you can use:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_instrument_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
@@ -235,20 +454,10 @@ for unit testing.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data_test</span>, <span class="va">get_instrument_name</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in formals(fun): argument is not a function</span></span>
+<span><span class="co">#&gt; Warning in body(fun): argument is not a function</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "INVENIO-R"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "VERTEX 70"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Alpha"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "Tango"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; [1] "TENSOR II"</span></span></code></pre></div>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reading-opus-files-in-parallel">Reading OPUS files in parallel<a class="anchor" aria-label="anchor" href="#reading-opus-files-in-parallel"></a>
