@@ -46,7 +46,7 @@ As the picture below shows, the content of the files changes based on the instru
 
 In addition to result spectra, the binary files include:
 
--  a comprehensive set of measurement parameters (configurations, conditions)
+- a comprehensive set of measurement parameters (configurations, conditions)
 - single-channel data from background measurements performed before the sample
 - other types of intermediate spectra
 
