@@ -33,25 +33,22 @@ These files have numbers as file extensions, and the numbers typically increase 
 The OPUS suite and file specification are proprietary, so we had to implement this package using reverse engineering. 
 With opusreader2, you can extract your spectroscopic data directly in R, giving you full control over your spectral data workflow.
 Our package is designed to handle binary files for most Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics GmbH. 
-It might also work for other products, such as Raman spectrometers, but in these cases, additional adjustments may be needed to support new block types (for  
-both data and parameters; see below).
+It might also work for other products, such as Raman spectrometers, but in these cases, additional adjustments may be needed to support new block types (for both data and parameters; see below).
 
 # OPUS data extraction
 
-Each OPUS file is processed by first extracting metadata information from a  
-dedicated part of the file header.
+Each OPUS file is processed by first extracting metadata information from a dedicated part of the file header.
 This section contains all the important information about binary blocks (also called chunks), such as byte offsets, sizes, and data types at different byte locations in the file.
 The parsing algorithm uses this information to extract various data and parameter blocks from byte sequences.
 As the picture below shows, the content of the files changes based on the instrument type, the data (spectrum) blocks that the user chooses to save, and the specific measurement settings.
 
-![OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT)  
-mid-infrared spectrometer](images/opus-measurement-settings.png){#fig:opus_settings}
+![OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT) mid-infrared spectrometer](images/opus-measurement-settings.png){#fig:opus_settings}
 
 In addition to result spectra, the binary files include:
 
--   a comprehensive set of measurement parameters (configurations, conditions)
--   single-channel data from background measurements performed before the sample
--   other types of intermediate spectra
+- a comprehensive set of measurement parameters (configurations, conditions)
+- single-channel data from background measurements performed before the sample
+- other types of intermediate spectra
 
 Currently, we support the *"data blocks to be saved"* for Fourier-transform infrared spectrometers.
 
@@ -88,7 +85,6 @@ class(spectrum_1)
 names(spectrum_1)
 ```
 
-
 At the top level, the list structure matches how data is organized in the Bruker OPUS viewer.
 
 ```{r}
@@ -104,9 +100,9 @@ For easier exploration, use RStudio's *list preview* with `View(spectrum_1)` or 
 
 Some list elements may not be visible in the Bruker® viewer pane, but we compile them because they are either useful or actually part of the files:
 
-1.  `basic_metadata`: Minimal metadata to identify measurements, including file name, sample name, and timestamps. Useful for organizing spectral libraries and prediction workflows.
-2.  `ab_no_atm_comp_data_param`: Parameters for the absorbance (AB) block before atmospheric compensation.
-3.  `ab_no_atm_comp`: Absorbance data before atmospheric compensation.
+1. `basic_metadata`: Minimal metadata to identify measurements, including file name, sample name, and timestamps. Useful for organizing spectral libraries and prediction workflows.
+2. `ab_no_atm_comp_data_param`: Parameters for the absorbance (AB) block before atmospheric compensation.
+3. `ab_no_atm_comp`: Absorbance data before atmospheric compensation.
 
 ```{r}
 str(meas_1$basic_metadata)
@@ -115,7 +111,6 @@ str(meas_1$basic_metadata)
 All types of data and parameters within OPUS files are encoded with three capital letters each.
 
 For example, to check the frequency of the first point (FXV), use:
-
 
 ```{r}
 meas_1$ab_data_param$parameters$FXV$parameter_value
@@ -134,9 +129,8 @@ str(meas_1$instrument)
 ```
 
 
-This example spectrum was measured with atmospheric compensation (removing masking information from carbon dioxide and water vapor bands), as set in the
-OPUS software. 
-OPUS files track all processing steps and macros, so you can access both raw and processed data. 
+This example spectrum was measured with atmospheric compensation (removing masking information from carbon dioxide and water vapor bands), as set in the OPUS software.
+OPUS files track all processing steps and macros, so you can access both raw and processed data.
 This enables thorough quality control before modeling or making predictions on new samples.
 
 ## Reading OPUS files recursively from a folder
