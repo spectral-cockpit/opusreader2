@@ -187,10 +187,11 @@ read_opus <- function(dsn,
 }
 
 
-
+#' Construct new class `list_opusreader2`
 #' 
 #' @param dataset_list dataset list, where each list element is a measured
 #' spectrum
+#' @keywords internal
 new_list_opusreader2 <- function(dataset_list) {
   dsn_filenames <- vapply(
     dataset_list, function(x) attr(x, "dsn_filename"),
@@ -201,7 +202,7 @@ new_list_opusreader2 <- function(dataset_list) {
 
   structure(
     dataset_list,
-    class = c("dataset_list", class(data))
+    class = c("list_opusreader2", class(data))
   )
 }
 
