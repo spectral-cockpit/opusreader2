@@ -202,7 +202,7 @@ new_list_opusreader2 <- function(dataset_list) {
 
   structure(
     dataset_list,
-    class = c("list_opusreader2", class(data))
+    class = c("list_opusreader2", class(dataset_list))
   )
 }
 
