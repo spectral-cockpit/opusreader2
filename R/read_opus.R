@@ -172,6 +172,7 @@ read_opus <- function(dsn,
 
   if (!isTRUE(parallel)) {
     dataset_list <- opus_lapply(dsn, data_only)
+    class(dataset_list) <- c("list_opusreader2", class(dataset_list))
   } else {
     .parallel_backend <- match.arg(.parallel_backend)
     
