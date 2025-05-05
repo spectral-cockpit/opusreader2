@@ -151,7 +151,7 @@ OPUS file paths.</p>
 class <code>"list_opusreader2"</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "list_opusreader2" "function"</span></span>
+<span><span class="co">#&gt; [1] "list_opusreader2" "list"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spectrum_1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "BF_lo_01_soil_cal.1"</span></span></code></pre></div>
 <p>At the top level, the list structure matches how data is organized in
@@ -454,10 +454,20 @@ for unit testing.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data_test</span>, <span class="va">get_instrument_name</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in formals(fun): argument is not a function</span></span>
-<span><span class="co">#&gt; Warning in body(fun): argument is not a function</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; $`617262_1TP_C-1_A5.0`</span></span>
+<span><span class="co">#&gt; [1] "INVENIO-R"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`629266_1TP_A-1_C1.0`</span></span>
+<span><span class="co">#&gt; [1] "VERTEX 70"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $BF_lo_01_soil_cal.1</span></span>
+<span><span class="co">#&gt; [1] "Alpha"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $MMP_2107_Test1.001</span></span>
+<span><span class="co">#&gt; [1] "Tango"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $test_spectra.0</span></span>
+<span><span class="co">#&gt; [1] "TENSOR II"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reading-opus-files-in-parallel">Reading OPUS files in parallel<a class="anchor" aria-label="anchor" href="#reading-opus-files-in-parallel"></a>
