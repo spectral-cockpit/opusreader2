@@ -3,7 +3,7 @@ pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   opusreader2_introduction: opusreader2_introduction.html
-last_built: 2025-05-09T04:03Z
+last_built: 2025-05-10T04:02Z
 urls:
   reference: https://spectral-cockpit.github.io/opusreader2/reference
   article: https://spectral-cockpit.github.io/opusreader2/articles
