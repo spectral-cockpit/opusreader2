@@ -1,9 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.1.2
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   opusreader2_introduction: opusreader2_introduction.html
-last_built: 2025-05-24T04:02Z
+last_built: 2025-05-25T04:06Z
 urls:
   reference: https://spectral-cockpit.github.io/opusreader2/reference
   article: https://spectral-cockpit.github.io/opusreader2/articles
