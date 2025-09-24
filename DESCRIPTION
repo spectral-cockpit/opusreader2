@@ -4,7 +4,7 @@ Version: 0.6.3
 Authors@R: 
     c(person(given = "Philipp",
              family = "Baumann",
-             email = "spectral-cockpit@proton.me",
+             email = "baumann-philipp@protonmail.ch",
              role = c("aut", "cre"),
              comment = c(ORCID = "0000-0002-3194-8975")),
       person(given = "Thomas",

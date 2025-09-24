@@ -1,0 +1,14 @@
+when:
+  - event: [pull_request, manual]
+  - event: push
+    branch: $CI_REPO_DEFAULT_BRANCH
+
+steps:
+  - name: r-ci
+    image: codeberg.org/r-codeberg/woodpecker-r-ci
+    pull: true
+    settings:
+      commands:
+        - bootstrap
+        - install_all
+        - run_tests
