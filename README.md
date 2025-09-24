@@ -76,8 +76,8 @@ We recommend to start with the vignette [*"Reading OPUS binary files from Bruker
 ``` r
 library("opusreader2")
 # read a single file (one measurement)
-dsn <- opus_test_dsn()
-data <- read_opus(dsn = dsn)
+file <- opus_test_file()
+data <- read_opus(dsn = file)
 ```
 
 <details>
@@ -88,14 +88,14 @@ Multiple OPUS files can optionally be read in parallel using the {mirai} or {fut
 For this, parallel workers need to be registered.
 
 ``` r
-dsn_1000 <- rep(dsn, 1000L)
+files_1000<- rep(file, 10000L)
 
 if (!require("mirai")) install.packages("mirai")
 
 library("mirai")
 daemons(n = 2L, dispatcher = TRUE)
 
-data <- read_opus(dsn = dsn_1000, parallel = TRUE)
+data <- read_opus(dsn = files_1000, parallel = TRUE)
 ```
 
 </details>
