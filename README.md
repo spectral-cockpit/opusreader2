@@ -60,11 +60,11 @@ install.packages("opusreader2", repos = c(
 
 <details>
 
-<summary>from GitHub via {remotes} [expand]</summary>
+<summary>from CodeFloe.com via {remotes} [expand]</summary>
 
 ``` r
 if (!require("remotes")) install.packages("remotes")
-remotes::install_github("spectral-cockpit/opusreader2")
+remotes::install_git("https://codefloe.com/philipp-baumann/opusreader2")
 ```
 
 </details>
@@ -76,27 +76,26 @@ We recommend to start with the vignette [*"Reading OPUS binary files from Bruker
 ``` r
 library("opusreader2")
 # read a single file (one measurement)
-file <- opus_file()
-data_list <- read_opus(dsn = file)
+dsn <- opus_test_dsn()
+data <- read_opus(dsn = dsn)
 ```
 
 <details>
 
 <summary>Reading files in parallel [expand]</summary>
 
-Multiple OPUS files can optionally be read in parallel using the {future} framework. For this, parallel workers need to be registered.
+Multiple OPUS files can optionally be read in parallel using the {mirai} or {future} backends.
+For this, parallel workers need to be registered.
 
 ``` r
-file <- opus_file()
-files_1000 <- rep(file, 1000L)
+dsn_1000 <- rep(dsn, 1000L)
 
-if (!require("future")) install.packages("future")
-if (!require("future.apply")) install.packages("future.apply")
+if (!require("mirai")) install.packages("mirai")
 
-# register parallel backend (multisession; using sockets)
-future::plan(future::multisession)
+library("mirai")
+daemons(n = 2L, dispatcher = TRUE)
 
-data <- read_opus(dsn = files_1000, parallel = TRUE)
+data <- read_opus(dsn = dsn_1000, parallel = TRUE)
 ```
 
 </details>
