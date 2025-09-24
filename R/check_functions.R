@@ -1,14 +1,14 @@
 check_logical <- function(param) {
   if (!is.logical(param)) {
     param_name <- deparse(substitute(param))
-    stop(paste0(param_name, " has to be logical (TRUE/FALSE)"))
+    stop(param_name, " has to be logical (TRUE/FALSE)")
   }
 }
 
 check_character <- function(param) {
   if (!is.character(param)) {
     param_name <- deparse(substitute(param))
-    stop(paste0(param_name, " needs to be a character vector"))
+    stop(param_name, " needs to be a character vector")
   }
 }
 

@@ -3,7 +3,7 @@ prepare_spectra <- function(ds_list, data_type) {
   # block names containing "ab" can also be class "parameters", rather than
   # "data" required (e.g., "quant_report_ab", "me_test_report_ab")
   pat_match <- grepl(data_pattern, names(ds_list))
-  data_class <- vapply(ds_list, function(x) class(x) == "data", logical(1))
+  data_class <- vapply(ds_list, function(x) inherits(x, "data"), logical(1))
   data_match <- pat_match & data_class
 
   index <- which(data_match)
