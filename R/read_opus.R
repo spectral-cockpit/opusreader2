@@ -263,7 +263,7 @@ read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
 read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
   check_mirai()
 
-  no_deamons <- identical(mirai::daemons()$connections, 0L)
+  no_deamons <- identical(mirai::info()["connections"], 0L)
 
   if (isTRUE(no_deamons)) {
     stop("No background daemon processes available.\n",
