@@ -1,8 +1,23 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# opusreader2 0.6.4 (2025-09-24)
+
+## Features
+
+- `read_opus()`: support "mirai" async backend. `.parallel_backend` now defaults to `"mirai"`.
+
+## Bug fixes
+
+- `read_opus()`: consistenly assign `opusreader2_list` class
+
+## Chores
+
+- `opus_lapply()`: remove from docs
+- Update vignette with new "mirai" parallel interface
+
 # opusreader2 0.6.3 (2024-03-12)
 
-## Bug fixes.
+## Bug fixes
 
 - fix sample and time metadata parsing for `read_opus(dsn, data_only = TRUE)`. 
   Previously, extraction of the timestamp failed and data extracted errored
@@ -21,8 +36,6 @@
   Issue report: [#104](https://github.com/spectral-cockpit/opusreader2/issues/104).
   PR fixed: [#105](https://github.com/spectral-cockpit/opusreader2/pull/105).
 
-
-<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
 # opusreader2 0.6.2.9000 (2023-12-27)
 
