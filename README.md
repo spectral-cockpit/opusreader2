@@ -11,8 +11,10 @@
 
 ## 🪄 Scope
 
-*"grab 'em all"* --- Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers of the company Bruker Optics GmbH & Co. in R.
-This package is being developed in our free time we have at [spectral-cockpit.space](https://spectral-cockpit.space). And by the way, 8 arms stand for 8 bits or oct\*.
+*grab 'em all* — Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers manufactured by Bruker Optics GmbH & Co. directly in R.
+This package is developed openly in our spare time, so there is no guarantee of support.
+If you would like a new feature implemented or encounter something you need urgently, we offer development under a standard IT contract at an hourly rate.
+To help cover our coffee expenses, we appreciate any donations.
 
 [!["Buy spectral-cockpit.space some beers"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
 
