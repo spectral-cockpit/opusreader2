@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# opusreader2 0.6.4.9000 (2025-09-29)
+
+## Chores
+
+- `read_opus()`: uniquely use "mirai" parallel backend, wipe "future". `.parallel_backend` argument is depreciated without notes (#124)
+- `README`: use`opus_test_file()` for reading multiple files via mirai backend (#122)
+
+
 # opusreader2 0.6.4 (2025-09-24)
 
 ## Features
