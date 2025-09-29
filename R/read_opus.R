@@ -7,10 +7,9 @@
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
 #' `NULL`, which only returns the parsed data as an in-memory R object.
-#' @param parallel read files in parallel via chunking. Default is `FALSE`.
-#' @param .parallel_backend string with backend that handles reading spectra
-#' in parallel. Currently, `"mirai"` (default, non-blocking parallel map) and
-#' `"future"` are supported. See section "Details" for more information.
+#' @param parallel read files in parallel via `"mirai"` (non-blocking
+#' parallel map). Default is `FALSE`. See section "Details" for more
+#' information.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
 #' @family core
 #' @return Nested list (S3 object) containing the parsed contents of the binary
@@ -129,36 +128,16 @@
 #' `read_opus()` is the high-level interface to read multiple OPUS files at
 #' once from a data source name (`dsn`).
 #' 
-#' It optionally supports parallel reads via `{mirai}` (default) and `{future}`
-#' backend.
+#' It optionally supports parallel reads via the `{mirai}` 
+#' backend. `{mirai}` provides a highly efficient asynchronous parallel evaluation
+#' framework via the Nanomsg Next Gen (NNG), high-performance, lightweight
+#' messaging library for distributed and concurrent applications.
 #' 
 #' When reading in parallel, a progress bar can be enabled.
-#' For `.parallel_backend = "multisession"`, `{cli}` provides progress updates.
-#' For `.parallel_backend = "future"`, `{progressr}` is required for
-#' progress updates.
-#' 
-#' ## "mirai" backend
-#' 
-#' {mirai} provides a highly efficient asynchronous parallel evaluation
-#' framework via the Nanomsg Next Gen (NNG), high-perforamcne, lightweight
-#' messaging library for distributed and concurrent applications. 
-#' 
-#' The only thing
-#' 
-#' ## "future" backend
-#' 
-#' If `parallel = TRUE`, one can specify
-#' across how many chunks the OPUS files are distributed onto the registered
-#' parallel workers. This can be done via `options(number_of_chunks =
-#' <integer>)`. The default value is `number_of_chunks = "registered workers"`,
-#' which will split the OPUS files across number of chunks corresponding to the
-#' number of registered workers.
-#'
 #' @export
 read_opus <- function(dsn,
                       data_only = FALSE,
                       parallel = FALSE,
-                      .parallel_backend = c("mirai", "future"),
                       progress_bar = FALSE) {
   check_logical(data_only)
   check_logical(parallel)
@@ -174,13 +153,7 @@ read_opus <- function(dsn,
     dataset_list <- opus_lapply(dsn, data_only)
     dataset_list <- new_list_opusreader2(dataset_list)
   } else {
-    .parallel_backend <- match.arg(.parallel_backend)
-
-    dataset_list <- switch(
-      .parallel_backend,
-      "mirai" = read_opus_parallel_mirai(dsn, data_only, progress_bar),
-      "future" = read_opus_parallel_future(dsn, data_only, progress_bar)
-    )
+    dataset_list <- read_opus_parallel_mirai(dsn, data_only, progress_bar)
   }
 
   return(dataset_list)
@@ -205,53 +178,6 @@ new_list_opusreader2 <- function(dataset_list) {
     class = c("list_opusreader2", class(dataset_list))
   )
 }
-
-
-
-#' Read chunks of OPUS files in parallel using `"future"` backend
-#' 
-#' @inheritParams read_opus
-#' @keywords internal
-read_opus_parallel_future <- function(dsn, data_only, progress_bar) {
-  check_future()
-  number_of_chunks <- getOption("number_of_chunks",
-    default = "registered_workers")
-
-  if (number_of_chunks == "registered_workers") {
-    n_chunks <- future::nbrOfFreeWorkers()
-  } else {
-  if (!is_integerish(number_of_chunks)) {
-    stop("`number_of_chucks` is not integerish.",
-      "`Set `options(number_of_chunks = <integer>)`",
-      call. = FALSE
-    )
-  }
-    n_chunks <- number_of_chunks
-  }
-
-   chunked_dsn <- split(dsn, seq_along(dsn) %% n_chunks)
-
-  if (isTRUE(progress_bar)) {
-    check_progressr()
-    # reduce signalling overhead
-    prog <- progressr::progressor(length(chunked_dsn))
-  }
-
-  dataset_list <- future.apply::future_lapply(
-    chunked_dsn,
-    function(x) {
-      if (isTRUE(progress_bar)) prog()
-      opus_lapply(x, data_only)
-    }
-  )
-
-  dataset_list <- unname(unlist(dataset_list, recursive = FALSE))
-
-  dataset_list <- new_list_opusreader2(dataset_list)
-
-  return(dataset_list)
-}
-
 
 
 #' Read chunks of OPUS files in parallel using `"mirai"` backend via 

@@ -4,13 +4,7 @@
 \alias{read_opus}
 \title{Read OPUS binary files produced by a Bruker spectrometer}
 \usage{
-read_opus(
-  dsn,
-  data_only = FALSE,
-  parallel = FALSE,
-  .parallel_backend = c("mirai", "future"),
-  progress_bar = FALSE
-)
+read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
 }
 \arguments{
 \item{dsn}{data source name. Can be a path to a specific file or a path to a
@@ -20,11 +14,9 @@ directory. The listing of the files in a directory is recursive.}
 read data
 \code{NULL}, which only returns the parsed data as an in-memory R object.}
 
-\item{parallel}{read files in parallel via chunking. Default is \code{FALSE}.}
-
-\item{.parallel_backend}{string with backend that handles reading spectra
-in parallel. Currently, \code{"mirai"} (default, non-blocking parallel map) and
-\code{"future"} are supported. See section "Details" for more information.}
+\item{parallel}{read files in parallel via \code{"mirai"} (non-blocking
+parallel map). Default is \code{FALSE}. See section "Details" for more
+information.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }
@@ -152,30 +144,12 @@ to make it usable for other processing steps.
 \code{read_opus()} is the high-level interface to read multiple OPUS files at
 once from a data source name (\code{dsn}).
 
-It optionally supports parallel reads via \code{{mirai}} (default) and \code{{future}}
-backend.
-
-When reading in parallel, a progress bar can be enabled.
-For \code{.parallel_backend = "multisession"}, \code{{cli}} provides progress updates.
-For \code{.parallel_backend = "future"}, \code{{progressr}} is required for
-progress updates.
-\subsection{"mirai" backend}{
-
-{mirai} provides a highly efficient asynchronous parallel evaluation
-framework via the Nanomsg Next Gen (NNG), high-perforamcne, lightweight
+It optionally supports parallel reads via the \code{{mirai}}
+backend. \code{{mirai}} provides a highly efficient asynchronous parallel evaluation
+framework via the Nanomsg Next Gen (NNG), high-performance, lightweight
 messaging library for distributed and concurrent applications.
 
-The only thing
-}
-
-\subsection{"future" backend}{
-
-If \code{parallel = TRUE}, one can specify
-across how many chunks the OPUS files are distributed onto the registered
-parallel workers. This can be done via \verb{options(number_of_chunks = <integer>)}. The default value is \code{number_of_chunks = "registered workers"},
-which will split the OPUS files across number of chunks corresponding to the
-number of registered workers.
-}
+When reading in parallel, a progress bar can be enabled.
 }
 
 \concept{core}
