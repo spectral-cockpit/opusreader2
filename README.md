@@ -86,7 +86,7 @@ data <- read_opus(dsn = file)
 
 <summary>Reading files in parallel [expand]</summary>
 
-Multiple OPUS files can optionally be read in parallel using the {mirai} or {future} backends.
+Multiple OPUS files can optionally be read in parallel using the {mirai} backend.
 For this, parallel workers need to be registered.
 
 ``` r
@@ -111,8 +111,6 @@ If `parallel = TRUE`, progress updates via {progressr} are optionally available
 ``` r
 if (!require("progressr")) install.packages("progressr")
 library("progressr")
-
-future::plan(future::multisession)
 
 handlers(global = TRUE)
 handlers("progress") # base R progress animation
