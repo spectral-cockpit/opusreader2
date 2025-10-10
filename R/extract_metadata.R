@@ -28,6 +28,11 @@ get_meta_timestamp <- function(ds_list) {
   tz <- gsub(pattern = "\\(|\\)|\\s+", "", x = time_hour_tz[3L])
   etc_tz <- paste0("Etc/", tz) # see ?strptime for details
 
+  if (etc_tz == "Etc/GMT+10.5") {
+    # avoid unknown timezone 'Etc/GMT+10.5'
+    etc_tz <- "Australia/Adelaide"
+  }
+
   # note that negative offsets denote UTC+x time stamps
   time <- as.POSIXct(strptime(time_hour,
     format = "%Y/%m/%d %H:%M:%S",
