@@ -8,7 +8,7 @@ test_that("that a dataset is correctly cearted", {
 
   ds <- create_dataset(header_data)
 
-  expect_equal(ds$block_type_name, "history")
+  expect_identical(ds$block_type_name, "history")
 
   expect_true(inherits(ds, "text"))
 
@@ -28,7 +28,7 @@ test_that("that a dataset is correctly cearted", {
 
   ds <- suppressWarnings(create_dataset(header_data))
 
-  expect_equal(ds$block_type_name, "unknown")
+  expect_identical(ds$block_type_name, "unknown")
 
   expect_true(inherits(ds, "list"))
 
@@ -42,5 +42,5 @@ test_that("that a dataset is correctly cearted", {
 
   ds <- create_dataset(header_data)
 
-  expect_equal(ds$block_type_name, "refl_no_atm_comp")
+  expect_identical(ds$block_type_name, "refl_no_atm_comp")
 })
