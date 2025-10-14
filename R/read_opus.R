@@ -225,6 +225,7 @@ read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
 
   parsed_data <- parse_opus(raw, data_only)
+  cls <- class(parsed_data)
 
   dsn_filename <- basename(dsn)
 
@@ -240,6 +241,7 @@ read_opus_single <- function(dsn, data_only = FALSE) {
   }
 
   attr(data, "dsn_filename") <- dsn_filename
+  class(data) <- cls
 
   return(data)
 }
