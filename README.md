@@ -90,7 +90,7 @@ Multiple OPUS files can optionally be read in parallel using the {mirai} backend
 For this, parallel workers need to be registered.
 
 ``` r
-files_1000<- rep(file, 10000L)
+files_1000 <- rep(file, 10000L)
 
 if (!require("mirai")) install.packages("mirai")
 
@@ -115,7 +115,7 @@ library("progressr")
 handlers(global = TRUE)
 handlers("progress") # base R progress animation
 
-file <- opus_file()
+file <- opus_test_file()
 files_1000 <- rep(file, 1000L)
 
 # read with progress bar
