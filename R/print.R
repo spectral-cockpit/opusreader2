@@ -10,6 +10,10 @@ print.list_opusreader2 <- function(x, ...) {
   invisible(x)
 }
 
-bf <- function() "\x1B[1m"
+# ANSI bold font terminal start
+bf <- function() if (get_ostype() == "unix") "\x1B[1m" else ""
 
-nf <- function() "\x1B[22m"
+# ANSI normal font terminal start
+nf <- function() if (get_ostype() == "unix") "\x1B[22m" else ""
+
+get_ostype <- function() .Platform$OS.type
