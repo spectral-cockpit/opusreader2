@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# opusreader2 0.6.5 (2025-10-14)
+
+## Fixes
+
+- `read_opus()`: Fix warning "unknown timezone 'Etc/GMT+10.5'", and use one plausible Olson name `"Australia/Adelaide"` to circumvent the message ([GH issue #116](https://github.com/spectral-cockpit/opusreader2/issues/116) by David Benn, CSIRO)
+
+
 # opusreader2 0.6.4.9000 (2025-09-29)
 
 ## Chores
