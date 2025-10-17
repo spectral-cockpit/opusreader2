@@ -13,7 +13,7 @@ directory. The listing of the files in a directory is recursive.}
 
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
 read data
-\code{NULL}, which only returns the parsed data as an in-memory R object.}
+\code{NULL}, which only returns the parsed data.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }
