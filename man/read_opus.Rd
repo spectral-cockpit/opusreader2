@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_opus.R
 \name{read_opus}
 \alias{read_opus}
-\title{Read OPUS binary files produced by a Bruker spectrometer}
+\title{Read OPUS binary files from Bruker spectrometers}
 \usage{
 read_opus(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE)
 }
@@ -12,7 +12,7 @@ directory. The listing of the files in a directory is recursive.}
 
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
 read data
-\code{NULL}, which only returns the parsed data as an in-memory R object.}
+\code{NULL}, which only returns the parsed data.}
 
 \item{parallel}{read files in parallel via \code{"mirai"} (non-blocking
 parallel map). Default is \code{FALSE}. See section "Details" for more
@@ -21,18 +21,26 @@ information.}
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }
 \value{
-Nested list (S3 object) containing the parsed contents of the binary
-encoded blocks of an OPUS file. The first level names of the list correspond
-to the display names as shown in the Bruker OPUS viewer software. However, in
+List with OPUS spectra collection of class \code{list_opusreader2}. The
+individual elements are individual sample measurement data extracted from the
+corresponding OPUS binary files, as parsed from the encoded data blocks.
+
+Each element in \code{list_opusreader2} contains metadata and measurement data
+equivalent to the names shown in the Bruker OPUS viewer software. However, in
 snake_case and more standardized naming to allow for better output handling.
-Each parsed block element is a sublist containing \strong{a)} the binary read
-instructions decoded/derived from the header (\verb{$block_type}, \verb{$channel_type},
-\verb{$text_type} and \verb{$additional_type}, \verb{$offset} (bytes), \verb{$next_offset}
-(bytes), \verb{$chunk_size} (bytes)); \strong{b)} if parameter block, nested list of
-specific parameters under \verb{$parameters}, which has elements named according
-to capitalized Bruker-internal "three-letter-string" definitions (e.g.,
-"DPF := Data Point Format"). Possible first-level block names and
-information provided include:
+
+Each parsed block element is a sublist containing
+
+\strong{1.} the binary read instructions decoded/derived from the header
+(\verb{$block_type}, \verb{$channel_type}, \verb{$text_type} and \verb{$additional_type},
+\verb{$offset} (bytes), \verb{$next_offset} (bytes), \verb{$chunk_size} (bytes));
+
+\strong{2.} if parameter block, nested list of specific parameters under
+\verb{$parameters}, which has elements named according to capitalized
+Bruker-internal "three-letter-string" definitions (e.g., "DPF := Data Point
+Format").
+
+Possible first-level block names and information provided include:
 \itemize{
 \item \strong{\code{refl_no_atm_comp_data_param}} : class "parameter"
 (viewer: "Data Parameters Refl". Parameter list with metadata for \code{refl}
@@ -136,8 +144,7 @@ opening an issue.
 }
 }
 \description{
-This function can be used to read and parse OPUS files,
-to make it usable for other processing steps.
+Read and parse OPUS files with spectral data from individual measurements
 }
 \section{Details}{
 

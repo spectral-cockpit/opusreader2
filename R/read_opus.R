@@ -1,29 +1,36 @@
-#' Read OPUS binary files produced by a Bruker spectrometer
+#' Read OPUS binary files from Bruker spectrometers
 #'
-#' This function can be used to read and parse OPUS files,
-#' to make it usable for other processing steps.
+#' Read and parse OPUS files with spectral data from individual measurements
 #' @param dsn data source name. Can be a path to a specific file or a path to a
 #' directory. The listing of the files in a directory is recursive.
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
-#' `NULL`, which only returns the parsed data as an in-memory R object.
+#' `NULL`, which only returns the parsed data.
 #' @param parallel read files in parallel via `"mirai"` (non-blocking
 #' parallel map). Default is `FALSE`. See section "Details" for more
 #' information.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
 #' @family core
-#' @return Nested list (S3 object) containing the parsed contents of the binary
-#' encoded blocks of an OPUS file. The first level names of the list correspond
-#' to the display names as shown in the Bruker OPUS viewer software. However, in
+#' @return List with OPUS spectra collection of class `list_opusreader2`. The
+#' individual elements are individual sample measurement data extracted from the
+#' corresponding OPUS binary files, as parsed from the encoded data blocks.
+#'
+#' Each element in `list_opusreader2` contains metadata and measurement data
+#' equivalent to the names shown in the Bruker OPUS viewer software. However, in
 #' snake_case and more standardized naming to allow for better output handling.
-#' Each parsed block element is a sublist containing **a)** the binary read
-#' instructions decoded/derived from the header (`$block_type`, `$channel_type`,
-#' `$text_type` and `$additional_type`, `$offset` (bytes), `$next_offset`
-#' (bytes), `$chunk_size` (bytes)); **b)** if parameter block, nested list of
-#'  specific parameters under `$parameters`, which has elements named according
-#'  to capitalized Bruker-internal "three-letter-string" definitions (e.g.,
-#'  "DPF := Data Point Format"). Possible first-level block names and
-#'  information provided include:
+#'
+#' Each parsed block element is a sublist containing
+#'
+#' **1.** the binary read instructions decoded/derived from the header
+#' (`$block_type`, `$channel_type`, `$text_type` and `$additional_type`,
+#'  `$offset` (bytes), `$next_offset` (bytes), `$chunk_size` (bytes)).
+#'
+#' **2.** if parameter block, nested list of specific parameters under
+#'  `$parameters`, which has elements named according to capitalized
+#'  Bruker-internal "three-letter-string" definitions (e.g., "DPF := Data Point
+#'  Format").
+#'
+#' Possible first-level block names and information provided include:
 #' * **`refl_no_atm_comp_data_param`** : class "parameter"
 #'    (viewer: "Data Parameters Refl". Parameter list with metadata for `refl`
 #'    data block (`refl`).
