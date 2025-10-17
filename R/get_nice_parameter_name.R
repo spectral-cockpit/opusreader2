@@ -77,7 +77,7 @@ get_nice_parameter_name <- function(parameter_name) {
     ZFF = "Zero Filling Factor",
     # sample
     BLD = "Building",
-    CNM = "Operation Name",
+    CNM = "Operator Name",
     CPY = "Company",
     DPM = "Department",
     EXP = "Experiment",
