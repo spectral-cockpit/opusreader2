@@ -188,6 +188,14 @@ pre-commit run --all-files
 
 </details>
 
+## Performance benchmarking
+
+```sh
+git clone ssh://git@codefloe.com/spectral-cockpit/opusreader2.git
+cd opusreader2
+hyperfine --warmup 3 --min-runs 5 ./inst/scripts/benchmark_read_opus_parallel.sh --show-output
+```
+
 ## Organizations and projects using {opusreader2}
 
 As far as we know, the following organizations and projects use our package.
