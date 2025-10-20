@@ -1,0 +1,15 @@
+when:
+  - event: pull_request
+  - event: push
+    branch: ${CI_REPO_DEFAULT_BRANCH}
+
+steps
+  - name: lint-r
+    image: reg.devxy.io/r/r-alpine:4-3.22
+    environment:
+      FLINT_ERROR_ON_LINT: true
+    commands:
+      - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+      - R -q -e 'pak::pak()'
+      - R -q -e 'pak::pak(c("flint", "cyclocomp", "pkgload"))'
+      - R -q -e 'pkgload::load_all(); lintr::lint_package(".")'
