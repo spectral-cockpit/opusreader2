@@ -12,3 +12,4 @@ steps:
         - bootstrap
         - install_all
         - run_tests
+        - cat /crow/src/codefloe.com/spectral-cockpit/opusreader2/opusreader2.Rcheck/00check.log
