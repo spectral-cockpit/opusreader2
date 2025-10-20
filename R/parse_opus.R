@@ -160,8 +160,8 @@ parse_opus <- function(raw, data_only) {
 
   if (data_only) {
     dataset_list <- dataset_list[
-      lapply(dataset_list, class) == "data" | names(dataset_list) == "history" |
-        names(dataset_list) == "sample"
+      vapply(dataset_list, class, character(1)) == "data" |
+        names(dataset_list) == "history" | names(dataset_list) == "sample"
     ]
   }
 

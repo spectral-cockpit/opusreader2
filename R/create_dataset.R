@@ -144,10 +144,8 @@ create_dataset <- function(header_data) {
 
 
   # create a dataset
-  ds <- structure(
-    c(header_data, list(block_type_name = block_type_name)),
-    class = c(read_class)
-  )
+  ds <- c(header_data, list(block_type_name = block_type_name))
+  class(ds) <- read_class
 
   return(ds)
 }

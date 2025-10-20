@@ -16,7 +16,7 @@ get_basic_metadata <- function(ds_list) {
 
 get_meta_timestamp <- function(ds_list) {
   text <- ds_list$history$text
-  history <- paste0(text, collapse = "")
+  history <- paste(text, collapse = "")
   save_file_time <- gsub(
     ".*\t\t(\\d.*)\t\t\t.*",
     "\\1",

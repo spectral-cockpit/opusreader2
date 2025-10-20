@@ -195,14 +195,12 @@ new_list_opusreader2 <- function(dataset_list) {
   dsn_filenames <- vapply(
     dataset_list, function(x) attr(x, "dsn_filename"),
     FUN.VALUE = character(1L)
-  ) 
+  )
 
   names(dataset_list) <- dsn_filenames
 
-  structure(
-    dataset_list,
-    class = c("list_opusreader2", class(dataset_list))
-  )
+  class(dataset_list) <- c("list_opusreader2", class(dataset_list))
+  return(dataset_list)
 }
 
 
