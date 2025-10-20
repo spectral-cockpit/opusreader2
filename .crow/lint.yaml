@@ -5,7 +5,7 @@ when:
 
 steps:
   - name: lint-r
-    image: reg.devxy.io/r/r-alpine:4-3.22
+    image: reg.devxy.io/r/r-ubuntu:4.5-noble
     environment:
       FLINT_ERROR_ON_LINT: true
     commands:
