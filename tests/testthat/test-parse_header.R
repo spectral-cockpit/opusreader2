@@ -7,7 +7,7 @@ test_that("header is correctly parsed", {
 
   header_data_unlist <- unlist(header_data)
 
-  expect_true(is.integer(header_data_unlist))
+  expect_type(header_data_unlist, "integer")
 
   expect_length(header_data_unlist, 140)
 
