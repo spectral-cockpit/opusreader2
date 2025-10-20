@@ -5,12 +5,11 @@ when:
 
 steps:
   - name: lint-r
-    image: reg.devxy.io/r/r-ubuntu:4.5-noble
+    image: reg.devxy.io/r/r-alpine:4-3.22
     environment:
       FLINT_ERROR_ON_LINT: true
     commands:
       - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-      - R -q -e 'pak::pak()'
+      - source $HOME/.cargo/env
       - R -q -e 'install.packages(c("pkgload", "cyclocomp", "flir"), repos = "cran.rpkgs.com/amd64/noble/latest")'
       - R -q -e 'pkgload::load_all(); flir::lint_package(".")'
