@@ -9,6 +9,7 @@ steps:
     environment:
       FLINT_ERROR_ON_LINT: true
     commands:
+      - apk add gcompat
       - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       - source $HOME/.cargo/env
       - R -q -e 'install.packages(c("pkgload", "cyclocomp", "flir"), repos = "cran.rpkgs.com/amd64/noble/latest")'
