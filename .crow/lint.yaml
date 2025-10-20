@@ -9,7 +9,7 @@ steps:
     environment:
       FLINT_ERROR_ON_LINT: true
     commands:
-      - apt-get install rustc
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
       - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
       - R -q -e 'pak::pak()'
       - R -q -e 'install.packages(c("pkgload", "cyclocomp", "flir"), repos = "cran.rpkgs.com/amd64/noble/latest")'
