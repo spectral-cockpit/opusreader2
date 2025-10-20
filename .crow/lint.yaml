@@ -3,7 +3,7 @@ when:
   - event: push
     branch: ${CI_REPO_DEFAULT_BRANCH}
 
-steps
+steps:
   - name: lint-r
     image: reg.devxy.io/r/r-alpine:4-3.22
     environment:
