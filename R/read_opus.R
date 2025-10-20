@@ -14,10 +14,11 @@
 #' corresponding OPUS binary files, as parsed from the encoded data blocks.
 #'
 #' Each element in `list_opusreader2` contains metadata and measurement data
-#' equivalent to the names shown in the Bruker OPUS viewer software. However, in
-#' snake_case and more standardized naming to allow for better output handling.
+#' equivalent to their names displayed in the Bruker OPUS viewer software.
+#' However, we used snake_case and standardized the naming for better output
+#' handling.
 #'
-#' Each parsed block element is a sublist containing
+#' Each parsed block element is a sublist that contains
 #'
 #' **1.** the binary read instructions decoded/derived from the header
 #' (`$block_type`, `$channel_type`, `$text_type` and `$additional_type`,
