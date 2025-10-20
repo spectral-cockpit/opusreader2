@@ -24,10 +24,11 @@ individual elements are individual sample measurement data extracted from the
 corresponding OPUS binary files, as parsed from the encoded data blocks.
 
 Each element in \code{list_opusreader2} contains metadata and measurement data
-equivalent to the names shown in the Bruker OPUS viewer software. However, in
-snake_case and more standardized naming to allow for better output handling.
+equivalent to their names displayed in the Bruker OPUS viewer software.
+However, we used snake_case and standardized the naming for better output
+handling.
 
-Each parsed block element is a sublist containing
+Each parsed block element is a sublist that contains
 
 \strong{1.} the binary read instructions decoded/derived from the header
 (\verb{$block_type}, \verb{$channel_type}, \verb{$text_type} and \verb{$additional_type},
