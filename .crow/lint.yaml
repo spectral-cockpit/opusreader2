@@ -13,4 +13,4 @@ steps:
       - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       - source $HOME/.cargo/env
       - R -q -e 'install.packages(c("rlang", "pkgload", "cyclocomp", "flir"), repos = "cran.rpkgs.com")'
-      - R -q -e 'pkgload::load_all(); flir::lint_package(".")'
+      - R -q -e 'pkgload::load_all(); flir::lint_package("."); flir::fix_package(".")'
