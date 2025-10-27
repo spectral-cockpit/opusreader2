@@ -133,7 +133,8 @@ parse_opus <- function(raw, data_only) {
         c("ab", "refl", "ab_data_param", "refl_data_param", "history", "sample")
       )
     } else {
-      dataset_list <- extract_data( # nolint
+      dataset_list <- extract_data(
+        # nolint
         dataset_list,
         c(
           "ab_no_atm_comp",
@@ -155,13 +156,15 @@ parse_opus <- function(raw, data_only) {
 
   dataset_list <- Reduce(
     function(x, y) prepare_spectra(x, y),
-    x = data_types, init = dataset_list
+    x = data_types,
+    init = dataset_list
   )
 
   if (data_only) {
     dataset_list <- dataset_list[
       vapply(dataset_list, class, character(1)) == "data" |
-        names(dataset_list) == "history" | names(dataset_list) == "sample"
+        names(dataset_list) == "history" |
+        names(dataset_list) == "sample"
     ]
   }
 

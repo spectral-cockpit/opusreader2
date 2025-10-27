@@ -1,5 +1,6 @@
 get_nice_parameter_name <- function(parameter_name) {
-  nice_name <- switch(EXPR = parameter_name,
+  nice_name <- switch(
+    EXPR = parameter_name,
     # ab_data_param / sc_sample_data_param / sc_ref_data_param / refl_data_param
     NSN = "Scan Number",
     NOF = "NOF",

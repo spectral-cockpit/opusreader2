@@ -53,7 +53,6 @@ read_signed_int <- function(raw, cursor, n = 1L) {
 read_character <- function(raw, cursor, n = 1L, n_char, encoding = "latin1") {
   # seek_opus(con, cursor)
 
-
   out <- readBin(
     raw[cursor:(cursor + n_char)],
     what = "character",

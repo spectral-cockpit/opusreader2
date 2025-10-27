@@ -38,7 +38,6 @@ prepare_spectra <- function(ds_list, data_type) {
 }
 
 
-
 get_data_types <- function(ds_list) {
   block_names <- names(ds_list)
   data_types <- block_names[grepl("sc|ig|ph|^ab|^refl|^match", block_names)]

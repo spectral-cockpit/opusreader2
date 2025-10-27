@@ -23,13 +23,11 @@ parse_header <- function(raw) {
 }
 
 
-
 # ASCII lookup: take hexadecimal number and output character from extended
 # ASCII set
 dec_to_ascii <- function(n) {
   rawToChar(as.raw(n))
 }
-
 
 
 parse_header_impl <- function(raw, cursor) {

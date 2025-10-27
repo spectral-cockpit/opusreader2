@@ -2,11 +2,11 @@
 #'
 #' Read and parse OPUS files with spectral data from individual measurements
 #' @param dsn data source name. Can be a path to a specific file or a path to a
-#' directory. The listing of the files in a directory is recursive. 
+#' directory. The listing of the files in a directory is recursive.
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data `NULL`, which only returns the parsed data.
 #' @param parallel read files in parallel via `"mirai"` (non-blocking parallel
-#' map). Default is `FALSE`. See section "Details" for more information. 
+#' map). Default is `FALSE`. See section "Details" for more information.
 #' @param progress_bar print a progress bar. Default is `FALSE`.
 #' @family core
 #' @return List with OPUS spectra collection of class `list_opusreader2`. The
@@ -161,17 +161,17 @@
 #'
 #' When reading in parallel, a progress bar can be enabled.
 #' @export
-read_opus <- function(dsn,
-                      data_only = FALSE,
-                      parallel = FALSE,
-                      progress_bar = FALSE) {
+read_opus <- function(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE) {
   check_logical(data_only)
   check_logical(parallel)
   check_logical(progress_bar)
 
   if (length(dsn) == 1L && dir.exists(dsn)) {
     dsn <- list.files(
-      path = dsn, pattern = "\\.\\d+$", full.names = TRUE, recursive = TRUE
+      path = dsn,
+      pattern = "\\.\\d+$",
+      full.names = TRUE,
+      recursive = TRUE
     )
   }
 
@@ -187,13 +187,14 @@ read_opus <- function(dsn,
 
 
 #' Construct new class `list_opusreader2`
-#' 
+#'
 #' @param dataset_list dataset list, where each list element is a measured
 #' spectrum
 #' @keywords internal
 new_list_opusreader2 <- function(dataset_list) {
   dsn_filenames <- vapply(
-    dataset_list, function(x) attr(x, "dsn_filename"),
+    dataset_list,
+    function(x) attr(x, "dsn_filename"),
     FUN.VALUE = character(1L)
   )
 
@@ -204,9 +205,9 @@ new_list_opusreader2 <- function(dataset_list) {
 }
 
 
-#' Read chunks of OPUS files in parallel using `{mirai}` backend via 
+#' Read chunks of OPUS files in parallel using `{mirai}` backend via
 #' `mirai::mirai_map()`
-#' 
+#'
 #' Relies on background processes (daemons) set up via `mirai::daemon()`
 #' @inheritParams read_opus
 #' @keywords internal
@@ -216,14 +217,16 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
   no_deamons <- identical(mirai::info()["connections"], 0L)
 
   if (isTRUE(no_deamons)) {
-    stop("No background daemon processes available.\n",
+    stop(
+      "No background daemon processes available.\n",
       "Call `mirai::daemons(n = <integer-number-of-daemons>)` first",
-      call. = FALSE)
+      call. = FALSE
+    )
   }
 
   dataset_list <- mirai::mirai_map(
     .x = dsn,
-    .f =  opus_lapply,
+    .f = opus_lapply,
     .args = list(data_only = data_only)
   )
 

@@ -9,8 +9,10 @@ create_dataset <- function(header_data) {
 
   # define compoosite key for chunk
   composite_key <- paste(
-    paste0("b", block_type), paste0("c", channel_type),
-    paste0("t", text_type), paste0("a", additional_type),
+    paste0("b", block_type),
+    paste0("c", channel_type),
+    paste0("t", text_type),
+    paste0("a", additional_type),
     sep = "-"
   )
 
@@ -105,7 +107,10 @@ create_dataset <- function(header_data) {
     "b64-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "fourier_transformation"),
 
     # block code 72 -----------------------------------------------------------------------------
-    "b72-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "fourier_transformation_ref"),
+    "b72-c0-t0-a(0|64)" = c(
+      read_class = "parameter",
+      block_type_name = "fourier_transformation_ref"
+    ),
 
     # block code 96 -----------------------------------------------------------------------------
     "b96-c0-t0-a(0|64)" = c(read_class = "parameter", block_type_name = "optics"),
@@ -118,7 +123,10 @@ create_dataset <- function(header_data) {
 
     # block code 176 -----------------------------------------------------------------------------
     "b176-c0-t0-a64" = c(read_class = "parameter", block_type_name = "lab_and_process_param_raw"),
-    "b176-c0-t0-a0" = c(read_class = "parameter", block_type_name = "lab_and_process_param_processed")
+    "b176-c0-t0-a0" = c(
+      read_class = "parameter",
+      block_type_name = "lab_and_process_param_processed"
+    )
   )
 
   # nolint end
@@ -142,7 +150,6 @@ create_dataset <- function(header_data) {
     warn_proactively(composite_key)
   }
 
-
   # create a dataset
   ds <- c(header_data, list(block_type_name = block_type_name))
   class(ds) <- read_class
@@ -155,12 +162,15 @@ warn_proactively <- function(composite_key) {
     paste(
       "Unknown header entry.\n The following 'composite key' is not yet",
       "mapped in the {opusreader2} key-value map of the header:\n",
-      "*", paste0('"', composite_key, '"'), "\nWe encourage your contribution",
+      "*",
+      paste0('"', composite_key, '"'),
+      "\nWe encourage your contribution",
       "to feature this new OPUS block by opening a new issue on
      https://github.com/spectral-cockpit/opusreader2/issues",
       "\nPlease\n",
       "1. report reproducibly, using short code with {opusreader2}
-      (recommended: https://reprex.tidyverse.org)", "\n",
+      (recommended: https://reprex.tidyverse.org)",
+      "\n",
       "2. describe briefly\n",
       "  a) Bruker instrument used\n",
       "  b) equipment\n",
