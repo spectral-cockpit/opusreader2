@@ -2,9 +2,6 @@
 # with following call:
 # >rix(r_ver = "f563fb5254c62e2486e6ead16d0e4af026496799",
 #  > r_pkgs = cran_pkgs,
-#  > system_pkgs = c("cmake",
-#  > "mbedtls"),
-#  > git_pkgs = git_pkgs,
 #  > ide = "none",
 #  > project_path = ".",
 #  > overwrite = TRUE)
@@ -22,37 +19,10 @@ let
       rmarkdown
       testthat;
   };
- 
-    mirai = (pkgs.rPackages.buildRPackage {
-      name = "mirai";
-      src = pkgs.fetchgit {
-        url = "https://github.com/r-lib/mirai/";
-        rev = "6895fea0853515f01deb67d3fd3890fcaf1105b0";
-        sha256 = "sha256-OCp7G/HG/HCw4qRnyZ2/AXsOCNKyrI9BY8GB3ZOrtxU=";
-      };
-      propagatedBuildInputs = builtins.attrValues {
-        inherit (pkgs.rPackages) 
-          nanonext;
-      };
-    });
-
-    nanonext = (pkgs.rPackages.buildRPackage {
-      name = "nanonext";
-      src = pkgs.fetchgit {
-        url = "https://github.com/r-lib/nanonext";
-        rev = "ad23cd52ffcf7f6d285a525181a06aedf361541e";
-        sha256 = "sha256-7f0I0XILh4IFImU3Vctd2ILnysc8lvDD1el5HWDA8zE=";
-      };
-      propagatedBuildInputs = builtins.attrValues {
-        inherit (pkgs.rPackages) ;
-      };
-    });
       
   system_packages = builtins.attrValues {
     inherit (pkgs) 
-      cmake
       glibcLocales
-      mbedtls
       nix
       R
       pandoc
@@ -68,7 +38,7 @@ let
     LC_PAPER = "en_US.UTF-8";
     LC_MEASUREMENT = "en_US.UTF-8";
     
-    buildInputs = [ mirai nanonext rpkgs system_packages ];
+    buildInputs = [ rpkgs system_packages ];
     
   }; 
 in
