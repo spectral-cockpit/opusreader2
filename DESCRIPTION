@@ -31,7 +31,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     progressr,
-    mirai
+    mirai (>= 2.5.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 NeedsCompilation: no
