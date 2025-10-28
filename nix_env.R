@@ -20,6 +20,7 @@ rix(
   r_pkgs = cran_pkgs,
   # system_pkgs = c("cmake", "mbedtls"),
   # git_pkgs = git_pkgs,
+  tex_pkgs = c("amsmath"),
   ide = "none",
   project_path = ".",
   overwrite = TRUE

@@ -2,6 +2,7 @@
 # with following call:
 # >rix(r_ver = "f563fb5254c62e2486e6ead16d0e4af026496799",
 #  > r_pkgs = cran_pkgs,
+#  > tex_pkgs = c("amsmath"),
 #  > ide = "none",
 #  > project_path = ".",
 #  > overwrite = TRUE)
@@ -19,7 +20,13 @@ let
       rmarkdown
       testthat;
   };
-      
+  
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) 
+      scheme-small
+      amsmath;
+  });
+    
   system_packages = builtins.attrValues {
     inherit (pkgs) 
       glibcLocales
@@ -38,7 +45,7 @@ let
     LC_PAPER = "en_US.UTF-8";
     LC_MEASUREMENT = "en_US.UTF-8";
     
-    buildInputs = [ rpkgs system_packages ];
+    buildInputs = [ rpkgs tex system_packages ];
     
   }; 
 in
