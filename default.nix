@@ -2,7 +2,8 @@
 # with following call:
 # >rix(r_ver = "f563fb5254c62e2486e6ead16d0e4af026496799",
 #  > r_pkgs = cran_pkgs,
-#  > tex_pkgs = c("amsmath"),
+#  > tex_pkgs = c("amsmath",
+#  > "inconsolata"),
 #  > ide = "none",
 #  > project_path = ".",
 #  > overwrite = TRUE)
@@ -24,7 +25,8 @@ let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) 
       scheme-small
-      amsmath;
+      amsmath
+      inconsolata;
   });
     
   system_packages = builtins.attrValues {
