@@ -33,6 +33,18 @@ let
           nanonext;
       };
     });
+
+    nanonext = (pkgs.rPackages.buildRPackage {
+      name = "nanonext";
+      src = pkgs.fetchgit {
+        url = "https://github.com/r-lib/nanonext";
+        rev = "ad23cd52ffcf7f6d285a525181a06aedf361541e";
+        sha256 = "sha256-7f0I0XILh4IFImU3Vctd2ILnysc8lvDD1el5HWDA8zE=";
+      };
+      propagatedBuildInputs = builtins.attrValues {
+        inherit (pkgs.rPackages) ;
+      };
+    });
       
   system_packages = builtins.attrValues {
     inherit (pkgs) 
@@ -52,7 +64,7 @@ let
     LC_PAPER = "en_US.UTF-8";
     LC_MEASUREMENT = "en_US.UTF-8";
     
-    buildInputs = [ mirai rpkgs system_packages ];
+    buildInputs = [ mirai nanonext rpkgs system_packages ];
     
   }; 
 in
