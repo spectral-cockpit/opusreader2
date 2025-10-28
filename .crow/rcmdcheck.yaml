@@ -10,7 +10,7 @@ steps:
     environment:
       _R_CHECK_FORCE_SUGGESTS_: FALSE
     commands:
-      - nix-shell --run 'Rscript -e "install.packages(\"mirai\"); rcmdcheck::rcmdcheck(build_args = c(\"--no-build-vignettes\"), args = c(\"--as-cran\"), error_on = \"warning\")"'
+      - nix-shell --run 'Rscript -e "install.packages(\"mirai\", repos = \"https://cloud.r-project.org\"); rcmdcheck::rcmdcheck(build_args = c(\"--no-build-vignettes\"), args = c(\"--as-cran\"), error_on = \"warning\")"'
 
 
   'Check package':
