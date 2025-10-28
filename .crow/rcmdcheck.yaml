@@ -18,7 +18,6 @@ steps:
       - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
       - R -q -e 'options(Ncpus = 4); pak::pak(); pak::pak("r-lib/rcmdcheck"); rcmdcheck::rcmdcheck(build_args = c("--no-build-vignettes"), args = c("--no-manual", "--as-cran"), error_on = "warning")'
 
-steps:
   'Check package (nix)':
     image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
     pull: true
