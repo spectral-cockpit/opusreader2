@@ -1,6 +1,7 @@
 library("rix")
 
-cran_pkgs <- c("rcmdcheck", "knitr", "rmarkdown", "testthat", "progressr")
+cran_pkgs <- c("rcmdcheck", "knitr", "rmarkdown", "testthat", "progressr",
+  "devtools")
 
 rix(
   r_ver = "latest-upstream",
