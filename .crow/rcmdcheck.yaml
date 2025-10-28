@@ -7,6 +7,8 @@ steps:
   'Check package (nix)':
     image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
     pull: true
+    environment:
+      _R_CHECK_FORCE_SUGGESTS_: FALSE
     commands:
       - nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck(build_args = c(\"--no-build-vignettes\"), args = c(\"--as-cran\"), error_on = \"warning\")"'
 
