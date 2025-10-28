@@ -8,7 +8,8 @@ steps:
     image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
     pull: true
     commands:
-      - R -q -e 'rcmdcheck::rcmdcheck(build_args = c("--no-build-vignettes"), args = c("--no-manual", "--as-cran"), error_on = "warning")'
+      - nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck(build_args = c(\"--no-build-vignettes\"), args = c(\"--no-manual\", \"--as-cran\"), error_on = \"warning\")"'
+
 
   'Check package':
     image: reg.devxy.io/r/r-alpine:4-3.22
