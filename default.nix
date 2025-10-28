@@ -2,6 +2,7 @@
 # with following call:
 # >rix(r_ver = "f563fb5254c62e2486e6ead16d0e4af026496799",
 #  > r_pkgs = cran_pkgs,
+#  > system_pkgs = "mbedtls",
 #  > git_pkgs = git_pkgs,
 #  > ide = "none",
 #  > project_path = ".",
@@ -49,6 +50,7 @@ let
   system_packages = builtins.attrValues {
     inherit (pkgs) 
       glibcLocales
+      mbedtls
       nix
       R
       pandoc

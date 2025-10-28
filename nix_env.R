@@ -18,6 +18,7 @@ git_pkgs <- list(
 rix(
   r_ver = "latest-upstream",
   r_pkgs = cran_pkgs,
+  system_pkgs = "mbedtls",
   git_pkgs = git_pkgs,
   ide = "none",
   project_path = ".",
