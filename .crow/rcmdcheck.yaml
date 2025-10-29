@@ -4,13 +4,16 @@ when:
     branch: $CI_REPO_DEFAULT_BRANCH
 
 steps:
-  'Check package (nix)':
+  - name: Check package (nix)
     image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
     pull: true
     environment:
       _R_CHECK_FORCE_SUGGESTS_: FALSE
     commands:
-      - nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck(build_args = c(\"--no-build-vignettes\"), args = c(\"--as-cran\"), error_on = \"warning\")"'
+      - >
+        nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck( 
+          args = c(\"--as-cran\"), 
+          error_on = \"warning\")"'
 
 
   'Check package':
@@ -25,5 +28,5 @@ steps:
       - apk add -q pandoc cairo
       - R -q -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE, showWarnings = FALSE)'
       - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-      - R -q -e 'options(Ncpus = 4); pak::pak(); pak::pak("r-lib/rcmdcheck"); rcmdcheck::rcmdcheck(build_args = c("--no-build-vignettes"), args = c("--no-manual", "--as-cran"), error_on = "warning")'
+      - R -q -e 'options(Ncpus = 4); pak::pak(); pak::pak("r-lib/rcmdcheck"); rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning")'
 
