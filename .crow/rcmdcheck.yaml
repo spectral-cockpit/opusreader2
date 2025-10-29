@@ -4,7 +4,7 @@ when:
     branch: $CI_REPO_DEFAULT_BRANCH
 
 steps:
-  - name: Check package (nix)
+  'Check package (nix)':
     image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
     pull: true
     environment:
