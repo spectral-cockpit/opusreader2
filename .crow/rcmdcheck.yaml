@@ -9,6 +9,7 @@ steps:
     pull: true
     environment:
       _R_CHECK_FORCE_SUGGESTS_: FALSE
+      _R_CHECK_SYSTEM_CLOCK_: FALSE
     commands:
       - >
         nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck( 
