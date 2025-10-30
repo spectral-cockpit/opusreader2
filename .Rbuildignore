@@ -12,7 +12,7 @@
 ^opusreader2.code-workspace$
 ^pkgdown/
 ^_pkgdown\.yml$
-^tic\.R$
+^nix_env.R$
 ^revdep$
 ^cran-comments\.md$
 ^doc$
