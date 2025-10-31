@@ -13,6 +13,7 @@
 ^pkgdown/
 ^_pkgdown\.yml$
 ^nix_env.R$
+^renovate.json$
 ^revdep$
 ^cran-comments\.md$
 ^doc$
