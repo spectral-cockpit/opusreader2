@@ -54,7 +54,7 @@ get_ostype <- function() .Platform$OS.type
 
 filter_class <- function(x, class = c("data", "parameter", "text")) {
   cls <- match.arg(class)
-  x[vapply(x, function(x) class(x) == cls, logical(1))]
+  x[vapply(x, function(x) inherits(x, cls), logical(1))]
 }
 
 get_class_names <- function(x, class = c("data", "parameter", "text")) {
