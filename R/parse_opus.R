@@ -128,12 +128,12 @@ parse_opus <- function(raw, data_only) {
 
   if (data_only) {
     if (any(grepl("^ab$|^refl$", names(dataset_list)))) {
-      dataset_list <- extract_data(
+      dataset_list <- extract_blocks(
         dataset_list,
         c("ab", "refl", "ab_data_param", "refl_data_param", "history", "sample")
       )
     } else {
-      dataset_list <- extract_data(
+      dataset_list <- extract_blocks(
         # nolint
         dataset_list,
         c(
