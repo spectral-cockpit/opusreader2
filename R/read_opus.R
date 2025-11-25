@@ -161,7 +161,12 @@
 #'
 #' When reading in parallel, a progress bar can be enabled.
 #' @export
-read_opus <- function(dsn, data_only = FALSE, parallel = FALSE, progress_bar = FALSE) {
+read_opus <- function(
+  dsn,
+  data_only = FALSE,
+  parallel = FALSE,
+  progress_bar = FALSE
+) {
   check_logical(data_only)
   check_logical(parallel)
   check_logical(progress_bar)

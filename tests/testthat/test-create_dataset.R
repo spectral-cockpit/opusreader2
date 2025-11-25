@@ -12,14 +12,12 @@ test_that("that a dataset is correctly cearted", {
 
   expect_true(inherits(ds, "text"))
 
-
   header_data <- list(
     block_type = 100,
     text_type = 104,
     channel_type = 0,
     additional_type = 64
   )
-
 
   expect_warning(
     create_dataset(header_data),
@@ -31,7 +29,6 @@ test_that("that a dataset is correctly cearted", {
   expect_identical(ds$block_type_name, "unknown")
 
   expect_true(inherits(ds, "list"))
-
 
   header_data <- list(
     block_type = 15,
