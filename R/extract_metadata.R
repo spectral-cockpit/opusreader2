@@ -16,7 +16,7 @@ get_basic_metadata <- function(ds_list) {
 
 get_meta_timestamp <- function(ds_list) {
   text <- ds_list$history$text
-  history <- paste0(text, collapse = "")
+  history <- paste(text, collapse = "")
   save_file_time <- gsub(
     ".*\t\t(\\d.*)\t\t\t.*",
     "\\1",
@@ -34,7 +34,8 @@ get_meta_timestamp <- function(ds_list) {
   }
 
   # note that negative offsets denote UTC+x time stamps
-  time <- as.POSIXct(strptime(time_hour,
+  time <- as.POSIXct(strptime(
+    time_hour,
     format = "%Y/%m/%d %H:%M:%S",
     tz = etc_tz
   ))
@@ -50,19 +51,21 @@ get_meta_timestamp <- function(ds_list) {
 get_meta_utc_datetime <- function(timestamp) {
   tz <- timestamp$timezone
   utc_diff <- as.integer(gsub("\\D+(\\+\\d)", "\\1", tz))
-  utc_datetime <- as.POSIXct(strptime(timestamp$datetime,
+  utc_datetime <- as.POSIXct(strptime(
+    timestamp$datetime,
     format = "%Y-%m-%d %H:%M:%S",
     tz = "UTC"
-  )) - (utc_diff * 3600)
+  )) -
+    (utc_diff * 3600)
 
   return(utc_datetime)
 }
 
 
 get_meta_sample_name <- function(ds_list) {
-  ds_parameter <- ds_list[vapply(ds_list, class,
-    FUN.VALUE = character(1L)
-  ) == "parameter"]
+  ds_parameter <- ds_list[
+    vapply(ds_list, class, FUN.VALUE = character(1L)) == "parameter"
+  ]
 
   sample <- ds_parameter$sample
   sample_name_long <- sample$parameters$SNM$parameter_value

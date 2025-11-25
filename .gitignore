@@ -43,8 +43,9 @@ docs/
 # extra documentation and sources
 doc-local
 
-
 .DS_Store
 inst/doc
 /doc/
 /Meta/
+
+result

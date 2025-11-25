@@ -7,16 +7,19 @@ test_that("header is correctly parsed", {
 
   header_data_unlist <- unlist(header_data)
 
-  expect_true(is.integer(header_data_unlist))
+  expect_type(header_data_unlist, "integer")
 
   expect_length(header_data_unlist, 140)
 
   block_type_names <- unique(unlist(lapply(header_data, names)))
 
   expected_block_type_names <- c(
-    "block_type", "channel_type",
-    "text_type", "additional_type",
-    "offset", "next_offset",
+    "block_type",
+    "channel_type",
+    "text_type",
+    "additional_type",
+    "offset",
+    "next_offset",
     "chunk_size"
   )
 

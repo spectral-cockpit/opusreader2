@@ -1,5 +1,5 @@
 #' Get path of a Selected Sample OPUS File Included in the Package
-#' 
+#'
 #' Utility function that retrieves the location of the sample OPUS
 #' binary file on disk.
 #' @return a character vector with the path to a selected single sample OPUS
@@ -13,7 +13,7 @@ opus_test_file <- function() {
 
 
 #' Get File Paths of Sample OPUS Files Included in the Package
-#' 
+#'
 #' Utility function that retrieves the location of the sample OPUS
 #' binary file on disk.
 #' @return a character vector with the paths OPUS files included in the package

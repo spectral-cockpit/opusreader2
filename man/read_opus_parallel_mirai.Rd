@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_opus.R
 \name{read_opus_parallel_mirai}
 \alias{read_opus_parallel_mirai}
-\title{Read chunks of OPUS files in parallel using \code{"mirai"} backend via
+\title{Read chunks of OPUS files in parallel using \code{{mirai}} backend via
 \code{mirai::mirai_map()}}
 \usage{
 read_opus_parallel_mirai(dsn, data_only, progress_bar)
@@ -12,8 +12,7 @@ read_opus_parallel_mirai(dsn, data_only, progress_bar)
 directory. The listing of the files in a directory is recursive.}
 
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
-read data
-\code{NULL}, which only returns the parsed data as an in-memory R object.}
+read data \code{NULL}, which only returns the parsed data.}
 
 \item{progress_bar}{print a progress bar. Default is \code{FALSE}.}
 }

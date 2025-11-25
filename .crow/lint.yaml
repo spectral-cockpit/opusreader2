@@ -1,0 +1,16 @@
+when:
+  - event: pull_request
+  - event: push
+    branch: ${CI_REPO_DEFAULT_BRANCH}
+
+steps:
+  - name: lint-r
+    image: reg.devxy.io/r/r-alpine:4-3.22
+    environment:
+      FLINT_ERROR_ON_LINT: true
+    commands:
+      - apk add -q gcompat libgit2
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      - source $HOME/.cargo/env
+      - R -q -e 'install.packages(c("rlang", "pkgload", "cyclocomp", "flir"), repos = "cran.rpkgs.com")'
+      - R -q -e 'pkgload::load_all(); flir::lint_package("."); flir::fix_package(".")'

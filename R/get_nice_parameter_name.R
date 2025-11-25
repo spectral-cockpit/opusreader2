@@ -1,5 +1,6 @@
 get_nice_parameter_name <- function(parameter_name) {
-  nice_name <- switch(EXPR = parameter_name,
+  nice_name <- switch(
+    EXPR = parameter_name,
     # ab_data_param / sc_sample_data_param / sc_ref_data_param / refl_data_param
     NSN = "Scan Number",
     NOF = "NOF",
@@ -15,10 +16,10 @@ get_nice_parameter_name <- function(parameter_name) {
     DXU = "X Units",
     TPX = "unknown",
     # quant_report_refl
-    # BID = ,
+    BID = "Block Identifier",
     # NRP = ,
     # SIZ = ,
-    # TIT = ,
+    TIT = "Title",
     # E00 = ,
     # F00 = ,
     # Z00 = ,
@@ -77,7 +78,7 @@ get_nice_parameter_name <- function(parameter_name) {
     ZFF = "Zero Filling Factor",
     # sample
     BLD = "Building",
-    CNM = "Operation Name",
+    CNM = "Operator Name",
     CPY = "Company",
     DPM = "Department",
     EXP = "Experiment",
@@ -108,7 +109,7 @@ get_nice_parameter_name <- function(parameter_name) {
     BBW = "Number of Bad BW Scans",
     PKA = "Peak Amplitude",
     PKL = "Peak Location",
-    PRA = "Backward Peack Amplitude",
+    PRA = "Backward Peak Amplitude",
     PRL = "Backward Peak Location",
     P2A = "Peak Amplitude 2nd Channel",
     P2L = "Peak Location 2nd Channel",
@@ -144,7 +145,7 @@ get_nice_parameter_name <- function(parameter_name) {
     FD1 = "Value Product Info 1",
     FD2 = "Label Product Info 2",
     FD3 = "Value Product Info 2",
-    FE1 = "Device Typ",
+    FE1 = "Device Type",
     FE2 = "Device Description",
     FE3 = "Measurement Position Microplate",
     # info_block
