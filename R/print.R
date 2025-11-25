@@ -1,5 +1,7 @@
 #' Print method for collection of OPUS specta with class `list_opusreader2`
 #'
+#' @param x List with OPUS spectra collection of class `list_opusreader2`
+#' @param ... Additional arguments passed to print method
 #' @export
 print.list_opusreader2 <- function(x, ...) {
   len <- length(x)
@@ -22,13 +24,13 @@ print.list_opusreader2 <- function(x, ...) {
     "\n"
   ))
 
-  data_names <- unlist(lapply(data, function(x) get_class_names(x, "data")))
+  data_names <- unlist(lapply(x, function(x) get_class_names(x, "data")))
   data_tab <- table(data_names)
-  param_names <- unlist(lapply(data, function(x) {
+  param_names <- unlist(lapply(x, function(x) {
     get_class_names(x, "parameter")
   }))
   param_tab <- table(param_names)
-  text_names <- unlist(lapply(data, function(x) get_class_names(x, "text")))
+  text_names <- unlist(lapply(x, function(x) get_class_names(x, "text")))
   text_tab <- table(text_names)
 
   cat_block_types(
@@ -80,8 +82,8 @@ cat_startblock <- function(width = getOption("width")) {
     get_padded_text_lr(
       text = "",
       width = width,
-      left_border = "╔",
-      right_border = "╗",
+      left_border = rawToChar(as.raw(c(0xe2, 0x95, 0x94))),
+      right_border = rawToChar(as.raw(c(0xe2, 0x95, 0x97))),
       fill_char = "="
     ),
     "\n"
@@ -106,8 +108,8 @@ cat_endblock <- function(width = getOption("width")) {
     get_padded_text_lr(
       text = "",
       width = width,
-      left_border = "╚",
-      right_border = "╝",
+      left_border = rawToChar(as.raw(c(0xe2, 0x95, 0x9a))),
+      right_border = rawToChar(as.raw(c(0xe2, 0x95, 0x9d))),
       fill_char = "="
     ),
     "\n"
@@ -129,8 +131,8 @@ get_padded_text <- function(text, width = getOption("width"), pad_char = "-") {
 get_padded_text_lr <- function(
   text,
   width = getOption("width"),
-  left_border = "║",
-  right_border = "║",
+  left_border = rawToChar(as.raw(c(0xe2, 0x95, 0x91))),
+  right_border = rawToChar(as.raw(c(0xe2, 0x95, 0x91))),
   fill_char = " "
 ) {
   text_len <- nchar(text, type = "width") # counts display width
