@@ -165,9 +165,13 @@ Behind the scene, mirai uses [nanonext](https://github.com/r-lib/nanonext/) and 
 
 All you have to do is launching daemons.
 
-```{r}
-library("mirai")
-daemons(n = 2L, dispatcher = TRUE)
+```r
+if (!require("mirai")) {
+  library("mirai")
+  daemons(n = 2L, dispatcher = TRUE)
+
+  (data <- read_opus(dsn = files_1000, parallel = TRUE))
+}
 ```
 
 The task of reading files can be done locally or through distributed systems over a network. For further details, check out the mirai, and its vignettes.

@@ -21,10 +21,8 @@ prepare_spectra <- function(ds_list, data_type) {
 
   # y-scaling factor
   CSF <- ds_param[[1]]$parameters$CSF$parameter_value
-  if (!is.null(CSF)) {
-    if (CSF != 1) {
-      ds_data[[1]]$data <- CSF * ds_data[[1]]$data
-    }
+  if (!is.null(CSF) && CSF != 1) {
+    ds_data[[1]]$data <- CSF * ds_data[[1]]$data
   }
 
   data_matrix <- matrix(ds_data[[1]]$data[1:NPT], nrow = 1, ncol = NPT)
@@ -38,7 +36,6 @@ prepare_spectra <- function(ds_list, data_type) {
 
   return(ds_list)
 }
-
 
 
 get_data_types <- function(ds_list) {

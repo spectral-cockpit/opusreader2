@@ -12,8 +12,7 @@ opus_lapply(dsn, data_only)
 directory. The listing of the files in a directory is recursive.}
 
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
-read data
-\code{NULL}, which only returns the parsed data as an in-memory R object.}
+read data \code{NULL}, which only returns the parsed data.}
 }
 \value{
 nested list where first-level elements are individual spectral

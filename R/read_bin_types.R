@@ -7,7 +7,6 @@
 read_unsigned_int <- function(raw, cursor, n = 1L) {
   n_int <- n * 1
 
-  # seek_opus(con, cursor)
   out <- readBin(
     raw[cursor:(cursor + n_int)],
     what = "integer",
@@ -29,7 +28,6 @@ read_unsigned_int <- function(raw, cursor, n = 1L) {
 read_signed_int <- function(raw, cursor, n = 1L) {
   n_signed_int <- n * 4
 
-  # seek_opus(con, cursor)
   out <- readBin(
     raw[cursor:(cursor + n_signed_int)],
     what = "integer",
@@ -51,9 +49,6 @@ read_signed_int <- function(raw, cursor, n = 1L) {
 #' how Bruker software OPUS is assumed to commonly store strings.
 #' @keywords internal
 read_character <- function(raw, cursor, n = 1L, n_char, encoding = "latin1") {
-  # seek_opus(con, cursor)
-
-
   out <- readBin(
     raw[cursor:(cursor + n_char)],
     what = "character",
@@ -76,7 +71,6 @@ read_character <- function(raw, cursor, n = 1L, n_char, encoding = "latin1") {
 read_float <- function(raw, cursor, n = 1L) {
   n_float <- n * 4
 
-  # seek_opus(con, cursor)
   out <- readBin(
     raw[cursor:(cursor + n_float)],
     what = "double",
@@ -97,7 +91,6 @@ read_float <- function(raw, cursor, n = 1L) {
 read_double <- function(raw, cursor, n = 1L) {
   n_double <- n * 8
 
-  # seek_opus(con, cursor)
   out <- readBin(
     raw[cursor:(cursor + n_double)],
     what = "double",

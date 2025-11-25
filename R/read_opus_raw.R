@@ -14,7 +14,6 @@ read_opus_raw <- function(dsn) {
     raw <- read_raw(dsn)
   }
 
-
   return(raw)
 }
 

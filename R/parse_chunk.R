@@ -9,7 +9,6 @@
 parse_chunk <- function(ds, raw) UseMethod("parse_chunk")
 
 
-
 #' read chunk method for default
 #'
 #' @inheritParams parse_chunk
@@ -27,8 +26,10 @@ parse_chunk.default <- function(ds, raw) {
 #' @keywords internal
 parse_chunk.text <- function(ds, raw) {
   text <- read_character(
-    raw, ds$offset + 1,
-    n = ds$chunk_size, n_char = ds$chunk_size
+    raw,
+    ds$offset + 1,
+    n = ds$chunk_size,
+    n_char = ds$chunk_size
   )
 
   ds$text <- text
@@ -41,7 +42,8 @@ parse_chunk.text <- function(ds, raw) {
 #'
 #' @keywords internal
 parse_chunk.parameter <- function(ds, raw) {
-  if (ds$text_type %in% c(104, 112, 96, 144)) { # added text typ
+  if (ds$text_type %in% c(104, 112, 96, 144)) {
+    # added text typ
     cursor <- ds$offset + 13
   } else {
     cursor <- ds$offset + 1
@@ -72,15 +74,16 @@ parse_chunk.parameter <- function(ds, raw) {
 
     cursor_value <- cursor + 8
 
-
     if (type_index == 1) {
       parameter_value <- read_signed_int(raw, cursor_value, n = 1L)
     } else if (type_index == 2) {
       parameter_value <- read_double(raw, cursor_value, n = 1L)
     } else if (type_index %in% c(3, 4, 5)) {
       parameter_value <- read_character(
-        raw, cursor_value,
-        n = 1L, n_char = 2 * parameter_size
+        raw,
+        cursor_value,
+        n = 1L,
+        n_char = 2 * parameter_size
       )
     }
 
@@ -92,7 +95,6 @@ parse_chunk.parameter <- function(ds, raw) {
     )
 
     result_list <- c(result_list, list(repeat_list))
-
 
     cursor <- cursor + 8 + 2 * parameter_size
 
