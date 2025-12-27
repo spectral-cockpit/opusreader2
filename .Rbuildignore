@@ -20,3 +20,5 @@
 ^Meta$
 ^air\.toml$
 ^result$
+^docs$
+^altdoc$
