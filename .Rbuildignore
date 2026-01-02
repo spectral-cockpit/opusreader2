@@ -13,6 +13,7 @@
 ^pkgdown/
 ^_pkgdown\.yml$
 ^nix_env.R$
+^nix_envs$
 ^renovate.json$
 ^revdep$
 ^cran-comments\.md$
@@ -20,3 +21,6 @@
 ^Meta$
 ^air\.toml$
 ^result$
+^docs$
+^altdoc$
+.venv_altdoc

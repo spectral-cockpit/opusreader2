@@ -38,7 +38,6 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 .Rproj.user
-docs/
 
 # extra documentation and sources
 doc-local
@@ -49,3 +48,5 @@ inst/doc
 /Meta/
 
 result
+altdoc/freeze.rds
+.venv_altdoc

@@ -11,3 +11,10 @@ rix(
   project_path = ".",
   overwrite = TRUE
 )
+
+rix(
+  r_ver = "latest-upstream",
+  r_pkgs = c("altdoc", "devtools"),
+  project_path = file.path("nix_envs", "r-pages"),
+  overwrite = TRUE
+)
