@@ -1,0 +1,25 @@
+when:
+  - event: manual
+  - event: push
+    branch: ${CI_REPO_DEFAULT_BRANCH}
+
+steps:
+  - name: Build pages (nix)
+    image: spectralcockpit/nix-datascience-alpine:4.5.1-alpine-3.22
+    pull: true
+    commands:
+      - cp ./nix_envs/r-pages/default.nix /app/default.nix
+      - nix-shell ./nix_envs/r-pages/default.nix --run 'Rscript -e "devtools::install(); altdoc::render_docs()"'
+
+  - name: Push pages
+    image: reg.devxy.io/docker.io/appleboy/drone-git-push:1.2.1
+    settings:
+      remote: ${CI_REPO_CLONE_SSH_URL}
+      branch: pages
+      force: true
+      commit: true
+      commit_message: "ci(docs): updated pages ${CI_COMMIT_SHA}"
+      author_name: spectral-cockpit-bot
+      author_email: bot@spectral-cockpit.com
+      ssh_key:
+        from_secret: spectralcockpit_bot_ssh_key

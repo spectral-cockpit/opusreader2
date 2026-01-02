@@ -5,7 +5,7 @@ when:
 
 steps:
   'Check package (nix)':
-    image: spectralcockpit/nix-datascience-containers:4.5.1-alpine-3.22
+    image: spectralcockpit/nix-datascience-alpine:4.5.1-alpine-3.22
     pull: true
     environment:
       _R_CHECK_FORCE_SUGGESTS_: FALSE
@@ -15,18 +15,3 @@ steps:
         nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck( 
           args = c(\"--as-cran\"), 
           error_on = \"warning\")"'
-
-
-  'Check package':
-    image: reg.devxy.io/r/r-alpine:4-3.22
-    pull: true
-    environment:
-      RCMDCHECK_NUM_COLORS: 300
-      PKG_SYSREQS_PLATFORM: alpine
-      PKG_SYSREQS: TRUE
-      PKG_SYSREQS_VERBOSE: TRUE
-    commands:
-      - apk add -q pandoc cairo
-      - R -q -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE, showWarnings = FALSE)'
-      - R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-      - R -q -e 'options(Ncpus = 4); pak::pak(); pak::pak("r-lib/rcmdcheck"); rcmdcheck::rcmdcheck(args = c("--no-manual", "no-vignettes", "--as-cran"), error_on = "warning")'
