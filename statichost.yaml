@@ -1,0 +1,6 @@
+# Docker image to use for building
+image: alpine:latest
+# Build command
+command: "echo 'Deploy'"
+# Public directory
+public: .
