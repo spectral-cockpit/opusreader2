@@ -10,6 +10,11 @@ steps:
     commands:
       - cp ./nix_envs/r-pages/default.nix /app/default.nix
       - nix-shell ./nix_envs/r-pages/default.nix --run 'Rscript -e "devtools::install(); altdoc::render_docs()"'
+      - mv docs/ /tmp/public
+      - mv .git /tmp/.git
+      - mv statichost.yaml /tmp/statichost.yaml
+      - rm -rf ./* .[^.]* ..?*
+      - mv /tmp/public/* ./ && mv /tmp/.git ./ && mv /tmp/statichost.yaml .
 
   - name: Push pages
     image: reg.devxy.io/docker.io/appleboy/drone-git-push:1.2.1
