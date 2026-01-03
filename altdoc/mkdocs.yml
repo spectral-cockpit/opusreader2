@@ -7,14 +7,14 @@ theme:
       primary: pink
       accent: deep purple
       toggle:
-        icon: material/brightness-7
+        icon: material/toggle-switch
         name: Switch to dark mode
     # Dark mode
     - scheme: slate
       primary: pink
       accent: deep purple
       toggle:
-        icon: material/brightness-4
+        icon: material/toggle-switch-off-outline
         name: Switch to light mode
   features:
     - content.code.copy
