@@ -48,10 +48,10 @@ nav:
   - Home: README.md
   - Reference:
     - Key functions:
-      - `read_opus()`: man/read_opus.md
-      - `print.list_opusreader2()`: man/print.list_opusreader2.md
+      - read_opus(): man/read_opus.md
+      - print.list_opusreader2(): man/print.list_opusreader2.md
     - Helper functions:
-      - `opus_test_dsn()`: man/opus_test_dsn.md
+      - opus_test_dsn(): man/opus_test_dsn.md
   - Articles: $ALTDOC_VIGNETTE_BLOCK
   - News: $ALTDOC_NEWS
   - Changelog: $ALTDOC_CHANGELOG
