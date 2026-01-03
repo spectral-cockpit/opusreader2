@@ -4,6 +4,8 @@ theme:
   features:
     - content.code.copy
     - content.code.select
+    - navigation.tabs
+    - navigation.tabs.sticky
 
 
 ### Basic information
