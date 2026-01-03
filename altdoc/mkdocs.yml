@@ -1,6 +1,7 @@
 ### Theme
 theme:
   name: material
+  logo: altdoc/logo-192x192.png
   palette:
     # Light mode
     - scheme: default
