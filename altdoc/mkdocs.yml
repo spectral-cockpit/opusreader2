@@ -2,15 +2,17 @@
 theme:
   name: material
   palette:
-    primary: pink
-    accent: deep purple
-    # Palette toggle for light mode
+    # Light mode
     - scheme: default
+      primary: pink
+      accent: deep purple
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: Switch to dark mode
-    # Palette toggle for dark mode
+    # Dark mode
     - scheme: slate
+      primary: pink
+      accent: deep purple
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
