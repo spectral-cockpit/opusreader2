@@ -1,6 +1,8 @@
 ### Theme
 theme:
   name: material
+  palette:
+    primary: pink
   features:
     - content.code.copy
     - content.code.select
