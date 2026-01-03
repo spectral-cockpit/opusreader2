@@ -6,7 +6,7 @@ theme:
 site_name: $ALTDOC_PACKAGE_NAME
 
 ### Repo information
-repo_url: $ALTDOC_PACKAGE_URL_GITHUB
+repo_url: https://codefloe.com/spectral-cockpit/opusreader2
 repo_name: $ALTDOC_PACKAGE_NAME
 
 ### Plugins
