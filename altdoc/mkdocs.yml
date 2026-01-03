@@ -1,7 +1,8 @@
 ### Theme
 theme:
   name: material
-  logo: logo-192x192.png
+  logo: logo-512x512.png
+  favicon: favicon.svg
   palette:
     # Light mode
     - scheme: default
