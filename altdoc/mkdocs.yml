@@ -33,7 +33,7 @@ theme:
 
 
 ### Basic information
-site_name: $ALTDOC_PACKAGE_NAME $ALTDOC_PACKAGE_VERSION
+site_name: $ALTDOC_PACKAGE_NAME (v$ALTDOC_PACKAGE_VERSION)
 
 ### Repo information
 repo_url: https://codefloe.com/spectral-cockpit/opusreader2
