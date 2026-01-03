@@ -29,7 +29,7 @@ site_name: $ALTDOC_PACKAGE_NAME
 
 ### Repo information
 repo_url: https://codefloe.com/spectral-cockpit/opusreader2
-repo_name: $ALTDOC_PACKAGE_NAME
+repo_name: spectral-cockpit/opusreader2
 
 ### Plugins
 plugins:
