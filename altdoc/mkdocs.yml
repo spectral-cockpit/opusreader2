@@ -1,3 +1,7 @@
+### Theme
+theme:
+  name: material
+
 ### Basic information
 site_name: $ALTDOC_PACKAGE_NAME
 
