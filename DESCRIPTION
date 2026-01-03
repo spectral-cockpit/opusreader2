@@ -21,7 +21,7 @@ Authors@R:
 Description: Read data from OPUS binary files of Fourier-Transform infrared
     spectrometers of the company Bruker Optics GmbH & Co.
 License: MIT + file LICENSE
-URL: https://spectral-cockpit.github.io/opusreader2/, https://codefloe.com/spectral-cockpit/opusreader2/
+URL: https://opusreader2.spectral-cockpit.codefloe.page/, https://codefloe.com/spectral-cockpit/opusreader2/
 BugReports: https://codefloe.com/spectral-cockpit/opusreader2/issues/
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
