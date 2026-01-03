@@ -3,6 +3,8 @@ theme:
   name: material
   logo: logo-512x512.png
   favicon: favicon.svg
+  icon:
+    repo: simple/forgejo
   palette:
     # Light mode
     - scheme: default
@@ -18,6 +20,10 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
+
+  font:
+    text: Fira Sans
+    code: Fira Code
   features:
     - content.code.copy
     - content.code.select
