@@ -21,6 +21,7 @@ theme:
     - content.code.select
     - navigation.tabs
     - navigation.tabs.sticky
+    - toc.integrate
 
 
 ### Basic information
