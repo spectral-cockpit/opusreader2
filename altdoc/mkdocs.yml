@@ -1,9 +1,43 @@
+### Theme
+theme:
+  name: material
+  logo: logo-512x512.png
+  favicon: favicon.svg
+  icon:
+    repo: simple/forgejo
+  palette:
+    # Light mode
+    - scheme: default
+      primary: pink
+      accent: deep purple
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: pink
+      accent: deep purple
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+
+  font:
+    text: Fira Sans
+    code: Fira Code
+  features:
+    - content.code.copy
+    - content.code.select
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+
+
 ### Basic information
-site_name: $ALTDOC_PACKAGE_NAME
+site_name: $ALTDOC_PACKAGE_NAME (v$ALTDOC_PACKAGE_VERSION)
 
 ### Repo information
-repo_url: $ALTDOC_PACKAGE_URL_GITHUB
-repo_name: $ALTDOC_PACKAGE_NAME
+repo_url: https://codefloe.com/spectral-cockpit/opusreader2
+repo_name: spectral-cockpit/opusreader2
 
 ### Plugins
 plugins:
@@ -11,8 +45,14 @@ plugins:
 
 ### Navigation tree
 nav:
+  - Home: README.md
+  - Reference:
+    - Key functions:
+      - read_opus(): man/read_opus.md
+      - print.list_opusreader2(): man/print.list_opusreader2.md
+    - Helper functions:
+      - opus_test_dsn(): man/opus_test_dsn.md
   - Articles: $ALTDOC_VIGNETTE_BLOCK
-  - Reference: $ALTDOC_MAN_BLOCK
   - News: $ALTDOC_NEWS
   - Changelog: $ALTDOC_CHANGELOG
   - Code of Conduct: $ALTDOC_CODE_OF_CONDUCT
@@ -23,16 +63,17 @@ nav:
 
 ### Code highlighting
 ### Math
-# markdown_extensions:
+markdown_extensions:
 #   - pymdownx.arithmatex:
 #       generic: true
-#   - pymdownx.highlight:
-#       anchor_linenums: true
-#       line_spans: __span
-#       pygments_lang_class: true
-#   - pymdownx.inlinehilite
-#   - pymdownx.snippets
-#   - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: !relative $docs_dir  # Relative to docs/ root
+  - pymdownx.superfences
 
 # extra_javascript:
 #   - javascripts/mathjax.js
