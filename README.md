@@ -11,7 +11,7 @@
 ## 🪄🪩 Scope and Movitation 
 
 *grab 'em all* — {opusreader2}  lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
-Developed in our spare time —- if you find it useful, consider buying us a coffee!
+Developed in our spare time — if you find it useful, consider buying us a coffee!
 
 [!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
 
