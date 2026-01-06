@@ -10,10 +10,13 @@
 
 ## 🪄🪩 Scope and Motivation
 
-*grab 'em all* — {opusreader2}  lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
-Developed in our spare time — if you find it useful, consider buying us a coffee!
+*grab 'em all* — Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers manufactured by Bruker Optics GmbH & Co. directly in R.
+This package is developed openly in our spare time, so there is no guarantee of support.
+To help cover our coffee expenses, we appreciate any donations.
 
 [!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
+
+## 🪩 Highlights and disclaimer
 
 The [Bruker corporation](https://www.bruker.com/en.html) produces reliable instruments; however, there is no official documentation for the OPUS file format, making it proprietary.
 Fortunately, over time, our team and colleagues from the open-source spectroscopy community have figured out how the OPUS binary format is structured and how we can parse it (see credits).
