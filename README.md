@@ -8,42 +8,35 @@
 <p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
 <img align="right" width="250" src="man/figures/logo.png">
 
-## 🪄 Scope
+## 🪄🪩 Scope and Movitation 
 
-*grab 'em all* — Read OPUS binary files from Fourier-Transform Infrared (FT-IR) spectrometers manufactured by Bruker Optics GmbH & Co. directly in R.
-This package is developed openly in our spare time, so there is no guarantee of support.
-To help cover our coffee expenses, we appreciate any donations.
+*grab 'em all* — {″opusreader2}  lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
+
+{″opusreader2} lets you import and analyze OPUS spectra from Bruker Optics GmbH & Co. devices directly in R.
+Developed in our spare time —- if you find it useful, consider buying us a coffee!
 
 [!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
 
-## 🪩 Highlights and disclaimer
-
 The [Bruker corporation](https://www.bruker.com/en.html) produces reliable instruments; however, there is no official documentation for the OPUS file format, making it proprietary.
-Fortunately, our team and colleagues from the open-source spectroscopy community have successfully deciphered it. With considerable effort, we've unraveled the file logic (see credits).
+Fortunately, over time, our team and colleagues from the open-source spectroscopy community have figured out how the OPUS binary format is structured and how we can parse it (see credits).
 
-{opusreader2} stands as a state-of-the-art binary reader, serving as a robust foundation for your spectroscopy workflow.
-Notably modular, it imposes no hard dependencies beyond base R.
-Actively contributing to the spectroscopy communities is encouraged through feedback, issue reports, and pull requests.
-These collective efforts aim to enhance support for a growing array of instruments, measurement modes, and block types.
-Additionally, be on the lookout for our forthcoming diagnostic solutions built upon {opusreader2}.
-For those seeking personalized assistance, Spectral-Cockpit offers consulting services tailored to every stage of your spectroscopy workflow.
-
-We have now achieved stability in package development.
-The core API of `opusreader2::read_opus()` is robust, and we do not anticipate any significant user-facing design changes.
-Moving forward, additional functions downstream will extend the capabilities, allowing users to extract specific areas of interest, such as measurement metadata, or to facilitate reading workflows for custom environments.
-
-Our current development efforts are
-
-1.  expanding support for Bruker data blocks even further
-2.  providing useful downstream features for metadata and spectra management through additional helper and wrapper functions.
-
-We have adopted semantic versioning with [{fledge}](https://github.com/cynkra/fledge) to track changes.
-To stay updated on the progress and history of features aligned with semantic versioning, please refer to the [NEWS](NEWS.md).
-Our aim is to soon release a stable version on CRAN that is production-ready. The expected time of arrival is January 2024.
+{opusreader2} stands as a state-of-the-art binary reader in R, with no hard dependencies beyond base R.
+Community efforts are there to enhance support for a growing array of instruments, measurement modes, and block types.
 
 ## 📦 Installation
 
 The latest version can be installed
+
+<details>
+
+<summary>from CodeFloe.com via {remotes} [expand]</summary>
+
+``` r
+if (!require("remotes")) install.packages("remotes")
+remotes::install_git("https://codefloe.com/spectral-cockpit/opusreader2")
+```
+
+</details>
 
 <details>
 
@@ -54,17 +47,6 @@ The latest version can be installed
 install.packages("opusreader2", repos = c(
   spectralcockpit = 'https://spectral-cockpit.r-universe.dev',
   CRAN = 'https://cloud.r-project.org'))
-```
-
-</details>
-
-<details>
-
-<summary>from CodeFloe.com via {remotes} [expand]</summary>
-
-``` r
-if (!require("remotes")) install.packages("remotes")
-remotes::install_git("https://codefloe.com/philipp-baumann/opusreader2")
 ```
 
 </details>
@@ -119,15 +101,6 @@ files_1000 <- rep(file, 1000L)
 # read with progress bar
 data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
 ```
-
-Optionally, the number of desired chunks can be specified via options.
-
-``` r
-options(number_of_chunks = 20L)
-data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
-```
-
-</details>
 
 <details>
 
@@ -206,11 +179,9 @@ Please make a pull request if you want to be listed here.
 ## Background
 
 This package is a major rework of {opusreader} made by Pierre Roudier and Philipp Baumann. 
-{opusreader} works, but not for all OPUS files.
 This precessor package relies on an interesting but not optimal reverse engineered logic.
 Particularly, the assignment of spectral data types (i.e., single channel reflectance vs. final result spectrum), was buggy because the CO2 peak ratio was used as a heuristic.
 Also, byte offsets from three letter strings were directly used to read specific data and assign block types.
-This is not 100% robust and causes some read failures in edge cases.
 
 The new package parses the file header for assigning spectral blocks.
 
