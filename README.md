@@ -8,7 +8,7 @@
 <p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
 <img align="right" width="250" src="man/figures/logo.png">
 
-## 🪄🪩 Scope and Movitation 
+## 🪄🪩 Scope and Motivation
 
 *grab 'em all* — {opusreader2}  lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
 Developed in our spare time — if you find it useful, consider buying us a coffee!
