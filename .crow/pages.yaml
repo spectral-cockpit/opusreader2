@@ -9,7 +9,9 @@ steps:
     pull: true
     commands:
       - cp ./nix_envs/r-pages/default.nix /app/default.nix
-      - nix-shell ./nix_envs/r-pages/default.nix --run 'Rscript -e "devtools::install(); altdoc::render_docs()"'
+      - nix-shell ./nix_envs/r-pages/default.nix --run 'Rscript -e "devtools::install(); altdoc::render_docs(tool = \"mkdocs\")"'
+      - sed -i "s|<pre><code class='language-R'>|\n\`\`\`r\n|g" docs/man/*.md
+      - sed -i "s|</code></pre>|\`\`\`\n|g" docs/man/*.md
       - mv docs/ /tmp/public
       - mv .git /tmp/.git
       - mv statichost.yaml /tmp/statichost.yaml
