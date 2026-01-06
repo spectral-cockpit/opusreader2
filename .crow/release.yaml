@@ -1,0 +1,26 @@
+# adapted from https://codefloe.com/rpkgs/bincraft/src/branch/main/.crow/release.yaml
+when:
+  - event: tag
+
+clone:
+  git:
+    image: codeberg.org/crow-plugins/clone:1.0.2
+    settings:
+      tags: true
+
+depends_on:
+  - rcmdcheck
+
+steps:
+  changelog:
+    image: reg.devxy.io/docker.io/thegeeklab/git-sv:2.0.9
+    commands:
+      - apk add --no-cache -q sed
+      # replace version in DESCRIPTION
+      - "sed -i 's/Version: .*/Version: ${CI_COMMIT_TAG#v}.9999/' DESCRIPTION"
+      - git sv current-version
+      - git sv release-notes -t ${CI_COMMIT_TAG} -o CHANGELOG.md
+      - sed -i '1,2d' CHANGELOG.md # remove version
+      - cat CHANGELOG.md
+    when:
+      event: tag
