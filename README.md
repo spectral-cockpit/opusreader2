@@ -18,7 +18,7 @@ Developed in our spare time — if you find it useful, consider buying us a coff
 The [Bruker corporation](https://www.bruker.com/en.html) produces reliable instruments; however, there is no official documentation for the OPUS file format, making it proprietary.
 Fortunately, over time, our team and colleagues from the open-source spectroscopy community have figured out how the OPUS binary format is structured and how we can parse it (see credits).
 
-{opusreader2} stands as a state-of-the-art binary reader in R, with no hard dependencies beyond base R.
+{opusreader2} has no hard dependencies beyond base R.
 Community efforts are there to enhance support for a growing array of instruments, measurement modes, and block types.
 
 ## 📦 Installation
