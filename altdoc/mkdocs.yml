@@ -3,6 +3,8 @@ theme:
   name: material
   logo: logo-512x512.png
   favicon: favicon.svg
+  highlightjs: false
+  pygments: true
   icon:
     repo: simple/forgejo
   palette:
@@ -64,12 +66,14 @@ nav:
 ### Code highlighting
 ### Math
 markdown_extensions:
+  - md_in_html
 #   - pymdownx.arithmatex:
 #       generic: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+      guess_lang: false
   - pymdownx.inlinehilite
   - pymdownx.snippets:
       base_path: !relative $docs_dir  # Relative to docs/ root
