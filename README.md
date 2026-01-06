@@ -100,6 +100,8 @@ files_1000 <- rep(file, 1000L)
 data <- read_opus(dsn = files_1000, parallel = TRUE, progress_bar = TRUE)
 ```
 
+</details>
+
 <details>
 
 <summary>Read a single OPUS file [expand]</summary>
