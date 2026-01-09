@@ -10,7 +10,7 @@
 
 ## 🪄🪩 Scope and Motivation
 
-*grab 'em all* — {opusreader2}  lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
+*grab 'em all* — {opusreader2} lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
 Developed in our spare time — if you find it useful, consider buying us a coffee!
 
 [!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
@@ -64,7 +64,9 @@ data <- read_opus(dsn = file)
 
 <summary>Reading files in parallel [expand]</summary>
 
-Multiple OPUS files can optionally be read in parallel using the {mirai} backend.
+If highspeed at data consuming systems matters, we recommend to use the optional but integrated {mirai} backend functionality.
+This way you can read a massive amount of OPUS files in parallel, benefitting from the underlying Nanomsg Next Generation bindings.
+This way you can support cluster computing systems, via inter-process communications, TCP or secure TLS.
 For this, parallel workers need to be registered.
 
 ``` r
@@ -115,7 +117,7 @@ data <- read_opus_single(dsn = file)
 ## Advanced testing and Bruker OPUS file specification
 
 We strive to have a full-fledged reader of OPUS files that is on par with the commercial reader in the Bruker OPUS software suite.
-
+That is an ambitious goal and needs collaborative efforts.
 To contribute to the development, we will provide an additional vignette that describes the OPUS format and the technical details of our implementation in the package.
 
 ## How to contribute
