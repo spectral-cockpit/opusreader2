@@ -18,3 +18,11 @@ rix(
   project_path = file.path("nix_envs", "r-pages"),
   overwrite = TRUE
 )
+
+rix(
+  r_ver = "latest-upstream",
+  r_pkgs = c("mirai", "devtools"),
+  system_pkgs = "hyperfine",
+  project_path = file.path("nix_envs", "r-benchmark"),
+  overwrite = TRUE
+)

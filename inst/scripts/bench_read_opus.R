@@ -1,4 +1,4 @@
-library("opusreader2")
+devtools::load_all()
 
 file <- opus_test_file()
 files_1000 <- rep(file, 1000L)

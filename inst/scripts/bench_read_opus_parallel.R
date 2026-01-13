@@ -1,4 +1,4 @@
-library("opusreader2")
+devtools::load_all()
 library("mirai")
 
 daemons(n = 8L)
