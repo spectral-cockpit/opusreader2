@@ -24,3 +24,9 @@
 ^docs$
 ^altdoc$
 .venv_altdoc
+^\.python-version$
+^\.gitsv$
+^main\.py$
+^pyproject\.toml$
+^statichost\.yaml$
+^uv\.lock$

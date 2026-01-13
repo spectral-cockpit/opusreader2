@@ -28,18 +28,15 @@ knitr::opts_chunk$set(
 # Motivation
 
 Spectrometers from [Bruker® Optics GmbH & Co.](https://www.bruker.com/en.html) save spectra in a special file format called OPUS. 
+The OPUS suite and file specification are proprietary, so we had to implement this package using reverse engineering. 
+With {opusreader2}, you can extract your spectroscopic data from binary files for most Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics GmbH directly in R.
+
 Each OPUS file is linked to one aggregated sample measurement, which is usually obtained using the OPUS spectroscopy software.
 These files have numbers as file extensions, and the numbers typically increase sequentially for each sample name, based on the settings chosen in the OPUS software.
-The OPUS suite and file specification are proprietary, so we had to implement this package using reverse engineering. 
-With opusreader2, you can extract your spectroscopic data directly in R, giving you full control over your spectral data workflow.
-Our package is designed to handle binary files for most Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics GmbH. 
-It might also work for other products, such as Raman spectrometers, but in these cases, additional adjustments may be needed to support new block types (for both data and parameters; see below).
 
 # OPUS data extraction
 
 Each OPUS file is processed by first extracting metadata information from a dedicated part of the file header.
-This section contains all the important information about binary blocks (also called chunks), such as byte offsets, sizes, and data types at different byte locations in the file.
-The parsing algorithm uses this information to extract various data and parameter blocks from byte sequences.
 As the picture below shows, the content of the files changes based on the instrument type, the data (spectrum) blocks that the user chooses to save, and the specific measurement settings.
 
 ![OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT) mid-infrared spectrometer](images/opus-measurement-settings.png){#fig:opus_settings}
@@ -68,19 +65,16 @@ In fact, we can access even more blocks than are displayed in the official OPUS 
 
 ```{r}
 library("opusreader2")
-# example file
-file_1 <- system.file("extdata", "test_data", "BF_lo_01_soil_cal.1",
-  package = "opusreader2"
-)
+file_1 <- opus_test_file()
 spectrum_1 <- read_opus(dsn = file_1)
 ```
-
 
 The `dsn` argument is the data source name. It can be a character vector of folder paths (to read files recursively) or specific OPUS file paths.
 
 **`read_opus()`** returns a nested list of class `"list_opusreader2"`.
 
 ```{r}
+print(spectrum_1)
 class(spectrum_1)
 names(spectrum_1)
 ```
