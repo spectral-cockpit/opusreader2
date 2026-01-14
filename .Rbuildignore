@@ -14,7 +14,7 @@
 ^_pkgdown\.yml$
 ^nix_env.R$
 ^nix_envs$
-^renovate.json$
+^default\.json$
 ^revdep$
 ^cran-comments\.md$
 ^doc$
