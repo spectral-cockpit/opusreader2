@@ -1,6 +1,6 @@
 Package: opusreader2
 Title: Read Spectroscopic Data from Bruker OPUS Binary Files
-Version: 0.6.5
+Version: 0.6.6
 Authors@R: 
     c(person(given = "Philipp",
              family = "Baumann",
