@@ -27,8 +27,8 @@ knitr::opts_chunk$set(
 
 # Motivation
 
-Spectrometers from [Bruker® Optics GmbH & Co.](https://www.bruker.com/en.html) save spectra in a special file format called OPUS. 
-The OPUS suite and file specification are proprietary, so we had to implement this package using reverse engineering. 
+Spectrometers from [Bruker® Optics GmbH & Co.](https://www.bruker.com/en.html) save spectra in a special binary file format called OPUS. 
+The OPUS suite and file specification are proprietary, therefore we have reverse-engineered our reader.
 With {opusreader2}, you can extract your spectroscopic data from binary files for most Fourier-Transform Infrared (FT-IR) spectrometers from Bruker® Optics GmbH directly in R.
 
 Each OPUS file is linked to one aggregated sample measurement, which is usually obtained using the OPUS spectroscopy software.
