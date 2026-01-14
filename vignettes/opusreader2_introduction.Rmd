@@ -39,7 +39,7 @@ These files have numbers as file extensions, and the numbers typically increase 
 Each OPUS file is processed by first extracting metadata information from a dedicated part of the file header.
 As the picture below shows, the content of the files changes based on the instrument type, the data (spectrum) blocks that the user chooses to save, and the specific measurement settings.
 
-![OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT) mid-infrared spectrometer](images/opus-measurement-settings.png){#fig:opus_settings}
+![OPUS measurement settings for Bruker INVENIO® Fourier-transform (FT) mid-infrared spectrometer](../images/opus-measurement-settings.png){#fig:opus_settings}
 
 In addition to result spectra, the binary files include:
 
@@ -58,7 +58,7 @@ Let's see how this works using an example file from a Bruker ALPHA® spectromete
 This instrument measures mid-infrared spectra, here using a diffuse-reflectance accessory.
 The soil sample measurement shown is included with the package and is also part of the data set in [Baumann et al. (2020)](https://soil.copernicus.org/articles/7/717/2021/).
 
-![Data parameters for absorbance (AB) spectrum](images/OPUS_block1.png)
+![Data parameters for absorbance (AB) spectrum](../images/OPUS_block1.png)
 
 We can extract all these blocks from the example OPUS file. 
 In fact, we can access even more blocks than are displayed in the official OPUS software.
