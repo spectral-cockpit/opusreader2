@@ -4,38 +4,38 @@
 
 ### Bug Fixes
 
-- move and commit only pages build assets (#131) (d46b153)
+- move and commit only pages build assets [#131](https://codefloe.com/spectral-cockpit/opusreader2/pulls/131) (d46b153)
 - `parse_opus()` now correctly returns class `opusreader2` (e5cbd51)
 
 ### Maintenance
 
-- fix image paths in vignette (#148) (e6f027c)
-- please renovate (#147) (de918a4)
-- include vignette images in online docs, include performance benchmarking (#145) (10f9082)
-- add benchmarking env (#143) (0b06558)
-- simplify motivation (#142) (649417f)
-- add git sv config to prepare releases (#138) (b07b724)
-- **docs:** disable language guessing (#134) (1a16b8a)
+- fix image paths in vignette [#148](https://codefloe.com/spectral-cockpit/opusreader2/pulls/148) (e6f027c)
+- please renovate [#147](https://codefloe.com/spectral-cockpit/opusreader2/pulls/147) (de918a4)
+- include vignette images in online docs, include performance benchmarking [#145](https://codefloe.com/spectral-cockpit/opusreader2/pulls/145) (10f9082)
+- add benchmarking env [#143](https://codefloe.com/spectral-cockpit/opusreader2/pulls/143) (0b06558)
+- simplify motivation [#142](https://codefloe.com/spectral-cockpit/opusreader2/pulls/142) (649417f)
+- add git sv config to prepare releases [#138](https://codefloe.com/spectral-cockpit/opusreader2/pulls/138) (b07b724)
+- **docs:** disable language guessing [#134](https://codefloe.com/spectral-cockpit/opusreader2/pulls/134) (1a16b8a)
 - fix accessing opus test file (1203bb3)
 
 ### Documentation
 
 - clean up README.md
-  -  (#139) (37d014c)
-  -  (#141) (4b2aab5)
+  -  [#139](https://codefloe.com/spectral-cockpit/opusreader2/pulls/139) (37d014c)
+  -  [#141](https://codefloe.com/spectral-cockpit/opusreader2/pulls/141) (4b2aab5)
 
 ### CI
 
-- use new cr.codefloe.com registries (#146) (69ce48d)
-- init pages build (#130) (1a5fabf)
-- improve R CMD Check (#129) (d7e0de5)
+- use new cr.codefloe.com registries [#146](https://codefloe.com/spectral-cockpit/opusreader2/pulls/146) (69ce48d)
+- init pages build [#130](https://codefloe.com/spectral-cockpit/opusreader2/pulls/130) (1a5fabf)
+- improve R CMD Check [#129](https://codefloe.com/spectral-cockpit/opusreader2/pulls/129) (d7e0de5)
 ---
 
 # opusreader2 0.6.5 (2025-10-14)
 
 ## Fixes
 
-- `read_opus()`: Fix warning "unknown timezone 'Etc/GMT+10.5'", and use one plausible Olson name `"Australia/Adelaide"` to circumvent the message ([GH issue #116](https://github.com/spectral-cockpit/opusreader2/issues/116) by David Benn, CSIRO)
+- `read_opus()`: Fix warning "unknown timezone 'Etc/GMT+10.5'", and use one plausible Olson name `"Australia/Adelaide"` to circumvent the message ([GH issue #116](https://codefloe.com/spectral-cockpit/opusreader2/issues/116) by David Benn, CSIRO)
 
 
 # opusreader2 0.6.4.9000 (2025-09-29)
@@ -79,8 +79,8 @@
   Added extra tests to check for errors and warnings in the example files for
   both `data_only = FALSE` and `data_only = TRUE`).
   Thanks to @dylanbeaudette and @esteveze for reporting the failing extraction of metadata.
-  Issue report: [#104](https://github.com/spectral-cockpit/opusreader2/issues/104).
-  PR fixed: [#105](https://github.com/spectral-cockpit/opusreader2/pull/105).
+  Issue report: [#104](https://codefloe.com/spectral-cockpit/opusreader2/issues/104).
+  PR fixed: [#105](https://codefloe.com/spectral-cockpit/opusreader2/pull/105).
 
 
 # opusreader2 0.6.2.9000 (2023-12-27)
@@ -94,9 +94,9 @@
 
 ## Bug fixes
 
-- Hotfix for commit [c8ff2cd](https://github.com/spectral-cockpit/opusreader2/commit/c8ff2cd8e002ed7a992b21053c41877f4a12d533), which accidentally caused a regression, leading to
-  issues [#101](https://github.com/spectral-cockpit/opusreader2/issues/101) and
-  [#102](https://github.com/spectral-cockpit/opusreader2/issues/102).
+- Hotfix for commit [c8ff2cd](https://codefloe.com/spectral-cockpit/opusreader2/commit/c8ff2cd8e002ed7a992b21053c41877f4a12d533), which accidentally caused a regression, leading to
+  issues [#101](https://codefloe.com/spectral-cockpit/opusreader2/issues/101) and
+  [#102](https://codefloe.com/spectral-cockpit/opusreader2/issues/102).
   It was unnoticed but could have been diagnosed with the {testthat} tests in
   place. There was also an update of the {tic} template, which did not invoke
   tests yet in the continous integration (CI) run (passed because of unconfigured tests).
@@ -109,7 +109,7 @@
 ## Documentation
 
 - `read_opus()`: in return element `ab`, state `Log10` explicitly for calculating
-  apparent absorbance ([#94](https://github.com/spectral-cockpit/opusreader2/issues/94); @zecoljls).
+  apparent absorbance ([#94](https://codefloe.com/spectral-cockpit/opusreader2/issues/94); @zecoljls).
 - Only export functions relevant to users:
   - core: `read_opus()`, `read_opus_single()`
   - S3 methods for `calc_parameter_chunk_size()`
@@ -178,12 +178,12 @@
 
 # opusreader2 0.4.1 (2023-03-19)
 
-  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://github.com/spectral-cockpit/opusreader2/pull/80).
+  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://codefloe.com/spectral-cockpit/opusreader2/pull/80).
 
 
 # opusreader2 0.4.0 (2023-03-14)
 
-  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://github.com/spectral-cockpit/opusreader2/pull/75).
+  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://codefloe.com/spectral-cockpit/opusreader2/pull/75).
 
 
 # opusreader2 0.3.0 (2023-02-16)
