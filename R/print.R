@@ -1,4 +1,4 @@
-#' Print method for collection of OPUS specta with class `list_opusreader2`
+#' Print method for collection of OPUS spectra with class `list_opusreader2`
 #'
 #' @param x List with OPUS spectra collection of class `list_opusreader2`
 #' @param ... Additional arguments passed to print method

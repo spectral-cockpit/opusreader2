@@ -54,7 +54,7 @@
 
 ## Bug fixes
 
-- `read_opus()`: consistenly assign `opusreader2_list` class
+- `read_opus()`: consistently assign `opusreader2_list` class
 
 ## Chores
 
@@ -80,7 +80,7 @@
   both `data_only = FALSE` and `data_only = TRUE`).
   Thanks to @dylanbeaudette and @esteveze for reporting the failing extraction of metadata.
   Issue report: [#104](https://codefloe.com/spectral-cockpit/opusreader2/issues/104).
-  PR fixed: [#105](https://codefloe.com/spectral-cockpit/opusreader2/pull/105).
+  PR fixed: [#105](https://codefloe.com/spectral-cockpit/opusreader2/pulls/105).
 
 
 # opusreader2 0.6.2.9000 (2023-12-27)
@@ -178,12 +178,12 @@
 
 # opusreader2 0.4.1 (2023-03-19)
 
-  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://codefloe.com/spectral-cockpit/opusreader2/pull/80).
+  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://codefloe.com/spectral-cockpit/opusreader2/pulls/80).
 
 
 # opusreader2 0.4.0 (2023-03-14)
 
-  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://codefloe.com/spectral-cockpit/opusreader2/pull/75).
+  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://codefloe.com/spectral-cockpit/opusreader2/pulls/75).
 
 
 # opusreader2 0.3.0 (2023-02-16)

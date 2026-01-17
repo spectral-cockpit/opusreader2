@@ -15,7 +15,7 @@ parse_header <- function(raw) {
 
   out <- lapply(all_cursors, function(x) parse_header_impl(raw, x))
 
-  out[sapply(out, is.null)] <- NULL
+  out[vapply(out, is.null, logical(1))] <- NULL
 
   out <- out[-1]
 

@@ -132,7 +132,7 @@ measurement. See \code{fourier_transformation_ref} for possible elements
 contained.
 \item \strong{\code{sample}}: class \code{parameter} (metadata; viewer: "Sample Parameters").
 Extra information such as the "Operator Name", "Experiment", or "Location".
-\item \strong{\code{acquisition}}: class \code{parameter} (metadata; viewer. "Acquistion
+\item \strong{\code{acquisition}}: class \code{parameter} (metadata; viewer. "Acquisition
 Parameters"). Settings of sample measurement, such as "Additional Data
 Treatment", (number) of "Background Scans" or "Result Spectrum" (e.g. value
 "Absorbance").
