@@ -19,7 +19,7 @@ opus_test_file <- function() {
 #' @return a character vector with the paths OPUS files included in the package
 #' @export
 #' @examples
-#' (dsn <- opus_test_dsn)
+#' (dsn <- opus_test_dsn())
 opus_test_dsn <- function() {
   system.file("extdata", "test_data", package = "opusreader2")
 }

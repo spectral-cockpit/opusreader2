@@ -14,5 +14,5 @@ Utility function that retrieves the location of the sample OPUS
 binary file on disk.
 }
 \examples{
-(dsn <- opus_test_dsn)
+(dsn <- opus_test_dsn())
 }
