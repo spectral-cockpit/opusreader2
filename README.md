@@ -116,13 +116,15 @@ data <- read_opus_single(dsn = file)
 
 </details>
 
-## Advanced testing and Bruker OPUS file specification
+## How to contribute
 
 We strive to have a full-fledged reader of OPUS files that is on par with the commercial reader in the Bruker OPUS software suite.
-That is an ambitious goal and needs collaborative efforts.
-To contribute to the development, we will provide an additional vignette that describes the OPUS format and the technical details of our implementation in the package.
-
-## How to contribute
+That is an ambitious goal and needs collaborative efforts, from development to in-depth testing with Bruker equipment and measurement software.
+Therefore, you can help the community in various forms:
+- submitting issues found and engage in discussions
+- help us decode, implement and document the remaining bit of parameter and data blocks in OPUS files
+- share novel insights from new Bruker devices and setting in your laboratories
+- fund further development, even if it's just a coffee donation
 
 We like the spirit of open source development, so any constructive suggestions or questions are always welcome.
 To trade off the consistency and quality of code with the drive for innovation, we are following some best practices (which can be indeed improved, as many other things in life). These are:
