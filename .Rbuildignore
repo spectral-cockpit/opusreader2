@@ -30,3 +30,4 @@
 ^pyproject\.toml$
 ^statichost\.yaml$
 ^uv\.lock$
+^CHANGELOG\.md$

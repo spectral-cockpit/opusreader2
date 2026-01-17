@@ -123,7 +123,7 @@
 #'     contained.
 #' * **`sample`**: class `parameter` (metadata; viewer: "Sample Parameters").
 #'   Extra information such as the "Operator Name", "Experiment", or "Location".
-#' * **`acquisition`**: class `parameter` (metadata; viewer. "Acquistion
+#' * **`acquisition`**: class `parameter` (metadata; viewer. "Acquisition
 #'   Parameters"). Settings of sample measurement, such as "Additional Data
 #'   Treatment", (number) of "Background Scans" or "Result Spectrum" (e.g. value
 #'   "Absorbance").

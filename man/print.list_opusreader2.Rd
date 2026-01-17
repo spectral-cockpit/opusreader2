@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.list_opusreader2}
 \alias{print.list_opusreader2}
-\title{Print method for collection of OPUS specta with class \code{list_opusreader2}}
+\title{Print method for collection of OPUS spectra with class \code{list_opusreader2}}
 \usage{
 \method{print}{list_opusreader2}(x, ...)
 }
@@ -12,5 +12,5 @@
 \item{...}{Additional arguments passed to print method}
 }
 \description{
-Print method for collection of OPUS specta with class \code{list_opusreader2}
+Print method for collection of OPUS spectra with class \code{list_opusreader2}
 }
