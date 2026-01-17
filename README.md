@@ -121,6 +121,7 @@ data <- read_opus_single(dsn = file)
 We strive to have a full-fledged reader of OPUS files that is on par with the commercial reader in the Bruker OPUS software suite.
 That is an ambitious goal and needs collaborative efforts, from development to in-depth testing with Bruker equipment and measurement software.
 Therefore, you can help the community in various forms:
+
 - submitting issues found and engage in discussions
 - help us decode, implement and document the remaining bit of parameter and data blocks in OPUS files
 - share novel insights from new Bruker devices and setting in your laboratories
