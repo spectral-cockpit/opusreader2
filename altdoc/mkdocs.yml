@@ -55,7 +55,6 @@ nav:
     - Helper functions:
       - opus_test_dsn(): man/opus_test_dsn.md
   - Articles: $ALTDOC_VIGNETTE_BLOCK
-  - News: $ALTDOC_NEWS
   - Changelog: $ALTDOC_CHANGELOG
   - Code of Conduct: $ALTDOC_CODE_OF_CONDUCT
   - License: $ALTDOC_LICENSE
