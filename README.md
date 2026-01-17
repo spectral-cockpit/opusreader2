@@ -5,7 +5,7 @@
 [![runiverse-package opusreader2](https://spectral-cockpit.r-universe.dev/badges/opusreader2?scale=1&color=pink&style=round)](https://spectral-cockpit.r-universe.dev/opusreader2)
 <!-- badges: end -->
 
-<p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki">Artwork by Lilyan Blazoudaki</a></p>
+<p align="right"; style="font-size:11px"> <a href="https://www.instagram.com/lilyanblazoudaki/">Artwork by Lilyan Blazoudaki</a></p>
 <img align="right" width="250" src="man/figures/logo.png">
 
 ## 🪄🪩 Scope and Motivation
@@ -13,7 +13,7 @@
 *grab 'em all* — {opusreader2} lets you import OPUS measurement data and parameters from Bruker Optics GmbH & Co. instruments directly in R.
 Developed in our spare time — if you find it useful, consider buying us a coffee!
 
-[!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/specphil)
+[!["Buy spectral-cockpit.com some coffees"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/specphil)
 
 ## 🪩 Highlights and disclaimer
 
@@ -40,7 +40,7 @@ remotes::install_git("https://codefloe.com/spectral-cockpit/opusreader2")
 
 <details>
 
-<summary>directly via <a href="https://spectral-cockpit.r-universe.dev/ui#package:opusreader2">R-universe</a> [expand]</summary>
+<summary>directly via <a href="https://spectral-cockpit.r-universe.dev/#package:opusreader2">R-universe</a> [expand]</summary>
 
 ``` r
 # Install the latest version
@@ -130,7 +130,7 @@ Therefore, you can help the community in various forms:
 We like the spirit of open source development, so any constructive suggestions or questions are always welcome.
 To trade off the consistency and quality of code with the drive for innovation, we are following some best practices (which can be indeed improved, as many other things in life). These are:
 
--   **Code checks (linting), styling, and spell checking**: We use the [pre-commit](https://pre-commit.com/) framework with both some generic coding and R specific hooks configured in [`.pre-commit-config.yaml`](.pre-commit-config.yaml).
+-   **Code checks (linting), styling, and spell checking**: We use the [pre-commit](https://pre-commit.com/) framework with both some generic coding and R specific hooks configured in `.pre-commit-config.yaml`.
 Generally, we follow the tidyverse style guide, with slight exceptions. To provide auto-fixing in PRs where possible, we rely on [pre-commit.ci lite](https://pre-commit.ci/lite.html).
 
 <details>
