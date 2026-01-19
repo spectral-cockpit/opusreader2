@@ -169,13 +169,3 @@ if (!require("mirai")) {
 ```
 
 The task of reading files can be done locally or through distributed systems over a network. For further details, check out the mirai, and its vignettes.
-
-## Reading a single OPUS file
-
-For individual OPUS files, you can use the `read_opus_single()` function. 
-We export it as a developer interface.
-
-
-```{r}
-data_single <- read_opus_single(dsn = file_1)
-```
