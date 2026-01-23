@@ -179,9 +179,12 @@ hyperfine --warmup 3 --min-runs 5 ./inst/scripts/benchmark_read_opus_parallel.sh
 As far as we know, the following organizations and projects use our package.
 Please make a pull request if you want to be listed here.
 
--   CSIRO
--   Open Soil Spectral Library
--   ETH Zürich: Sustainable Agroecosystems group and Soil Resources group
+- CSIRO
+- Open Soil Spectral Library
+- ETH Zürich: Sustainable Agroecosystems group and Soil Resources group
+- NOAA Fisheries AFSC Age and Growth Program
+- National Cooperative Soil Survey
+- Büchi Labortechnik
 
 ## Background
 
