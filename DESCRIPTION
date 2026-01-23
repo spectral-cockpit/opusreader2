@@ -9,7 +9,7 @@ Authors@R:
              comment = c(ORCID = "0000-0002-3194-8975")),
       person(given = "Thomas",
              family = "Knecht",
-             email = "spectral-cockpit@proton.me",
+             email = "t.knecht@hotmail.com",
              role = c("aut")),
       person(given = "Pierre",
              family = "Roudier",
