@@ -11,6 +11,9 @@
 
 \item{...}{Additional arguments passed to print method}
 }
+\value{
+Returns \code{x} invisibly.
+}
 \description{
 Print method for collection of OPUS spectra with class \code{list_opusreader2}
 }

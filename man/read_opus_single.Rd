@@ -12,6 +12,11 @@ read_opus_single(dsn, data_only = FALSE)
 \item{data_only}{read data and parameters with \code{FALSE} per default, or only
 read data}
 }
+\value{
+list with parsed OPUS measurement and data blocks of the spectrum
+measurement contained in the OPUS file. See \code{\link[=read_opus]{read_opus()}} for details on the
+list elements returned (first-level block names and information provided).
+}
 \description{
 Read a single OPUS file
 }

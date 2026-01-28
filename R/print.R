@@ -2,6 +2,7 @@
 #'
 #' @param x List with OPUS spectra collection of class `list_opusreader2`
 #' @param ... Additional arguments passed to print method
+#' @return Returns `x` invisibly.
 #' @export
 print.list_opusreader2 <- function(x, ...) {
   len <- length(x)
