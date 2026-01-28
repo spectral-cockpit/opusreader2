@@ -18,8 +18,17 @@ Authors@R:
              comment = c(ORCID = "0000-0001-7431-2603")),
       person("spectral-cockpit.com", role = c("cph", "fnd"))
     )
-Description: Read data from OPUS binary files of Fourier-Transform infrared
+Description: Reads data from OPUS binary files of Fourier-Transform infrared
     spectrometers of the company Bruker Optics GmbH & Co.
+    <https://www.bruker.com/en/products-and-solutions/infrared-and-raman/opus-spectroscopy-software/latest-release.html>.
+    It lets you import both measurement data and parameters from OPUS files.
+    The main method is `read_opus()`, which reads one or multiple OPUS files
+    into a standardized list class. Behind the scenes, the reader parses the
+    file header for assigning spectral blocks and reading binary data from the
+    respective byte positions, using a reverse engineering approach. Infrared
+    spectroscopy combined with chemometrics and machine learning is an
+    established method to scale up chemical diagnostics in various industries
+    and scientific fields.
 License: MIT + file LICENSE
 URL: https://opusreader2.spectral-cockpit.codefloe.page/, https://codefloe.com/spectral-cockpit/opusreader2/
 BugReports: https://codefloe.com/spectral-cockpit/opusreader2/issues/

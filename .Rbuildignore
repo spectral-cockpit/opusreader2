@@ -31,3 +31,4 @@
 ^statichost\.yaml$
 ^uv\.lock$
 ^CHANGELOG\.md$
+^CRAN-SUBMISSION$

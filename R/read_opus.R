@@ -251,7 +251,9 @@ read_opus_parallel_mirai <- function(dsn, data_only, progress_bar) {
 #' @param dsn source path of an opus file
 #' @param data_only read data and parameters with `FALSE` per default, or only
 #' read data
-#'
+#' @return list with parsed OPUS measurement and data blocks of the spectrum
+#' measurement contained in the OPUS file. See [read_opus()] for details on the
+#' list elements returned (first-level block names and information provided).
 #' @export
 read_opus_single <- function(dsn, data_only = FALSE) {
   raw <- read_opus_raw(dsn)
