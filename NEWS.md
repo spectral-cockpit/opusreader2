@@ -1,3 +1,10 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# opusreader2 0.6.7 (2026-01-28)
+
+- because no advantage over `read_opus()`
+
+
 # opusreader2 0.6.6 (2026-01-14)
 
 ## Bug Fixes
