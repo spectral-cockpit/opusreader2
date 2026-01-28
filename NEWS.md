@@ -1,9 +1,11 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
-
 # opusreader2 0.6.7 (2026-01-28)
 
-- because no advantage over `read_opus()`
+## Maintenance
 
+- Address CRAN comments after initial submission
+  - `DESCRIPTION`: improve what package does and how it is useful
+  - `print.list_opusreader2()`: add return value
+  - `read_opus_single()`: add return value
 
 # opusreader2 0.6.6 (2026-01-14)
 

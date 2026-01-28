@@ -1,13 +1,20 @@
-# Changelog
+# opusreader2 0.6.7 (2026-01-28)
 
-## v0.6.6 (2026-01-14)
+## Maintenance
 
-### Bug Fixes
+- Address CRAN comments after initial submission
+  - `DESCRIPTION`: improve what package does and how it is useful
+  - `print.list_opusreader2()`: add return value
+  - `read_opus_single()`: add return value
+
+# opusreader2 0.6.6 (2026-01-14)
+
+## Bug Fixes
 
 - move and commit only pages build assets [#131](https://codefloe.com/spectral-cockpit/opusreader2/pulls/131) (d46b153)
 - `parse_opus()` now correctly returns class `opusreader2` (e5cbd51)
 
-### Maintenance
+## Maintenance
 
 - fix image paths in vignette [#148](https://codefloe.com/spectral-cockpit/opusreader2/pulls/148) (e6f027c)
 - please renovate [#147](https://codefloe.com/spectral-cockpit/opusreader2/pulls/147) (de918a4)
@@ -18,13 +25,13 @@
 - **docs:** disable language guessing [#134](https://codefloe.com/spectral-cockpit/opusreader2/pulls/134) (1a16b8a)
 - fix accessing opus test file (1203bb3)
 
-### Documentation
+## Documentation
 
 - clean up README.md
   -  [#139](https://codefloe.com/spectral-cockpit/opusreader2/pulls/139) (37d014c)
   -  [#141](https://codefloe.com/spectral-cockpit/opusreader2/pulls/141) (4b2aab5)
 
-### CI
+## CI
 
 - use new cr.codefloe.com registries [#146](https://codefloe.com/spectral-cockpit/opusreader2/pulls/146) (69ce48d)
 - init pages build [#130](https://codefloe.com/spectral-cockpit/opusreader2/pulls/130) (1a5fabf)
