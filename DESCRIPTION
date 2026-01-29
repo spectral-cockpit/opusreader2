@@ -18,8 +18,10 @@ Authors@R:
              comment = c(ORCID = "0000-0001-7431-2603")),
       person("spectral-cockpit.com", role = c("cph", "fnd"))
     )
-Description: Reads data from OPUS binary files of Fourier-Transform infrared
-    spectrometers of the company Bruker Optics GmbH & Co.
+Description: Reads data from Bruker OPUS binary files of Fourier-Transform
+    infrared spectrometers of the company Bruker Optics GmbH & Co.
+    This package is released independently from Bruker, and Bruker and OPUS are
+    registered trademarks of Bruker Optics GmbH & Co. KG.
     <https://www.bruker.com/en/products-and-solutions/infrared-and-raman/opus-spectroscopy-software/latest-release.html>.
     It lets you import both measurement data and parameters from OPUS files.
     The main method is `read_opus()`, which reads one or multiple OPUS files

@@ -20,6 +20,7 @@
 ^doc$
 ^Meta$
 ^air\.toml$
+^jarl\.toml$
 ^result$
 ^docs$
 ^altdoc$
