@@ -1,8 +1,17 @@
+# opusreader2 0.6.8 (2026-01-29)
+
+## Maintenance
+
+- Address 2 CRAN pre-test NOTES after 0.6.7 resubmission [#165](https://codefloe.com/spectral-cockpit/opusreader2/pulls/165) (649417f)
+  - `DESCRIPTION`: added disclaimer and registered trademark statements
+  - fix non-standard file/directory NOTE for `./jarl.toml`, which was added in
+    version 0.6.7
+
 # opusreader2 0.6.7 (2026-01-28)
 
 ## Maintenance
 
-- Address CRAN comments after initial submission
+- Address CRAN comments after initial submission ()
   - `DESCRIPTION`: improve what package does and how it is useful
   - `print.list_opusreader2()`: add return value
   - `read_opus_single()`: add return value
