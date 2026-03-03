@@ -1,0 +1,1220 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../vignettes/opusreader2_introduction/">
+      
+      
+        <link rel="next" href="../CITATION/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Changelog - opusreader2 (v0.6.8)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#opusreader2-068-2026-01-29" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="opusreader2 (v0.6.8)" class="md-header__button md-logo" aria-label="opusreader2 (v0.6.8)" data-md-component="logo">
+      
+  <img src="../logo-512x512.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            opusreader2 (v0.6.8)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://codefloe.com/spectral-cockpit/opusreader2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.777 0a2.9 2.9 0 1 1-2.529 4.322H12.91a4.266 4.266 0 0 0-4.265 4.195v2.118a7.08 7.08 0 0 1 4.147-1.42l.118-.002h1.338a2.9 2.9 0 0 1 5.43 1.422 2.9 2.9 0 0 1-5.43 1.422H12.91a4.266 4.266 0 0 0-4.265 4.195v2.319A2.9 2.9 0 0 1 7.222 24 2.9 2.9 0 0 1 5.8 18.57V8.589a7.11 7.11 0 0 1 6.991-7.108l.118-.001h1.338A2.9 2.9 0 0 1 16.778 0M7.223 19.905a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.389m9.554-10.464a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.39m0-7.735a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.389"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spectral-cockpit/opusreader2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../man/read_opus/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../vignettes/opusreader2_introduction/" class="md-tabs__link">
+          
+  
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CITATION/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Citation
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="opusreader2 (v0.6.8)" class="md-nav__button md-logo" aria-label="opusreader2 (v0.6.8)" data-md-component="logo">
+      
+  <img src="../logo-512x512.png" alt="logo">
+
+    </a>
+    opusreader2 (v0.6.8)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://codefloe.com/spectral-cockpit/opusreader2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.777 0a2.9 2.9 0 1 1-2.529 4.322H12.91a4.266 4.266 0 0 0-4.265 4.195v2.118a7.08 7.08 0 0 1 4.147-1.42l.118-.002h1.338a2.9 2.9 0 0 1 5.43 1.422 2.9 2.9 0 0 1-5.43 1.422H12.91a4.266 4.266 0 0 0-4.265 4.195v2.319A2.9 2.9 0 0 1 7.222 24 2.9 2.9 0 0 1 5.8 18.57V8.589a7.11 7.11 0 0 1 6.991-7.108l.118-.001h1.338A2.9 2.9 0 0 1 16.778 0M7.223 19.905a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.389m9.554-10.464a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.39m0-7.735a1.194 1.194 0 1 0 0 2.389 1.194 1.194 0 0 0 0-2.389"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spectral-cockpit/opusreader2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key functions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Key functions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../man/read_opus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    read_opus()
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../man/print.list_opusreader2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    print.list_opusreader2()
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper functions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper functions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../man/opus_test_dsn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    opus_test_dsn()
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vignettes/opusreader2_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading OPUS binary files from Bruker® spectrometers in R
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CITATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Citation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="opusreader2-068-2026-01-29">opusreader2 0.6.8 (2026-01-29)</h1>
+<h2 id="maintenance">Maintenance</h2>
+<ul>
+<li>Address 2 CRAN pre-test NOTES after 0.6.7 resubmission <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/165">#165</a> (649417f)</li>
+<li><code>DESCRIPTION</code>: added disclaimer and registered trademark statements</li>
+<li>fix non-standard file/directory NOTE for <code>./jarl.toml</code>, which was added in
+    version 0.6.7</li>
+</ul>
+<h1 id="opusreader2-067-2026-01-28">opusreader2 0.6.7 (2026-01-28)</h1>
+<h2 id="maintenance_1">Maintenance</h2>
+<ul>
+<li>Address CRAN comments after initial submission ()</li>
+<li><code>DESCRIPTION</code>: improve what package does and how it is useful</li>
+<li><code>print.list_opusreader2()</code>: add return value</li>
+<li><code>read_opus_single()</code>: add return value</li>
+</ul>
+<h1 id="opusreader2-066-2026-01-14">opusreader2 0.6.6 (2026-01-14)</h1>
+<h2 id="bug-fixes">Bug Fixes</h2>
+<ul>
+<li>move and commit only pages build assets <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/131">#131</a> (d46b153)</li>
+<li><code>parse_opus()</code> now correctly returns class <code>opusreader2</code> (e5cbd51)</li>
+</ul>
+<h2 id="maintenance_2">Maintenance</h2>
+<ul>
+<li>fix image paths in vignette <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/148">#148</a> (e6f027c)</li>
+<li>please renovate <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/147">#147</a> (de918a4)</li>
+<li>include vignette images in online docs, include performance benchmarking <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/145">#145</a> (10f9082)</li>
+<li>add benchmarking env <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/143">#143</a> (0b06558)</li>
+<li>simplify motivation <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/142">#142</a> (649417f)</li>
+<li>add git sv config to prepare releases <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/138">#138</a> (b07b724)</li>
+<li><strong>docs:</strong> disable language guessing <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/134">#134</a> (1a16b8a)</li>
+<li>fix accessing opus test file (1203bb3)</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li>clean up README.md</li>
+<li><a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/139">#139</a> (37d014c)</li>
+<li><a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/141">#141</a> (4b2aab5)</li>
+</ul>
+<h2 id="ci">CI</h2>
+<ul>
+<li>use new cr.codefloe.com registries <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/146">#146</a> (69ce48d)</li>
+<li>init pages build <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/130">#130</a> (1a5fabf)</li>
+<li>improve R CMD Check <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/129">#129</a> (d7e0de5)</li>
+</ul>
+<hr />
+<h1 id="opusreader2-065-2025-10-14">opusreader2 0.6.5 (2025-10-14)</h1>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li><code>read_opus()</code>: Fix warning "unknown timezone 'Etc/GMT+10.5'", and use one plausible Olson name <code>"Australia/Adelaide"</code> to circumvent the message (<a href="https://codefloe.com/spectral-cockpit/opusreader2/issues/116">GH issue #116</a> by David Benn, CSIRO)</li>
+</ul>
+<h1 id="opusreader2-0649000-2025-09-29">opusreader2 0.6.4.9000 (2025-09-29)</h1>
+<h2 id="chores">Chores</h2>
+<ul>
+<li><code>read_opus()</code>: uniquely use "mirai" parallel backend, wipe "future". <code>.parallel_backend</code> argument is depreciated without notes (#124)</li>
+<li><code>README</code>: use<code>opus_test_file()</code> for reading multiple files via mirai backend (#122)</li>
+</ul>
+<h1 id="opusreader2-064-2025-09-24">opusreader2 0.6.4 (2025-09-24)</h1>
+<h2 id="features">Features</h2>
+<ul>
+<li><code>read_opus()</code>: support "mirai" async backend. <code>.parallel_backend</code> now defaults to <code>"mirai"</code>.</li>
+</ul>
+<h2 id="bug-fixes_1">Bug fixes</h2>
+<ul>
+<li><code>read_opus()</code>: consistently assign <code>opusreader2_list</code> class</li>
+</ul>
+<h2 id="chores_1">Chores</h2>
+<ul>
+<li><code>opus_lapply()</code>: remove from docs</li>
+<li>Update vignette with new "mirai" parallel interface</li>
+</ul>
+<h1 id="opusreader2-063-2024-03-12">opusreader2 0.6.3 (2024-03-12)</h1>
+<h2 id="bug-fixes_2">Bug fixes</h2>
+<ul>
+<li>fix sample and time metadata parsing for <code>read_opus(dsn, data_only = TRUE)</code>.
+  Previously, extraction of the timestamp failed and data extracted errored
+  in that case, because there was the required <code>"history"</code> and <code>"sample"</code> blocks
+  weren't extracted temporarily before, as required.
+  Now, <code>read_opus(dsn, data_only = TRUE)</code> successfully extracts an extra element
+  <code>basic_metadata</code>, as it does for <code>data_only = FALSE</code> (the default). This extra
+  information does unlikely to break existing pipeline code that extracts
+  spectra with {opusreader2}, because it is a nested list element. This patch
+  release also resolves a warning when parsing time information, that was due to
+  an extra tab (<code>"\t"</code>) that was present in the history text for specific files.
+  Thanks @mtalluto for the fix.
+  Added extra tests to check for errors and warnings in the example files for
+  both <code>data_only = FALSE</code> and <code>data_only = TRUE</code>).
+  Thanks to @dylanbeaudette and @esteveze for reporting the failing extraction of metadata.
+  Issue report: <a href="https://codefloe.com/spectral-cockpit/opusreader2/issues/104">#104</a>.
+  PR fixed: <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/105">#105</a>.</li>
+</ul>
+<h1 id="opusreader2-0629000-2023-12-27">opusreader2 0.6.2.9000 (2023-12-27)</h1>
+<ul>
+<li>Select 5 OPUS binary files from different instrument types for tests and
+  vignette ((#103)</li>
+<li>Update first part of vignette for CRAN (#103).</li>
+</ul>
+<h1 id="opusreader2-062-2023-12-23">opusreader2 0.6.2 (2023-12-23)</h1>
+<h2 id="bug-fixes_3">Bug fixes</h2>
+<ul>
+<li>Hotfix for commit <a href="https://codefloe.com/spectral-cockpit/opusreader2/commit/c8ff2cd8e002ed7a992b21053c41877f4a12d533">c8ff2cd</a>, which accidentally caused a regression, leading to
+  issues <a href="https://codefloe.com/spectral-cockpit/opusreader2/issues/101">#101</a> and
+  <a href="https://codefloe.com/spectral-cockpit/opusreader2/issues/102">#102</a>.
+  It was unnoticed but could have been diagnosed with the {testthat} tests in
+  place. There was also an update of the {tic} template, which did not invoke
+  tests yet in the continous integration (CI) run (passed because of unconfigured tests).
+  When restricting relevant export, roxygen2 <code>@export</code> tags were removed and
+  <code>@internal</code> added for
+  <code>calc_parameter_chunk_size()</code>, which made those functions unavailable even
+  internally (<code>"Error in UseMethod("calc_parameter_chunk_size") : no applicable
+  method for 'calc_parameter_chunk_size' applied to an object of class "parameter")"</code></li>
+</ul>
+<h2 id="documentation_1">Documentation</h2>
+<ul>
+<li><code>read_opus()</code>: in return element <code>ab</code>, state <code>Log10</code> explicitly for calculating
+  apparent absorbance (<a href="https://codefloe.com/spectral-cockpit/opusreader2/issues/94">#94</a>; @zecoljls).</li>
+<li>Only export functions relevant to users:</li>
+<li>core: <code>read_opus()</code>, <code>read_opus_single()</code></li>
+<li>S3 methods for <code>calc_parameter_chunk_size()</code></li>
+<li>helpers: <code>opus_file()</code></li>
+</ul>
+<h1 id="opusreader2-061-2023-11-12">opusreader2 0.6.1 (2023-11-12)</h1>
+<h2 id="opus-data-support">OPUS data support</h2>
+<ul>
+<li>Support quality test report (#81). This block can be found in
+  <code>./inst/extdata/new_data/issue81_A1.1.0</code>. <code>read_opus()</code> returns this
+  block as <code>"quality_test_report"</code> in the list output.</li>
+</ul>
+<h1 id="opusreader2-060-2023-11-12">opusreader2 0.6.0 (2023-11-12)</h1>
+<ul>
+<li>Add first unit tests using the {testhat} framework.</li>
+<li>Allow non-parsable blocks. Add new default so that all blocks that not yet
+  mapped are showing up as warnings instead of an error. These blocks will be
+  named as <code>"unknown"</code> elements in the output of the <code>read_opus()</code> list.</li>
+</ul>
+<h2 id="opus-data-support_1">OPUS data support</h2>
+<ul>
+<li>Internal refactoring (see below) fixes two reading issues:</li>
+<li><code>./inst/extdata/new_data/issue94_RT_01_1_23-02-21_13-23-54.0</code>:
+    from Bruker 2023 Alpha II mid-IR spectrometer. Due to internal refactoring
+    of header parsing (see below) (#94)</li>
+<li><code>./inst/extdata/new_data/issue82_Opus_test</code>: from Bruker MPA FT-IR
+    spectrometer. Parse block <code>"b0-c0-t144-a1"</code>, text type 144 with special
+    offset in <code>parse_chunk.parameter()</code>. For now classify this block as block
+    type <code>"report_unknown"</code> (waiting finalize naming until confirmed with
+    screenshots from the Bruker OPUS sofware). Also fix <code>time_saved</code> by
+    not relying on language settings (#82)</li>
+</ul>
+<h2 id="internal-refactoring">Internal refactoring</h2>
+<ul>
+<li>Simplify header parsing in <code>parse_header()</code>.</li>
+<li>Work with <code>raw</code> vectors instead of <code>connection</code> objects to read binary data.
+  Parse <code>raw</code> vectors directly for functions in <code>read_bin_types()</code> and use
+  subsetting to slice raw vectors in <code>base::readBin()</code> calls instead instead
+  of <code>seek()</code>, which was used previously to reposition cursors in raw
+  <code>connection</code>s.</li>
+<li><code>get_meta_timestamp()</code>: omit language dependent logic using <code>"time saved"</code>
+  regular expressions for matching time saved from history block. The first
+  time of sorted <code>POSIXct</code> candidates will be returned as time saved.</li>
+</ul>
+<h1 id="opusreader2-0509000-2023-06-05">opusreader2 0.5.0.9000 (2023-06-05)</h1>
+<ul>
+<li>implement a <code>basic_metadata</code> list element for "opusreader2" class containing key metadata  (#85)</li>
+</ul>
+<h1 id="opusreader2-050-2023-06-03">opusreader2 0.5.0 (2023-06-03)</h1>
+<ul>
+<li>
+<p>Name first level of list (class <code>"list_opusreader2"</code>) with base file name of given data source name (DSN) (#83)</p>
+</li>
+<li>
+<p>Fix <code>"list_opusreader2"</code> indenting when reading files in parallel (#80)</p>
+</li>
+<li>
+<p>Add support for progress bars in <code>read_opus()</code> (#75)</p>
+</li>
+<li>
+<p>Introduce type-stable classes for <code>read_opus()</code> and <code>read_opus_single()</code> output  (#72):</p>
+</li>
+<li>classes "list_opusreader2" and "opusreader2"</li>
+</ul>
+<h1 id="opusreader2-041-2023-03-19">opusreader2 0.4.1 (2023-03-19)</h1>
+<ul>
+<li>patch when <code>read_opus(..., parallel = TRUE)</code>: unlist resulting list one level (chunk level); <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/80">#80</a>.</li>
+</ul>
+<h1 id="opusreader2-040-2023-03-14">opusreader2 0.4.0 (2023-03-14)</h1>
+<ul>
+<li>Feature progress bar for <code>read_opus()</code> when reading multiple files in parallel <a href="https://codefloe.com/spectral-cockpit/opusreader2/pulls/75">#75</a>.</li>
+</ul>
+<h1 id="opusreader2-030-2023-02-16">opusreader2 0.3.0 (2023-02-16)</h1>
+<ul>
+<li>The exported functions are now (#74):<ul>
+<li><code>read_opus()</code>: Read one or more OPUS files from data source name (<code>dsn</code>)</li>
+<li><code>read_opus_single()</code>: Read a single OPUS file</li>
+<li><code>calc_parameter_chunk_size()</code>: Calculate the parameter chunk size in bytes</li>
+</ul>
+</li>
+</ul>
+<h1 id="opusreader2-020-2023-02-15">opusreader2 0.2.0 (2023-02-15)</h1>
+<ul>
+<li>Introduce new S3 classes for the main functions exported (#72):<ul>
+<li><code>read_opus()</code>: S3 class <code>c("list_opusreader2", "list")</code></li>
+<li><code>read_opus_single()</code>: S3 class <code>c("opusreader2", "list")</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="opusreader2-010-2023-02-08">opusreader2 0.1.0 (2023-02-08)</h1>
+<h2 id="refactoring">Refactoring</h2>
+<ul>
+<li>
+<p>Internal refactoring (<code>R/create_dataset.R</code>). Implement a new key-value mapping
+  logic for assigning the integer coded header information. The new order in the
+  (composite) key strings follows the sequence of <em>block</em>, <em>channel</em>, <em>text</em> and
+  <em>additional</em> type information. The better line-by-line layout of composite
+  keys and mapped information types simplifies the detection of new kind of
+  spectral data and parameters that are encoded in header entries (#60).</p>
+</li>
+<li>
+<p>Introduce consistent and proactive error reporting when a composite key in
+  are not yet mapped because they are not yet known (<code>R/create_dataset.R</code>).
+  This error message includes a recipe how to report new OPUS files with yet
+  unsupported block types (i.e. new instrument features) for {opusreader2}.
+  Together with the composite key generated from the respective the header
+  entry, a step-by-step reporting as GitHub issue is proposed. (#60)</p>
+</li>
+</ul>
+<h1 id="opusreader2-0009002-2022-12-23">opusreader2 0.0.0.9002 (2022-12-23)</h1>
+<h2 id="documentation_2">Documentation</h2>
+<ul>
+<li>Update return value of parsed OPUS spectral blocks in <code>parse_opus()</code></li>
+</ul>
+<h1 id="opusreader2-0009001-2022-12-18">opusreader2 0.0.0.9001 (2022-12-18)</h1>
+<p>Start versioning with {fledge}.</p>
+<p>spectral-cockpit.com proudly introduces {opusreader2} to read binary files
+from FT-IR devices from Bruker Optics GmbH &amp; Co in R. It is a powerhouse that
+fuels speedy extract-transform-load (ETL) data pipelines in spectroscopy
+applications. You can continue using state-of-the-art commercial devices
+for what they are good at: measurements. Meanwhile, you can rely on open source
+technology and trans-disciplinary knowledge to design data processes, and make
+best use of the spectroscopic source of information.</p>
+<p>{opusreader2} parses and decodes the at first glance puzzling file header
+first. The implementation then uses this mapped information as a recipe to read
+particular data types from different blocks. Specific byte chunks to be
+interpreted are defined by position (offset), read length, bytes per element,
+and type (e.g., string, float). With this, all the data can be read and parsed.
+We mitigate lock-in at file level. Hence we foster reproducible and trustworthy
+processes in spectral workflows. Nowadays, the new business logic is being more
+and more transparent in code, methods used and services offered. Tightly link and
+make input data, metadata and outcomes available for economical scaling-up of
+diagnostics.</p>
+<ul>
+<li>Extract, transform and load data directly from OPUS binary files</li>
+</ul>
+<p>Providing the data and metadata from measurements connects downstream tasks in
+order to make IR spectroscopy a ready-made, automatec for diagnostics and monitoring (platform):</p>
+<ul>
+<li>Quality control of measurements; monitoring workflow and metadata</li>
+<li>Continuous spectroscopic diagnostics (data processing, model development,
+  inspection, adaption, prediction, and validation). Use MLOps principles.</li>
+</ul>
+<p>With our package you can directly read and parse from binary files without
+compromising a single bit of precious information saved in these filled
+OPUS binary files.</p>
+<p><code>read_opus()</code> is the main function exposed that reads and parses OPUS binary
+files from various data sources names (dsn). Currently, we support the
+following <code>dsn</code> types:</p>
+<ul>
+<li><em>files(s)</em>: character vector with one path to OPUS file or multiple paths to
+  individual OPUS files</li>
+<li><em>folder</em>: character of length 1 with path to folder with OPUS files to be read
+  recursively. Only reads OPUS files with <code>.&lt;integer&gt;</code> extension (Usually
+  starting from <code>.0</code> for unique sample names per measurement.</li>
+</ul>
+<p>File names of OPUS files can possibly include plate positions that are postfixed
+to the sample names. This is an option in OPUSLab. Kindly note that the
+associated metadata (sample name/ID) and plate position are also stored
+internally so that file name changes after measurement could be tracked.</p>
+<p><code>read_opus</code> offers four arguments:</p>
+<ul>
+<li><code>dsn</code>: data source name</li>
+<li><code>data_only</code>: switch to extract only spectral data blocks without additional
+   information like measurement parameters or environmental conditions.</li>
+<li><code>parallel</code>: not enabled by default. Speed up reads of 1000s of files by
+   chunking list of files across parallel workers. Cross-platform via unified
+   {future} framework in R.</li>
+<li><code>progress_bar</code>: optionally show interactive progress bar for single-threaded
+  or asynchronous reads.</li>
+</ul>
+<p>The interface is minimal and the job of the generic reader function is
+well defined by design. This is to make maintenance easy and to avoid breaking
+changes in future releases of the package. We importantly avoid feature overload
+like this. We plan to release specific helper and wrapper functions that can
+come in handy for tailored uses and diagnostic environments. They may also
+extract or post-process spectroscopic data and metadata pipelines. Check out
+more soon in future releases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.select", "navigation.tabs", "navigation.tabs.sticky", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
