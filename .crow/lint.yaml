@@ -4,6 +4,7 @@ when:
   - event: push
     branch: ${CI_REPO_DEFAULT_BRANCH}
     path: ['R/**', 'tests/**', 'DESCRIPTION', 'default.nix', 'NAMESPACE', '.crow/**']
+  - event: tag
 
 steps:
   - name: lint-r-jarl
