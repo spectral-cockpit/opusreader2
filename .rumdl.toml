@@ -1,0 +1,22 @@
+# Global settings for file selection
+[global]
+include = ["**.md"]
+respect-gitignore = true
+
+# Rule MD003: Heading style consistency
+[MD003]
+style = "atx"
+
+# Rule MD013: Line length configuration
+[MD013]
+line-length = 200
+code-blocks = true  # Set to false if you want long code lines ignored
+
+# Rule MD046: Code block style (require fenced)
+[MD046]
+style = "fenced"
+
+# Rule MD047: Files should end with a single newline character
+[MD047]
+enabled = true
+
