@@ -33,3 +33,6 @@
 ^uv\.lock$
 ^CHANGELOG\.md$
 ^CRAN-SUBMISSION$
+^prek.toml$
+^AGENTS.md$
+

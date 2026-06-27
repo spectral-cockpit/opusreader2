@@ -9,6 +9,7 @@ clone:
       tags: true
 
 depends_on:
+  - lint
   - rcmdcheck
 
 steps:
@@ -24,3 +25,32 @@ steps:
       - cat CHANGELOG.md
     when:
       event: tag
+
+  'Create release':
+    image: cr.codefloe.com/docker.io/woodpeckerci/plugin-release:0.3.1
+    settings:
+      note: CHANGELOG.md
+      api_key:
+        from_secret: spectral-cockpit-bot-forgejo-opusreader2
+      files:
+        - dist/*.tar.gz
+      title: ${CI_COMMIT_TAG}
+    when:
+      event: [tag]
+
+  'Push changes to repo':
+    image: cr.codefloe.com/docker.io/appleboy/drone-git-push:1.2.3
+    depends_on:
+      - 'Create release'
+    settings:
+      remote: ${CI_REPO_CLONE_SSH_URL}
+      branch: main
+      commit: true
+      commit_message: '[skip ci] Update version in DESCRIPTION after release'
+      author_name: spectral-cockpit-bot
+      author_email: bot@spectral-cockpit.com
+      ssh_key:
+        from_secret: spectral-cockpit-bot-deploy-key-opusreader2
+    when:
+      event: [tag]
+

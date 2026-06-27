@@ -10,8 +10,10 @@ steps:
     environment:
       _R_CHECK_FORCE_SUGGESTS_: FALSE
       _R_CHECK_SYSTEM_CLOCK_: FALSE
+      _R_CHECK_CRAN_INCOMING_: FALSE
     commands:
       - >
         nix-shell --run 'Rscript -e "rcmdcheck::rcmdcheck( 
           args = c(\"--as-cran\"), 
           error_on = \"warning\")"'
+
