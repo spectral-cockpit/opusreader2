@@ -14,7 +14,7 @@ depends_on:
 
 steps:
   changelog:
-    image: reg.devxy.io/docker.io/thegeeklab/git-sv:2.1.3
+    image: reg.devxy.io/docker.io/thegeeklab/git-sv:3.0.2
     commands:
       - apk add --no-cache -q sed
       # replace version in DESCRIPTION
