@@ -58,8 +58,8 @@
 
 ## Chores
 
-- `read_opus()`: uniquely use "mirai" parallel backend, wipe "future". `.parallel_backend` argument is depreciated without notes (#124)
-- `README`: use`opus_test_file()` for reading multiple files via mirai backend (#122)
+- `read_opus()`: uniquely use "mirai" parallel backend, wipe "future". `.parallel_backend` argument is depreciated without notes ([#124](/issues/124))
+- `README`: use`opus_test_file()` for reading multiple files via mirai backend ([#122](/issues/122))
 
 
 # opusreader2 0.6.4 (2025-09-24)
@@ -91,10 +91,10 @@
   spectra with {opusreader2}, because it is a nested list element. This patch
   release also resolves a warning when parsing time information, that was due to
   an extra tab (`"\t"`) that was present in the history text for specific files.
-  Thanks @mtalluto for the fix.
+  Thanks [@mtalluto](https://github.com/mtalluto) for the fix.
   Added extra tests to check for errors and warnings in the example files for
   both `data_only = FALSE` and `data_only = TRUE`).
-  Thanks to @dylanbeaudette and @esteveze for reporting the failing extraction of metadata.
+  Thanks to [@dylanbeaudette](https://github.com/dylanbeaudette) and [@esteveze](https://github.com/esteveze) for reporting the failing extraction of metadata.
   Issue report: [#104](https://codefloe.com/spectral-cockpit/opusreader2/issues/104).
   PR fixed: [#105](https://codefloe.com/spectral-cockpit/opusreader2/pulls/105).
 
@@ -102,8 +102,8 @@
 # opusreader2 0.6.2.9000 (2023-12-27)
 
 - Select 5 OPUS binary files from different instrument types for tests and
-  vignette ((#103)
-- Update first part of vignette for CRAN (#103).
+  vignette (([#103](/issues/103))
+- Update first part of vignette for CRAN ([#103](/issues/103)).
 
 
 # opusreader2 0.6.2 (2023-12-23)
@@ -125,7 +125,7 @@
 ## Documentation
 
 - `read_opus()`: in return element `ab`, state `Log10` explicitly for calculating
-  apparent absorbance ([#94](https://codefloe.com/spectral-cockpit/opusreader2/issues/94); @zecoljls).
+  apparent absorbance ([[#94](/issues/94)](https://codefloe.com/spectral-cockpit/opusreader2/issues/94); [@zecoljls](https://github.com/zecoljls)).
 - Only export functions relevant to users:
   - core: `read_opus()`, `read_opus_single()`
   - S3 methods for `calc_parameter_chunk_size()`
@@ -136,7 +136,7 @@
 
 ## OPUS data support
 
-- Support quality test report (#81). This block can be found in
+- Support quality test report ([#81](/issues/81)). This block can be found in
   `./inst/extdata/new_data/issue81_A1.1.0`. `read_opus()` returns this
   block as `"quality_test_report"` in the list output.
 
@@ -153,13 +153,13 @@
 - Internal refactoring (see below) fixes two reading issues:
   - `./inst/extdata/new_data/issue94_RT_01_1_23-02-21_13-23-54.0`:
     from Bruker 2023 Alpha II mid-IR spectrometer. Due to internal refactoring
-    of header parsing (see below) (#94)
+    of header parsing (see below) ([#94](/issues/94))
   - `./inst/extdata/new_data/issue82_Opus_test`: from Bruker MPA FT-IR
     spectrometer. Parse block `"b0-c0-t144-a1"`, text type 144 with special
     offset in `parse_chunk.parameter()`. For now classify this block as block
     type `"report_unknown"` (waiting finalize naming until confirmed with
     screenshots from the Bruker OPUS sofware). Also fix `time_saved` by
-    not relying on language settings (#82)
+    not relying on language settings ([#82](/issues/82))
 
 
 ## Internal refactoring
@@ -177,34 +177,34 @@
 
 # opusreader2 0.5.0.9000 (2023-06-05)
 
-  - implement a `basic_metadata` list element for "opusreader2" class containing key metadata  (#85)
+  - implement a `basic_metadata` list element for "opusreader2" class containing key metadata  ([#85](/issues/85))
 
 
 # opusreader2 0.5.0 (2023-06-03)
 
-- Name first level of list (class `"list_opusreader2"`) with base file name of given data source name (DSN) (#83)
+- Name first level of list (class `"list_opusreader2"`) with base file name of given data source name (DSN) ([#83](/issues/83))
 
-- Fix `"list_opusreader2"` indenting when reading files in parallel (#80)
+- Fix `"list_opusreader2"` indenting when reading files in parallel ([#80](/issues/80))
 
-- Add support for progress bars in `read_opus()` (#75)
+- Add support for progress bars in `read_opus()` ([#75](/issues/75))
 
-- Introduce type-stable classes for `read_opus()` and `read_opus_single()` output  (#72):
+- Introduce type-stable classes for `read_opus()` and `read_opus_single()` output  ([#72](/issues/72)):
   - classes "list_opusreader2" and "opusreader2"
 
 
 # opusreader2 0.4.1 (2023-03-19)
 
-  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [#80](https://codefloe.com/spectral-cockpit/opusreader2/pulls/80).
+  - patch when `read_opus(..., parallel = TRUE)`: unlist resulting list one level (chunk level); [[#80](/issues/80)](https://codefloe.com/spectral-cockpit/opusreader2/pulls/80).
 
 
 # opusreader2 0.4.0 (2023-03-14)
 
-  - Feature progress bar for `read_opus()` when reading multiple files in parallel [#75](https://codefloe.com/spectral-cockpit/opusreader2/pulls/75).
+  - Feature progress bar for `read_opus()` when reading multiple files in parallel [[#75](/issues/75)](https://codefloe.com/spectral-cockpit/opusreader2/pulls/75).
 
 
 # opusreader2 0.3.0 (2023-02-16)
 
-  - The exported functions are now (#74):
+  - The exported functions are now ([#74](/issues/74)):
     - `read_opus()`: Read one or more OPUS files from data source name (`dsn`)
     - `read_opus_single()`: Read a single OPUS file
     - `calc_parameter_chunk_size()`: Calculate the parameter chunk size in bytes
@@ -212,7 +212,7 @@
 
 # opusreader2 0.2.0 (2023-02-15)
 
-  - Introduce new S3 classes for the main functions exported (#72):
+  - Introduce new S3 classes for the main functions exported ([#72](/issues/72)):
     - `read_opus()`: S3 class `c("list_opusreader2", "list")`
     - `read_opus_single()`: S3 class `c("opusreader2", "list")`
 
@@ -225,14 +225,14 @@
   (composite) key strings follows the sequence of *block*, *channel*, *text* and
   *additional* type information. The better line-by-line layout of composite
   keys and mapped information types simplifies the detection of new kind of
-  spectral data and parameters that are encoded in header entries (#60).
+  spectral data and parameters that are encoded in header entries ([#60](/issues/60)).
 
 - Introduce consistent and proactive error reporting when a composite key in
   are not yet mapped because they are not yet known (`R/create_dataset.R`).
   This error message includes a recipe how to report new OPUS files with yet
   unsupported block types (i.e. new instrument features) for {opusreader2}.
   Together with the composite key generated from the respective the header
-  entry, a step-by-step reporting as GitHub issue is proposed. (#60)
+  entry, a step-by-step reporting as GitHub issue is proposed. ([#60](/issues/60))
 
 # opusreader2 0.0.0.9002 (2022-12-23)
 
